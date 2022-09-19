@@ -1,4 +1,4 @@
-﻿namespace FastFoodDemo.ViewModels
+﻿namespace Models.ViewModels
 {
     public class SeletedItem
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FastFoodDemo.Entities
+namespace Models.Entities
 {
     public class Employee
     {

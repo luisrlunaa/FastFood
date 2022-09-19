@@ -1,7 +1,8 @@
-﻿using FastFoodDemo.Constants;
-using FastFoodDemo.Entities;
-using FastFoodDemo.ViewModels;
-using FastFoodDemo.ViewModels.GenericList;
+﻿using Infrastructure.Constants;
+
+using Models.Entities;
+using Models.ViewModels;
+using Models.ViewModels.GenericLists;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -24,8 +25,8 @@ namespace FastFoodDemo
         {
             panelManager.Visible = false;
 
-            if (GenericListProducts.SeletedItems is null)
-                GenericListProducts.SeletedItems = new List<SeletedItem>();
+            if (GenericLists.SeletedItems is null)
+                GenericLists.SeletedItems = new List<SeletedItem>();
 
             GetListItems(0);
         }
@@ -33,10 +34,10 @@ namespace FastFoodDemo
         private void btnSearch_Click(object sender, EventArgs e)
         {
             var listItems = new List<ItemsDTO>();
-            if (!string.IsNullOrWhiteSpace(txtSearch.Text) && GenericListProducts.ProductsDrinks != null)
-                ProductsList = GenericListProducts.ProductsDrinks.Where(x => x.Name.ToLower().Contains(txtSearch.Text.ToLower())).Take(6).ToList();
+            if (!string.IsNullOrWhiteSpace(txtSearch.Text) && GenericLists.ProductsDrinks != null)
+                ProductsList = GenericLists.ProductsDrinks.Where(x => x.Name.ToLower().Contains(txtSearch.Text.ToLower())).Take(6).ToList();
             else
-                ProductsList = GenericListProducts.ProductsDrinks.Take(6).ToList();
+                ProductsList = GenericLists.ProductsDrinks.Take(6).ToList();
 
             if (ProductsList != null && ProductsList.Count > 0)
             {
@@ -54,8 +55,8 @@ namespace FastFoodDemo
                     listItems.Add(item);
                 }
 
-                GenericListProducts.startIndexProduct = listItems.FirstOrDefault().ProductId;
-                GenericListProducts.endIndexProduct = listItems.LastOrDefault().ProductId;
+                GenericLists.startIndexProduct = listItems.FirstOrDefault().ProductId;
+                GenericLists.endIndexProduct = listItems.LastOrDefault().ProductId;
             }
 
             var panelCount = 0;
@@ -70,9 +71,9 @@ namespace FastFoodDemo
         private void btnNext_Click(object sender, EventArgs e)
         {
             int lastProduct = 5;
-            if (GenericListProducts.endIndexProduct != 0)
+            if (GenericLists.endIndexProduct != 0)
             {
-                lastProduct = GenericListProducts.ProductsDrinks.FindIndex(a => a.ProductId == GenericListProducts.endIndexProduct);
+                lastProduct = GenericLists.ProductsDrinks.FindIndex(a => a.ProductId == GenericLists.endIndexProduct);
             }
 
             GetListItems(lastProduct);
@@ -81,9 +82,9 @@ namespace FastFoodDemo
         private void btnBack_Click(object sender, EventArgs e)
         {
             int firtProduct = 0;
-            if (GenericListProducts.startIndexProduct != 0 && GenericListProducts.endIndexProduct != 0)
+            if (GenericLists.startIndexProduct != 0 && GenericLists.endIndexProduct != 0)
             {
-                firtProduct = GenericListProducts.ProductsDrinks.FindIndex(a => a.ProductId == GenericListProducts.startIndexProduct);
+                firtProduct = GenericLists.ProductsDrinks.FindIndex(a => a.ProductId == GenericLists.startIndexProduct);
             }
 
             GetListItems(firtProduct);
@@ -118,7 +119,7 @@ namespace FastFoodDemo
                     if (product != null)
                     {
                         ProductsList.Remove(product);
-                        GenericListProducts.ProductsDrinks.Remove(product);
+                        GenericLists.ProductsDrinks.Remove(product);
                         GetListItems(0);
                     }
                 }
@@ -219,9 +220,9 @@ namespace FastFoodDemo
             var listItems = new List<ItemsDTO>();
 
             if (ProductsList is null)
-                ProductsList = GenericListProducts.ProductsDrinks;
+                ProductsList = GenericLists.ProductsDrinks;
 
-            if (GenericListProducts.ProductsDrinks != null || GenericListProducts.ProductsDrinks.Count > 0)
+            if (GenericLists.ProductsDrinks != null || GenericLists.ProductsDrinks.Count > 0)
             {
                 var newSearch = ProductsList.Skip(skip).Take(6).ToList();
                 var Products = newSearch != null && newSearch.Count > 2 ? newSearch.ToList() : ProductsList.ToList();
@@ -241,8 +242,8 @@ namespace FastFoodDemo
                         listItems.Add(item);
                     }
 
-                    GenericListProducts.startIndexProduct = listItems.FirstOrDefault().ProductId;
-                    GenericListProducts.endIndexProduct = listItems.LastOrDefault().ProductId;
+                    GenericLists.startIndexProduct = listItems.FirstOrDefault().ProductId;
+                    GenericLists.endIndexProduct = listItems.LastOrDefault().ProductId;
                 }
             }
 
@@ -386,9 +387,9 @@ namespace FastFoodDemo
             product.Quantity = Convert.ToDecimal(txtQuantity1.Text);
             product.Category = CategoryConstants.Drinks;
 
-            var prod = GenericListProducts.SeletedItems.FirstOrDefault(x => x.Id == product.Id);
+            var prod = GenericLists.SeletedItems.FirstOrDefault(x => x.Id == product.Id);
             if (prod is null)
-                GenericListProducts.SeletedItems.Add(product);
+                GenericLists.SeletedItems.Add(product);
             else
                 MessageBox.Show("El producto ya fue agregado");
         }
@@ -402,9 +403,9 @@ namespace FastFoodDemo
             product.Quantity = Convert.ToDecimal(txtQuantity2.Text);
             product.Category = CategoryConstants.Drinks;
 
-            var prod = GenericListProducts.SeletedItems.FirstOrDefault(x => x.Id == product.Id);
+            var prod = GenericLists.SeletedItems.FirstOrDefault(x => x.Id == product.Id);
             if (prod is null)
-                GenericListProducts.SeletedItems.Add(product);
+                GenericLists.SeletedItems.Add(product);
             else
                 MessageBox.Show("El producto ya fue agregado");
         }
@@ -418,9 +419,9 @@ namespace FastFoodDemo
             product.Quantity = Convert.ToDecimal(txtQuantity3.Text);
             product.Category = CategoryConstants.Drinks;
 
-            var prod = GenericListProducts.SeletedItems.FirstOrDefault(x => x.Id == product.Id);
+            var prod = GenericLists.SeletedItems.FirstOrDefault(x => x.Id == product.Id);
             if (prod is null)
-                GenericListProducts.SeletedItems.Add(product);
+                GenericLists.SeletedItems.Add(product);
             else
                 MessageBox.Show("El producto ya fue agregado");
         }
@@ -434,9 +435,9 @@ namespace FastFoodDemo
             product.Quantity = Convert.ToDecimal(txtQuantity4.Text);
             product.Category = CategoryConstants.Drinks;
 
-            var prod = GenericListProducts.SeletedItems.FirstOrDefault(x => x.Id == product.Id);
+            var prod = GenericLists.SeletedItems.FirstOrDefault(x => x.Id == product.Id);
             if (prod is null)
-                GenericListProducts.SeletedItems.Add(product);
+                GenericLists.SeletedItems.Add(product);
             else
                 MessageBox.Show("El producto ya fue agregado");
         }
@@ -450,9 +451,9 @@ namespace FastFoodDemo
             product.Quantity = Convert.ToDecimal(txtQuantity5.Text);
             product.Category = CategoryConstants.Drinks;
 
-            var prod = GenericListProducts.SeletedItems.FirstOrDefault(x => x.Id == product.Id);
+            var prod = GenericLists.SeletedItems.FirstOrDefault(x => x.Id == product.Id);
             if (prod is null)
-                GenericListProducts.SeletedItems.Add(product);
+                GenericLists.SeletedItems.Add(product);
             else
                 MessageBox.Show("El producto ya fue agregado");
         }
@@ -467,9 +468,9 @@ namespace FastFoodDemo
             product.Category = CategoryConstants.Drinks;
 
 
-            var prod = GenericListProducts.SeletedItems.FirstOrDefault(x => x.Id == product.Id);
+            var prod = GenericLists.SeletedItems.FirstOrDefault(x => x.Id == product.Id);
             if (prod is null)
-                GenericListProducts.SeletedItems.Add(product);
+                GenericLists.SeletedItems.Add(product);
             else
                 MessageBox.Show("El producto ya fue agregado");
         }

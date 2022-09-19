@@ -1,7 +1,7 @@
-﻿using FastFoodDemo.Constants;
-using FastFoodDemo.Entities;
-using FastFoodDemo.Utils;
-using FastFoodDemo.ViewModels.GenericList;
+﻿using FastFoodDemo.Utils;
+using Infrastructure.Constants;
+using Models.Entities;
+using Models.ViewModels.GenericLists;
 using System;
 using System.Linq;
 using System.Windows.Forms;
@@ -57,22 +57,22 @@ namespace FastFoodDemo
 
             if (cbxCategoria.Text == CategoryConstants.Drinks)
             {
-                var actual = GenericListProducts.ProductsDrinks.FirstOrDefault(x => x.ProductId == product.ProductId);
+                var actual = GenericLists.ProductsDrinks.FirstOrDefault(x => x.ProductId == product.ProductId);
                 if (actual != null)
-                    GenericListProducts.ProductsDrinks.Remove(actual);
+                    GenericLists.ProductsDrinks.Remove(actual);
 
-                GenericListProducts.ProductsDrinks.Add(product);
+                GenericLists.ProductsDrinks.Add(product);
                 DrinkListForm form = new DrinkListForm();
                 form.RefreshList();
             }
 
             if (cbxCategoria.Text == CategoryConstants.Foods)
             {
-                var actual = GenericListProducts.ProductsFoods.FirstOrDefault(x => x.ProductId == product.ProductId);
+                var actual = GenericLists.ProductsFoods.FirstOrDefault(x => x.ProductId == product.ProductId);
                 if (actual != null)
-                    GenericListProducts.ProductsFoods.Remove(actual);
+                    GenericLists.ProductsFoods.Remove(actual);
 
-                GenericListProducts.ProductsFoods.Add(product);
+                GenericLists.ProductsFoods.Add(product);
                 FoodListForm form = new FoodListForm();
                 form.RefreshList();
             }
@@ -94,24 +94,24 @@ namespace FastFoodDemo
 
             if (cbxCategoria.Text == CategoryConstants.Drinks)
             {
-                var actual = GenericListProducts.ProductsDrinks.FirstOrDefault(x => x.ProductId == product.ProductId);
+                var actual = GenericLists.ProductsDrinks.FirstOrDefault(x => x.ProductId == product.ProductId);
                 if (actual != null)
-                    GenericListProducts.ProductsDrinks.Remove(actual);
+                    GenericLists.ProductsDrinks.Remove(actual);
 
-                product.ProductId = GenericListProducts.ProductsDrinks.Max(x => x.ProductId) + 1;
-                GenericListProducts.ProductsDrinks.Add(product);
+                product.ProductId = GenericLists.ProductsDrinks.Max(x => x.ProductId) + 1;
+                GenericLists.ProductsDrinks.Add(product);
                 FoodListForm form = new FoodListForm();
                 form.RefreshList();
             }
 
             if (cbxCategoria.Text == CategoryConstants.Foods)
             {
-                var actual = GenericListProducts.ProductsFoods.FirstOrDefault(x => x.ProductId == product.ProductId);
+                var actual = GenericLists.ProductsFoods.FirstOrDefault(x => x.ProductId == product.ProductId);
                 if (actual != null)
-                    GenericListProducts.ProductsFoods.Remove(actual);
+                    GenericLists.ProductsFoods.Remove(actual);
 
-                product.ProductId = GenericListProducts.ProductsFoods.Max(x => x.ProductId) + 1;
-                GenericListProducts.ProductsFoods.Add(product);
+                product.ProductId = GenericLists.ProductsFoods.Max(x => x.ProductId) + 1;
+                GenericLists.ProductsFoods.Add(product);
                 FoodListForm form = new FoodListForm();
                 form.RefreshList();
             }

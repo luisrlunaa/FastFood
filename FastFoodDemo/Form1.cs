@@ -1,17 +1,17 @@
-﻿using FastFoodDemo.Constants;
-using FastFoodDemo.Entities;
-using FastFoodDemo.ViewModels.GenericList;
+﻿using Infrastructure.Constants;
+using Infrastructure.DataAccess.Repositories;
+using Models.ViewModels.GenericLists;
 using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace FastFoodDemo
 {
     public partial class Form1 : Form
     {
+        ProductsRepository productsRepository = new ProductsRepository();
+        BusinessRepository businessRepository = new BusinessRepository();
+
         public Form1()
         {
             InitializeComponent();
@@ -21,50 +21,23 @@ namespace FastFoodDemo
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            var business = businessRepository.GetBusinessInfo();
+            lblDir.Text = business.Address;
+            lblLogo.Text = business.Name;
+            lblTel1.Text = business.Phone1;
+            lblTel2.Text = business.Phone2;
+            lblRNC.Text = business.RNC;
+
             mainpanel.Visible = false;
 
-            ///llenar con base de datos
-            var Products = new List<Product>();
-            if (Products is null || Products.Count == 0)
+            if (GenericLists.ProductsDrinks is null || GenericLists.ProductsDrinks.Count == 0)
             {
-
-                Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Bebida", Name = "Presidente lithg", Type = "Mediana", SalesPrice = 125, Description = "Verde", ProductId = 1 });
-                Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Bebida", Name = "Presidente lithg", Type = "Jumbo", SalesPrice = 235, Description = "Verde", ProductId = 2 });
-                Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Bebida", Name = "Jugo verde", Type = "Jumbo", SalesPrice = 225, Description = "Verde", ProductId = 3 });
-                Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Bebida", Name = "Refrezco Cocacola", Type = "Normal", SalesPrice = 80, Description = "Rojo", ProductId = 4 });
-                Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Bebida", Name = "Agua Cascada", Type = "Normal", SalesPrice = 35, Description = "Transparente", ProductId = 5 });
-                Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Bebida", Name = "Presidente", Type = "Jumbo", SalesPrice = 115, Description = "Verde", ProductId = 6 });
-
-                Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Bebida", Name = "Brama lithg", Type = "Mediana", SalesPrice = 135, Description = "Amarilla", ProductId = 13 });
-                Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Bebida", Name = "Brama lithg", Type = "Jumbo", SalesPrice = 245, Description = "Amarilla", ProductId = 14 });
-                Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Bebida", Name = "Jugo Piña", Type = "Jumbo", SalesPrice = 225, Description = "Amarilla", ProductId = 15 });
-                Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Bebida", Name = "Refrezco Pepsi", Type = "Normal", SalesPrice = 70, Description = "Rojo", ProductId = 16 });
-                Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Bebida", Name = "Agua Peñantial", Type = "Normal", SalesPrice = 25, Description = "Transparente", ProductId = 17 });
-                Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Bebida", Name = "Brama", Type = "Jumbo", SalesPrice = 100, Description = "Verde", ProductId = 18 });
-
-                Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Comida", Name = "Papita", Type = "Mediana", SalesPrice = 105, Description = "Verde", ProductId = 7 });
-                Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Comida", Name = "Tostada", Type = "Mediana", SalesPrice = 200, Description = "Jamon y Queso", ProductId = 8 });
-                Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Comida", Name = "chicle", Type = "Grande", SalesPrice = 60, Description = "Verde", ProductId = 9 });
-                Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Comida", Name = "Hot Dog", Type = "Grande", SalesPrice = 150, Description = "Con maiz", ProductId = 10 });
-                Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Comida", Name = "Dona", Type = "Grande", SalesPrice = 65, Description = "Chocolate", ProductId = 11 });
-                Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Comida", Name = "Pizza", Type = "Pequeña", SalesPrice = 350, Description = "Peperoni", ProductId = 12 });
-
-                Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Comida", Name = "Papita", Type = "Mediana", SalesPrice = 105, Description = "Roja", ProductId = 18 });
-                Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Comida", Name = "Tostada", Type = "Mediana", SalesPrice = 250, Description = "Doble queso", ProductId = 19 });
-                Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Comida", Name = "chicle", Type = "Normal", SalesPrice = 25, Description = "Azul", ProductId = 20 });
-                Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Comida", Name = "Hot Dog", Type = "Grande", SalesPrice = 120, Description = "Sin maiz", ProductId = 21 });
-                Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Comida", Name = "Dona", Type = "Normal", SalesPrice = 45, Description = "Vainilla", ProductId = 22 });
-                Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Comida", Name = "Pizza", Type = "Grande", SalesPrice = 750, Description = "Maiz", ProductId = 23 });
+                GenericLists.ProductsDrinks = productsRepository.GetProductByCategory(CategoryConstants.Drinks);
             }
 
-            if (GenericListProducts.ProductsDrinks is null || GenericListProducts.ProductsDrinks.Count == 0)
+            if (GenericLists.ProductsFoods is null || GenericLists.ProductsFoods.Count == 0)
             {
-                GenericListProducts.ProductsDrinks = Products.Where(x => x.Category == CategoryConstants.Drinks).ToList();
-            }
-
-            if (GenericListProducts.ProductsFoods is null || GenericListProducts.ProductsFoods.Count == 0)
-            {
-                GenericListProducts.ProductsFoods = Products.Where(x => x.Category == CategoryConstants.Foods).ToList();
+                GenericLists.ProductsFoods = productsRepository.GetProductByCategory(CategoryConstants.Foods);
             }
         }
 
@@ -73,25 +46,26 @@ namespace FastFoodDemo
             mainpanel.Visible = false;
             SidePanel.Height = button1.Height;
             SidePanel.Top = button1.Top;
+            loadform(new Form1());
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             mainpanel.Visible = true;
-            SidePanel.Height = button1.Height;
-            SidePanel.Top = button1.Top;
-            GenericListProducts.startIndexProduct = 0;
-            GenericListProducts.endIndexProduct = 0;
+            SidePanel.Height = button2.Height;
+            SidePanel.Top = button2.Top;
+            GenericLists.startIndexProduct = 0;
+            GenericLists.endIndexProduct = 0;
             loadform(new FoodListForm());
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             mainpanel.Visible = true;
-            SidePanel.Height = button1.Height;
-            SidePanel.Top = button1.Top;
-            GenericListProducts.startIndexProduct = 0;
-            GenericListProducts.endIndexProduct = 0;
+            SidePanel.Height = button3.Height;
+            SidePanel.Top = button3.Top;
+            GenericLists.startIndexProduct = 0;
+            GenericLists.endIndexProduct = 0;
             loadform(new DrinkListForm());
         }
 
@@ -99,11 +73,20 @@ namespace FastFoodDemo
         {
             SalesForm sales = new SalesForm();
             sales.lblSales.Text = "Delivery";
+            sales.lblDir.Text = lblDir.Text;
+            sales.lblLogo.Text = lblLogo.Text;
+            sales.lblTel1.Text = lblTel1.Text;
+            sales.lblTel2.Text = lblTel2.Text;
+            sales.lblRNC.Text = lblRNC.Text;
             sales.lblSales.ForeColor = Color.Black;
             sales.panelIdentify.BackColor = Color.CornflowerBlue;
+            sales.lblDireccion.Visible = true;
+            sales.txtDireccion.Visible = true;
+            sales.lblDelivery.Visible = true;
+            sales.txtDelivery.Visible = true;
             mainpanel.Visible = true;
-            SidePanel.Height = button1.Height;
-            SidePanel.Top = button1.Top;
+            SidePanel.Height = button4.Height;
+            SidePanel.Top = button4.Top;
 
             loadform(sales);
         }
@@ -111,6 +94,8 @@ namespace FastFoodDemo
         private void button5_Click(object sender, EventArgs e)
         {
             ManagerProductForm form = new ManagerProductForm();
+            SidePanel.Height = button5.Height;
+            SidePanel.Top = button5.Top;
             form.Show();
         }
 
@@ -118,11 +103,16 @@ namespace FastFoodDemo
         {
             SalesForm sales = new SalesForm();
             sales.lblSales.Text = "Ventas";
+            sales.lblDir.Text = lblDir.Text;
+            sales.lblLogo.Text = lblLogo.Text;
+            sales.lblTel1.Text = lblTel1.Text;
+            sales.lblTel2.Text = lblTel2.Text;
+            sales.lblRNC.Text = lblRNC.Text;
             sales.lblSales.ForeColor = Color.Black;
             sales.panelIdentify.BackColor = Color.ForestGreen;
             mainpanel.Visible = true;
-            SidePanel.Height = button1.Height;
-            SidePanel.Top = button1.Top;
+            SidePanel.Height = button6.Height;
+            SidePanel.Top = button6.Top;
 
             loadform(sales);
         }

@@ -33,6 +33,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.9\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.3, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13.3\lib\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ComponentModel.Annotations.5.0.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
@@ -49,16 +55,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Constants\CategoryConstants.cs" />
     <Compile Include="DrinkListForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DrinkListForm.Designer.cs">
       <DependentUpon>DrinkListForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Entities\Product.cs" />
-    <Compile Include="Entities\Employee.cs" />
-    <Compile Include="Entities\SalesCheck.cs" />
     <Compile Include="FirstCustomControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -91,11 +93,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\CreateTicket.cs" />
+    <Compile Include="Utils\PrintTickets.cs" />
     <Compile Include="Utils\validar.cs" />
-    <Compile Include="ViewModels\GenericList\GenericListProducts.cs" />
-    <Compile Include="ViewModels\IdsDTO.cs" />
-    <Compile Include="ViewModels\ItemsDTO.cs" />
-    <Compile Include="ViewModels\SeletedItem.cs" />
     <EmbeddedResource Include="DrinkListForm.resx">
       <DependentUpon>DrinkListForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -146,6 +146,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\food.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj">
+      <Project>{5b609ebd-feca-4080-9614-2f454ab05e4e}</Project>
+      <Name>Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <Project>{DE468C57-F59C-45E2-A429-EF5AA25C87B3}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
