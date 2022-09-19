@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2BDDB774-9994-45CD-A910-8A07B4C7AFA6}</ProjectGuid>
+    <ProjectGuid>{7C92CCF3-5A1D-4834-AC8D-CE28CA80B5C2}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>FastFoodDemo</RootNamespace>
