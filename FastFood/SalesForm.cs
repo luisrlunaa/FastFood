@@ -1,6 +1,5 @@
 ﻿using FastFoodDemo.Utils;
-using Infrastructure.Constants;
-
+using Infrastructure.DataAccess.Repositories;
 using Models.Entities;
 using Models.ViewModels;
 using Models.ViewModels.GenericLists;
@@ -13,6 +12,8 @@ namespace FastFoodDemo
 {
     public partial class SalesForm : Form
     {
+        ProductsRepository productsRepository = new ProductsRepository();
+        SalesRepository salesRepository = new SalesRepository();
         public static List<IdsDTO> Lisids { get; set; }
         public SalesForm()
         {
@@ -21,7 +22,11 @@ namespace FastFoodDemo
 
         private void SalesForm_Load(object sender, System.EventArgs e)
         {
-            lblIdSale.Text = GetNextSalesId().ToString();
+            var (idVenta, message) = salesRepository.GetNextSalesId();
+            if (idVenta == 0)
+                MessageBox.Show(message);
+
+            lblIdSale.Text = idVenta.ToString();
             if (lblSales.Text == "Ventas")
             {
                 btnVender.Enabled = true;
@@ -39,12 +44,6 @@ namespace FastFoodDemo
 
             Lisids = new List<IdsDTO>();
             LlenarGri();
-        }
-
-        private int GetNextSalesId()
-        {
-            var SalesCheckList = GenericLists.SalesChecks ?? new List<SalesCheck>();
-            return SalesCheckList.Count > 0 ? SalesCheckList.Max(x => x.IdVenta) + 1 : 1;
         }
 
         private void LlenarGri()
@@ -86,110 +85,8 @@ namespace FastFoodDemo
             }
         }
 
-        private void btnVender_Click(object sender, EventArgs e)
+        private void GetInfo(string type)
         {
-            if (Lisids != null && Lisids.Any())
-            {
-                foreach (var item in Lisids)
-                {
-                    var product = GenericLists.ProductsFoods.FirstOrDefault(x => x.ProductId == item.Id);
-                    if (product != null)
-                        product = GenericLists.ProductsDrinks.FirstOrDefault(x => x.ProductId == item.Id);
-
-                    if (product != null)
-                    {
-                        if (product.Category == CategoryConstants.Drinks)
-                        {
-                            var newProduct = product;
-                            newProduct.Stock = product.Stock - item.Quantity;
-
-                            GenericLists.ProductsDrinks.Remove(product);
-                            GenericLists.ProductsDrinks.Add(newProduct);
-                        }
-
-                        if (product.Category == CategoryConstants.Foods)
-                        {
-                            var newProduct = product;
-                            newProduct.Stock = product.Stock - item.Quantity;
-
-                            GenericLists.ProductsFoods.Remove(product);
-                            GenericLists.ProductsFoods.Add(newProduct);
-                        }
-                    }
-                }
-            }
-
-            //Business Info
-            Program.BusinessAddress= lblDir.Text;
-            Program.BusinessName = lblLogo.Text;
-            Program.BusinessPhone1= lblTel1.Text;
-            Program.BusinessPhone2= lblTel2.Text;
-            Program.BusinessRnc = lblRNC.Text;
-
-            //Sales Info
-            Program.SaleId = lblIdSale.Text;
-            Program.ClientName = txtClientName.Text;
-            Program.SaleAddress = txtDireccion.Text;
-            Program.DateIn = dateTimePicker1.Text;
-            Program.TypeNCF = combo_tipo_NCF.Text;
-            Program.NCF = txtNCF.Text;
-            Program.SalesCheckType = "Debito";
-            Program.Delivery = txtDelivery.Text;
-            Program.DeliveryAmount = txtDAmount.Text;
-            Program.HasNCF = chkComprobante.Checked;
-            Program.SubTotal = lblSubTotalAmount.Text;
-            Program.IgvTotal = lblIgvAmount.Text;
-            Program.Total = lblTotalAmount.Text;
-            PrintTickets.Print(false, dgProductSelected);
-
-            var sale = new SalesCheck();
-            sale.IdVenta = Convert.ToInt32(Program.SaleId);
-            sale.ClientName = Program.ClientName;
-            sale.Address = Program.SaleAddress;
-            sale.DateIn = Convert.ToDateTime(Program.DateIn);
-            sale.DocumentType = Program.TypeNCF;
-            sale.NroComprobante = Program.NCF;
-            sale.SalesCheckType = Program.SalesCheckType;
-            sale.DeliveryName = Program.Delivery;
-            sale.DeliveryAmount = string.IsNullOrWhiteSpace(Program.DeliveryAmount) ? 0 : Convert.ToDecimal(Program.DeliveryAmount);
-            sale.Subtotal = Convert.ToDecimal(Program.SubTotal);
-            sale.Total = Convert.ToDecimal(Program.Total);
-            GenericLists.SalesChecks.Add(sale);
-        }
-
-        private void btnEnviar_Click(object sender, EventArgs e)
-        {
-            if (Lisids != null && Lisids.Any())
-            {
-                foreach (var item in Lisids)
-                {
-                    var product = GenericLists.ProductsFoods.FirstOrDefault(x => x.ProductId == item.Id);
-                    if (product != null)
-                        product = GenericLists.ProductsDrinks.FirstOrDefault(x => x.ProductId == item.Id);
-
-                    if (product != null)
-                    {
-                        if (product.Category == CategoryConstants.Drinks)
-                        {
-                            var newProduct = product;
-                            newProduct.Stock = product.Stock - item.Quantity;
-
-                            GenericLists.ProductsDrinks.Remove(product);
-                            GenericLists.ProductsDrinks.Add(newProduct);
-                        }
-
-                        if (product.Category == CategoryConstants.Foods)
-                        {
-                            var newProduct = product;
-                            newProduct.Stock = product.Stock - item.Quantity;
-
-                            GenericLists.ProductsFoods.Remove(product);
-                            GenericLists.ProductsFoods.Add(newProduct);
-                        }
-                    }
-                }
-            }
-
             //Business Info
             Program.BusinessAddress = lblDir.Text;
             Program.BusinessName = lblLogo.Text;
@@ -204,7 +101,7 @@ namespace FastFoodDemo
             Program.DateIn = dateTimePicker1.Text;
             Program.TypeNCF = combo_tipo_NCF.Text;
             Program.NCF = txtNCF.Text;
-            Program.SalesCheckType = "Credito";
+            Program.SalesCheckType = type;
             Program.Delivery = txtDelivery.Text;
             Program.DeliveryAmount = txtDAmount.Text;
             Program.HasNCF = chkComprobante.Checked;
@@ -212,7 +109,10 @@ namespace FastFoodDemo
             Program.IgvTotal = lblIgvAmount.Text;
             Program.Total = lblTotalAmount.Text;
             PrintTickets.Print(false, dgProductSelected);
+        }
 
+        private void btnVender_Click(object sender, EventArgs e)
+        {
             var sale = new SalesCheck();
             sale.IdVenta = Convert.ToInt32(Program.SaleId);
             sale.ClientName = Program.ClientName;
@@ -225,7 +125,70 @@ namespace FastFoodDemo
             sale.DeliveryAmount = string.IsNullOrWhiteSpace(Program.DeliveryAmount) ? 0 : Convert.ToDecimal(Program.DeliveryAmount);
             sale.Subtotal = Convert.ToDecimal(Program.SubTotal);
             sale.Total = Convert.ToDecimal(Program.Total);
-            GenericLists.SalesChecks.Add(sale);
+            var (add, message) = salesRepository.AddSale(sale);
+            if (add)
+            {
+                if (Lisids != null && Lisids.Any())
+                {
+                    foreach (var item in Lisids)
+                    {
+                        var (product, message1) = productsRepository.GetProductById(item.Id);
+                        if (product != null)
+                        {
+                            var newProduct = product;
+                            newProduct.Stock = product.Stock - item.Quantity;
+                            var (update, message2) = productsRepository.UpdateProduct(newProduct);
+                            if (!update)
+                                MessageBox.Show(message2);
+                        }
+                        else
+                            MessageBox.Show(message1);
+                    }
+                }
+                GetInfo("Debito");
+            }
+            else
+                MessageBox.Show(message);
+        }
+
+        private void btnEnviar_Click(object sender, EventArgs e)
+        {
+            var sale = new SalesCheck();
+            sale.IdVenta = Convert.ToInt32(Program.SaleId);
+            sale.ClientName = Program.ClientName;
+            sale.Address = Program.SaleAddress;
+            sale.DateIn = Convert.ToDateTime(Program.DateIn);
+            sale.DocumentType = Program.TypeNCF;
+            sale.NroComprobante = Program.NCF;
+            sale.SalesCheckType = Program.SalesCheckType;
+            sale.DeliveryName = Program.Delivery;
+            sale.DeliveryAmount = string.IsNullOrWhiteSpace(Program.DeliveryAmount) ? 0 : Convert.ToDecimal(Program.DeliveryAmount);
+            sale.Subtotal = Convert.ToDecimal(Program.SubTotal);
+            sale.Total = Convert.ToDecimal(Program.Total);
+            var (add, message) = salesRepository.AddSale(sale);
+            if (add)
+            {
+                if (Lisids != null && Lisids.Any())
+                {
+                    foreach (var item in Lisids)
+                    {
+                        var (product, message1) = productsRepository.GetProductById(item.Id);
+                        if (product != null)
+                        {
+                            var newProduct = product;
+                            newProduct.Stock = product.Stock - item.Quantity;
+                            var (update, message2) = productsRepository.UpdateProduct(newProduct);
+                            if (!update)
+                                MessageBox.Show(message2);
+                        }
+                        else
+                            MessageBox.Show(message1);
+                    }
+                }
+                GetInfo("Credito");
+            }
+            else
+                MessageBox.Show(message);
         }
 
         private void label8_Click(object sender, EventArgs e)
@@ -244,7 +207,6 @@ namespace FastFoodDemo
             {
                 List<SeletedItem> lista = new List<SeletedItem>();
                 var IdProducto = Convert.ToInt32(dgProductSelected.CurrentRow.Cells["IdProd"].Value.ToString());
-
                 if (IdProducto > 0)
                 {
                     decimal Igv = 0;

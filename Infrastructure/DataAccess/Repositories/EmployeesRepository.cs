@@ -1,4 +1,5 @@
 ﻿using Models.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -6,32 +7,67 @@ namespace Infrastructure.DataAccess.Repositories
 {
     public class EmployeesRepository
     {
-        public List<Employee> GetEmployees()
+        public (List<Employee>, string) GetEmployees()
         {
-            ///llenar con base de datos
             var Employees = new List<Employee>();
-            return Employees;
+            try
+            {
+                return (Employees, "Proceso Completado");
+            }
+            catch (Exception ex)
+            {
+                return (Employees, "Error al Cargar Data, Metodo EmployeesRepository.GetEmployees \n" + ex.Message.ToString());
+            }
         }
 
-        public Employee GetEmployeeById(int id)
+        public (Employee, string) GetEmployeeById(int id)
         {
-            var Employees = new List<Employee>();
-            var employee = Employees.FirstOrDefault(x=>x.IdEmp == id);
-            return employee;
+            try
+            {
+                var (Employees, message) = GetEmployees();
+                if (Employees is null || Employees.Any())
+                    return (new Employee(), message);
+
+                var employee = Employees.FirstOrDefault(x => x.IdEmp == id);
+                return (employee, "Proceso Completado");
+            }
+            catch (Exception ex)
+            {
+                return (new Employee(), "Error al Cargar Data, Metodo EmployeesRepository.GetEmployeeById \n" + ex.Message.ToString());
+            }
         }
 
-        public Employee GetEmployeeByUserid(int id)
+        public (Employee, string) GetEmployeeByUserid(int id)
         {
-            var Employees = new List<Employee>();
-            var employee = Employees.FirstOrDefault(x => x.IdUser == id);
-            return employee;
+            try
+            {
+                var (Employees, message) = GetEmployees();
+                if (Employees is null || Employees.Any())
+                    return (new Employee(), message);
+
+                var employee = Employees.FirstOrDefault(x => x.IdUser == id);
+                return (employee, "Proceso Completado");
+            }
+            catch (Exception ex)
+            {
+                return (new Employee(), "Error al Cargar Data, Metodo EmployeesRepository.GetEmployeeByUserid \n" + ex.Message.ToString());
+            }
         }
 
-        public List<Employee> GetEmployeeByDocumentNo(string documentNo)
+        public (List<Employee>, string) GetEmployeeByDocumentNo(string documentNo)
         {
-            var Employees = new List<Employee>();
+            try
+            {
+                var (Employees, message) = GetEmployees();
+                if (Employees is null || Employees.Any())
+                    return (Employees, message);
 
-            return Employees.Where(x=>x.DocumentNo == documentNo).ToList();
+                return (Employees.Where(x => x.DocumentNo == documentNo).ToList(), "Proceso Completado");
+            }
+            catch (Exception ex)
+            {
+                return (new List<Employee>(), "Error al Cargar Data, Metodo EmployeesRepository.GetEmployeeByDocumentNo \n" + ex.Message.ToString());
+            }
         }
     }
 }

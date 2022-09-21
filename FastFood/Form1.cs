@@ -3,6 +3,7 @@ using Infrastructure.DataAccess.Repositories;
 using Models.ViewModels.GenericLists;
 using System;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace FastFoodDemo
@@ -21,7 +22,10 @@ namespace FastFoodDemo
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            var business = businessRepository.GetBusinessInfo();
+            var (business, message1) = businessRepository.GetBusinessInfo();
+            if (business == null)
+                MessageBox.Show(message1);
+
             lblDir.Text = business.Address;
             lblLogo.Text = business.Name;
             lblTel1.Text = business.Phone1;
@@ -32,12 +36,18 @@ namespace FastFoodDemo
 
             if (GenericLists.ProductsDrinks is null || GenericLists.ProductsDrinks.Count == 0)
             {
-                GenericLists.ProductsDrinks = productsRepository.GetProductByCategory(CategoryConstants.Drinks);
+                var (product, message) = productsRepository.GetProductByCategory(CategoryConstants.Drinks);
+                GenericLists.ProductsDrinks = product;
+                if (product is null || !product.Any())
+                    MessageBox.Show(message);
             }
 
             if (GenericLists.ProductsFoods is null || GenericLists.ProductsFoods.Count == 0)
             {
-                GenericLists.ProductsFoods = productsRepository.GetProductByCategory(CategoryConstants.Foods);
+                var (product, message) = productsRepository.GetProductByCategory(CategoryConstants.Foods);
+                GenericLists.ProductsFoods = product;
+                if (product is null || !product.Any())
+                    MessageBox.Show(message);
             }
         }
 

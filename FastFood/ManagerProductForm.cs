@@ -1,15 +1,15 @@
 ﻿using FastFoodDemo.Utils;
 using Infrastructure.Constants;
+using Infrastructure.DataAccess.Repositories;
 using Models.Entities;
-using Models.ViewModels.GenericLists;
 using System;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace FastFoodDemo
 {
     public partial class ManagerProductForm : Form
     {
+        ProductsRepository productsRepository = new ProductsRepository();
         public ManagerProductForm()
         {
             InitializeComponent();
@@ -53,71 +53,63 @@ namespace FastFoodDemo
             product.BayPrice = Convert.ToDecimal(txtPCompra.Text);
             product.SalesPrice = Convert.ToDecimal(txtPVenta.Text);
             product.Stock = Convert.ToDecimal(txtStock.Text);
+            product.Itbis = Convert.ToDecimal(txtitbis.Text);
             product.Category = cbxCategoria.Text;
 
-            if (cbxCategoria.Text == CategoryConstants.Drinks)
+            var (update, message) = productsRepository.UpdateProduct(product);
+            if (update)
             {
-                var actual = GenericLists.ProductsDrinks.FirstOrDefault(x => x.ProductId == product.ProductId);
-                if (actual != null)
-                    GenericLists.ProductsDrinks.Remove(actual);
+                if (cbxCategoria.Text == CategoryConstants.Drinks)
+                {
+                    DrinkListForm form = new DrinkListForm();
+                    form.RefreshList();
+                }
 
-                GenericLists.ProductsDrinks.Add(product);
-                DrinkListForm form = new DrinkListForm();
-                form.RefreshList();
+                if (cbxCategoria.Text == CategoryConstants.Foods)
+                {
+                    FoodListForm form = new FoodListForm();
+                    form.RefreshList();
+                }
+
+                MessageBox.Show(message);
+                Close();
             }
-
-            if (cbxCategoria.Text == CategoryConstants.Foods)
-            {
-                var actual = GenericLists.ProductsFoods.FirstOrDefault(x => x.ProductId == product.ProductId);
-                if (actual != null)
-                    GenericLists.ProductsFoods.Remove(actual);
-
-                GenericLists.ProductsFoods.Add(product);
-                FoodListForm form = new FoodListForm();
-                form.RefreshList();
-            }
-
-            MessageBox.Show("Proceso completado con exito");
-            Close();
+            else
+                MessageBox.Show(message);
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-
             var product = new Product();
+            product.ProductId = Convert.ToInt32(lblProductId.Text);
             product.Name = txtProducto.Text;
             product.Description = txtMarca.Text;
             product.BayPrice = Convert.ToDecimal(txtPCompra.Text);
             product.SalesPrice = Convert.ToDecimal(txtPVenta.Text);
             product.Stock = Convert.ToDecimal(txtStock.Text);
+            product.Itbis = Convert.ToDecimal(txtitbis.Text);
             product.Category = cbxCategoria.Text;
 
-            if (cbxCategoria.Text == CategoryConstants.Drinks)
+            var (add, message) = productsRepository.AddProduct(product);
+            if (add)
             {
-                var actual = GenericLists.ProductsDrinks.FirstOrDefault(x => x.ProductId == product.ProductId);
-                if (actual != null)
-                    GenericLists.ProductsDrinks.Remove(actual);
+                if (cbxCategoria.Text == CategoryConstants.Drinks)
+                {
+                    DrinkListForm form = new DrinkListForm();
+                    form.RefreshList();
+                }
 
-                product.ProductId = GenericLists.ProductsDrinks.Max(x => x.ProductId) + 1;
-                GenericLists.ProductsDrinks.Add(product);
-                FoodListForm form = new FoodListForm();
-                form.RefreshList();
+                if (cbxCategoria.Text == CategoryConstants.Foods)
+                {
+                    FoodListForm form = new FoodListForm();
+                    form.RefreshList();
+                }
+
+                MessageBox.Show(message);
+                Close();
             }
-
-            if (cbxCategoria.Text == CategoryConstants.Foods)
-            {
-                var actual = GenericLists.ProductsFoods.FirstOrDefault(x => x.ProductId == product.ProductId);
-                if (actual != null)
-                    GenericLists.ProductsFoods.Remove(actual);
-
-                product.ProductId = GenericLists.ProductsFoods.Max(x => x.ProductId) + 1;
-                GenericLists.ProductsFoods.Add(product);
-                FoodListForm form = new FoodListForm();
-                form.RefreshList();
-            }
-
-            MessageBox.Show("Proceso completado con exito");
-            Close();
+            else
+                MessageBox.Show(message);
         }
 
         #region Validations
