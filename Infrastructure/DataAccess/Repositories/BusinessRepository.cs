@@ -1,7 +1,7 @@
-﻿using Models.Entities;
+﻿using FastFood.Models.Entities;
 using System;
 
-namespace Infrastructure.DataAccess.Repositories
+namespace FastFood.Infrastructure.DataAccess.Repositories
 {
     public class BusinessRepository
     {

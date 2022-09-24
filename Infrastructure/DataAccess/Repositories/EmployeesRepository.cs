@@ -1,9 +1,9 @@
-﻿using Models.Entities;
+﻿using FastFood.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Infrastructure.DataAccess.Repositories
+namespace FastFood.Infrastructure.DataAccess.Repositories
 {
     public class EmployeesRepository
     {

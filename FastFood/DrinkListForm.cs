@@ -1,6 +1,6 @@
-﻿using Infrastructure.Constants;
-
-using Models.Entities;
+﻿using FastFood.FastFood.Infrastructure.Constants;
+using FastFood.Infrastructure.DataAccess.Repositories;
+using FastFood.Models.Entities;
 using Models.ViewModels;
 using Models.ViewModels.GenericLists;
 using System;
@@ -13,6 +13,7 @@ namespace FastFoodDemo
 {
     public partial class DrinkListForm : Form
     {
+        SalesRepository salesRepository = new SalesRepository();
         public List<Product> ProductsList { get; set; }
         public int ProductId { get; set; }
 
@@ -25,8 +26,8 @@ namespace FastFoodDemo
         {
             panelManager.Visible = false;
 
-            if (GenericLists.SeletedItems is null)
-                GenericLists.SeletedItems = new List<SeletedItem>();
+            if (GenericLists.SelectedItems is null)
+                GenericLists.SelectedItems = new List<SalesDetails>();
 
             GetListItems(0);
         }
@@ -55,8 +56,11 @@ namespace FastFoodDemo
                     listItems.Add(item);
                 }
 
-                GenericLists.startIndexProduct = listItems.FirstOrDefault().ProductId;
-                GenericLists.endIndexProduct = listItems.LastOrDefault().ProductId;
+                if (listItems != null && listItems.Any())
+                {
+                    GenericLists.startIndexProduct = listItems.FirstOrDefault().ProductId;
+                    GenericLists.endIndexProduct = listItems.LastOrDefault().ProductId;
+                }
             }
 
             var panelCount = 0;
@@ -215,6 +219,20 @@ namespace FastFoodDemo
         #endregion
 
         #region Helpers
+        private Product GetProductById(int id)
+        {
+            return GenericLists.ProductsDrinks.FirstOrDefault(x => x.ProductId == id);
+        }
+
+        private int GetNextSalesId()
+        {
+            var (idVenta, message) = salesRepository.GetNextSalesId();
+            if (idVenta == 0)
+                MessageBox.Show(message);
+
+            return idVenta;
+        }
+
         private void GetListItems(int skip)
         {
             var listItems = new List<ItemsDTO>();
@@ -242,8 +260,11 @@ namespace FastFoodDemo
                         listItems.Add(item);
                     }
 
-                    GenericLists.startIndexProduct = listItems.FirstOrDefault().ProductId;
-                    GenericLists.endIndexProduct = listItems.LastOrDefault().ProductId;
+                    if (listItems != null && listItems.Any())
+                    {
+                        GenericLists.startIndexProduct = listItems.FirstOrDefault().ProductId;
+                        GenericLists.endIndexProduct = listItems.LastOrDefault().ProductId;
+                    }
                 }
             }
 
@@ -380,97 +401,138 @@ namespace FastFoodDemo
         #region Agregar Producto
         private void btnAgregar1_Click(object sender, EventArgs e)
         {
-            SeletedItem product = new SeletedItem();
-            product.Id = Convert.ToInt32(lblProductId1.Text);
-            product.Name = lblProductName1.Text;
-            product.Price = Convert.ToDecimal(lblPrice1.Text);
+            var productbyid = GetProductById(Convert.ToInt32(lblProductId1.Text));
+            SalesDetails product = new SalesDetails();
+            product.IdSale = GetNextSalesId();
+            product.IdDetail = GenericLists.SelectedItems.Count + 1;
+            product.IdProduct = Convert.ToInt32(lblProductId1.Text);
+            product.ProductName = lblProductName1.Text;
             product.Quantity = Convert.ToDecimal(txtQuantity1.Text);
-            product.Category = CategoryConstants.Drinks;
+            product.Prices = Convert.ToDecimal(lblPrice1.Text);
+            product.Itbis = productbyid.Itbis;
+            product.Subtotal = product.Quantity * product.Prices;
+            product.Earnings = product.Prices - productbyid.SalesPrice;
+            product.Category = CategoryConstants.Foods;
+            product.DateIn = DateTime.Today;
 
-            var prod = GenericLists.SeletedItems.FirstOrDefault(x => x.Id == product.Id);
+            var prod = GenericLists.SelectedItems.FirstOrDefault(x => x.IdProduct == product.IdProduct);
             if (prod is null)
-                GenericLists.SeletedItems.Add(product);
+                GenericLists.SelectedItems.Add(product);
             else
                 MessageBox.Show("El producto ya fue agregado");
         }
 
         private void btnAgregar2_Click(object sender, EventArgs e)
         {
-            SeletedItem product = new SeletedItem();
-            product.Id = Convert.ToInt32(lblProductId2.Text);
-            product.Name = lblProductName2.Text;
-            product.Price = Convert.ToDecimal(lblPrice2.Text);
+            var productbyid = GetProductById(Convert.ToInt32(lblProductId2.Text));
+            SalesDetails product = new SalesDetails();
+            product.IdSale = GetNextSalesId();
+            product.IdDetail = GenericLists.SelectedItems.Count + 1;
+            product.IdProduct = Convert.ToInt32(lblProductId2.Text);
+            product.ProductName = lblProductName2.Text;
             product.Quantity = Convert.ToDecimal(txtQuantity2.Text);
-            product.Category = CategoryConstants.Drinks;
+            product.Prices = Convert.ToDecimal(lblPrice2.Text);
+            product.Itbis = productbyid.Itbis;
+            product.Subtotal = product.Quantity * product.Prices;
+            product.Earnings = product.Prices - productbyid.SalesPrice;
+            product.Category = CategoryConstants.Foods;
+            product.DateIn = DateTime.Today;
 
-            var prod = GenericLists.SeletedItems.FirstOrDefault(x => x.Id == product.Id);
+            var prod = GenericLists.SelectedItems.FirstOrDefault(x => x.IdProduct == product.IdProduct);
             if (prod is null)
-                GenericLists.SeletedItems.Add(product);
+                GenericLists.SelectedItems.Add(product);
             else
                 MessageBox.Show("El producto ya fue agregado");
         }
 
         private void btnAgregar3_Click(object sender, EventArgs e)
         {
-            SeletedItem product = new SeletedItem();
-            product.Id = Convert.ToInt32(lblProductId3.Text);
-            product.Name = lblProductName3.Text;
-            product.Price = Convert.ToDecimal(lblPrice3.Text);
+            var productbyid = GetProductById(Convert.ToInt32(lblProductId3.Text));
+            SalesDetails product = new SalesDetails();
+            product.IdSale = GetNextSalesId();
+            product.IdDetail = GenericLists.SelectedItems.Count + 1;
+            product.IdProduct = Convert.ToInt32(lblProductId3.Text);
+            product.ProductName = lblProductName3.Text;
             product.Quantity = Convert.ToDecimal(txtQuantity3.Text);
-            product.Category = CategoryConstants.Drinks;
+            product.Prices = Convert.ToDecimal(lblPrice3.Text);
+            product.Itbis = productbyid.Itbis;
+            product.Subtotal = product.Quantity * product.Prices;
+            product.Earnings = product.Prices - productbyid.SalesPrice;
+            product.Category = CategoryConstants.Foods;
+            product.DateIn = DateTime.Today;
 
-            var prod = GenericLists.SeletedItems.FirstOrDefault(x => x.Id == product.Id);
+            var prod = GenericLists.SelectedItems.FirstOrDefault(x => x.IdProduct == product.IdProduct);
             if (prod is null)
-                GenericLists.SeletedItems.Add(product);
+                GenericLists.SelectedItems.Add(product);
             else
                 MessageBox.Show("El producto ya fue agregado");
         }
 
         private void btnAgregar4_Click(object sender, EventArgs e)
         {
-            SeletedItem product = new SeletedItem();
-            product.Id = Convert.ToInt32(lblProductId4.Text);
-            product.Name = lblProductName4.Text;
-            product.Price = Convert.ToDecimal(lblPrice4.Text);
+            var productbyid = GetProductById(Convert.ToInt32(lblProductId4.Text));
+            SalesDetails product = new SalesDetails();
+            product.IdSale = GetNextSalesId();
+            product.IdDetail = GenericLists.SelectedItems.Count + 1;
+            product.IdProduct = Convert.ToInt32(lblProductId4.Text);
+            product.ProductName = lblProductName4.Text;
             product.Quantity = Convert.ToDecimal(txtQuantity4.Text);
-            product.Category = CategoryConstants.Drinks;
+            product.Prices = Convert.ToDecimal(lblPrice4.Text);
+            product.Itbis = productbyid.Itbis;
+            product.Subtotal = product.Quantity * product.Prices;
+            product.Earnings = product.Prices - productbyid.SalesPrice;
+            product.Category = CategoryConstants.Foods;
+            product.DateIn = DateTime.Today;
 
-            var prod = GenericLists.SeletedItems.FirstOrDefault(x => x.Id == product.Id);
+            var prod = GenericLists.SelectedItems.FirstOrDefault(x => x.IdProduct == product.IdProduct);
             if (prod is null)
-                GenericLists.SeletedItems.Add(product);
+                GenericLists.SelectedItems.Add(product);
             else
                 MessageBox.Show("El producto ya fue agregado");
         }
 
         private void btnAgregar5_Click(object sender, EventArgs e)
         {
-            SeletedItem product = new SeletedItem();
-            product.Id = Convert.ToInt32(lblProductId5.Text);
-            product.Name = lblProductName5.Text;
-            product.Price = Convert.ToDecimal(lblPrice5.Text);
+            var productbyid = GetProductById(Convert.ToInt32(lblProductId5.Text));
+            SalesDetails product = new SalesDetails();
+            product.IdSale = GetNextSalesId();
+            product.IdDetail = GenericLists.SelectedItems.Count + 1;
+            product.IdProduct = Convert.ToInt32(lblProductId5.Text);
+            product.ProductName = lblProductName5.Text;
             product.Quantity = Convert.ToDecimal(txtQuantity5.Text);
-            product.Category = CategoryConstants.Drinks;
+            product.Prices = Convert.ToDecimal(lblPrice5.Text);
+            product.Itbis = productbyid.Itbis;
+            product.Subtotal = product.Quantity * product.Prices;
+            product.Earnings = product.Prices - productbyid.SalesPrice;
+            product.Category = CategoryConstants.Foods;
+            product.DateIn = DateTime.Today;
 
-            var prod = GenericLists.SeletedItems.FirstOrDefault(x => x.Id == product.Id);
+            var prod = GenericLists.SelectedItems.FirstOrDefault(x => x.IdProduct == product.IdProduct);
             if (prod is null)
-                GenericLists.SeletedItems.Add(product);
+                GenericLists.SelectedItems.Add(product);
             else
                 MessageBox.Show("El producto ya fue agregado");
         }
 
         private void btnAgregar6_Click(object sender, EventArgs e)
         {
-            SeletedItem product = new SeletedItem();
-            product.Id = Convert.ToInt32(lblProductId6.Text);
-            product.Name = lblProductName6.Text;
-            product.Price = Convert.ToDecimal(lblPrice6.Text);
+            var productbyid = GetProductById(Convert.ToInt32(lblProductId6.Text));
+            SalesDetails product = new SalesDetails();
+            product.IdSale = GetNextSalesId();
+            product.IdDetail = GenericLists.SelectedItems.Count + 1;
+            product.IdProduct = Convert.ToInt32(lblProductId6.Text);
+            product.ProductName = lblProductName6.Text;
             product.Quantity = Convert.ToDecimal(txtQuantity6.Text);
-            product.Category = CategoryConstants.Drinks;
+            product.Prices = Convert.ToDecimal(lblPrice6.Text);
+            product.Itbis = productbyid.Itbis;
+            product.Subtotal = product.Quantity * product.Prices;
+            product.Earnings = product.Prices - productbyid.SalesPrice;
+            product.Category = CategoryConstants.Foods;
+            product.DateIn = DateTime.Today;
 
-
-            var prod = GenericLists.SeletedItems.FirstOrDefault(x => x.Id == product.Id);
+            var prod = GenericLists.SelectedItems.FirstOrDefault(x => x.IdProduct == product.IdProduct);
             if (prod is null)
-                GenericLists.SeletedItems.Add(product);
+                GenericLists.SelectedItems.Add(product);
             else
                 MessageBox.Show("El producto ya fue agregado");
         }

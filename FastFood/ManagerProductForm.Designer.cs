@@ -50,6 +50,8 @@
             this.txtType = new System.Windows.Forms.TextBox();
             this.lblProductId = new System.Windows.Forms.Label();
             this.lblcategory = new System.Windows.Forms.Label();
+            this.txtImgName = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label12
@@ -290,11 +292,32 @@
             this.lblcategory.TabIndex = 106;
             this.lblcategory.Visible = false;
             // 
+            // txtImgName
+            // 
+            this.txtImgName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtImgName.Location = new System.Drawing.Point(62, 545);
+            this.txtImgName.Name = "txtImgName";
+            this.txtImgName.Size = new System.Drawing.Size(301, 29);
+            this.txtImgName.TabIndex = 108;
+            this.txtImgName.TabStop = false;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(58, 507);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(147, 24);
+            this.label6.TabIndex = 107;
+            this.label6.Text = "Nombre Imagen";
+            // 
             // ManagerProductForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(595, 608);
+            this.Controls.Add(this.txtImgName);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.lblcategory);
             this.Controls.Add(this.lblProductId);
             this.Controls.Add(this.txtType);
@@ -350,5 +373,7 @@
         public System.Windows.Forms.TextBox txtType;
         public System.Windows.Forms.Label lblProductId;
         public System.Windows.Forms.Label lblcategory;
+        public System.Windows.Forms.TextBox txtImgName;
+        private System.Windows.Forms.Label label6;
     }
 }

@@ -1,6 +1,6 @@
-﻿using FastFoodDemo.Utils;
-using Infrastructure.DataAccess.Repositories;
-using Models.Entities;
+﻿using FastFood.Infrastructure.DataAccess.Repositories;
+using FastFood.Models.Entities;
+using FastFoodDemo.Utils;
 using Models.ViewModels;
 using Models.ViewModels.GenericLists;
 using System;
@@ -20,13 +20,8 @@ namespace FastFoodDemo
             InitializeComponent();
         }
 
-        private void SalesForm_Load(object sender, System.EventArgs e)
+        private void SalesForm_Load(object sender, EventArgs e)
         {
-            var (idVenta, message) = salesRepository.GetNextSalesId();
-            if (idVenta == 0)
-                MessageBox.Show(message);
-
-            lblIdSale.Text = idVenta.ToString();
             if (lblSales.Text == "Ventas")
             {
                 btnVender.Enabled = true;
@@ -48,7 +43,7 @@ namespace FastFoodDemo
 
         private void LlenarGri()
         {
-            var lst = GenericLists.SeletedItems;
+            var lst = GenericLists.SelectedItems;
             if (lst != null)
             {
                 decimal SumaSubTotal = 0; decimal SumaTotal = 0; decimal SumaIgv = 0;
@@ -56,19 +51,18 @@ namespace FastFoodDemo
                 for (int i = 0; i < lst.Count; i++)
                 {
                     dgProductSelected.Rows.Add();
-                    dgProductSelected.Rows[i].Cells["IdVenta"].Value = lblIdSale.Text;
-                    dgProductSelected.Rows[i].Cells["IdProd"].Value = lst[i].Id;
-                    dgProductSelected.Rows[i].Cells["NameProd"].Value = lst[i].Name;
+                    dgProductSelected.Rows[i].Cells["IdVenta"].Value = lst[i].IdSale;
+                    dgProductSelected.Rows[i].Cells["IdProd"].Value = lst[i].IdProduct;
+                    dgProductSelected.Rows[i].Cells["NameProd"].Value = lst[i].ProductName;
                     dgProductSelected.Rows[i].Cells["Quantity"].Value = lst[i].Quantity;
-                    dgProductSelected.Rows[i].Cells["PriceProd"].Value = lst[i].Price;
-                    dgProductSelected.Rows[i].Cells["IGV"].Value = lst[i].Igv;
-                    dgProductSelected.Rows[i].Cells["SubTotal"].Value = (lst[i].Quantity * lst[i].Price);
+                    dgProductSelected.Rows[i].Cells["PriceProd"].Value = lst[i].Prices;
+                    dgProductSelected.Rows[i].Cells["IGV"].Value = lst[i].Itbis;
+                    dgProductSelected.Rows[i].Cells["SubTotal"].Value = lst[i].Subtotal;
 
-                    var preciounidad = Math.Round(Convert.ToDecimal(dgProductSelected.Rows[i].Cells["PriceProd"].Value), 2);
                     var cantidad = Math.Round(Convert.ToDecimal(dgProductSelected.Rows[i].Cells["Quantity"].Value), 2);
                     var igv = Convert.ToDecimal(dgProductSelected.Rows[i].Cells["IGV"].Value);
 
-                    SumaSubTotal += preciounidad * cantidad;
+                    SumaSubTotal += Math.Round(Convert.ToDecimal(dgProductSelected.Rows[i].Cells["SubTotal"].Value), 2);
                     SumaIgv += igv * cantidad;
 
                     SumaTotal += Math.Round(Convert.ToDecimal(dgProductSelected.Rows[i].Cells["SubtoTal"].Value), 2);
@@ -78,43 +72,23 @@ namespace FastFoodDemo
                     lblTotalAmount.Text = Convert.ToString(SumaTotal);
 
                     var id = new IdsDTO();
-                    id.Id = lst[i].Id;
+                    id.Id = lst[i].IdProduct;
                     id.Quantity = lst[i].Quantity;
                     Lisids.Add(id);
                 }
             }
-        }
-
-        private void GetInfo(string type)
-        {
-            //Business Info
-            Program.BusinessAddress = lblDir.Text;
-            Program.BusinessName = lblLogo.Text;
-            Program.BusinessPhone1 = lblTel1.Text;
-            Program.BusinessPhone2 = lblTel2.Text;
-            Program.BusinessRnc = lblRNC.Text;
-
-            //Sales Info
-            Program.SaleId = lblIdSale.Text;
-            Program.ClientName = txtClientName.Text;
-            Program.SaleAddress = txtDireccion.Text;
-            Program.DateIn = dateTimePicker1.Text;
-            Program.TypeNCF = combo_tipo_NCF.Text;
-            Program.NCF = txtNCF.Text;
-            Program.SalesCheckType = type;
-            Program.Delivery = txtDelivery.Text;
-            Program.DeliveryAmount = txtDAmount.Text;
-            Program.HasNCF = chkComprobante.Checked;
-            Program.SubTotal = lblSubTotalAmount.Text;
-            Program.IgvTotal = lblIgvAmount.Text;
-            Program.Total = lblTotalAmount.Text;
-            PrintTickets.Print(false, dgProductSelected);
+            else
+            {
+                lblSubTotalAmount.Text = Convert.ToString(0);
+                lblIgvAmount.Text = Convert.ToString(0);
+                lblTotalAmount.Text = Convert.ToString(0);
+            }
         }
 
         private void btnVender_Click(object sender, EventArgs e)
         {
-            var sale = new SalesCheck();
-            sale.IdVenta = Convert.ToInt32(Program.SaleId);
+            var sale = new Sales();
+            sale.IdSale = Convert.ToInt32(Program.SaleId);
             sale.ClientName = Program.ClientName;
             sale.Address = Program.SaleAddress;
             sale.DateIn = Convert.ToDateTime(Program.DateIn);
@@ -123,7 +97,6 @@ namespace FastFoodDemo
             sale.SalesCheckType = Program.SalesCheckType;
             sale.DeliveryName = Program.Delivery;
             sale.DeliveryAmount = string.IsNullOrWhiteSpace(Program.DeliveryAmount) ? 0 : Convert.ToDecimal(Program.DeliveryAmount);
-            sale.Subtotal = Convert.ToDecimal(Program.SubTotal);
             sale.Total = Convert.ToDecimal(Program.Total);
             var (add, message) = salesRepository.AddSale(sale);
             if (add)
@@ -149,12 +122,14 @@ namespace FastFoodDemo
             }
             else
                 MessageBox.Show(message);
+
+            LlenarGri();
         }
 
         private void btnEnviar_Click(object sender, EventArgs e)
         {
-            var sale = new SalesCheck();
-            sale.IdVenta = Convert.ToInt32(Program.SaleId);
+            var sale = new Sales();
+            sale.IdSale = Convert.ToInt32(Program.SaleId);
             sale.ClientName = Program.ClientName;
             sale.Address = Program.SaleAddress;
             sale.DateIn = Convert.ToDateTime(Program.DateIn);
@@ -163,7 +138,6 @@ namespace FastFoodDemo
             sale.SalesCheckType = Program.SalesCheckType;
             sale.DeliveryName = Program.Delivery;
             sale.DeliveryAmount = string.IsNullOrWhiteSpace(Program.DeliveryAmount) ? 0 : Convert.ToDecimal(Program.DeliveryAmount);
-            sale.Subtotal = Convert.ToDecimal(Program.SubTotal);
             sale.Total = Convert.ToDecimal(Program.Total);
             var (add, message) = salesRepository.AddSale(sale);
             if (add)
@@ -189,6 +163,8 @@ namespace FastFoodDemo
             }
             else
                 MessageBox.Show(message);
+
+            LlenarGri();
         }
 
         private void label8_Click(object sender, EventArgs e)
@@ -205,7 +181,7 @@ namespace FastFoodDemo
         {
             if (MessageBox.Show("¿Esta seguro desea quitar este Item de la factura?", "FoodShop", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
             {
-                List<SeletedItem> lista = new List<SeletedItem>();
+                List<SalesDetails> lista = new List<SalesDetails>();
                 var IdProducto = Convert.ToInt32(dgProductSelected.CurrentRow.Cells["IdProd"].Value.ToString());
                 if (IdProducto > 0)
                 {
@@ -215,14 +191,14 @@ namespace FastFoodDemo
                     decimal SumaIgv = 0;
                     decimal SumaTotal = 0;
                     string category = string.Empty;
-                    foreach (var item in GenericLists.SeletedItems)
+                    foreach (var item in GenericLists.SelectedItems)
                     {
-                        if (item.Id != IdProducto)
+                        if (item.IdProduct != IdProducto)
                         {
                             lista.Add(item);
 
-                            Igv = item.Igv;
-                            subtotal = item.Price * item.Quantity;
+                            Igv = item.Itbis;
+                            subtotal = item.Prices * item.Quantity;
 
                             SumaSubTotal += subtotal;
                             SumaIgv += Igv;
@@ -235,7 +211,7 @@ namespace FastFoodDemo
                         }
                     }
 
-                    GenericLists.SeletedItems = lista;
+                    GenericLists.SelectedItems = lista;
                     btnBorrar.Visible = false;
                     dgProductSelected.Rows.RemoveAt(dgProductSelected.SelectedRows[0].Index);
                     LlenarGri();
@@ -250,12 +226,129 @@ namespace FastFoodDemo
         private void chkComprobante_CheckedChanged(object sender, EventArgs e)
         {
             if (chkComprobante.Checked)
+            {
+                lblRncCli.Visible = true;
+                txtRncCli.Visible = true;
                 txtNCF.Enabled = true;
+            }
             else
             {
+                lblRncCli.Visible = false;
+                txtRncCli.Visible = false;
                 txtNCF.Enabled = false;
                 txtNCF.Text = "Sin NCF";
             }
+        }
+
+        private void GetInfo(string type)
+        {
+            //Business Info
+            Program.BusinessAddress = lblDir.Text;
+            Program.BusinessName = lblLogo.Text;
+            Program.BusinessPhone1 = lblTel1.Text;
+            Program.BusinessPhone2 = lblTel2.Text;
+            Program.BusinessRnc = lblRNC.Text;
+
+            //Sales Info
+            Program.SaleId = GenericLists.SelectedItems != null && GenericLists.SelectedItems.Any()
+                           ? GenericLists.SelectedItems.FirstOrDefault().IdSale.ToString() : 0.ToString();
+            Program.ClientName = txtClientName.Text;
+            Program.SaleAddress = txtDireccion.Text;
+            Program.DateIn = dateTimePicker1.Text;
+            Program.TypeNCF = combo_tipo_NCF.Text;
+            Program.NCF = txtNCF.Text;
+            Program.SalesCheckType = type;
+            Program.Delivery = txtDelivery.Text;
+            Program.DeliveryAmount = txtDAmount.Text;
+            Program.HasNCF = chkComprobante.Checked;
+            Program.SubTotal = lblSubTotalAmount.Text;
+            Program.IgvTotal = lblIgvAmount.Text;
+            Program.Total = lblTotalAmount.Text;
+            Print(false);
+        }
+
+        public void Print(bool isCopie)
+        {
+            if (MessageBox.Show("¿Desea Imprimir factura? \n \n", "FoodShop", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
+            {
+                tickStyle(isCopie);
+            }
+            Lisids = new List<IdsDTO>();
+            GenericLists.SelectedItems = new List<SalesDetails>();
+        }
+
+        private void tickStyle(bool isCopie)
+        {
+            CreateTicket ticket = new CreateTicket();
+            //cabecera del ticket.
+            if (isCopie)
+            {
+                ticket.TextoDerecha("Copia Factura");
+            }
+
+            //System.Drawing.Image img = System.Drawing.Image.FromFile("LogoCepeda.png");
+            //ticket.HeaderImage = img;
+            ticket.TextoCentro(Program.BusinessName);//Nombre Empresa
+            ticket.TextoIzquierda("");
+            ticket.TextoIzquierda(Program.BusinessAddress);//Direccion Empresa
+            ticket.TextoIzquierda("Tel: " + Program.BusinessPhone1 + "/" + Program.BusinessPhone2);//Telefonos Empresa
+            ticket.TextoIzquierda("RNC: " + Program.BusinessRnc);
+            if (Program.HasNCF)
+            {
+                ticket.TextoIzquierda("Tipo de Comprobante: " + Program.TypeNCF);
+                ticket.TextoIzquierda("Numero de Comprobante: " + Program.NCF);
+            }
+
+            if (!string.IsNullOrWhiteSpace(Program.Delivery))
+            {
+                ticket.TextoIzquierda("Direccion: " + Program.SaleAddress);
+                ticket.TextoIzquierda("Delivery: " + Program.Delivery);
+                ticket.TextoIzquierda("Monto por Delivery: " + Program.DeliveryAmount);
+            }
+
+            ticket.TextoExtremos("CAJA #1", "ID VENTA: " + Program.SaleId);
+            ticket.lineasGuio();
+            //SUB CABECERA.
+            //ticket.TextoIzquierda("Atendido Por: " + txtUsu.Text);
+            ticket.TextoIzquierda("Cliente: " + Program.ClientName);
+            ticket.TextoIzquierda("Fecha: " + Program.DateIn);
+
+            //ARTICULOS A VENDER.
+            ticket.EncabezadoVenta();// NOMBRE DEL ARTICULO, CANT, PRECIO, IMPORTE
+            ticket.lineasGuio();
+
+            //SI TIENE UN DATAGRIDVIEW DONDE ESTAN SUS ARTICULOS A VENDER PUEDEN USAR ESTA MANERA PARA AGREARLOS
+            foreach (var detail in GenericLists.SelectedItems)
+            {
+                ticket.AgregaArticulo(detail.ProductName, detail.Quantity + "x" + detail.Prices, detail.Subtotal, detail.Itbis);
+            }
+
+            ticket.TextoIzquierda(" ");
+
+            //resumen de la venta
+            ticket.AgregarTotales("SUB-TOTAL    : ", decimal.Parse(Program.SubTotal));
+            ticket.AgregarTotales("ITBIS     : ", decimal.Parse(Program.IgvTotal));
+            ticket.AgregarTotales("TOTAL A PAGAR    : ", decimal.Parse(Program.Total));
+
+            ticket.TextoIzquierda(" ");
+            ticket.TextoCentro("__________________________________");
+
+            //TEXTO FINAL DEL TICKET
+            ticket.TextoIzquierda("EXTRA");
+            ticket.TextoIzquierda("FAVOR REVISE SU MERCANCIA AL RECIBIRLA");
+            ticket.TextoCentro("!GRACIAS POR SU COMPRA!");
+            ticket.TextoIzquierda("");
+            ticket.TextoIzquierda("");
+            ticket.TextoIzquierda("");
+            ticket.TextoIzquierda("");
+            ticket.TextoIzquierda("");
+            ticket.TextoIzquierda("");
+            ticket.TextoIzquierda("");
+            ticket.TextoIzquierda("");
+            ticket.TextoIzquierda("");
+            ticket.TextoIzquierda("");
+            ticket.CortaTicket();//CORTAR TICKET
+            ticket.ImprimirTicket("POS-80 (copy 1)");//NOMBRE DE LA IMPRESORA
         }
     }
 }

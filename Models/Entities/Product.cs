@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Models.Entities
+namespace FastFood.Models.Entities
 {
     public class Product
     {

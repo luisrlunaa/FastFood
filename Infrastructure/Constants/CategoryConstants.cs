@@ -1,4 +1,4 @@
-﻿namespace Infrastructure.Constants
+﻿namespace FastFood.FastFood.Infrastructure.Constants
 {
     public struct CategoryConstants
     {

@@ -1,5 +1,5 @@
-﻿using Infrastructure.Constants;
-using Infrastructure.DataAccess.Repositories;
+﻿using FastFood.FastFood.Infrastructure.Constants;
+using FastFood.Infrastructure.DataAccess.Repositories;
 using Models.ViewModels.GenericLists;
 using System;
 using System.Drawing;

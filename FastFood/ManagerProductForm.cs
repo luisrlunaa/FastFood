@@ -1,7 +1,7 @@
-﻿using FastFoodDemo.Utils;
-using Infrastructure.Constants;
-using Infrastructure.DataAccess.Repositories;
-using Models.Entities;
+﻿using FastFood.FastFood.Infrastructure.Constants;
+using FastFood.Infrastructure.DataAccess.Repositories;
+using FastFood.Models.Entities;
+using FastFoodDemo.Utils;
 using System;
 using System.Windows.Forms;
 
@@ -50,11 +50,14 @@ namespace FastFoodDemo
             product.ProductId = Convert.ToInt32(lblProductId.Text);
             product.Name = txtProducto.Text;
             product.Description = txtMarca.Text;
-            product.BayPrice = Convert.ToDecimal(txtPCompra.Text);
-            product.SalesPrice = Convert.ToDecimal(txtPVenta.Text);
+            product.Category = cbxCategoria.Text;
+            product.Type = "";
             product.Stock = Convert.ToDecimal(txtStock.Text);
             product.Itbis = Convert.ToDecimal(txtitbis.Text);
-            product.Category = cbxCategoria.Text;
+            product.SalesPrice = Convert.ToDecimal(txtPVenta.Text);
+            product.BayPrice = Convert.ToDecimal(txtPCompra.Text);
+            product.Updated = DateTime.Today;
+            product.ImageName = txtImgName.Text;
 
             var (update, message) = productsRepository.UpdateProduct(product);
             if (update)
@@ -81,14 +84,16 @@ namespace FastFoodDemo
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             var product = new Product();
-            product.ProductId = Convert.ToInt32(lblProductId.Text);
             product.Name = txtProducto.Text;
             product.Description = txtMarca.Text;
-            product.BayPrice = Convert.ToDecimal(txtPCompra.Text);
-            product.SalesPrice = Convert.ToDecimal(txtPVenta.Text);
+            product.Category = cbxCategoria.Text;
+            product.Type = txtType.Text;
             product.Stock = Convert.ToDecimal(txtStock.Text);
             product.Itbis = Convert.ToDecimal(txtitbis.Text);
-            product.Category = cbxCategoria.Text;
+            product.SalesPrice = Convert.ToDecimal(txtPVenta.Text);
+            product.BayPrice = Convert.ToDecimal(txtPCompra.Text);
+            product.Created = DateTime.Today;
+            product.ImageName = txtImgName.Text;
 
             var (add, message) = productsRepository.AddProduct(product);
             if (add)

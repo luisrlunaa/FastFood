@@ -1,73 +1,163 @@
-﻿using Models.Entities;
+﻿using FastFood.Infrastructure.DataAccess.Contexts;
+using FastFood.Models.Entities;
 using Models.ViewModels.GenericLists;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 
-namespace Infrastructure.DataAccess.Repositories
+namespace FastFood.Infrastructure.DataAccess.Repositories
 {
     public class SalesRepository
     {
-        public (List<SalesCheck>, string) GetSales()
+        DataManager Data = new DataManager();
+        public (List<Sales>, string) GetSales()
         {
-            var Sales = new List<SalesCheck>();
+            var SalesList = new List<Sales>();
             try
             {
-                return (Sales, "Proceso Completado");
+                var classKeys = Data.GetObjectKeys(new Sales());
+                var sql = Data.SelectExpression("Sales", classKeys);
+                var (dtPC, message) = Data.GetList(sql);
+                if (dtPC.Rows is null || dtPC.Rows.Count == 0)
+                    return (SalesList, message);
+
+                foreach (DataRow reader in dtPC.Rows)
+                {
+                    Sales s = new Sales();
+                    s.IdSale = reader["IdSale"] == DBNull.Value ? 0 : Convert.ToInt32(reader["IdSale"]);
+                    s.IdEmployee = reader["IdEmployee"] == DBNull.Value ? 0 : Convert.ToInt32(reader["IdEmployee"]);
+                    s.ClientName = reader["ClientName"] == DBNull.Value ? string.Empty : Convert.ToString(reader["ClientName"]);
+                    s.ClientRnc = reader["ClientRnc"] == DBNull.Value ? string.Empty : Convert.ToString(reader["ClientRnc"]);
+                    s.Address = reader["Address"] == DBNull.Value ? string.Empty : Convert.ToString(reader["Address"]);
+                    s.SalesCheckType = reader["SalesCheckType"] == DBNull.Value ? string.Empty : Convert.ToString(reader["SalesCheckType"]);
+                    s.DocumentType = reader["DocumentType"] == DBNull.Value ? string.Empty : Convert.ToString(reader["DocumentType"]);
+                    s.NroComprobante = reader["NroComprobante"] == DBNull.Value ? string.Empty : Convert.ToString(reader["NroComprobante"]);
+                    s.DeliveryName = reader["DeliveryName"] == DBNull.Value ? string.Empty : Convert.ToString(reader["DeliveryName"]);
+                    s.DeliveryAmount = reader["DeliveryAmount"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["DeliveryAmount"]);
+                    s.Total = reader["Total"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["Total"]);
+                    s.Remaining = reader["Remaining"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["Remaining"]);
+                    s.DateIn = reader["DateIn"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["DateIn"]);
+
+                    SalesList.Add(s);
+                }
+
+                return (SalesList, "Proceso Completado");
             }
             catch (Exception ex)
             {
-                return (Sales, "Error al Cargar Data, Metodo SalesRepository.GetSales \n" + ex.Message.ToString());
+                return (SalesList, "Error al Cargar Data, Metodo SalesRepository.GetSales \n" + ex.Message.ToString());
             }
         }
 
-        public (SalesCheck, string) GetSaleById(int id)
+        public (Sales, string) GetSaleById(int id)
         {
-            var sale = new SalesCheck();
+            var s = new Sales();
             try
             {
-                var (sales, message) = GetSales();
-                if (sales != null && sales.Any())
-                    return (sale, message);
+                var classKeys = Data.GetObjectKeys(new Sales());
+                var sql = Data.SelectExpression("Sales", classKeys, WhereExpresion: "WHERE IdSale = " + id);
+                var (dr, message1) = Data.GetOne(sql);
+                if (dr is null)
+                    return (s, message1);
 
-                sale = sales.FirstOrDefault(x => x.IdVenta == id);
-                return (sale, "Proceso Completado");
+                s.IdSale = dr.GetInt32(dr.GetOrdinal("IdSale"));
+                s.IdEmployee = dr.GetInt32(dr.GetOrdinal("IdEmployee"));
+                s.ClientName = dr.GetString(dr.GetOrdinal("ClientName"));
+                s.ClientRnc = dr.GetString(dr.GetOrdinal("ClientRnc"));
+                s.Address = dr.GetString(dr.GetOrdinal("Address"));
+                s.SalesCheckType = dr.GetString(dr.GetOrdinal("SalesCheckType"));
+                s.DocumentType = dr.GetString(dr.GetOrdinal("DocumentType"));
+                s.NroComprobante = dr.GetString(dr.GetOrdinal("NroComprobante"));
+                s.DeliveryName = dr.GetString(dr.GetOrdinal("DeliveryName"));
+                s.DeliveryAmount = dr.GetDecimal(dr.GetOrdinal("DeliveryAmount"));
+                s.Total = dr.GetDecimal(dr.GetOrdinal("Total"));
+                s.Remaining = dr.GetDecimal(dr.GetOrdinal("Remaining"));
+                s.DateIn = dr.GetDateTime(dr.GetOrdinal("DateIn"));
+
+                return (s, "Proceso Completado");
             }
             catch (Exception ex)
             {
-                return (sale, "Error al Cargar Data, Metodo SalesRepository.GetSaleById \n" + ex.Message.ToString());
+                return (s, "Error al Cargar Data, Metodo SalesRepository.GetSaleById \n" + ex.Message.ToString());
             }
         }
 
-        public (List<SalesCheck>, string) GetSalesBySalesCheckType(string type)
+        public (List<Sales>, string) GetSalesBySalesCheckType(string type)
         {
+            var SalesList = new List<Sales>();
             try
             {
-                var (sales, message) = GetSales();
-                if (sales != null && sales.Any())
-                    return (sales, message);
+                var classKeys = Data.GetObjectKeys(new Sales());
+                var sql = Data.SelectExpression("Sales", classKeys, WhereExpresion: " WHERE SalesCheckType = " + type);
+                var (dtPC, message) = Data.GetList(sql);
+                if (dtPC.Rows is null || dtPC.Rows.Count == 0)
+                    return (SalesList, message);
 
-                return (sales.Where(x => x.SalesCheckType == type).ToList(), "Proceso Completado");
+                foreach (DataRow reader in dtPC.Rows)
+                {
+                    Sales s = new Sales();
+                    s.IdSale = reader["IdSale"] == DBNull.Value ? 0 : Convert.ToInt32(reader["IdSale"]);
+                    s.IdEmployee = reader["IdEmployee"] == DBNull.Value ? 0 : Convert.ToInt32(reader["IdEmployee"]);
+                    s.ClientName = reader["ClientName"] == DBNull.Value ? string.Empty : Convert.ToString(reader["ClientName"]);
+                    s.ClientRnc = reader["ClientRnc"] == DBNull.Value ? string.Empty : Convert.ToString(reader["ClientRnc"]);
+                    s.Address = reader["Address"] == DBNull.Value ? string.Empty : Convert.ToString(reader["Address"]);
+                    s.SalesCheckType = reader["SalesCheckType"] == DBNull.Value ? string.Empty : Convert.ToString(reader["SalesCheckType"]);
+                    s.DocumentType = reader["DocumentType"] == DBNull.Value ? string.Empty : Convert.ToString(reader["DocumentType"]);
+                    s.NroComprobante = reader["NroComprobante"] == DBNull.Value ? string.Empty : Convert.ToString(reader["NroComprobante"]);
+                    s.DeliveryName = reader["DeliveryName"] == DBNull.Value ? string.Empty : Convert.ToString(reader["DeliveryName"]);
+                    s.DeliveryAmount = reader["DeliveryAmount"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["DeliveryAmount"]);
+                    s.Total = reader["Total"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["Total"]);
+                    s.Remaining = reader["Remaining"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["Remaining"]);
+                    s.DateIn = reader["DateIn"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["DateIn"]);
+
+                    SalesList.Add(s);
+                }
+
+                return (SalesList, "Proceso Completado");
             }
             catch (Exception ex)
             {
-                return (new List<SalesCheck>(), "Error al Cargar Data, Metodo SalesRepository.GetSalesBySalesCheckType \n" + ex.Message.ToString());
+                return (SalesList, "Error al Cargar Data, Metodo SalesRepository.GetSalesBySalesCheckType \n" + ex.Message.ToString());
             }
         }
 
-        public (List<SalesCheck>, string) GetSalesByDeliveryName(string delivery)
+        public (List<Sales>, string) GetSalesByDeliveryName(string delivery)
         {
+            var SalesList = new List<Sales>();
             try
             {
-                var (sales, message) = GetSales();
-                if (sales != null && sales.Any())
-                    return (sales, message);
+                var classKeys = Data.GetObjectKeys(new Sales());
+                var sql = Data.SelectExpression("Sales", classKeys, WhereExpresion: " WHERE DeliveryName = " + delivery);
+                var (dtPC, message) = Data.GetList(sql);
+                if (dtPC.Rows is null || dtPC.Rows.Count == 0)
+                    return (SalesList, message);
 
-                return (sales.Where(x => x.DeliveryName == delivery).ToList(), "Proceso Completado");
+                foreach (DataRow reader in dtPC.Rows)
+                {
+                    Sales s = new Sales();
+                    s.IdSale = reader["IdSale"] == DBNull.Value ? 0 : Convert.ToInt32(reader["IdSale"]);
+                    s.IdEmployee = reader["IdEmployee"] == DBNull.Value ? 0 : Convert.ToInt32(reader["IdEmployee"]);
+                    s.ClientName = reader["ClientName"] == DBNull.Value ? string.Empty : Convert.ToString(reader["ClientName"]);
+                    s.ClientRnc = reader["ClientRnc"] == DBNull.Value ? string.Empty : Convert.ToString(reader["ClientRnc"]);
+                    s.Address = reader["Address"] == DBNull.Value ? string.Empty : Convert.ToString(reader["Address"]);
+                    s.SalesCheckType = reader["SalesCheckType"] == DBNull.Value ? string.Empty : Convert.ToString(reader["SalesCheckType"]);
+                    s.DocumentType = reader["DocumentType"] == DBNull.Value ? string.Empty : Convert.ToString(reader["DocumentType"]);
+                    s.NroComprobante = reader["NroComprobante"] == DBNull.Value ? string.Empty : Convert.ToString(reader["NroComprobante"]);
+                    s.DeliveryName = reader["DeliveryName"] == DBNull.Value ? string.Empty : Convert.ToString(reader["DeliveryName"]);
+                    s.DeliveryAmount = reader["DeliveryAmount"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["DeliveryAmount"]);
+                    s.Total = reader["Total"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["Total"]);
+                    s.Remaining = reader["Remaining"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["Remaining"]);
+                    s.DateIn = reader["DateIn"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["DateIn"]);
+
+                    SalesList.Add(s);
+                }
+
+                return (SalesList, "Proceso Completado");
             }
             catch (Exception ex)
             {
-                return (new List<SalesCheck>(), "Error al Cargar Data, Metodo SalesRepository.GetSalesByDeliveryName \n" + ex.Message.ToString());
+                return (SalesList, "Error al Cargar Data, Metodo SalesRepository.GetSalesByDeliveryName \n" + ex.Message.ToString());
             }
         }
 
@@ -76,17 +166,12 @@ namespace Infrastructure.DataAccess.Repositories
             decimal amount = 0;
             try
             {
-                var (sales, message) = GetSales();
-                if (sales != null && sales.Any())
-                    return (amount, message);
+                var sql = Data.SelectExpression("Sales", new List<string>() { "SUM(DeliveryAmount)" }, WhereExpresion: " WHERE DeliveryName = " + delivery);
+                var (dr, message) = Data.GetOne(sql);
+                if (dr is null)
+                    return (0, message);
 
-                var amounts = sales.Where(x => x.DeliveryName == delivery).ToList().Select(x => x.DeliveryAmount);
-                foreach (var s in amounts)
-                {
-                    if (s.HasValue && s > 0)
-                        amount = s.Value + amount;
-                }
-
+                amount = dr.GetDecimal(dr.GetOrdinal("DeliveryAmount"));
                 return (amount, "Proceso Completado");
             }
             catch (Exception ex)
@@ -95,18 +180,138 @@ namespace Infrastructure.DataAccess.Repositories
             }
         }
 
-        public (bool, string) AddSale(SalesCheck sales)
+        public (List<SalesDetails>, string) GetSaleDetails()
+        {
+            var Sales = new List<SalesDetails>();
+            try
+            {
+                var classKeys = Data.GetObjectKeys(new SalesDetails());
+                var sql = Data.SelectExpression("SalesDetails", classKeys);
+                var (dtPC, message) = Data.GetList(sql);
+                if (dtPC.Rows is null || dtPC.Rows.Count == 0)
+                    return (Sales, message);
+
+                foreach (DataRow reader in dtPC.Rows)
+                {
+                    SalesDetails s = new SalesDetails();
+                    s.IdSale = reader["IdSale"] == DBNull.Value ? 0 : Convert.ToInt32(reader["IdSale"]);
+                    s.IdDetail = reader["IdDetail"] == DBNull.Value ? 0 : Convert.ToInt32(reader["IdDetail"]);
+                    s.IdProduct = reader["IdProduct"] == DBNull.Value ? 0 : Convert.ToInt32(reader["IdProduct"]);
+                    s.ProductName = reader["ProductName"] == DBNull.Value ? string.Empty : Convert.ToString(reader["ProductName"]);
+                    s.Category = reader["Category"] == DBNull.Value ? string.Empty : Convert.ToString(reader["Category"]);
+                    s.Quantity = reader["Quantity"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["Quantity"]);
+                    s.Prices = reader["Prices"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["Prices"]);
+                    s.Itbis = reader["Itbis"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["Itbis"]);
+                    s.Subtotal = reader["Subtotal"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["Subtotal"]);
+                    s.Earnings = reader["Earnings"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["Earnings"]);
+                    s.DateIn = reader["DateIn"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["DateIn"]);
+
+                    Sales.Add(s);
+                }
+
+                return (Sales, "Proceso Completado");
+            }
+            catch (Exception ex)
+            {
+                return (Sales, "Error al Cargar Data, Metodo SalesRepository.GetSaleDetails \n" + ex.Message.ToString());
+            }
+        }
+
+        public (List<SalesDetails>, string) GetSaleDetailsByDate(DateTime dateFrom, DateTime dateTo)
+        {
+            var salesDetailbyDates = new List<SalesDetails>();
+            try
+            {
+                if (dateFrom == DateTime.MinValue || dateTo == DateTime.MinValue)
+                    return (salesDetailbyDates, "Input Invalido, Metodo SalesRepository.GetSaleDetailsByDate");
+
+                var isSameDate = false;
+                if (dateTo == dateFrom)
+                    isSameDate = true;
+
+                var classKeys = Data.GetObjectKeys(new SalesDetails());
+                var sql = Data.SelectExpression("SalesDetails", classKeys, WhereExpresion: isSameDate
+                    ? " WHERE DateIn = convert(" + dateFrom + ", CONVERT(varchar(10), @fecha, 103), 103)"
+                    : " WHERE DateIn BETWEEN convert(" + dateFrom + ", CONVERT(varchar(10), @fecha, 103),103) AND convert(" + dateTo + ", CONVERT(varchar(10), @fecha1, 103),103)");
+
+                var (dtPC, message) = Data.GetList(sql);
+                if (dtPC.Rows is null || dtPC.Rows.Count == 0)
+                    return (salesDetailbyDates, message);
+
+                foreach (DataRow reader in dtPC.Rows)
+                {
+                    SalesDetails s = new SalesDetails();
+                    s.IdSale = reader["IdSale"] == DBNull.Value ? 0 : Convert.ToInt32(reader["IdSale"]);
+                    s.IdDetail = reader["IdDetail"] == DBNull.Value ? 0 : Convert.ToInt32(reader["IdDetail"]);
+                    s.IdProduct = reader["IdProduct"] == DBNull.Value ? 0 : Convert.ToInt32(reader["IdProduct"]);
+                    s.ProductName = reader["ProductName"] == DBNull.Value ? string.Empty : Convert.ToString(reader["ProductName"]);
+                    s.Category = reader["Category"] == DBNull.Value ? string.Empty : Convert.ToString(reader["Category"]);
+                    s.Quantity = reader["Quantity"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["Quantity"]);
+                    s.Prices = reader["Prices"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["Prices"]);
+                    s.Itbis = reader["Itbis"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["Itbis"]);
+                    s.Subtotal = reader["Subtotal"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["Subtotal"]);
+                    s.Earnings = reader["Earnings"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["Earnings"]);
+                    s.DateIn = reader["DateIn"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["DateIn"]);
+
+                    salesDetailbyDates.Add(s);
+                }
+
+                return (salesDetailbyDates, "Proceso Completado");
+            }
+            catch (Exception ex)
+            {
+                return (salesDetailbyDates, "Error al Cargar Data, Metodo SalesRepository.GetSaleDetailsByDate \n" + ex.Message.ToString());
+            }
+        }
+
+        public (decimal, string) GetEarningsToSaleByDate(DateTime dateFrom, DateTime dateTo)
+        {
+            try
+            {
+                if (dateFrom == DateTime.MinValue || dateTo == DateTime.MinValue)
+                    return (0, "Input Invalido, Metodo SalesRepository.GetEarningsToSaleByDate");
+
+                var isSameDate = false;
+                if (dateTo == dateFrom)
+                    isSameDate = true;
+
+                decimal amount = 0;
+                var sql = Data.SelectExpression("SalesDetails", new List<string>() { "SUM(Earnings)" }, WhereExpresion: isSameDate
+                    ? " WHERE DateIn = convert(" + dateFrom + ", CONVERT(varchar(10), @fecha, 103), 103)"
+                    : " WHERE DateIn BETWEEN convert(" + dateFrom + ", CONVERT(varchar(10), @fecha, 103),103) AND convert(" + dateTo + ", CONVERT(varchar(10), @fecha1, 103),103)");
+
+                var (dr, message) = Data.GetOne(sql);
+                if (dr is null)
+                    return (0, message);
+
+                amount = dr.GetDecimal(dr.GetOrdinal("Earnings"));
+
+                return (amount, "Proceso Completado");
+            }
+            catch (Exception ex)
+            {
+                return (0, "Error al Cargar Data, Metodo SalesRepository.GetEarningsToSaleByDate \n" + ex.Message.ToString());
+            }
+        }
+
+        public (bool, string) AddSale(Sales sales)
         {
             try
             {
                 if (sales == null)
                     return (false, "Input Invalido, Metodo SalesRepository.AddSale");
 
-                if (GenericLists.SalesChecks.FirstOrDefault(x => x.IdVenta == sales.IdVenta) != null)
-                    return (false, "Elemento existente en la lista Temporal, Metodo SalesRepository.AddSale");
+                var parameters = new List<string> { sales.IdEmployee.ToString(), sales.ClientName, sales.Address, sales.SalesCheckType, sales.DocumentType, 
+                sales.NroComprobante, string.IsNullOrWhiteSpace(sales.DeliveryName) ? string.Empty: sales.DeliveryName, sales.DeliveryAmount.ToString(),
+                sales.Total.ToString(), sales.Remaining.ToString(), sales.DateIn.Value.ToShortDateString()};
 
-                GenericLists.SalesChecks.Add(sales);
-                return (true, "Proceso Completado");
+                var classKeys = Data.GetObjectKeys(new Sales()).Where(x => x != "IdSale").ToList(); 
+                var sql = Data.InsertExpression("Sales", classKeys, parameters);
+                var (response, message) = Data.CrudAction(sql);
+                if (!response)
+                    return (response, message);
+
+                return (response, "Proceso Completado");
             }
             catch (Exception ex)
             {
@@ -114,18 +319,51 @@ namespace Infrastructure.DataAccess.Repositories
             }
         }
 
-        public (bool, string) UpdateSales(SalesCheck sales)
+        public (bool, string) AddSaleDetails(List<SalesDetails> sales)
+        {
+            try
+            {
+                if (sales == null || !sales.Any())
+                    return (false, "Input Invalido, Metodo SalesRepository.AddSaleDetails");
+
+                foreach (var item in sales)
+                {
+                    var parameters = new List<string> { item.IdSale.ToString(), item.IdDetail.ToString(), item.IdProduct.ToString(), item.ProductName, 
+                    item.Category,item.Quantity.ToString(), item.Prices.ToString(), item.Itbis.ToString(), item.Subtotal.ToString(), item.Earnings.ToString(), 
+                    item.DateIn.Value.ToShortDateString()};
+
+                    var classKeys = Data.GetObjectKeys(new SalesDetails());
+                    var sql = Data.InsertExpression("SalesDetails", classKeys, parameters);
+                    var (response, message) = Data.CrudAction(sql);
+                    if (!response)
+                        return (response, message);
+                }
+
+                return (true, "Proceso Completado");
+            }
+            catch (Exception ex)
+            {
+                return (false, "Error al Cargar Data, Metodo SalesRepository.AddSaleDetails \n" + ex.Message.ToString());
+            }
+        }
+
+        public (bool, string) UpdateSales(Sales sales)
         {
             try
             {
                 if (sales == null)
                     return (false, "Input Invalido, Metodo SalesRepository.UpdateSales");
 
-                var old = GenericLists.SalesChecks.FirstOrDefault(x => x.IdVenta == sales.IdVenta);
-                if (old is null)
-                    return (false, "Elemento no existente en la lista Temporal, Metodo SalesRepository.UpdateSales");
+                var parameters = new List<string> {sales.ClientName, sales.Address, sales.SalesCheckType,sales.DocumentType, sales.NroComprobante, 
+                string.IsNullOrWhiteSpace(sales.DeliveryName) ? string.Empty: sales.DeliveryName, sales.DeliveryAmount.ToString(),sales.Total.ToString(),
+                sales.Remaining.ToString(), sales.DateIn.Value.ToShortDateString()};
 
-                GenericLists.SalesChecks.Remove(old);
+                var classKeys = Data.GetObjectKeys(new Sales()).Where(x => x != "IdSale").ToList();
+                var sql = Data.UpdateExpression("Sales", classKeys, parameters, "WHERE IdSale = " + sales.IdSale);
+                var (response, message) = Data.CrudAction(sql);
+                if (!response)
+                    return (response, message);
+
                 GenericLists.SalesChecks.Add(sales);
                 return (true, "Proceso Completado");
             }
@@ -135,37 +373,38 @@ namespace Infrastructure.DataAccess.Repositories
             }
         }
 
-        public (bool, string) DeleteSales(SalesCheck sales)
+        public (bool, string) DeleteSales(Sales sales)
         {
             try
             {
                 if (sales == null)
                     return (false, "Input Invalido, Metodo SalesRepository.DeleteSales");
 
-                var old = GenericLists.SalesChecks.FirstOrDefault(x => x.IdVenta == sales.IdVenta);
-                if (old is null)
-                    return (false, "Elemento no existente en la lista Temporal, Metodo SalesRepository.DeleteSales");
+                var sql = Data.DeleteExpression("Sales", "WHERE IdSale = " + sales.IdSale);
+                var (response, message) = Data.CrudAction(sql);
+                if (!response)
+                    return (response, message);
 
-                GenericLists.SalesChecks.Remove(old);
-                return (true, "Proceso Completado");
+                return (response, "Proceso Completado");
             }
             catch (Exception ex)
             {
-
                 return (false, "Error al Cargar Data, Metodo SalesRepository.DeleteSales \n" + ex.Message.ToString());
             }
-
         }
 
         public (int, string) GetNextSalesId()
         {
             try
             {
-                var (sales, message) = GetSales();
-                if (sales != null && sales.Any())
+                var classKeys = Data.GetObjectKeys(new Sales());
+                var sql = Data.SelectExpression("Sales", new List<string>() { "IdSale" }, Top: 1.ToString(), OrderBy: "ORDER BY IdSale DESC");
+                var (dr, message) = Data.GetOne(sql);
+                if (dr is null)
                     return (0, message);
 
-                return (sales.Count > 0 ? sales.Max(x => x.IdVenta) + 1 : 1, "Proceso Completado");
+                int id = dr.GetInt32(dr.GetOrdinal("IdSale")) + 1;
+                return (id > 0 ? id : 1, "Proceso Completado");
             }
             catch (Exception ex)
             {

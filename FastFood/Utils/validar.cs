@@ -2,7 +2,7 @@
 
 namespace FastFoodDemo.Utils
 {
-    class validar
+    public static class validar
     {
         public static void sololetras(KeyPressEventArgs v)
         {

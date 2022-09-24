@@ -1,49 +1,43 @@
-﻿using Infrastructure.Constants;
-using Models.Entities;
-using Models.ViewModels.GenericLists;
+﻿using FastFood.Infrastructure.DataAccess.Contexts;
+using FastFood.Models.Entities;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 
-namespace Infrastructure.DataAccess.Repositories
+namespace FastFood.Infrastructure.DataAccess.Repositories
 {
     public class ProductsRepository
     {
+        DataManager Data = new DataManager();
         public (List<Product>, string) GetProducts()
         {
             var Products = new List<Product>();
             try
             {
-                if (Products is null || Products.Count == 0)
+                var classKeys = Data.GetObjectKeys(new Product());
+                var sql = Data.SelectExpression("Product", classKeys);
+                var (dtPC, message) = Data.GetList(sql);
+                if (dtPC.Rows is null || dtPC.Rows.Count == 0)
+                    return (Products, message);
+
+                foreach (DataRow reader in dtPC.Rows)
                 {
+                    var s = new Product();
+                    s.ProductId = reader["ProductId"] == DBNull.Value ? 0 : Convert.ToInt32(reader["ProductId"]);
+                    s.Name = reader["Name"] == DBNull.Value ? string.Empty : Convert.ToString(reader["Name"]);
+                    s.Description = reader["Description"] == DBNull.Value ? string.Empty : Convert.ToString(reader["Description"]);
+                    s.Category = reader["Category"] == DBNull.Value ? string.Empty : Convert.ToString(reader["Category"]);
+                    s.Type = reader["Type"] == DBNull.Value ? string.Empty : Convert.ToString(reader["Type"]);
+                    s.Stock = reader["Stock"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["Stock"]);
+                    s.Itbis = reader["Itbis"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["Itbis"]);
+                    s.SalesPrice = reader["SalesPrice"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["SalesPrice"]);
+                    s.BayPrice = reader["BayPrice"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["BayPrice"]);
+                    s.Created = reader["Created"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["Created"]);
+                    s.Updated = reader["Updated"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["Updated"]);
+                    s.ImageName = reader["ImageName"] == DBNull.Value ? string.Empty : Convert.ToString(reader["ImageName"]);
 
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Bebida", Name = "Presidente lithg", Type = "Mediana", SalesPrice = 125, Description = "Verde", ProductId = 1 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Bebida", Name = "Presidente lithg", Type = "Jumbo", SalesPrice = 235, Description = "Verde", ProductId = 2 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Bebida", Name = "Jugo verde", Type = "Jumbo", SalesPrice = 225, Description = "Verde", ProductId = 3 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Bebida", Name = "Refrezco Cocacola", Type = "Normal", SalesPrice = 80, Description = "Rojo", ProductId = 4 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Bebida", Name = "Agua Cascada", Type = "Normal", SalesPrice = 35, Description = "Transparente", ProductId = 5 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Bebida", Name = "Presidente", Type = "Jumbo", SalesPrice = 115, Description = "Verde", ProductId = 6 });
-
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Bebida", Name = "Brama lithg", Type = "Mediana", SalesPrice = 135, Description = "Amarilla", ProductId = 13 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Bebida", Name = "Brama lithg", Type = "Jumbo", SalesPrice = 245, Description = "Amarilla", ProductId = 14 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Bebida", Name = "Jugo Piña", Type = "Jumbo", SalesPrice = 225, Description = "Amarilla", ProductId = 15 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Bebida", Name = "Refrezco Pepsi", Type = "Normal", SalesPrice = 70, Description = "Rojo", ProductId = 16 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Bebida", Name = "Agua Peñantial", Type = "Normal", SalesPrice = 25, Description = "Transparente", ProductId = 17 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Bebida", Name = "Brama", Type = "Jumbo", SalesPrice = 100, Description = "Verde", ProductId = 18 });
-
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Comida", Name = "Papita", Type = "Mediana", SalesPrice = 105, Description = "Verde", ProductId = 7 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Comida", Name = "Tostada", Type = "Mediana", SalesPrice = 200, Description = "Jamon y Queso", ProductId = 8 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Comida", Name = "chicle", Type = "Grande", SalesPrice = 60, Description = "Verde", ProductId = 9 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Comida", Name = "Hot Dog", Type = "Grande", SalesPrice = 150, Description = "Con maiz", ProductId = 10 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Comida", Name = "Dona", Type = "Grande", SalesPrice = 65, Description = "Chocolate", ProductId = 11 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Comida", Name = "Pizza", Type = "Pequeña", SalesPrice = 350, Description = "Peperoni", ProductId = 12 });
-
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Comida", Name = "Papita", Type = "Mediana", SalesPrice = 105, Description = "Roja", ProductId = 18 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Comida", Name = "Tostada", Type = "Mediana", SalesPrice = 250, Description = "Doble queso", ProductId = 19 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Comida", Name = "chicle", Type = "Normal", SalesPrice = 25, Description = "Azul", ProductId = 20 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Comida", Name = "Hot Dog", Type = "Grande", SalesPrice = 120, Description = "Sin maiz", ProductId = 21 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Comida", Name = "Dona", Type = "Normal", SalesPrice = 45, Description = "Vainilla", ProductId = 22 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Comida", Name = "Pizza", Type = "Grande", SalesPrice = 750, Description = "Maiz", ProductId = 23 });
+                    Products.Add(s);
                 }
 
                 return (Products, "Proceso Completado");
@@ -56,47 +50,33 @@ namespace Infrastructure.DataAccess.Repositories
 
         public (Product, string) GetProductById(int id)
         {
+            var product = new Product();
             try
             {
-                var Products = new List<Product>();
-                if (Products is null || Products.Count == 0)
-                {
+                var classKeys = Data.GetObjectKeys(new Product());
+                var sql = Data.SelectExpression("Sales", classKeys, WhereExpresion: "WHERE ProductId = " + id);
+                var (dr, message1) = Data.GetOne(sql);
+                if (dr is null)
+                    return (product, message1);
 
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Bebida", Name = "Presidente lithg", Type = "Mediana", SalesPrice = 125, Description = "Verde", ProductId = 1 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Bebida", Name = "Presidente lithg", Type = "Jumbo", SalesPrice = 235, Description = "Verde", ProductId = 2 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Bebida", Name = "Jugo verde", Type = "Jumbo", SalesPrice = 225, Description = "Verde", ProductId = 3 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Bebida", Name = "Refrezco Cocacola", Type = "Normal", SalesPrice = 80, Description = "Rojo", ProductId = 4 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Bebida", Name = "Agua Cascada", Type = "Normal", SalesPrice = 35, Description = "Transparente", ProductId = 5 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Bebida", Name = "Presidente", Type = "Jumbo", SalesPrice = 115, Description = "Verde", ProductId = 6 });
+                product.ProductId = dr.GetInt32(dr.GetOrdinal("ProductId"));
+                product.Name = dr.GetString(dr.GetOrdinal("Name"));
+                product.Description = dr.GetString(dr.GetOrdinal("Description"));
+                product.Category = dr.GetString(dr.GetOrdinal("Category"));
+                product.Type = dr.GetString(dr.GetOrdinal("Type"));
+                product.Stock = dr.GetDecimal(dr.GetOrdinal("Stock"));
+                product.Itbis = dr.GetDecimal(dr.GetOrdinal("Itbis"));
+                product.SalesPrice = dr.GetDecimal(dr.GetOrdinal("SalesPrice"));
+                product.BayPrice = dr.GetDecimal(dr.GetOrdinal("BayPrice"));
+                product.Created = dr.GetDateTime(dr.GetOrdinal("Created"));
+                product.Updated = dr.GetDateTime(dr.GetOrdinal("Updated"));
+                product.ImageName = dr.GetString(dr.GetOrdinal("ImageName"));
 
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Bebida", Name = "Brama lithg", Type = "Mediana", SalesPrice = 135, Description = "Amarilla", ProductId = 13 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Bebida", Name = "Brama lithg", Type = "Jumbo", SalesPrice = 245, Description = "Amarilla", ProductId = 14 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Bebida", Name = "Jugo Piña", Type = "Jumbo", SalesPrice = 225, Description = "Amarilla", ProductId = 15 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Bebida", Name = "Refrezco Pepsi", Type = "Normal", SalesPrice = 70, Description = "Rojo", ProductId = 16 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Bebida", Name = "Agua Peñantial", Type = "Normal", SalesPrice = 25, Description = "Transparente", ProductId = 17 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Bebida", Name = "Brama", Type = "Jumbo", SalesPrice = 100, Description = "Verde", ProductId = 18 });
-
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Comida", Name = "Papita", Type = "Mediana", SalesPrice = 105, Description = "Verde", ProductId = 7 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Comida", Name = "Tostada", Type = "Mediana", SalesPrice = 200, Description = "Jamon y Queso", ProductId = 8 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Comida", Name = "chicle", Type = "Grande", SalesPrice = 60, Description = "Verde", ProductId = 9 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Comida", Name = "Hot Dog", Type = "Grande", SalesPrice = 150, Description = "Con maiz", ProductId = 10 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Comida", Name = "Dona", Type = "Grande", SalesPrice = 65, Description = "Chocolate", ProductId = 11 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Comida", Name = "Pizza", Type = "Pequeña", SalesPrice = 350, Description = "Peperoni", ProductId = 12 });
-
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Comida", Name = "Papita", Type = "Mediana", SalesPrice = 105, Description = "Roja", ProductId = 18 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Comida", Name = "Tostada", Type = "Mediana", SalesPrice = 250, Description = "Doble queso", ProductId = 19 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Comida", Name = "chicle", Type = "Normal", SalesPrice = 25, Description = "Azul", ProductId = 20 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Comida", Name = "Hot Dog", Type = "Grande", SalesPrice = 120, Description = "Sin maiz", ProductId = 21 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Comida", Name = "Dona", Type = "Normal", SalesPrice = 45, Description = "Vainilla", ProductId = 22 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Comida", Name = "Pizza", Type = "Grande", SalesPrice = 750, Description = "Maiz", ProductId = 23 });
-                }
-
-                var product = Products.FirstOrDefault(x => x.ProductId == id);
                 return (product, "Proceso Completado");
             }
             catch (Exception ex)
             {
-                return (new Product(), "Error al Cargar Data, Metodo ProductsRepository.GetProductById \n" + ex.Message.ToString());
+                return (product, "Error al Cargar Data, Metodo ProductsRepository.GetProductById \n" + ex.Message.ToString());
             }
         }
 
@@ -105,39 +85,32 @@ namespace Infrastructure.DataAccess.Repositories
             var Products = new List<Product>();
             try
             {
-                if (Products is null || Products.Count == 0)
+                var classKeys = Data.GetObjectKeys(new Product());
+                var sql = Data.SelectExpression("Product", classKeys, WhereExpresion: " WHERE Category = " + category);
+                var (dtPC, message) = Data.GetList(sql);
+                if (dtPC.Rows is null || dtPC.Rows.Count == 0)
+                    return (Products, message);
+
+                foreach (DataRow reader in dtPC.Rows)
                 {
+                    var s = new Product();
+                    s.ProductId = reader["ProductId"] == DBNull.Value ? 0 : Convert.ToInt32(reader["ProductId"]);
+                    s.Name = reader["Name"] == DBNull.Value ? string.Empty : Convert.ToString(reader["Name"]);
+                    s.Description = reader["Description"] == DBNull.Value ? string.Empty : Convert.ToString(reader["Description"]);
+                    s.Category = reader["Category"] == DBNull.Value ? string.Empty : Convert.ToString(reader["Category"]);
+                    s.Type = reader["Type"] == DBNull.Value ? string.Empty : Convert.ToString(reader["Type"]);
+                    s.Stock = reader["Stock"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["Stock"]);
+                    s.Itbis = reader["Itbis"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["Itbis"]);
+                    s.SalesPrice = reader["SalesPrice"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["SalesPrice"]);
+                    s.BayPrice = reader["BayPrice"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["BayPrice"]);
+                    s.Created = reader["Created"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["Created"]);
+                    s.Updated = reader["Updated"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["Updated"]);
+                    s.ImageName = reader["ImageName"] == DBNull.Value ? string.Empty : Convert.ToString(reader["ImageName"]);
 
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Bebida", Name = "Presidente lithg", Type = "Mediana", SalesPrice = 125, Description = "Verde", ProductId = 1 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Bebida", Name = "Presidente lithg", Type = "Jumbo", SalesPrice = 235, Description = "Verde", ProductId = 2 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Bebida", Name = "Jugo verde", Type = "Jumbo", SalesPrice = 225, Description = "Verde", ProductId = 3 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Bebida", Name = "Refrezco Cocacola", Type = "Normal", SalesPrice = 80, Description = "Rojo", ProductId = 4 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Bebida", Name = "Agua Cascada", Type = "Normal", SalesPrice = 35, Description = "Transparente", ProductId = 5 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Bebida", Name = "Presidente", Type = "Jumbo", SalesPrice = 115, Description = "Verde", ProductId = 6 });
-
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Bebida", Name = "Brama lithg", Type = "Mediana", SalesPrice = 135, Description = "Amarilla", ProductId = 13 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Bebida", Name = "Brama lithg", Type = "Jumbo", SalesPrice = 245, Description = "Amarilla", ProductId = 14 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Bebida", Name = "Jugo Piña", Type = "Jumbo", SalesPrice = 225, Description = "Amarilla", ProductId = 15 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Bebida", Name = "Refrezco Pepsi", Type = "Normal", SalesPrice = 70, Description = "Rojo", ProductId = 16 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Bebida", Name = "Agua Peñantial", Type = "Normal", SalesPrice = 25, Description = "Transparente", ProductId = 17 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Bebida", Name = "Brama", Type = "Jumbo", SalesPrice = 100, Description = "Verde", ProductId = 18 });
-
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Comida", Name = "Papita", Type = "Mediana", SalesPrice = 105, Description = "Verde", ProductId = 7 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Comida", Name = "Tostada", Type = "Mediana", SalesPrice = 200, Description = "Jamon y Queso", ProductId = 8 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Comida", Name = "chicle", Type = "Grande", SalesPrice = 60, Description = "Verde", ProductId = 9 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Comida", Name = "Hot Dog", Type = "Grande", SalesPrice = 150, Description = "Con maiz", ProductId = 10 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Comida", Name = "Dona", Type = "Grande", SalesPrice = 65, Description = "Chocolate", ProductId = 11 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Comida", Name = "Pizza", Type = "Pequeña", SalesPrice = 350, Description = "Peperoni", ProductId = 12 });
-
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Comida", Name = "Papita", Type = "Mediana", SalesPrice = 105, Description = "Roja", ProductId = 18 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Comida", Name = "Tostada", Type = "Mediana", SalesPrice = 250, Description = "Doble queso", ProductId = 19 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Comida", Name = "chicle", Type = "Normal", SalesPrice = 25, Description = "Azul", ProductId = 20 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Comida", Name = "Hot Dog", Type = "Grande", SalesPrice = 120, Description = "Sin maiz", ProductId = 21 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Comida", Name = "Dona", Type = "Normal", SalesPrice = 45, Description = "Vainilla", ProductId = 22 });
-                    Products.Add(new Product() { Created = DateTime.Now, Updated = DateTime.Now, Category = "Comida", Name = "Pizza", Type = "Grande", SalesPrice = 750, Description = "Maiz", ProductId = 23 });
+                    Products.Add(s);
                 }
 
-                return (Products.Where(x => x.Category == category).ToList(), "Proceso Completado");
+                return (Products, "Proceso Completado");
             }
             catch (Exception ex)
             {
@@ -152,23 +125,15 @@ namespace Infrastructure.DataAccess.Repositories
                 if (input == null)
                     return (false, "Input Invalido, Metodo ProductsRepository.AddProduct");
 
-                if (input.Category == CategoryConstants.Drinks)
-                {
-                    var actual = GenericLists.ProductsDrinks.FirstOrDefault(x => x.ProductId == input.ProductId);
-                    if (actual != null)
-                        return (false, "Elemento existente en la lista Temporal, Metodo ProductsRepository.AddProduct" + CategoryConstants.Drinks);
+                var parameters = new List<string> { input.Name, input.Description, input.Category, input.Type,
+                    input.Stock.ToString(), input.Itbis.ToString(), input.SalesPrice.ToString(), input.BayPrice.ToString(), 
+                    input.Created.ToShortDateString(), input.ImageName};
 
-                    GenericLists.ProductsDrinks.Add(input);
-                }
-
-                if (input.Category == CategoryConstants.Foods)
-                {
-                    var actual = GenericLists.ProductsFoods.FirstOrDefault(x => x.ProductId == input.ProductId);
-                    if (actual != null)
-                        return (false, "Elemento existente en la lista Temporal, Metodo ProductsRepository.AddProduct" + CategoryConstants.Foods);
-
-                    GenericLists.ProductsFoods.Add(input);
-                }
+                var classKeys = Data.GetObjectKeys(new Product()).Where(x=>x != "ProductId" && x != "Updated").ToList();
+                var sql = Data.InsertExpression("Product", classKeys, parameters);
+                var (response, message) = Data.CrudAction(sql);
+                if (!response)
+                    return (response, message);
 
                 return (true, "Proceso Completado");
             }
@@ -185,25 +150,15 @@ namespace Infrastructure.DataAccess.Repositories
                 if (input == null)
                     return (false, "Input Invalido, Metodo ProductsRepository.UpdateProduct");
 
-                if (input.Category == CategoryConstants.Drinks)
-                {
-                    var actual = GenericLists.ProductsDrinks.FirstOrDefault(x => x.ProductId == input.ProductId);
-                    if (actual is null)
-                        return (false, "Elemento no existente en la lista Temporal, Metodo ProductsRepository.UpdateProduct" + CategoryConstants.Drinks);
+                var parameters = new List<string> {input.Name, input.Description, input.Category, input.Type,
+                    input.Stock.ToString(), input.Itbis.ToString(), input.SalesPrice.ToString(), input.BayPrice.ToString(), 
+                    input.Updated.ToShortDateString(), input.ImageName};
 
-                    GenericLists.ProductsDrinks.Remove(actual);
-                    GenericLists.ProductsDrinks.Add(input);
-                }
-
-                if (input.Category == CategoryConstants.Foods)
-                {
-                    var actual = GenericLists.ProductsFoods.FirstOrDefault(x => x.ProductId == input.ProductId);
-                    if (actual is null)
-                        return (false, "Elemento no existente en la lista Temporal, Metodo ProductsRepository.UpdateProduct" + CategoryConstants.Foods);
-
-                    GenericLists.ProductsFoods.Remove(actual);
-                    GenericLists.ProductsFoods.Add(input);
-                }
+                var classKeys = Data.GetObjectKeys(new Product()).Where(x => x != "ProductId" && x != "Created").ToList(); 
+                var sql = Data.UpdateExpression("Product", classKeys, parameters, ConditionExpresion: "WHERE ProductId = " + input.ProductId);
+                var (response, message) = Data.CrudAction(sql);
+                if (!response)
+                    return (response, message);
 
                 return (true, "Proceso Completado");
             }
@@ -220,23 +175,10 @@ namespace Infrastructure.DataAccess.Repositories
                 if (id == 0 || string.IsNullOrWhiteSpace(category))
                     return (false, "Input Invalido, Metodo ProductsRepository.DeleteProductById");
 
-                if (category == CategoryConstants.Drinks)
-                {
-                    var actual = GenericLists.ProductsDrinks.FirstOrDefault(x => x.ProductId == id);
-                    if (actual is null)
-                        return (false, "No se pudo encontrar correctamente a la lista Temporal, Metodo ProductsRepository.DeleteProductById" + CategoryConstants.Drinks);
-
-                    GenericLists.ProductsDrinks.Remove(actual);
-                }
-
-                if (category == CategoryConstants.Foods)
-                {
-                    var actual = GenericLists.ProductsFoods.FirstOrDefault(x => x.ProductId == id);
-                    if (actual is null)
-                        return (false, "No se pudo encontrar correctamente a la lista Temporal, Metodo ProductsRepository.DeleteProductById" + CategoryConstants.Foods);
-
-                    GenericLists.ProductsFoods.Remove(actual);
-                }
+                var sql = Data.DeleteExpression("Product", ConditionExpresion: "WHERE ProductId = " + id + " AND Category = " + category);
+                var (response, message) = Data.CrudAction(sql);
+                if (!response)
+                    return (response, message);
 
                 return (true, "Proceso Completado");
             }

@@ -35,7 +35,6 @@
             this.lblSales = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panelIdentify = new System.Windows.Forms.Panel();
-            this.lblIdSale = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.dgProductSelected = new System.Windows.Forms.DataGridView();
             this.IdVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -79,6 +78,8 @@
             this.lblDAmount = new System.Windows.Forms.Label();
             this.lblRNC = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.txtRncCli = new System.Windows.Forms.TextBox();
+            this.lblRncCli = new System.Windows.Forms.Label();
             this.panelIdentify.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgProductSelected)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -113,7 +114,6 @@
             // 
             // panelIdentify
             // 
-            this.panelIdentify.Controls.Add(this.lblIdSale);
             this.panelIdentify.Controls.Add(this.label8);
             this.panelIdentify.Controls.Add(this.panel2);
             this.panelIdentify.Controls.Add(this.lblSales);
@@ -121,17 +121,6 @@
             this.panelIdentify.Name = "panelIdentify";
             this.panelIdentify.Size = new System.Drawing.Size(1053, 69);
             this.panelIdentify.TabIndex = 104;
-            // 
-            // lblIdSale
-            // 
-            this.lblIdSale.AutoSize = true;
-            this.lblIdSale.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIdSale.Location = new System.Drawing.Point(3, 43);
-            this.lblIdSale.Name = "lblIdSale";
-            this.lblIdSale.Size = new System.Drawing.Size(16, 18);
-            this.lblIdSale.TabIndex = 135;
-            this.lblIdSale.Text = "0";
-            this.lblIdSale.Visible = false;
             // 
             // label8
             // 
@@ -397,7 +386,7 @@
             this.label13.BackColor = System.Drawing.Color.Transparent;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.Black;
-            this.label13.Location = new System.Drawing.Point(12, 310);
+            this.label13.Location = new System.Drawing.Point(11, 310);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(83, 20);
             this.label13.TabIndex = 120;
@@ -484,7 +473,6 @@
             // txtDireccion
             // 
             this.txtDireccion.BackColor = System.Drawing.Color.White;
-            this.txtDireccion.Enabled = false;
             this.txtDireccion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDireccion.ForeColor = System.Drawing.Color.MidnightBlue;
             this.txtDireccion.Location = new System.Drawing.Point(110, 220);
@@ -571,7 +559,7 @@
             this.txtDelivery.BackColor = System.Drawing.Color.White;
             this.txtDelivery.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDelivery.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.txtDelivery.Location = new System.Drawing.Point(110, 421);
+            this.txtDelivery.Location = new System.Drawing.Point(110, 593);
             this.txtDelivery.Name = "txtDelivery";
             this.txtDelivery.Size = new System.Drawing.Size(247, 26);
             this.txtDelivery.TabIndex = 136;
@@ -583,7 +571,7 @@
             this.lblDelivery.BackColor = System.Drawing.Color.Transparent;
             this.lblDelivery.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDelivery.ForeColor = System.Drawing.Color.Black;
-            this.lblDelivery.Location = new System.Drawing.Point(12, 424);
+            this.lblDelivery.Location = new System.Drawing.Point(14, 595);
             this.lblDelivery.Name = "lblDelivery";
             this.lblDelivery.Size = new System.Drawing.Size(72, 20);
             this.lblDelivery.TabIndex = 135;
@@ -595,7 +583,7 @@
             this.txtDAmount.BackColor = System.Drawing.Color.White;
             this.txtDAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDAmount.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.txtDAmount.Location = new System.Drawing.Point(110, 462);
+            this.txtDAmount.Location = new System.Drawing.Point(110, 634);
             this.txtDAmount.Name = "txtDAmount";
             this.txtDAmount.Size = new System.Drawing.Size(158, 26);
             this.txtDAmount.TabIndex = 138;
@@ -608,7 +596,7 @@
             this.lblDAmount.BackColor = System.Drawing.Color.Transparent;
             this.lblDAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDAmount.ForeColor = System.Drawing.Color.Black;
-            this.lblDAmount.Location = new System.Drawing.Point(12, 465);
+            this.lblDAmount.Location = new System.Drawing.Point(12, 637);
             this.lblDAmount.Name = "lblDAmount";
             this.lblDAmount.Size = new System.Drawing.Size(82, 20);
             this.lblDAmount.TabIndex = 137;
@@ -639,12 +627,39 @@
             this.label6.TabIndex = 140;
             this.label6.Text = "RNC :";
             // 
+            // txtRncCli
+            // 
+            this.txtRncCli.BackColor = System.Drawing.Color.White;
+            this.txtRncCli.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRncCli.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.txtRncCli.Location = new System.Drawing.Point(125, 409);
+            this.txtRncCli.Name = "txtRncCli";
+            this.txtRncCli.Size = new System.Drawing.Size(232, 26);
+            this.txtRncCli.TabIndex = 142;
+            this.txtRncCli.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtRncCli.Visible = false;
+            // 
+            // lblRncCli
+            // 
+            this.lblRncCli.AutoSize = true;
+            this.lblRncCli.BackColor = System.Drawing.Color.Transparent;
+            this.lblRncCli.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRncCli.ForeColor = System.Drawing.Color.Black;
+            this.lblRncCli.Location = new System.Drawing.Point(12, 412);
+            this.lblRncCli.Name = "lblRncCli";
+            this.lblRncCli.Size = new System.Drawing.Size(107, 20);
+            this.lblRncCli.TabIndex = 141;
+            this.lblRncCli.Text = "RNC Cliente";
+            this.lblRncCli.Visible = false;
+            // 
             // SalesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1052, 691);
+            this.Controls.Add(this.txtRncCli);
+            this.Controls.Add(this.lblRncCli);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.lblRNC);
             this.Controls.Add(this.txtDAmount);
@@ -738,12 +753,13 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lblIgvAmount;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label lblIdSale;
         public System.Windows.Forms.TextBox txtDelivery;
         public System.Windows.Forms.Label lblDelivery;
         public System.Windows.Forms.TextBox txtDAmount;
         public System.Windows.Forms.Label lblDAmount;
         public System.Windows.Forms.Label lblRNC;
         private System.Windows.Forms.Label label6;
+        public System.Windows.Forms.TextBox txtRncCli;
+        public System.Windows.Forms.Label lblRncCli;
     }
 }

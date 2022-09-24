@@ -5,9 +5,9 @@ VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FastFoodProject", "FastFoodProject", "{39A23A0E-44FB-4E8B-B6C2-A7E7DC5FDCD8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{5B609EBD-FECA-4080-9614-2F454AB05E4E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastFood.Infrastructure", "Infrastructure\FastFood.Infrastructure.csproj", "{5B609EBD-FECA-4080-9614-2F454AB05E4E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{DE468C57-F59C-45E2-A429-EF5AA25C87B3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastFood.Models", "Models\FastFood.Models.csproj", "{DE468C57-F59C-45E2-A429-EF5AA25C87B3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastFood", "FastFood\FastFood.csproj", "{7C92CCF3-5A1D-4834-AC8D-CE28CA80B5C2}"
 EndProject
