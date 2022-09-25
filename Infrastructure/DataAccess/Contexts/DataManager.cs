@@ -3,42 +3,20 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Reflection;
-using System.Windows.Forms;
 
 namespace FastFood.Infrastructure.DataAccess.Contexts
 {
     public class DataManager
     {
-        public (SqlConnection, string) GetConection()
-        {
-            try
-            {
-                var conn = new SqlConnection("Data Source=.;Initial Catalog=FastFoodDB; Integrated Security=true");
-                return (conn, "Completado con exito");
-            }
-            catch (Exception ex)
-            {
-                ex.Message.ToString();
-                return (new SqlConnection(), "Error No se ha encontrado Conexion, Metodo GetConection()");
-            }
-        }
-
+        public SqlConnection conexion = new SqlConnection("Data Source=.;Initial Catalog=FastFoodDB;Integrated Security=True;encrypt=false");
         public void Conectar()
         {
-            var (conexion, message) = GetConection();
-            if (message.Contains("Error"))
-                MessageBox.Show(message);
-
             if (conexion.State == ConnectionState.Closed)
                 conexion.Open();
         }
 
         public void Desconectar()
         {
-            var (conexion, message) = GetConection();
-            if (message.Contains("Error"))
-                MessageBox.Show(message);
-
             if (conexion.State == ConnectionState.Open)
                 conexion.Close();
         }
@@ -77,8 +55,8 @@ namespace FastFood.Infrastructure.DataAccess.Contexts
 
             var expression =
                 "SELECT "
-                + (string.IsNullOrWhiteSpace(Top) ? "" : Top)
-                + (ColumnsName.Count == 0 ? "" : string.Join(",", ColumnsName))
+                + (string.IsNullOrWhiteSpace(Top) ? "" : " TOP " + Top)
+                + (ColumnsName.Count == 0 ? "" : " " + string.Join(",", ColumnsName))
                 + " FROM "
                 + TableName + " "
                 + (string.IsNullOrWhiteSpace(JoinExp) ? "" : JoinExp) //INNER JOIN Table2 ON Table1.ColumnName = Table2.ColumnName)
@@ -169,10 +147,7 @@ namespace FastFood.Infrastructure.DataAccess.Contexts
             SqlDataAdapter da;
             try
             {
-                var (conexion, message) = GetConection();
-                if (message.Contains("Error"))
-                    MessageBox.Show(message);
-
+                Desconectar();
                 Conectar();
                 SqlCommand cmd1 = new SqlCommand(Sql, conexion);
                 da = new SqlDataAdapter(cmd1);
@@ -180,7 +155,7 @@ namespace FastFood.Infrastructure.DataAccess.Contexts
             }
             catch (Exception ex)
             {
-                return (null, "Error al Cargar Data, Metodo GetListado() \n" + ex.Message.ToString());
+                return (null, "Error al Cargar Data, Metodo GetList() \n" + ex.Message.ToString());
             }
             Desconectar();
             return (dt, "Completado con exito");
@@ -192,20 +167,15 @@ namespace FastFood.Infrastructure.DataAccess.Contexts
             SqlCommand cmd1;
             try
             {
-                var (conexion, message) = GetConection();
-                if (message.Contains("Error"))
-                    MessageBox.Show(message);
-
+                Desconectar();
                 Conectar();
                 cmd1 = new SqlCommand(Sql, conexion);
                 SqlDataReader dr = cmd1.ExecuteReader();
                 if (dr.Read())
                 {
-                    Desconectar();
                     return (dr, "Completado con exito");
                 }
 
-                Desconectar();
                 return (null, "No se Encontró Data, Metodo GetOne()");
             }
             catch (Exception ex)
@@ -219,10 +189,6 @@ namespace FastFood.Infrastructure.DataAccess.Contexts
         {
             try
             {
-                var (conexion, message) = GetConection();
-                if (message.Contains("Error"))
-                    MessageBox.Show(message);
-
                 using (SqlCommand cmd = new SqlCommand(Sql, conexion))
                 {
                     Conectar();

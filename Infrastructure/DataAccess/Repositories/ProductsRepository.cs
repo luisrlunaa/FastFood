@@ -18,7 +18,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                 var classKeys = Data.GetObjectKeys(new Product());
                 var sql = Data.SelectExpression("Product", classKeys);
                 var (dtPC, message) = Data.GetList(sql);
-                if (dtPC.Rows is null || dtPC.Rows.Count == 0)
+                if (dtPC is null || dtPC.Rows is null || dtPC.Rows.Count == 0)
                     return (Products, message);
 
                 foreach (DataRow reader in dtPC.Rows)
@@ -54,7 +54,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             try
             {
                 var classKeys = Data.GetObjectKeys(new Product());
-                var sql = Data.SelectExpression("Sales", classKeys, WhereExpresion: "WHERE ProductId = " + id);
+                var sql = Data.SelectExpression("Product", classKeys, WhereExpresion: "WHERE ProductId = " + id);
                 var (dr, message1) = Data.GetOne(sql);
                 if (dr is null)
                     return (product, message1);
@@ -86,9 +86,9 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             try
             {
                 var classKeys = Data.GetObjectKeys(new Product());
-                var sql = Data.SelectExpression("Product", classKeys, WhereExpresion: " WHERE Category = " + category);
+                var sql = Data.SelectExpression("Product", classKeys, WhereExpresion: " WHERE Category = '" + category + "'");
                 var (dtPC, message) = Data.GetList(sql);
-                if (dtPC.Rows is null || dtPC.Rows.Count == 0)
+                if (dtPC is null || dtPC.Rows is null || dtPC.Rows.Count == 0)
                     return (Products, message);
 
                 foreach (DataRow reader in dtPC.Rows)
@@ -125,11 +125,11 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                 if (input == null)
                     return (false, "Input Invalido, Metodo ProductsRepository.AddProduct");
 
-                var parameters = new List<string> { input.Name, input.Description, input.Category, input.Type,
-                    input.Stock.ToString(), input.Itbis.ToString(), input.SalesPrice.ToString(), input.BayPrice.ToString(), 
-                    input.Created.ToShortDateString(), input.ImageName};
+                var parameters = new List<string> { "'" +input.Name+"'", "'"+input.Description+"'", "'"+input.Category+"'", "'"+input.Type+"'",
+                    input.Stock.ToString(), input.Itbis.ToString(), input.SalesPrice.ToString(), input.BayPrice.ToString(),
+                    "'"+input.Created.ToShortDateString()+"'", "'"+input.ImageName+"'"};
 
-                var classKeys = Data.GetObjectKeys(new Product()).Where(x=>x != "ProductId" && x != "Updated").ToList();
+                var classKeys = Data.GetObjectKeys(new Product()).Where(x => x != "ProductId" && x != "Updated").ToList();
                 var sql = Data.InsertExpression("Product", classKeys, parameters);
                 var (response, message) = Data.CrudAction(sql);
                 if (!response)
@@ -150,11 +150,12 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                 if (input == null)
                     return (false, "Input Invalido, Metodo ProductsRepository.UpdateProduct");
 
-                var parameters = new List<string> {input.Name, input.Description, input.Category, input.Type,
-                    input.Stock.ToString(), input.Itbis.ToString(), input.SalesPrice.ToString(), input.BayPrice.ToString(), 
-                    input.Updated.ToShortDateString(), input.ImageName};
+                var parameters = new List<string> { "'" +input.Name+"'", "'"+input.Description+"'", "'"+input.Category+"'", "'"+input.Type+"'",
+                    input.Stock.ToString(), input.Itbis.ToString(), input.SalesPrice.ToString(), input.BayPrice.ToString(),
+                    "'"+input.Updated.ToShortDateString()+"'", "'"+input.ImageName+"'"};
 
-                var classKeys = Data.GetObjectKeys(new Product()).Where(x => x != "ProductId" && x != "Created").ToList(); 
+
+                var classKeys = Data.GetObjectKeys(new Product()).Where(x => x != "ProductId" && x != "Created").ToList();
                 var sql = Data.UpdateExpression("Product", classKeys, parameters, ConditionExpresion: "WHERE ProductId = " + input.ProductId);
                 var (response, message) = Data.CrudAction(sql);
                 if (!response)

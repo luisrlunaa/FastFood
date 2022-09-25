@@ -65,12 +65,13 @@ namespace FastFoodDemo
                     SumaSubTotal += Math.Round(Convert.ToDecimal(dgProductSelected.Rows[i].Cells["SubTotal"].Value), 2);
                     SumaIgv += igv * cantidad;
 
-                    SumaTotal += Math.Round(Convert.ToDecimal(dgProductSelected.Rows[i].Cells["SubtoTal"].Value), 2);
+                    SumaTotal += (SumaSubTotal + SumaIgv);
 
                     lblSubTotalAmount.Text = Convert.ToString(SumaSubTotal);
                     lblIgvAmount.Text = Convert.ToString(SumaIgv);
                     lblTotalAmount.Text = Convert.ToString(SumaTotal);
 
+                    var (product, message) = productsRepository.GetProductById(lst[i].IdProduct);
                     var id = new IdsDTO();
                     id.Id = lst[i].IdProduct;
                     id.Quantity = lst[i].Quantity;
@@ -88,36 +89,46 @@ namespace FastFoodDemo
         private void btnVender_Click(object sender, EventArgs e)
         {
             var sale = new Sales();
-            sale.IdSale = Convert.ToInt32(Program.SaleId);
-            sale.ClientName = Program.ClientName;
-            sale.Address = Program.SaleAddress;
-            sale.DateIn = Convert.ToDateTime(Program.DateIn);
-            sale.DocumentType = Program.TypeNCF;
-            sale.NroComprobante = Program.NCF;
-            sale.SalesCheckType = Program.SalesCheckType;
-            sale.DeliveryName = Program.Delivery;
-            sale.DeliveryAmount = string.IsNullOrWhiteSpace(Program.DeliveryAmount) ? 0 : Convert.ToDecimal(Program.DeliveryAmount);
-            sale.Total = Convert.ToDecimal(Program.Total);
+            sale.IdEmployee = 0;
+            sale.ClientName = txtClientName.Text;
+            sale.ClientRnc = txtRncCli.Text;
+            sale.Address = txtDireccion.Text;
+            sale.SalesCheckType = "Debito";
+            sale.DocumentType = combo_tipo_NCF.Text;
+            sale.NroComprobante = txtNCF.Text;
+            sale.DeliveryName = txtDelivery.Text;
+            sale.DeliveryAmount = string.IsNullOrWhiteSpace(txtDAmount.Text) ? 0 : Convert.ToDecimal(txtDAmount.Text);
+            sale.Total = Convert.ToDecimal(lblTotalAmount.Text);
+            sale.Remaining = 0;
+            sale.DateIn = Convert.ToDateTime(dateTimePicker1.Text);
             var (add, message) = salesRepository.AddSale(sale);
             if (add)
             {
-                if (Lisids != null && Lisids.Any())
+                var (addDetails, message1) = salesRepository.AddSaleDetails(GenericLists.SelectedItems);
+                if (addDetails)
                 {
-                    foreach (var item in Lisids)
+                    if (Lisids != null && Lisids.Any())
                     {
-                        var (product, message1) = productsRepository.GetProductById(item.Id);
-                        if (product != null)
+                        foreach (var item in Lisids)
                         {
-                            var newProduct = product;
-                            newProduct.Stock = product.Stock - item.Quantity;
-                            var (update, message2) = productsRepository.UpdateProduct(newProduct);
-                            if (!update)
+                            var (product, message2) = productsRepository.GetProductById(item.Id);
+                            if (product != null)
+                            {
+                                var newProduct = product;
+                                newProduct.Stock = product.Stock - item.Quantity;
+                                newProduct.Updated = DateTime.Today;
+                                var (update, message3) = productsRepository.UpdateProduct(newProduct);
+                                if (!update)
+                                    MessageBox.Show(message3);
+                            }
+                            else
                                 MessageBox.Show(message2);
                         }
-                        else
-                            MessageBox.Show(message1);
                     }
                 }
+                else
+                    MessageBox.Show(message1);
+
                 GetInfo("Debito");
             }
             else
@@ -129,36 +140,46 @@ namespace FastFoodDemo
         private void btnEnviar_Click(object sender, EventArgs e)
         {
             var sale = new Sales();
-            sale.IdSale = Convert.ToInt32(Program.SaleId);
-            sale.ClientName = Program.ClientName;
-            sale.Address = Program.SaleAddress;
-            sale.DateIn = Convert.ToDateTime(Program.DateIn);
-            sale.DocumentType = Program.TypeNCF;
-            sale.NroComprobante = Program.NCF;
-            sale.SalesCheckType = Program.SalesCheckType;
-            sale.DeliveryName = Program.Delivery;
-            sale.DeliveryAmount = string.IsNullOrWhiteSpace(Program.DeliveryAmount) ? 0 : Convert.ToDecimal(Program.DeliveryAmount);
-            sale.Total = Convert.ToDecimal(Program.Total);
+            sale.IdEmployee = 0;
+            sale.ClientName = txtClientName.Text;
+            sale.ClientRnc = txtRncCli.Text;
+            sale.Address = txtDireccion.Text;
+            sale.SalesCheckType = "Debito";
+            sale.DocumentType = combo_tipo_NCF.Text;
+            sale.NroComprobante = txtNCF.Text;
+            sale.DeliveryName = txtDelivery.Text;
+            sale.DeliveryAmount = string.IsNullOrWhiteSpace(txtDAmount.Text) ? 0 : Convert.ToDecimal(txtDAmount.Text);
+            sale.Total = Convert.ToDecimal(lblTotalAmount.Text);
+            sale.Remaining = 0;
+            sale.DateIn = Convert.ToDateTime(dateTimePicker1.Text);
             var (add, message) = salesRepository.AddSale(sale);
             if (add)
             {
-                if (Lisids != null && Lisids.Any())
+                var (addDetails, message1) = salesRepository.AddSaleDetails(GenericLists.SelectedItems);
+                if (addDetails)
                 {
-                    foreach (var item in Lisids)
+                    if (Lisids != null && Lisids.Any())
                     {
-                        var (product, message1) = productsRepository.GetProductById(item.Id);
-                        if (product != null)
+                        foreach (var item in Lisids)
                         {
-                            var newProduct = product;
-                            newProduct.Stock = product.Stock - item.Quantity;
-                            var (update, message2) = productsRepository.UpdateProduct(newProduct);
-                            if (!update)
+                            var (product, message2) = productsRepository.GetProductById(item.Id);
+                            if (product != null)
+                            {
+                                var newProduct = product;
+                                newProduct.Stock = product.Stock - item.Quantity;
+                                newProduct.Updated = DateTime.Today;
+                                var (update, message3) = productsRepository.UpdateProduct(newProduct);
+                                if (!update)
+                                    MessageBox.Show(message3);
+                            }
+                            else
                                 MessageBox.Show(message2);
                         }
-                        else
-                            MessageBox.Show(message1);
                     }
                 }
+                else
+                    MessageBox.Show(message1);
+
                 GetInfo("Credito");
             }
             else

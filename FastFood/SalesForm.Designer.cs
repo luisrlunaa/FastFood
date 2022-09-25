@@ -637,7 +637,6 @@
             this.txtRncCli.Size = new System.Drawing.Size(232, 26);
             this.txtRncCli.TabIndex = 142;
             this.txtRncCli.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtRncCli.Visible = false;
             // 
             // lblRncCli
             // 
@@ -650,7 +649,6 @@
             this.lblRncCli.Size = new System.Drawing.Size(107, 20);
             this.lblRncCli.TabIndex = 141;
             this.lblRncCli.Text = "RNC Cliente";
-            this.lblRncCli.Visible = false;
             // 
             // SalesForm
             // 

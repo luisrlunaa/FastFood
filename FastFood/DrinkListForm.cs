@@ -14,6 +14,7 @@ namespace FastFoodDemo
     public partial class DrinkListForm : Form
     {
         SalesRepository salesRepository = new SalesRepository();
+        ProductsRepository productsRepository = new ProductsRepository();
         public List<Product> ProductsList { get; set; }
         public int ProductId { get; set; }
 
@@ -29,16 +30,25 @@ namespace FastFoodDemo
             if (GenericLists.SelectedItems is null)
                 GenericLists.SelectedItems = new List<SalesDetails>();
 
+            if (ProductsList is null || !ProductsList.Any())
+            {
+                var (product, message) = productsRepository.GetProductByCategory(CategoryConstants.Drinks);
+                if (product is null && message.Contains("Error"))
+                    MessageBox.Show(message);
+
+                ProductsList = product;
+            }
+
             GetListItems(0);
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
             var listItems = new List<ItemsDTO>();
-            if (!string.IsNullOrWhiteSpace(txtSearch.Text) && GenericLists.ProductsDrinks != null)
-                ProductsList = GenericLists.ProductsDrinks.Where(x => x.Name.ToLower().Contains(txtSearch.Text.ToLower())).Take(6).ToList();
+            if (!string.IsNullOrWhiteSpace(txtSearch.Text) && ProductsList != null)
+                ProductsList.Where(x => x.Name.ToLower().Contains(txtSearch.Text.ToLower())).Take(6).ToList();
             else
-                ProductsList = GenericLists.ProductsDrinks.Take(6).ToList();
+                ProductsList.Take(6).ToList();
 
             if (ProductsList != null && ProductsList.Count > 0)
             {
@@ -77,7 +87,7 @@ namespace FastFoodDemo
             int lastProduct = 5;
             if (GenericLists.endIndexProduct != 0)
             {
-                lastProduct = GenericLists.ProductsDrinks.FindIndex(a => a.ProductId == GenericLists.endIndexProduct);
+                lastProduct = ProductsList.FindIndex(a => a.ProductId == GenericLists.endIndexProduct);
             }
 
             GetListItems(lastProduct);
@@ -88,7 +98,7 @@ namespace FastFoodDemo
             int firtProduct = 0;
             if (GenericLists.startIndexProduct != 0 && GenericLists.endIndexProduct != 0)
             {
-                firtProduct = GenericLists.ProductsDrinks.FindIndex(a => a.ProductId == GenericLists.startIndexProduct);
+                firtProduct = ProductsList.FindIndex(a => a.ProductId == GenericLists.startIndexProduct);
             }
 
             GetListItems(firtProduct);
@@ -108,6 +118,7 @@ namespace FastFoodDemo
                 form.txtStock.Text = product?.Stock.ToString();
                 form.txtType.Text = product?.Type;
                 form.lblcategory.Text = product.Category;
+                form.txtitbis.Text = product.Itbis.ToString();
                 form.Show();
                 panelManager.Visible = false;
             }
@@ -122,8 +133,10 @@ namespace FastFoodDemo
                     var product = ProductsList.FirstOrDefault(x => x.ProductId == ProductId);
                     if (product != null)
                     {
-                        ProductsList.Remove(product);
-                        GenericLists.ProductsDrinks.Remove(product);
+                        var (deleted, message) = productsRepository.DeleteProductById(product.ProductId, product.Category);
+                        if (deleted)
+                            ProductsList.Remove(product);
+
                         GetListItems(0);
                     }
                 }
@@ -221,50 +234,44 @@ namespace FastFoodDemo
         #region Helpers
         private Product GetProductById(int id)
         {
-            return GenericLists.ProductsDrinks.FirstOrDefault(x => x.ProductId == id);
+            return ProductsList.FirstOrDefault(x => x.ProductId == id);
         }
 
         private int GetNextSalesId()
         {
             var (idVenta, message) = salesRepository.GetNextSalesId();
-            if (idVenta == 0)
+            if (idVenta == 0 && message.Contains("Error"))
                 MessageBox.Show(message);
 
-            return idVenta;
+            return (idVenta > 0 ? idVenta : 1);
         }
 
         private void GetListItems(int skip)
         {
             var listItems = new List<ItemsDTO>();
 
-            if (ProductsList is null)
-                ProductsList = GenericLists.ProductsDrinks;
-
-            if (GenericLists.ProductsDrinks != null || GenericLists.ProductsDrinks.Count > 0)
+            var newSearch = ProductsList.Skip(skip).Take(6).ToList();
+            var Products = newSearch != null && newSearch.Count > 2 ? newSearch.ToList() : ProductsList.ToList();
+            if (Products != null || Products.Count > 0)
             {
-                var newSearch = ProductsList.Skip(skip).Take(6).ToList();
-                var Products = newSearch != null && newSearch.Count > 2 ? newSearch.ToList() : ProductsList.ToList();
-                if (Products != null || Products.Count > 0)
+                foreach (var x in Products)
                 {
-                    foreach (var x in Products)
+                    var item = new ItemsDTO
                     {
-                        var item = new ItemsDTO
-                        {
-                            Description = x.Description,
-                            Price = x.SalesPrice.ToString(),
-                            ProductId = x.ProductId,
-                            Tittle = x.Name,
-                            ImageName = string.IsNullOrWhiteSpace(x.ImageName) ? x.ImageName : string.Empty
-                        };
+                        Description = x.Description,
+                        Price = x.SalesPrice.ToString(),
+                        ProductId = x.ProductId,
+                        Tittle = x.Name,
+                        ImageName = string.IsNullOrWhiteSpace(x.ImageName) ? x.ImageName : string.Empty
+                    };
 
-                        listItems.Add(item);
-                    }
+                    listItems.Add(item);
+                }
 
-                    if (listItems != null && listItems.Any())
-                    {
-                        GenericLists.startIndexProduct = listItems.FirstOrDefault().ProductId;
-                        GenericLists.endIndexProduct = listItems.LastOrDefault().ProductId;
-                    }
+                if (listItems != null && listItems.Any())
+                {
+                    GenericLists.startIndexProduct = listItems.FirstOrDefault().ProductId;
+                    GenericLists.endIndexProduct = listItems.LastOrDefault().ProductId;
                 }
             }
 
@@ -411,7 +418,7 @@ namespace FastFoodDemo
             product.Prices = Convert.ToDecimal(lblPrice1.Text);
             product.Itbis = productbyid.Itbis;
             product.Subtotal = product.Quantity * product.Prices;
-            product.Earnings = product.Prices - productbyid.SalesPrice;
+            product.Earnings = product.Prices - productbyid.BayPrice;
             product.Category = CategoryConstants.Foods;
             product.DateIn = DateTime.Today;
 
@@ -434,7 +441,7 @@ namespace FastFoodDemo
             product.Prices = Convert.ToDecimal(lblPrice2.Text);
             product.Itbis = productbyid.Itbis;
             product.Subtotal = product.Quantity * product.Prices;
-            product.Earnings = product.Prices - productbyid.SalesPrice;
+            product.Earnings = product.Prices - productbyid.BayPrice;
             product.Category = CategoryConstants.Foods;
             product.DateIn = DateTime.Today;
 
@@ -457,7 +464,7 @@ namespace FastFoodDemo
             product.Prices = Convert.ToDecimal(lblPrice3.Text);
             product.Itbis = productbyid.Itbis;
             product.Subtotal = product.Quantity * product.Prices;
-            product.Earnings = product.Prices - productbyid.SalesPrice;
+            product.Earnings = product.Prices - productbyid.BayPrice;
             product.Category = CategoryConstants.Foods;
             product.DateIn = DateTime.Today;
 
@@ -480,7 +487,7 @@ namespace FastFoodDemo
             product.Prices = Convert.ToDecimal(lblPrice4.Text);
             product.Itbis = productbyid.Itbis;
             product.Subtotal = product.Quantity * product.Prices;
-            product.Earnings = product.Prices - productbyid.SalesPrice;
+            product.Earnings = product.Prices - productbyid.BayPrice;
             product.Category = CategoryConstants.Foods;
             product.DateIn = DateTime.Today;
 
@@ -503,7 +510,7 @@ namespace FastFoodDemo
             product.Prices = Convert.ToDecimal(lblPrice5.Text);
             product.Itbis = productbyid.Itbis;
             product.Subtotal = product.Quantity * product.Prices;
-            product.Earnings = product.Prices - productbyid.SalesPrice;
+            product.Earnings = product.Prices - productbyid.BayPrice;
             product.Category = CategoryConstants.Foods;
             product.DateIn = DateTime.Today;
 
@@ -526,7 +533,7 @@ namespace FastFoodDemo
             product.Prices = Convert.ToDecimal(lblPrice6.Text);
             product.Itbis = productbyid.Itbis;
             product.Subtotal = product.Quantity * product.Prices;
-            product.Earnings = product.Prices - productbyid.SalesPrice;
+            product.Earnings = product.Prices - productbyid.BayPrice;
             product.Category = CategoryConstants.Foods;
             product.DateIn = DateTime.Today;
 

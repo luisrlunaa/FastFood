@@ -1,9 +1,7 @@
-﻿using FastFood.FastFood.Infrastructure.Constants;
-using FastFood.Infrastructure.DataAccess.Repositories;
+﻿using FastFood.Infrastructure.DataAccess.Repositories;
 using Models.ViewModels.GenericLists;
 using System;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace FastFoodDemo
@@ -22,7 +20,7 @@ namespace FastFoodDemo
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            var (business, message1) = businessRepository.GetBusinessInfo();
+            var (business, message1) = businessRepository.GetBusinessInfo(1);
             if (business == null)
                 MessageBox.Show(message1);
 
@@ -33,22 +31,6 @@ namespace FastFoodDemo
             lblRNC.Text = business.RNC;
 
             mainpanel.Visible = false;
-
-            if (GenericLists.ProductsDrinks is null || GenericLists.ProductsDrinks.Count == 0)
-            {
-                var (product, message) = productsRepository.GetProductByCategory(CategoryConstants.Drinks);
-                GenericLists.ProductsDrinks = product;
-                if (product is null || !product.Any())
-                    MessageBox.Show(message);
-            }
-
-            if (GenericLists.ProductsFoods is null || GenericLists.ProductsFoods.Count == 0)
-            {
-                var (product, message) = productsRepository.GetProductByCategory(CategoryConstants.Foods);
-                GenericLists.ProductsFoods = product;
-                if (product is null || !product.Any())
-                    MessageBox.Show(message);
-            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -94,6 +76,8 @@ namespace FastFoodDemo
             sales.txtDireccion.Visible = true;
             sales.lblDelivery.Visible = true;
             sales.txtDelivery.Visible = true;
+            sales.lblDAmount.Visible = true;
+            sales.txtDAmount.Visible = true;
             mainpanel.Visible = true;
             SidePanel.Height = button4.Height;
             SidePanel.Top = button4.Top;

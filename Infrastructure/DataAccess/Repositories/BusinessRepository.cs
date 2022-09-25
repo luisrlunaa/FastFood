@@ -1,20 +1,30 @@
-﻿using FastFood.Models.Entities;
+﻿using FastFood.Infrastructure.DataAccess.Contexts;
+using FastFood.Models.Entities;
 using System;
 
 namespace FastFood.Infrastructure.DataAccess.Repositories
 {
     public class BusinessRepository
     {
-        public (BusinessInfo, string) GetBusinessInfo()
+        DataManager Data = new DataManager();
+        public (BusinessInfo, string) GetBusinessInfo(int id)
         {
             var BusinessInfos = new BusinessInfo();
             try
             {
-                BusinessInfos.Name = "Fast Food Rapidito";
-                BusinessInfos.Address = "ahi ahi jhsknbchlsjhs kshhdudokfklf loidnkdhhd kjdhflfgf khdd Av.jiidhfdkfojf Esq.jhfljfho";
-                BusinessInfos.Phone1 = "809-111-1111";
-                BusinessInfos.Phone2 = "829-222-2222";
-                BusinessInfos.RNC = "8-222225-23";
+                var classKeys = Data.GetObjectKeys(new BusinessInfo());
+                var sql = Data.SelectExpression("BusinessInfo", classKeys, WhereExpresion: "WHERE BusinessId = " + id);
+                var (dr, message1) = Data.GetOne(sql);
+                if (dr is null)
+                    return (BusinessInfos, message1);
+
+                BusinessInfos.BusinessId = dr.GetInt32(dr.GetOrdinal("BusinessId"));
+                BusinessInfos.Name = dr.GetString(dr.GetOrdinal("Name"));
+                BusinessInfos.Address = dr.GetString(dr.GetOrdinal("Address"));
+                BusinessInfos.Phone1 = dr.GetString(dr.GetOrdinal("Phone1"));
+                BusinessInfos.Phone2 = dr.GetString(dr.GetOrdinal("Phone2"));
+                BusinessInfos.RNC = dr.GetString(dr.GetOrdinal("RNC"));
+
                 return (BusinessInfos, "Proceso Completado");
             }
             catch (Exception ex)

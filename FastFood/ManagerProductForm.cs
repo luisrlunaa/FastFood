@@ -47,15 +47,15 @@ namespace FastFoodDemo
         private void button1_Click(object sender, EventArgs e)
         {
             var product = new Product();
-            product.ProductId = Convert.ToInt32(lblProductId.Text);
+            product.ProductId = string.IsNullOrWhiteSpace(lblProductId.Text) ? 0 : Convert.ToInt32(lblProductId.Text);
             product.Name = txtProducto.Text;
             product.Description = txtMarca.Text;
             product.Category = cbxCategoria.Text;
-            product.Type = "";
-            product.Stock = Convert.ToDecimal(txtStock.Text);
-            product.Itbis = Convert.ToDecimal(txtitbis.Text);
-            product.SalesPrice = Convert.ToDecimal(txtPVenta.Text);
-            product.BayPrice = Convert.ToDecimal(txtPCompra.Text);
+            product.Type = txtType.Text;
+            product.Stock = string.IsNullOrWhiteSpace(txtStock.Text) ? 0 : Convert.ToDecimal(txtStock.Text);
+            product.Itbis = string.IsNullOrWhiteSpace(txtitbis.Text) ? 0 : Convert.ToDecimal(txtitbis.Text);
+            product.SalesPrice = string.IsNullOrWhiteSpace(txtPVenta.Text) ? 0 : Convert.ToDecimal(txtPVenta.Text);
+            product.BayPrice = string.IsNullOrWhiteSpace(txtPCompra.Text) ? 0 : Convert.ToDecimal(txtPCompra.Text);
             product.Updated = DateTime.Today;
             product.ImageName = txtImgName.Text;
 
@@ -88,10 +88,10 @@ namespace FastFoodDemo
             product.Description = txtMarca.Text;
             product.Category = cbxCategoria.Text;
             product.Type = txtType.Text;
-            product.Stock = Convert.ToDecimal(txtStock.Text);
-            product.Itbis = Convert.ToDecimal(txtitbis.Text);
-            product.SalesPrice = Convert.ToDecimal(txtPVenta.Text);
-            product.BayPrice = Convert.ToDecimal(txtPCompra.Text);
+            product.Stock = string.IsNullOrWhiteSpace(txtStock.Text) ? 0 : Convert.ToDecimal(txtStock.Text);
+            product.Itbis = string.IsNullOrWhiteSpace(txtitbis.Text) ? 0 : Convert.ToDecimal(txtitbis.Text);
+            product.SalesPrice = string.IsNullOrWhiteSpace(txtPVenta.Text) ? 0 : Convert.ToDecimal(txtPVenta.Text);
+            product.BayPrice = string.IsNullOrWhiteSpace(txtPCompra.Text) ? 0 : Convert.ToDecimal(txtPCompra.Text);
             product.Created = DateTime.Today;
             product.ImageName = txtImgName.Text;
 
