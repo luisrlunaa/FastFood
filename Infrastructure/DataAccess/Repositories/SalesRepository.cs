@@ -17,7 +17,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             {
                 var classKeys = Data.GetObjectKeys(new Sales());
                 var sql = Data.SelectExpression("Sales", classKeys);
-                var (dtPC, message) = Data.GetList(sql);
+                var (dtPC, message) = Data.GetList(sql, "SalesRepository.GetSales");
                 if (dtPC.Rows is null || dtPC.Rows.Count == 0)
                     return (SalesList, message);
 
@@ -56,7 +56,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             {
                 var classKeys = Data.GetObjectKeys(new Sales());
                 var sql = Data.SelectExpression("Sales", classKeys, WhereExpresion: "WHERE IdSale = " + id);
-                var (dr, message1) = Data.GetOne(sql);
+                var (dr, message1) = Data.GetOne(sql, "SalesRepository.GetSaleById");
                 if (dr is null)
                     return (s, message1);
 
@@ -89,7 +89,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             {
                 var classKeys = Data.GetObjectKeys(new Sales());
                 var sql = Data.SelectExpression("Sales", classKeys, WhereExpresion: " WHERE SalesCheckType = '" + type + "'");
-                var (dtPC, message) = Data.GetList(sql);
+                var (dtPC, message) = Data.GetList(sql, "SalesRepository.GetSalesBySalesCheckType");
                 if (dtPC is null || dtPC.Rows is null || dtPC.Rows.Count == 0)
                     return (SalesList, message);
 
@@ -128,7 +128,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             {
                 var classKeys = Data.GetObjectKeys(new Sales());
                 var sql = Data.SelectExpression("Sales", classKeys, WhereExpresion: " WHERE DeliveryName = '" + delivery + "'");
-                var (dtPC, message) = Data.GetList(sql);
+                var (dtPC, message) = Data.GetList(sql, "SalesRepository.GetSalesByDeliveryName");
                 if (dtPC is null || dtPC.Rows is null || dtPC.Rows.Count == 0)
                     return (SalesList, message);
 
@@ -166,7 +166,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             try
             {
                 var sql = Data.SelectExpression("Sales", new List<string>() { "SUM(DeliveryAmount)" }, WhereExpresion: " WHERE DeliveryName = '" + delivery + "'");
-                var (dr, message) = Data.GetOne(sql);
+                var (dr, message) = Data.GetOne(sql, "SalesRepository.GetAmountByDeliveryName");
                 if (dr is null)
                     return (0, message);
 
@@ -186,7 +186,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             {
                 var classKeys = Data.GetObjectKeys(new SalesDetails());
                 var sql = Data.SelectExpression("SalesDetails", classKeys);
-                var (dtPC, message) = Data.GetList(sql);
+                var (dtPC, message) = Data.GetList(sql, "SalesRepository.GetSaleDetails");
                 if (dtPC is null || dtPC.Rows is null || dtPC.Rows.Count == 0)
                     return (Sales, message);
 
@@ -233,7 +233,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                     ? " WHERE DateIn = convert(" + dateFrom + ", CONVERT(varchar(10), @fecha, 103), 103)"
                     : " WHERE DateIn BETWEEN convert(" + dateFrom + ", CONVERT(varchar(10), @fecha, 103),103) AND convert(" + dateTo + ", CONVERT(varchar(10), @fecha1, 103),103)");
 
-                var (dtPC, message) = Data.GetList(sql);
+                var (dtPC, message) = Data.GetList(sql, "SalesRepository.GetSaleDetailsByDate");
                 if (dtPC is null || dtPC.Rows is null || dtPC.Rows.Count == 0)
                     return (salesDetailbyDates, message);
 
@@ -279,7 +279,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                     ? " WHERE DateIn = convert(" + dateFrom + ", CONVERT(varchar(10), @fecha, 103), 103)"
                     : " WHERE DateIn BETWEEN convert(" + dateFrom + ", CONVERT(varchar(10), @fecha, 103),103) AND convert(" + dateTo + ", CONVERT(varchar(10), @fecha1, 103),103)");
 
-                var (dr, message) = Data.GetOne(sql);
+                var (dr, message) = Data.GetOne(sql, "SalesRepository.GetEarningsToSaleByDate");
                 if (dr is null)
                     return (0, message);
 
@@ -306,7 +306,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
 
                 var classKeys = Data.GetObjectKeys(new Sales()).Where(x => x != "IdSale").ToList();
                 var sql = Data.InsertExpression("Sales", classKeys, parameters);
-                var (response, message) = Data.CrudAction(sql);
+                var (response, message) = Data.CrudAction(sql, "SalesRepository.AddSale");
                 if (!response)
                     return (response, message);
 
@@ -333,7 +333,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
 
                     var classKeys = Data.GetObjectKeys(new SalesDetails()).Where(x => x != "Id").ToList();
                     var sql = Data.InsertExpression("SalesDetails", classKeys, parameters);
-                    var (response, message) = Data.CrudAction(sql);
+                    var (response, message) = Data.CrudAction(sql, "SalesRepository.AddSaleDetails");
                     if (!response)
                         return (response, message);
                 }
@@ -359,7 +359,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
 
                 var classKeys = Data.GetObjectKeys(new Sales()).Where(x => x != "IdSale").ToList();
                 var sql = Data.UpdateExpression("Sales", classKeys, parameters, "WHERE IdSale = " + sales.IdSale);
-                var (response, message) = Data.CrudAction(sql);
+                var (response, message) = Data.CrudAction(sql, "SalesRepository.UpdateSales");
                 if (!response)
                     return (response, message);
 
@@ -379,7 +379,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                     return (false, "Input Invalido, Metodo SalesRepository.DeleteSales");
 
                 var sql = Data.DeleteExpression("Sales", "WHERE IdSale = " + sales.IdSale);
-                var (response, message) = Data.CrudAction(sql);
+                var (response, message) = Data.CrudAction(sql, "SalesRepository.DeleteSales");
                 if (!response)
                     return (response, message);
 
@@ -397,7 +397,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             {
                 var classKeys = Data.GetObjectKeys(new Sales());
                 var sql = Data.SelectExpression("Sales", new List<string>() { "IdSale" }, Top: 1.ToString(), OrderBy: "IdSale DESC");
-                var (dr, message) = Data.GetOne(sql);
+                var (dr, message) = Data.GetOne(sql, "SalesRepository.GetNextSalesId");
                 if (dr is null)
                     return (0, message);
 

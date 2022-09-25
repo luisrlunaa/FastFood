@@ -16,7 +16,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             {
                 var classKeys = Data.GetObjectKeys(new Employee());
                 var sql = Data.SelectExpression("Employee", classKeys);
-                var (dtPC, message) = Data.GetList(sql);
+                var (dtPC, message) = Data.GetList(sql, "EmployeesRepository.GetEmployees");
                 if (dtPC is null || dtPC.Rows is null || dtPC.Rows.Count == 0)
                     return (Employees, message);
 
@@ -50,7 +50,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             {
                 var classKeys = Data.GetObjectKeys(new Employee());
                 var sql = Data.SelectExpression("Employee", classKeys, WhereExpresion: "WHERE IdEmp = " + id);
-                var (dr, message1) = Data.GetOne(sql);
+                var (dr, message1) = Data.GetOne(sql, "EmployeesRepository.GetEmployeeById");
                 if (dr is null)
                     return (s, message1);
 
@@ -79,7 +79,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             {
                 var classKeys = Data.GetObjectKeys(new Employee());
                 var sql = Data.SelectExpression("Employee", classKeys, WhereExpresion: "WHERE IdUser = " + id);
-                var (dr, message1) = Data.GetOne(sql);
+                var (dr, message1) = Data.GetOne(sql, "EmployeesRepository.GetEmployeeByUserid");
                 if (dr is null)
                     return (s, message1);
 
@@ -108,7 +108,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             {
                 var classKeys = Data.GetObjectKeys(new Employee());
                 var sql = Data.SelectExpression("Employee", classKeys, WhereExpresion: " WHERE DocumentNo = '" + documentNo + "'");
-                var (dtPC, message) = Data.GetList(sql);
+                var (dtPC, message) = Data.GetList(sql, "EmployeesRepository.GetEmployeeByDocumentNo");
                 if (dtPC is null || dtPC.Rows is null || dtPC.Rows.Count == 0)
                     return (Employees, message);
 

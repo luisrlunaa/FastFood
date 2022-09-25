@@ -141,7 +141,7 @@ namespace FastFood.Infrastructure.DataAccess.Contexts
 
         #region ACTIONS
         //Get List ---- Sql
-        public (DataTable, string) GetList(string Sql)
+        public (DataTable, string) GetList(string Sql, string FromTo)
         {
             DataTable dt = new DataTable();
             SqlDataAdapter da;
@@ -155,14 +155,14 @@ namespace FastFood.Infrastructure.DataAccess.Contexts
             }
             catch (Exception ex)
             {
-                return (null, "Error al Cargar Data, Metodo GetList() \n" + ex.Message.ToString());
+                return (null, "Error al Cargar Data, Metodo GetList(), desde el Metodo " + FromTo + " \n" + ex.Message.ToString());
             }
             Desconectar();
             return (dt, "Completado con exito");
         }
 
         //Get One ---- Sql
-        public (SqlDataReader, string) GetOne(string Sql)
+        public (SqlDataReader, string) GetOne(string Sql, string FromTo)
         {
             SqlCommand cmd1;
             try
@@ -176,16 +176,16 @@ namespace FastFood.Infrastructure.DataAccess.Contexts
                     return (dr, "Completado con exito");
                 }
 
-                return (null, "No se Encontró Data, Metodo GetOne()");
+                return (null, "No se Encontró Data, Metodo GetOne(), desde el Metodo "+ FromTo);
             }
             catch (Exception ex)
             {
-                return (null, "Error al Cargar Data, Metodo GetOne() \n" + ex.Message.ToString());
+                return (null, "Error al Cargar Data, Metodo GetOne() , desde el Metodo "+ FromTo +" \n" + ex.Message.ToString());
             }
         }
 
         //Crud Action ---- Sql
-        public (bool, string) CrudAction(string Sql)
+        public (bool, string) CrudAction(string Sql, string FromTo)
         {
             try
             {
@@ -200,7 +200,7 @@ namespace FastFood.Infrastructure.DataAccess.Contexts
             }
             catch (Exception ex)
             {
-                return (false, "Error al realizar la action, Metodo CrudAction() \n" + ex.Message.ToString());
+                return (false, "Error al realizar la action, Metodo CrudAction() , desde el Metodo "+ FromTo + "\n" + ex.Message.ToString());
             }
         }
         #endregion

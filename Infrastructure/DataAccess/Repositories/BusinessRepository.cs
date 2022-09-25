@@ -14,7 +14,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             {
                 var classKeys = Data.GetObjectKeys(new BusinessInfo());
                 var sql = Data.SelectExpression("BusinessInfo", classKeys, WhereExpresion: "WHERE BusinessId = " + id);
-                var (dr, message1) = Data.GetOne(sql);
+                var (dr, message1) = Data.GetOne(sql, "BusinessRepository.GetBusinessInfo");
                 if (dr is null)
                     return (BusinessInfos, message1);
 
