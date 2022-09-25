@@ -156,7 +156,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
 
 
                 var classKeys = Data.GetObjectKeys(new Product()).Where(x => x != "ProductId" && x != "Created").ToList();
-                var sql = Data.UpdateExpression("Product", classKeys, parameters, ConditionExpresion: "WHERE ProductId = " + input.ProductId);
+                var sql = Data.UpdateExpression("Product", classKeys, parameters, WhereExpresion: "WHERE ProductId = " + input.ProductId);
                 var (response, message) = Data.CrudAction(sql);
                 if (!response)
                     return (response, message);
@@ -176,7 +176,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                 if (id == 0 || string.IsNullOrWhiteSpace(category))
                     return (false, "Input Invalido, Metodo ProductsRepository.DeleteProductById");
 
-                var sql = Data.DeleteExpression("Product", ConditionExpresion: "WHERE ProductId = " + id + " AND Category = " + category);
+                var sql = Data.DeleteExpression("Product", WhereExpresion: "WHERE ProductId = " + id + " AND Category = " + category);
                 var (response, message) = Data.CrudAction(sql);
                 if (!response)
                     return (response, message);

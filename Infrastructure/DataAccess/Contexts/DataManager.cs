@@ -68,16 +68,16 @@ namespace FastFood.Infrastructure.DataAccess.Contexts
             return expression;
         }
 
-        //Update ---- TableName, List ColumnsName, List ParameterValue, ConditionExpresion
-        public string UpdateExpression(string TableName, List<string> ColumnsName, List<string> ParameterValue, string ConditionExpresion)
+        //Update ---- TableName, List ColumnsName, List ParameterValue, WhereExpresion
+        public string UpdateExpression(string TableName, List<string> ColumnsName, List<string> ParameterValue, string WhereExpresion)
         {
             if (string.IsNullOrWhiteSpace(TableName))
                 return "Nombre de tabla requerido. Metodo UpdateExpression()";
 
-            if (string.IsNullOrWhiteSpace(ConditionExpresion))
+            if (string.IsNullOrWhiteSpace(WhereExpresion))
                 return "Condicional requerida. Metodo UpdateExpression()";
 
-            if (!ConditionExpresion.ToLower().Contains("where"))
+            if (!WhereExpresion.ToLower().Contains("where"))
                 return "Condicional debe contener la palabra Where. Metodo UpdateExpression()";
 
             if (ColumnsName is null || ParameterValue is null)
@@ -94,27 +94,27 @@ namespace FastFood.Infrastructure.DataAccess.Contexts
                 + TableName
                 + " SET " +
                 string.Join(",", valuesExpresion) + " " +
-                ConditionExpresion;
+                WhereExpresion;
 
             return expression;
         }
 
-        //Delete ---- TableName, List ColumnsName, List ParameterValue, ConditionExpresion
-        public string DeleteExpression(string TableName, string ConditionExpresion)
+        //Delete ---- TableName, List ColumnsName, List ParameterValue, WhereExpresion
+        public string DeleteExpression(string TableName, string WhereExpresion)
         {
             if (string.IsNullOrWhiteSpace(TableName))
                 return "Nombre de tabla requerido. Metodo DeleteExpression()";
 
-            if (string.IsNullOrWhiteSpace(ConditionExpresion))
+            if (string.IsNullOrWhiteSpace(WhereExpresion))
                 return "Condicional requerida. Metodo DeleteExpression()";
 
-            if (!ConditionExpresion.ToLower().Contains("where"))
+            if (!WhereExpresion.ToLower().Contains("where"))
                 return "Condicional debe contener la palabra Where. Metodo DeleteExpression()";
 
             var expression =
                 "DELETE "
                 + TableName + " "
-                + ConditionExpresion;
+                + WhereExpresion;
 
             return expression;
         }
