@@ -82,6 +82,7 @@
             this.txtitbis.Size = new System.Drawing.Size(126, 29);
             this.txtitbis.TabIndex = 100;
             this.txtitbis.TabStop = false;
+            this.txtitbis.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtitbis.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtitbis_KeyPress);
             // 
             // label9
@@ -176,6 +177,7 @@
             this.txtStock.Size = new System.Drawing.Size(111, 29);
             this.txtStock.TabIndex = 87;
             this.txtStock.TabStop = false;
+            this.txtStock.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtStock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtStock_KeyPress);
             // 
             // label5
@@ -196,6 +198,7 @@
             this.txtPVenta.Size = new System.Drawing.Size(126, 29);
             this.txtPVenta.TabIndex = 96;
             this.txtPVenta.TabStop = false;
+            this.txtPVenta.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtPVenta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPVenta_KeyPress);
             // 
             // label4
@@ -216,6 +219,7 @@
             this.txtPCompra.Size = new System.Drawing.Size(111, 29);
             this.txtPCompra.TabIndex = 95;
             this.txtPCompra.TabStop = false;
+            this.txtPCompra.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtPCompra.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPCompra_KeyPress);
             // 
             // label3

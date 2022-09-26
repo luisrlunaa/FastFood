@@ -636,7 +636,6 @@
             this.txtRncCli.Name = "txtRncCli";
             this.txtRncCli.Size = new System.Drawing.Size(232, 26);
             this.txtRncCli.TabIndex = 142;
-            this.txtRncCli.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblRncCli
             // 

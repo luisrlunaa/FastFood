@@ -176,11 +176,11 @@ namespace FastFood.Infrastructure.DataAccess.Contexts
                     return (dr, "Completado con exito");
                 }
 
-                return (null, "No se Encontró Data, Metodo GetOne(), desde el Metodo "+ FromTo);
+                return (null, "No se Encontró Data, Metodo GetOne(), desde el Metodo " + FromTo);
             }
             catch (Exception ex)
             {
-                return (null, "Error al Cargar Data, Metodo GetOne() , desde el Metodo "+ FromTo +" \n" + ex.Message.ToString());
+                return (null, "Error al Cargar Data, Metodo GetOne() , desde el Metodo " + FromTo + " \n" + ex.Message.ToString());
             }
         }
 
@@ -200,7 +200,7 @@ namespace FastFood.Infrastructure.DataAccess.Contexts
             }
             catch (Exception ex)
             {
-                return (false, "Error al realizar la action, Metodo CrudAction() , desde el Metodo "+ FromTo + "\n" + ex.Message.ToString());
+                return (false, "Error al realizar la action, Metodo CrudAction() , desde el Metodo " + FromTo + "\n" + ex.Message.ToString());
             }
         }
         #endregion

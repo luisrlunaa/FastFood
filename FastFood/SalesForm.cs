@@ -88,6 +88,18 @@ namespace FastFoodDemo
 
         private void btnVender_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtClientName.Text))
+            {
+                MessageBox.Show("Nombre del Cliente es obligatorio");
+                return;
+            }
+
+            if (GenericLists.SelectedItems is null || !GenericLists.SelectedItems.Any())
+            {
+                MessageBox.Show("Debe tener agregado al menos un producto para realizar una venta");
+                return;
+            }
+
             var sale = new Sales();
             sale.IdEmployee = 0;
             sale.ClientName = txtClientName.Text;
@@ -139,6 +151,36 @@ namespace FastFoodDemo
 
         private void btnEnviar_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtClientName.Text))
+            {
+                MessageBox.Show("Nombre del Cliente es obligatorio");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtDireccion.Text))
+            {
+                MessageBox.Show("Direccion es obligatoria para hacer un envio");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtDelivery.Text))
+            {
+                MessageBox.Show("Nombre del Delivery es obligatorio para hacer un envio");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtDAmount.Text))
+            {
+                MessageBox.Show("Monto del Delivery es obligatorio para hacer un envio");
+                return;
+            }
+
+            if (GenericLists.SelectedItems is null || !GenericLists.SelectedItems.Any())
+            {
+                MessageBox.Show("Debe tener agregado al menos un producto para realizar una venta");
+                return;
+            }
+
             var sale = new Sales();
             sale.IdEmployee = 0;
             sale.ClientName = txtClientName.Text;
