@@ -82,7 +82,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             }
         }
 
-        public (List<Sales>, string) GetSalesBySalesCheckType(string type)
+        public (List<Sales>, string) GetSalesBySalesCheckType(string type, DateTime dateFrom, DateTime dateTo)
         {
             var SalesList = new List<Sales>();
             try
@@ -121,13 +121,24 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             }
         }
 
-        public (List<Sales>, string) GetSalesByDeliveryName(string delivery)
+        public (List<Sales>, string) GetSalesByDeliveryName(string delivery, DateTime dateFrom, DateTime dateTo)
         {
             var SalesList = new List<Sales>();
             try
             {
+                if (dateFrom == DateTime.MinValue || dateTo == DateTime.MinValue)
+                    return (SalesList, "Input Invalido debe seleccionar la fecha en la que desea buscar, Metodo SalesRepository.GetSaleDetailsByDate");
+
+                var isSameDate = false;
+                if (dateTo == dateFrom)
+                    isSameDate = true;
+
                 var classKeys = Data.GetObjectKeys(new Sales());
-                var sql = Data.SelectExpression("Sales", classKeys, WhereExpresion: " WHERE DeliveryName = '" + delivery + "'");
+                var sql = Data.SelectExpression("Sales", classKeys,
+                    WhereExpresion:
+                    isSameDate
+                    ? " WHERE DateIn = '" + dateFrom.ToString("MM/dd/yyyy") + "' AND DeliveryName = '" + delivery + "'"
+                    : " WHERE DateIn BETWEEN '" + dateFrom.ToString("MM/dd/yyyy") + "' AND '" + dateTo.ToString("MM/dd/yyyy") + "' AND DeliveryName = '" + delivery + "'");
                 var (dtPC, message) = Data.GetList(sql, "SalesRepository.GetSalesByDeliveryName");
                 if (dtPC is null || dtPC.Rows is null || dtPC.Rows.Count == 0)
                     return (SalesList, message);
@@ -160,12 +171,24 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             }
         }
 
-        public (decimal, string) GetAmountByDeliveryName(string delivery)
+        public (decimal, string) GetAmountByDeliveryName(string delivery, DateTime dateFrom, DateTime dateTo)
         {
             decimal amount = 0;
             try
             {
-                var sql = Data.SelectExpression("Sales", new List<string>() { "SUM(DeliveryAmount)" }, WhereExpresion: " WHERE DeliveryName = '" + delivery + "'");
+                if (dateFrom == DateTime.MinValue || dateTo == DateTime.MinValue)
+                    return (0, "Input Invalido debe seleccionar la fecha en la que desea buscar, Metodo SalesRepository.GetSaleDetailsByDate");
+
+                var isSameDate = false;
+                if (dateTo == dateFrom)
+                    isSameDate = true;
+
+                var sql = Data.SelectExpression("Sales", new List<string>() { "SUM(DeliveryAmount) as DeliveryAmount" },
+                    WhereExpresion:
+                    isSameDate
+                    ? " WHERE DateIn = '" + dateFrom.ToString("MM/dd/yyyy") + "' AND DeliveryName = '" + delivery + "'"
+                    : " WHERE DateIn BETWEEN '" + dateFrom.ToString("MM/dd/yyyy") + "' AND '" + dateTo.ToString("MM/dd/yyyy") + "' AND DeliveryName = '" + delivery + "'");
+
                 var (dr, message) = Data.GetOne(sql, "SalesRepository.GetAmountByDeliveryName");
                 if (dr is null)
                     return (0, message);
@@ -229,9 +252,11 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                     isSameDate = true;
 
                 var classKeys = Data.GetObjectKeys(new SalesDetails());
-                var sql = Data.SelectExpression("SalesDetails", classKeys, WhereExpresion: isSameDate
-                    ? " WHERE DateIn = convert(" + dateFrom + ", CONVERT(varchar(10), @fecha, 103), 103)"
-                    : " WHERE DateIn BETWEEN convert(" + dateFrom + ", CONVERT(varchar(10), @fecha, 103),103) AND convert(" + dateTo + ", CONVERT(varchar(10), @fecha1, 103),103)");
+                var sql = Data.SelectExpression("SalesDetails", classKeys,
+                    WhereExpresion:
+                    isSameDate
+                    ? " WHERE DateIn = '" + dateFrom.ToString("MM/dd/yyyy") + "'"
+                    : " WHERE DateIn BETWEEN '" + dateFrom.ToString("MM/dd/yyyy") + "' AND '" + dateTo.ToString("MM/dd/yyyy") + "'");
 
                 var (dtPC, message) = Data.GetList(sql, "SalesRepository.GetSaleDetailsByDate");
                 if (dtPC is null || dtPC.Rows is null || dtPC.Rows.Count == 0)
@@ -260,6 +285,98 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             catch (Exception ex)
             {
                 return (salesDetailbyDates, "Error al Cargar Data, Metodo SalesRepository.GetSaleDetailsByDate \n" + ex.Message.ToString());
+            }
+        }
+
+        public (List<SalesDetails>, string) GetSaleDetailsByDescriptionOrClientName(string description)
+        {
+            var salesDetailbyDates = new List<SalesDetails>();
+            try
+            {
+                if (string.IsNullOrWhiteSpace(description))
+                    return (salesDetailbyDates, "Input Invalido, Metodo SalesRepository.GetSaleDetailsByDescription");
+
+                var join = Data.JoinExpression("INNER", new List<string>() { "Sales" }, new List<string>() { "SalesDetails" }, new List<string>() { "IdSale" });
+                var classKeys = Data.GetObjectKeys(new SalesDetails(), "SalesDetails").Where(x => x != "Id").ToList();
+                var sql = Data.SelectExpression("SalesDetails", classKeys, JoinExp: join,
+                    WhereExpresion: " WHERE ProductName like '%" + description + "%' OR Sales.ClientName like '%" + description + "%'");
+
+                var (dtPC, message) = Data.GetList(sql, "SalesRepository.GetSaleDetailsByDescription");
+                if (dtPC is null || dtPC.Rows is null || dtPC.Rows.Count == 0)
+                    return (salesDetailbyDates, message);
+
+                foreach (DataRow reader in dtPC.Rows)
+                {
+                    SalesDetails s = new SalesDetails();
+                    s.IdSale = reader["IdSale"] == DBNull.Value ? 0 : Convert.ToInt32(reader["IdSale"]);
+                    s.IdDetail = reader["IdDetail"] == DBNull.Value ? 0 : Convert.ToInt32(reader["IdDetail"]);
+                    s.IdProduct = reader["IdProduct"] == DBNull.Value ? 0 : Convert.ToInt32(reader["IdProduct"]);
+                    s.ProductName = reader["ProductName"] == DBNull.Value ? string.Empty : Convert.ToString(reader["ProductName"]);
+                    s.Category = reader["Category"] == DBNull.Value ? string.Empty : Convert.ToString(reader["Category"]);
+                    s.Quantity = reader["Quantity"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["Quantity"]);
+                    s.Prices = reader["Prices"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["Prices"]);
+                    s.Itbis = reader["Itbis"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["Itbis"]);
+                    s.Subtotal = reader["Subtotal"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["Subtotal"]);
+                    s.Earnings = reader["Earnings"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["Earnings"]);
+                    s.DateIn = reader["DateIn"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["DateIn"]);
+
+                    salesDetailbyDates.Add(s);
+                }
+
+                return (salesDetailbyDates, "Proceso Completado");
+            }
+            catch (Exception ex)
+            {
+                return (salesDetailbyDates, "Error al Cargar Data, Metodo SalesRepository.GetSaleDetailsByDescription \n" + ex.Message.ToString());
+            }
+        }
+
+        public (List<SalesDetails>, string) GetSaleDetailsByDeliveryName(string delivery, DateTime dateFrom, DateTime dateTo)
+        {
+            var SalesList = new List<SalesDetails>();
+            try
+            {
+                if (dateFrom == DateTime.MinValue || dateTo == DateTime.MinValue)
+                    return (SalesList, "Input Invalido debe seleccionar la fecha en la que desea buscar, Metodo SalesRepository.GetSaleDetailsByDate");
+
+                var isSameDate = false;
+                if (dateTo == dateFrom)
+                    isSameDate = true;
+
+                var join = Data.JoinExpression("INNER", new List<string>() { "Sales" }, new List<string>() { "SalesDetails" }, new List<string>() { "IdSale" });
+                var classKeys = Data.GetObjectKeys(new SalesDetails(), "SalesDetails");
+                var sql = Data.SelectExpression("SalesDetails", classKeys, JoinExp: join,
+                    WhereExpresion:
+                    isSameDate
+                    ? " WHERE SalesDetails.DateIn = '" + dateFrom.ToString("MM/dd/yyyy") + "' AND Sales.DeliveryName = '" + delivery + "'"
+                    : " WHERE SalesDetails.DateIn BETWEEN '" + dateFrom.ToString("MM/dd/yyyy") + "' AND '" + dateTo.ToString("MM/dd/yyyy") + "' AND Sales.DeliveryName = '" + delivery + "'");
+                var (dtPC, message) = Data.GetList(sql, "SalesRepository.GetSaleDetailsByDeliveryName");
+                if (dtPC is null || dtPC.Rows is null || dtPC.Rows.Count == 0)
+                    return (SalesList, message);
+
+                foreach (DataRow reader in dtPC.Rows)
+                {
+                    SalesDetails s = new SalesDetails();
+                    s.IdSale = reader["IdSale"] == DBNull.Value ? 0 : Convert.ToInt32(reader["IdSale"]);
+                    s.IdDetail = reader["IdDetail"] == DBNull.Value ? 0 : Convert.ToInt32(reader["IdDetail"]);
+                    s.IdProduct = reader["IdProduct"] == DBNull.Value ? 0 : Convert.ToInt32(reader["IdProduct"]);
+                    s.ProductName = reader["ProductName"] == DBNull.Value ? string.Empty : Convert.ToString(reader["ProductName"]);
+                    s.Category = reader["Category"] == DBNull.Value ? string.Empty : Convert.ToString(reader["Category"]);
+                    s.Quantity = reader["Quantity"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["Quantity"]);
+                    s.Prices = reader["Prices"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["Prices"]);
+                    s.Itbis = reader["Itbis"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["Itbis"]);
+                    s.Subtotal = reader["Subtotal"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["Subtotal"]);
+                    s.Earnings = reader["Earnings"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["Earnings"]);
+                    s.DateIn = reader["DateIn"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["DateIn"]);
+
+                    SalesList.Add(s);
+                }
+
+                return (SalesList, "Proceso Completado");
+            }
+            catch (Exception ex)
+            {
+                return (SalesList, "Error al Cargar Data, Metodo SalesRepository.GetSalesByDeliveryName \n" + ex.Message.ToString());
             }
         }
 

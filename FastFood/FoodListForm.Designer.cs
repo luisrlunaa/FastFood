@@ -471,9 +471,10 @@
             // 
             // btnSearch
             // 
+            this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.Location = new System.Drawing.Point(48, 14);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 44);
+            this.btnSearch.Size = new System.Drawing.Size(99, 44);
             this.btnSearch.TabIndex = 46;
             this.btnSearch.Text = " Buscar";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -481,9 +482,10 @@
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(153, 27);
+            this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearch.Location = new System.Drawing.Point(153, 19);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(734, 20);
+            this.txtSearch.Size = new System.Drawing.Size(734, 29);
             this.txtSearch.TabIndex = 45;
             // 
             // panel3

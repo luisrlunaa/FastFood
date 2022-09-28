@@ -468,7 +468,7 @@ namespace FastFoodDemo
             product.Prices = Convert.ToDecimal(lblPrice1.Text);
             product.Itbis = productbyid.Itbis;
             product.Subtotal = product.Quantity * product.Prices;
-            product.Earnings = product.Prices - productbyid.BayPrice;
+            product.Earnings = product.Quantity * (product.Prices - productbyid.BayPrice);
             product.Category = CategoryConstants.Foods;
             product.DateIn = DateTime.Today;
 
@@ -491,7 +491,7 @@ namespace FastFoodDemo
             product.Prices = Convert.ToDecimal(lblPrice2.Text);
             product.Itbis = productbyid.Itbis;
             product.Subtotal = product.Quantity * product.Prices;
-            product.Earnings = product.Prices - productbyid.BayPrice;
+            product.Earnings = product.Quantity * (product.Prices - productbyid.BayPrice);
             product.Category = CategoryConstants.Foods;
             product.DateIn = DateTime.Today;
 
@@ -514,7 +514,7 @@ namespace FastFoodDemo
             product.Prices = Convert.ToDecimal(lblPrice3.Text);
             product.Itbis = productbyid.Itbis;
             product.Subtotal = product.Quantity * product.Prices;
-            product.Earnings = product.Prices - productbyid.BayPrice;
+            product.Earnings = product.Quantity * (product.Prices - productbyid.BayPrice);
             product.Category = CategoryConstants.Foods;
             product.DateIn = DateTime.Today;
 
@@ -537,7 +537,7 @@ namespace FastFoodDemo
             product.Prices = Convert.ToDecimal(lblPrice4.Text);
             product.Itbis = productbyid.Itbis;
             product.Subtotal = product.Quantity * product.Prices;
-            product.Earnings = product.Prices - productbyid.BayPrice;
+            product.Earnings = product.Quantity * (product.Prices - productbyid.BayPrice);
             product.Category = CategoryConstants.Foods;
             product.DateIn = DateTime.Today;
 
@@ -560,7 +560,7 @@ namespace FastFoodDemo
             product.Prices = Convert.ToDecimal(lblPrice5.Text);
             product.Itbis = productbyid.Itbis;
             product.Subtotal = product.Quantity * product.Prices;
-            product.Earnings = product.Prices - productbyid.BayPrice;
+            product.Earnings = product.Quantity * (product.Prices - productbyid.BayPrice);
             product.Category = CategoryConstants.Foods;
             product.DateIn = DateTime.Today;
 
@@ -583,7 +583,7 @@ namespace FastFoodDemo
             product.Prices = Convert.ToDecimal(lblPrice6.Text);
             product.Itbis = productbyid.Itbis;
             product.Subtotal = product.Quantity * product.Prices;
-            product.Earnings = product.Prices - productbyid.BayPrice;
+            product.Earnings = product.Quantity * (product.Prices - productbyid.BayPrice);
             product.Category = CategoryConstants.Foods;
             product.DateIn = DateTime.Today;
 

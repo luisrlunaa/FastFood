@@ -127,5 +127,15 @@ namespace FastFoodDemo
             this.mainpanel.Tag = f;
             f.Show();
         }
+
+        private void btnListSales_Click(object sender, EventArgs e)
+        {
+            SalesListForm sales = new SalesListForm();
+            mainpanel.Visible = true;
+            SidePanel.Height = btnListSales.Height;
+            SidePanel.Top = btnListSales.Top;
+
+            loadform(sales);
+        }
     }
 }

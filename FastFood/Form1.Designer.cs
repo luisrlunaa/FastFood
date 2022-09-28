@@ -59,6 +59,7 @@
             this.lblRNC = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.mainpanel = new System.Windows.Forms.Panel();
+            this.btnListSales = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -67,6 +68,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(39)))), ((int)(((byte)(40)))));
+            this.panel1.Controls.Add(this.btnListSales);
             this.panel1.Controls.Add(this.SidePanel);
             this.panel1.Controls.Add(this.button7);
             this.panel1.Controls.Add(this.button6);
@@ -98,7 +100,7 @@
             this.button7.ForeColor = System.Drawing.Color.White;
             this.button7.Image = ((System.Drawing.Image)(resources.GetObject("button7.Image")));
             this.button7.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button7.Location = new System.Drawing.Point(9, 401);
+            this.button7.Location = new System.Drawing.Point(12, 467);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(197, 54);
             this.button7.TabIndex = 4;
@@ -463,6 +465,23 @@
             this.mainpanel.TabIndex = 126;
             this.mainpanel.Visible = false;
             // 
+            // btnListSales
+            // 
+            this.btnListSales.FlatAppearance.BorderSize = 0;
+            this.btnListSales.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnListSales.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnListSales.ForeColor = System.Drawing.Color.White;
+            this.btnListSales.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnListSales.Location = new System.Drawing.Point(12, 407);
+            this.btnListSales.Name = "btnListSales";
+            this.btnListSales.Size = new System.Drawing.Size(197, 54);
+            this.btnListSales.TabIndex = 5;
+            this.btnListSales.Text = "+          Lista de Ventas";
+            this.btnListSales.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnListSales.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnListSales.UseVisualStyleBackColor = true;
+            this.btnListSales.Click += new System.EventHandler(this.btnListSales_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -533,6 +552,7 @@
         public System.Windows.Forms.Label lblRNC;
         private System.Windows.Forms.Label label4;
         public System.Windows.Forms.Panel mainpanel;
+        private System.Windows.Forms.Button btnListSales;
     }
 }
 

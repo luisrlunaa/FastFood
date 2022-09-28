@@ -205,12 +205,17 @@ namespace FastFood.Infrastructure.DataAccess.Contexts
         }
         #endregion
 
-        public List<string> GetObjectKeys<T>(T input)
+        public List<string> GetObjectKeys<T>(T input, string tablename = null)
         {
             var propertiesName = new List<string>();
             foreach (PropertyInfo p in input.GetType().GetProperties())
             {
-                string propertyName = p.Name;
+                string propertyName = string.Empty;
+                if (!string.IsNullOrEmpty(tablename))
+                    propertyName = tablename + "." + p.Name;
+                else
+                    propertyName = p.Name;
+
                 propertiesName.Add(propertyName);
             }
 
