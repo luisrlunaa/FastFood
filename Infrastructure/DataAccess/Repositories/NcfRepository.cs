@@ -128,14 +128,14 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             }
         }
 
-        public (List<NCF>, string) GetNCFsActives()
+        public (List<NCF>, string) GetActivesNCFs()
         {
             var Receipts = new List<NCF>();
             try
             {
                 var join = Data.JoinExpression("INNER", new List<string>() { "Receipts" }, new List<string>() { "NCF" }, new List<string>() { "Id_ncf" });
-                var classKeys = Data.GetObjectKeys(new NCF());
-                var sql = Data.SelectExpression("NCF", classKeys, JoinExp: join ,WhereExpresion: "WHERE Receipts.Active = 1");
+                var classKeys = Data.GetObjectKeys(new NCF(), "NCF");
+                var sql = Data.SelectExpression("NCF", classKeys, JoinExp: join ,WhereExpresion: " WHERE Receipts.Active = 1");
                 var (dtPC, message) = Data.GetList(sql, "NcfRepository.GetNCFsActives");
                 if (dtPC is null || dtPC.Rows is null || dtPC.Rows.Count == 0)
                     return (Receipts, message);

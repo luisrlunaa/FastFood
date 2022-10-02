@@ -156,7 +156,7 @@
             this.PriceProd,
             this.IGV,
             this.SubTotal});
-            this.dgProductSelected.Location = new System.Drawing.Point(371, 262);
+            this.dgProductSelected.Location = new System.Drawing.Point(371, 282);
             this.dgProductSelected.Name = "dgProductSelected";
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.DeepSkyBlue;
@@ -166,7 +166,7 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgProductSelected.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.dgProductSelected.Size = new System.Drawing.Size(659, 321);
+            this.dgProductSelected.Size = new System.Drawing.Size(659, 303);
             this.dgProductSelected.TabIndex = 106;
             this.dgProductSelected.Click += new System.EventHandler(this.dgProductSelected_Click);
             // 
@@ -223,7 +223,7 @@
             this.btnVender.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVender.ForeColor = System.Drawing.Color.Black;
             this.btnVender.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnVender.Location = new System.Drawing.Point(871, 119);
+            this.btnVender.Location = new System.Drawing.Point(871, 593);
             this.btnVender.Name = "btnVender";
             this.btnVender.Size = new System.Drawing.Size(159, 72);
             this.btnVender.TabIndex = 108;
@@ -243,7 +243,7 @@
             this.btnEnviar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEnviar.ForeColor = System.Drawing.Color.Black;
             this.btnEnviar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEnviar.Location = new System.Drawing.Point(871, 119);
+            this.btnEnviar.Location = new System.Drawing.Point(871, 593);
             this.btnEnviar.Name = "btnEnviar";
             this.btnEnviar.Size = new System.Drawing.Size(159, 72);
             this.btnEnviar.TabIndex = 107;
@@ -358,11 +358,11 @@
             // chkComprobante
             // 
             this.chkComprobante.AutoSize = true;
-            this.chkComprobante.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkComprobante.Location = new System.Drawing.Point(110, 380);
+            this.chkComprobante.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkComprobante.Location = new System.Drawing.Point(801, 202);
             this.chkComprobante.Margin = new System.Windows.Forms.Padding(2);
             this.chkComprobante.Name = "chkComprobante";
-            this.chkComprobante.Size = new System.Drawing.Size(158, 24);
+            this.chkComprobante.Size = new System.Drawing.Size(229, 33);
             this.chkComprobante.TabIndex = 122;
             this.chkComprobante.Text = "Con Comprobante";
             this.chkComprobante.UseVisualStyleBackColor = true;
@@ -374,7 +374,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(12, 352);
+            this.label2.Location = new System.Drawing.Point(468, 208);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(44, 20);
             this.label2.TabIndex = 121;
@@ -386,7 +386,7 @@
             this.label13.BackColor = System.Drawing.Color.Transparent;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.Black;
-            this.label13.Location = new System.Drawing.Point(11, 310);
+            this.label13.Location = new System.Drawing.Point(468, 169);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(83, 20);
             this.label13.TabIndex = 120;
@@ -398,21 +398,22 @@
             this.txtNCF.Enabled = false;
             this.txtNCF.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNCF.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.txtNCF.Location = new System.Drawing.Point(110, 349);
+            this.txtNCF.Location = new System.Drawing.Point(558, 205);
             this.txtNCF.Name = "txtNCF";
-            this.txtNCF.Size = new System.Drawing.Size(247, 26);
+            this.txtNCF.Size = new System.Drawing.Size(238, 26);
             this.txtNCF.TabIndex = 119;
             // 
             // combo_tipo_NCF
             // 
             this.combo_tipo_NCF.BackColor = System.Drawing.Color.White;
-            this.combo_tipo_NCF.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.combo_tipo_NCF.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combo_tipo_NCF.ForeColor = System.Drawing.Color.MidnightBlue;
             this.combo_tipo_NCF.FormattingEnabled = true;
-            this.combo_tipo_NCF.Location = new System.Drawing.Point(110, 307);
+            this.combo_tipo_NCF.Location = new System.Drawing.Point(558, 159);
             this.combo_tipo_NCF.Name = "combo_tipo_NCF";
-            this.combo_tipo_NCF.Size = new System.Drawing.Size(247, 28);
+            this.combo_tipo_NCF.Size = new System.Drawing.Size(472, 37);
             this.combo_tipo_NCF.TabIndex = 118;
+            this.combo_tipo_NCF.SelectedIndexChanged += new System.EventHandler(this.combo_tipo_NCF_SelectedIndexChanged);
             // 
             // groupBox2
             // 
@@ -420,9 +421,9 @@
             this.groupBox2.Controls.Add(this.dateTimePicker1);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ForeColor = System.Drawing.Color.Black;
-            this.groupBox2.Location = new System.Drawing.Point(704, 119);
+            this.groupBox2.Location = new System.Drawing.Point(890, 71);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(159, 72);
+            this.groupBox2.Size = new System.Drawing.Size(159, 56);
             this.groupBox2.TabIndex = 123;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Fecha de Venta";
@@ -432,7 +433,7 @@
             this.dateTimePicker1.CalendarForeColor = System.Drawing.Color.MidnightBlue;
             this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(5, 37);
+            this.dateTimePicker1.Location = new System.Drawing.Point(4, 25);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(149, 29);
             this.dateTimePicker1.TabIndex = 0;
@@ -463,7 +464,7 @@
             this.lblDireccion.BackColor = System.Drawing.Color.Transparent;
             this.lblDireccion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDireccion.ForeColor = System.Drawing.Color.Black;
-            this.lblDireccion.Location = new System.Drawing.Point(12, 223);
+            this.lblDireccion.Location = new System.Drawing.Point(13, 243);
             this.lblDireccion.Name = "lblDireccion";
             this.lblDireccion.Size = new System.Drawing.Size(84, 20);
             this.lblDireccion.TabIndex = 127;
@@ -475,7 +476,7 @@
             this.txtDireccion.BackColor = System.Drawing.Color.White;
             this.txtDireccion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDireccion.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.txtDireccion.Location = new System.Drawing.Point(110, 220);
+            this.txtDireccion.Location = new System.Drawing.Point(111, 240);
             this.txtDireccion.Name = "txtDireccion";
             this.txtDireccion.Size = new System.Drawing.Size(920, 26);
             this.txtDireccion.TabIndex = 126;
@@ -491,7 +492,7 @@
             this.btnBorrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBorrar.ForeColor = System.Drawing.Color.White;
             this.btnBorrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBorrar.Location = new System.Drawing.Point(871, 595);
+            this.btnBorrar.Location = new System.Drawing.Point(699, 593);
             this.btnBorrar.Name = "btnBorrar";
             this.btnBorrar.Size = new System.Drawing.Size(159, 72);
             this.btnBorrar.TabIndex = 128;
@@ -507,7 +508,7 @@
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(12, 265);
+            this.label4.Location = new System.Drawing.Point(11, 282);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(65, 20);
             this.label4.TabIndex = 130;
@@ -518,7 +519,7 @@
             this.txtClientName.BackColor = System.Drawing.Color.White;
             this.txtClientName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtClientName.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.txtClientName.Location = new System.Drawing.Point(110, 262);
+            this.txtClientName.Location = new System.Drawing.Point(111, 279);
             this.txtClientName.Name = "txtClientName";
             this.txtClientName.Size = new System.Drawing.Size(247, 26);
             this.txtClientName.TabIndex = 131;
@@ -632,7 +633,7 @@
             this.txtRncCli.BackColor = System.Drawing.Color.White;
             this.txtRncCli.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtRncCli.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.txtRncCli.Location = new System.Drawing.Point(125, 409);
+            this.txtRncCli.Location = new System.Drawing.Point(126, 324);
             this.txtRncCli.Name = "txtRncCli";
             this.txtRncCli.Size = new System.Drawing.Size(232, 26);
             this.txtRncCli.TabIndex = 142;
@@ -643,7 +644,7 @@
             this.lblRncCli.BackColor = System.Drawing.Color.Transparent;
             this.lblRncCli.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRncCli.ForeColor = System.Drawing.Color.Black;
-            this.lblRncCli.Location = new System.Drawing.Point(12, 412);
+            this.lblRncCli.Location = new System.Drawing.Point(13, 327);
             this.lblRncCli.Name = "lblRncCli";
             this.lblRncCli.Size = new System.Drawing.Size(107, 20);
             this.lblRncCli.TabIndex = 141;

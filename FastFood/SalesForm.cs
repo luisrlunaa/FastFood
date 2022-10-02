@@ -14,6 +14,8 @@ namespace FastFoodDemo
     {
         ProductsRepository productsRepository = new ProductsRepository();
         SalesRepository salesRepository = new SalesRepository();
+        NcfRepository ncfsRepository = new NcfRepository();
+
         public static List<IdsDTO> Lisids { get; set; }
         public SalesForm()
         {
@@ -22,6 +24,16 @@ namespace FastFoodDemo
 
         private void SalesForm_Load(object sender, EventArgs e)
         {
+            var (ncfs, message) = ncfsRepository.GetActivesNCFs();
+            if (message.Contains("Error"))
+                MessageBox.Show(message);
+
+            combo_tipo_NCF.Items.Clear();
+            combo_tipo_NCF.DisplayMember = "Description_ncf";
+            combo_tipo_NCF.ValueMember = "Id_ncf";
+            combo_tipo_NCF.DataSource= ncfs;
+
+            txtNCF.Text = "Sin NCF";
             if (lblSales.Text == "Ventas")
             {
                 btnVender.Enabled = true;
@@ -106,8 +118,8 @@ namespace FastFoodDemo
             sale.ClientRnc = txtRncCli.Text;
             sale.Address = txtDireccion.Text;
             sale.SalesCheckType = "Debito";
-            sale.DocumentType = combo_tipo_NCF.Text;
-            sale.NroComprobante = txtNCF.Text;
+            sale.DocumentType = chkComprobante.Checked ? combo_tipo_NCF.Text : string.Empty;
+            sale.NroComprobante = chkComprobante.Checked ? txtNCF.Text : "Sin NCF";
             sale.DeliveryName = txtDelivery.Text;
             sale.DeliveryAmount = string.IsNullOrWhiteSpace(txtDAmount.Text) ? 0 : Convert.ToDecimal(txtDAmount.Text);
             sale.Total = Convert.ToDecimal(lblTotalAmount.Text);
@@ -187,8 +199,8 @@ namespace FastFoodDemo
             sale.ClientRnc = txtRncCli.Text;
             sale.Address = txtDireccion.Text;
             sale.SalesCheckType = "Debito";
-            sale.DocumentType = combo_tipo_NCF.Text;
-            sale.NroComprobante = txtNCF.Text;
+            sale.DocumentType = chkComprobante.Checked ? combo_tipo_NCF.Text : string.Empty;
+            sale.NroComprobante = chkComprobante.Checked ? txtNCF.Text : "Sin NCF";
             sale.DeliveryName = txtDelivery.Text;
             sale.DeliveryAmount = string.IsNullOrWhiteSpace(txtDAmount.Text) ? 0 : Convert.ToDecimal(txtDAmount.Text);
             sale.Total = Convert.ToDecimal(lblTotalAmount.Text);
@@ -292,7 +304,6 @@ namespace FastFoodDemo
             {
                 lblRncCli.Visible = true;
                 txtRncCli.Visible = true;
-                txtNCF.Enabled = true;
             }
             else
             {
@@ -412,6 +423,15 @@ namespace FastFoodDemo
             ticket.TextoIzquierda("");
             ticket.CortaTicket();//CORTAR TICKET
             ticket.ImprimirTicket("POS-80 (copy 1)");//NOMBRE DE LA IMPRESORA
+        }
+
+        private void combo_tipo_NCF_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var (next, message) = ncfsRepository.GetNextNCFbyId(Convert.ToInt32(combo_tipo_NCF.SelectedValue));
+            if (message.Contains("Error"))
+                MessageBox.Show(message);
+
+            txtNCF.Text = next;
         }
     }
 }
