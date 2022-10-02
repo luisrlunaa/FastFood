@@ -8,7 +8,6 @@ namespace FastFoodDemo
 {
     public partial class Form1 : Form
     {
-        ProductsRepository productsRepository = new ProductsRepository();
         BusinessRepository businessRepository = new BusinessRepository();
 
         public Form1()
@@ -130,12 +129,17 @@ namespace FastFoodDemo
 
         private void btnListSales_Click(object sender, EventArgs e)
         {
-            SalesListForm sales = new SalesListForm();
             mainpanel.Visible = true;
             SidePanel.Height = btnListSales.Height;
             SidePanel.Top = btnListSales.Top;
 
-            loadform(sales);
+            loadform(new SalesListForm());
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            mainpanel.Visible = true;
+            loadform(new ConfigurationsForm());
         }
     }
 }

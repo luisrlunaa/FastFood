@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnListSales = new System.Windows.Forms.Button();
             this.SidePanel = new System.Windows.Forms.Panel();
             this.button7 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
@@ -59,7 +60,6 @@
             this.lblRNC = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.mainpanel = new System.Windows.Forms.Panel();
-            this.btnListSales = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -83,6 +83,23 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(209, 728);
             this.panel1.TabIndex = 0;
+            // 
+            // btnListSales
+            // 
+            this.btnListSales.FlatAppearance.BorderSize = 0;
+            this.btnListSales.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnListSales.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnListSales.ForeColor = System.Drawing.Color.White;
+            this.btnListSales.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnListSales.Location = new System.Drawing.Point(12, 407);
+            this.btnListSales.Name = "btnListSales";
+            this.btnListSales.Size = new System.Drawing.Size(197, 54);
+            this.btnListSales.TabIndex = 5;
+            this.btnListSales.Text = "+          Lista de Ventas";
+            this.btnListSales.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnListSales.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnListSales.UseVisualStyleBackColor = true;
+            this.btnListSales.Click += new System.EventHandler(this.btnListSales_Click);
             // 
             // SidePanel
             // 
@@ -317,6 +334,7 @@
             this.button12.TabIndex = 4;
             this.button12.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
             // button11
             // 
@@ -464,23 +482,6 @@
             this.mainpanel.Size = new System.Drawing.Size(1052, 691);
             this.mainpanel.TabIndex = 126;
             this.mainpanel.Visible = false;
-            // 
-            // btnListSales
-            // 
-            this.btnListSales.FlatAppearance.BorderSize = 0;
-            this.btnListSales.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnListSales.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnListSales.ForeColor = System.Drawing.Color.White;
-            this.btnListSales.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnListSales.Location = new System.Drawing.Point(12, 407);
-            this.btnListSales.Name = "btnListSales";
-            this.btnListSales.Size = new System.Drawing.Size(197, 54);
-            this.btnListSales.TabIndex = 5;
-            this.btnListSales.Text = "+          Lista de Ventas";
-            this.btnListSales.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnListSales.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnListSales.UseVisualStyleBackColor = true;
-            this.btnListSales.Click += new System.EventHandler(this.btnListSales_Click);
             // 
             // Form1
             // 

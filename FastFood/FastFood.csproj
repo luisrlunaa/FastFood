@@ -203,6 +203,24 @@
     <Compile Include="FirstCustomControl.Designer.cs">
       <DependentUpon>FirstCustomControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConfigurationsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConfigurationsForm.Designer.cs">
+      <DependentUpon>ConfigurationsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerEmployeeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManagerEmployeeForm.Designer.cs">
+      <DependentUpon>ManagerEmployeeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NCFForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NCFForm.Designer.cs">
+      <DependentUpon>NCFForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SalesListForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -242,6 +260,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FirstCustomControl.resx">
       <DependentUpon>FirstCustomControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConfigurationsForm.resx">
+      <DependentUpon>ConfigurationsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagerEmployeeForm.resx">
+      <DependentUpon>ManagerEmployeeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NCFForm.resx">
+      <DependentUpon>NCFForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SalesListForm.resx">
       <DependentUpon>SalesListForm.cs</DependentUpon>

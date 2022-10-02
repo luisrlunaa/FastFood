@@ -219,7 +219,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                 if (input == null || input.DateIn == DateTime.MinValue)
                     return (false, "Input Invalido, Metodo EmployeesRepository.AddSale");
 
-                var parameters = new List<string> { input.IdEmp.ToString(), "'"+input.UserName+"'", "'"+input.Password+"'", "'"+input.DateIn.Value.ToShortDateString()+"'"};
+                var parameters = new List<string> { input.IdEmp.ToString(), "'" + input.UserName + "'", "'" + input.Password + "'", "'" + input.DateIn.Value.ToShortDateString() + "'" };
                 var classKeys = Data.GetObjectKeys(new Users()).Where(x => x != "IdUser" && x != "LastUpdate").ToList();
                 var sql = Data.InsertExpression("Users", classKeys, parameters);
                 var (response, message) = Data.CrudAction(sql, "EmployeesRepository.AddUser");

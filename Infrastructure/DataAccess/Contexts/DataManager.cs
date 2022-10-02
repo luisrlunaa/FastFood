@@ -8,17 +8,17 @@ namespace FastFood.Infrastructure.DataAccess.Contexts
 {
     public class DataManager
     {
-        public SqlConnection conexion = new SqlConnection("Data Source=.;Initial Catalog=FastFoodDB;Integrated Security=True;encrypt=false");
-        public void Conectar()
+        public SqlConnection connection = new SqlConnection("Data Source=.;Initial Catalog=FastFoodDB;Integrated Security=True;encrypt=false");
+        public void Connect()
         {
-            if (conexion.State == ConnectionState.Closed)
-                conexion.Open();
+            if (connection.State == ConnectionState.Closed)
+                connection.Open();
         }
 
-        public void Desconectar()
+        public void Disconnect()
         {
-            if (conexion.State == ConnectionState.Open)
-                conexion.Close();
+            if (connection.State == ConnectionState.Open)
+                connection.Close();
         }
 
         #region CRUD EXPRESSIONS
@@ -61,9 +61,9 @@ namespace FastFood.Infrastructure.DataAccess.Contexts
                 + TableName + " "
                 + (string.IsNullOrWhiteSpace(JoinExp) ? "" : JoinExp) //INNER JOIN Table2 ON Table1.ColumnName = Table2.ColumnName)
                 + (string.IsNullOrWhiteSpace(WhereExpresion) ? "" : WhereExpresion.ToLower().Contains("where") ? WhereExpresion : "") //WHERE ColumnName1 = 'value' OR ColumnName2 = 'value'
-                + (string.IsNullOrWhiteSpace(GroupBy) ? "" : "GROUP BY  " + GroupBy) //GROUP BY ColumnName
-                + (string.IsNullOrWhiteSpace(Having) ? "" : "HAVING  " + Having) //HAVING COUNT(ColumnName) > 5
-                + (string.IsNullOrWhiteSpace(OrderBy) ? "" : "ORDER BY  " + OrderBy); //ORDER BY ColumnName  ---DESC
+                + (string.IsNullOrWhiteSpace(GroupBy) ? "" : " GROUP BY  " + GroupBy) //GROUP BY ColumnName
+                + (string.IsNullOrWhiteSpace(Having) ? "" : " HAVING  " + Having) //HAVING COUNT(ColumnName) > 5
+                + (string.IsNullOrWhiteSpace(OrderBy) ? "" : " ORDER BY  " + OrderBy); //ORDER BY ColumnName  ---DESC
 
             return expression;
         }
@@ -147,9 +147,9 @@ namespace FastFood.Infrastructure.DataAccess.Contexts
             SqlDataAdapter da;
             try
             {
-                Desconectar();
-                Conectar();
-                SqlCommand cmd1 = new SqlCommand(Sql, conexion);
+                Disconnect();
+                Connect();
+                SqlCommand cmd1 = new SqlCommand(Sql, connection);
                 da = new SqlDataAdapter(cmd1);
                 da.Fill(dt);
             }
@@ -157,7 +157,7 @@ namespace FastFood.Infrastructure.DataAccess.Contexts
             {
                 return (null, "Error al Cargar Data, Metodo GetList(), desde el Metodo " + FromTo + " \n" + ex.Message.ToString());
             }
-            Desconectar();
+            Disconnect();
             return (dt, "Completado con exito");
         }
 
@@ -167,9 +167,9 @@ namespace FastFood.Infrastructure.DataAccess.Contexts
             SqlCommand cmd1;
             try
             {
-                Desconectar();
-                Conectar();
-                cmd1 = new SqlCommand(Sql, conexion);
+                Disconnect();
+                Connect();
+                cmd1 = new SqlCommand(Sql, connection);
                 SqlDataReader dr = cmd1.ExecuteReader();
                 if (dr.Read())
                 {
@@ -187,13 +187,14 @@ namespace FastFood.Infrastructure.DataAccess.Contexts
         //Crud Action ---- Sql
         public (bool, string) CrudAction(string Sql, string FromTo)
         {
+            Disconnect();
             try
             {
-                using (SqlCommand cmd = new SqlCommand(Sql, conexion))
+                using (SqlCommand cmd = new SqlCommand(Sql, connection))
                 {
-                    Conectar();
+                    Connect();
                     cmd.ExecuteNonQuery();
-                    Desconectar();
+                    Disconnect();
                 }
 
                 return (true, "Completado con exito");
