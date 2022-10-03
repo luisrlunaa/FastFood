@@ -133,11 +133,11 @@
             // 
             this.cbxCategoria.BackColor = System.Drawing.Color.White;
             this.cbxCategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxCategoria.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxCategoria.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxCategoria.FormattingEnabled = true;
-            this.cbxCategoria.Location = new System.Drawing.Point(62, 107);
+            this.cbxCategoria.Location = new System.Drawing.Point(62, 98);
             this.cbxCategoria.Name = "cbxCategoria";
-            this.cbxCategoria.Size = new System.Drawing.Size(477, 32);
+            this.cbxCategoria.Size = new System.Drawing.Size(477, 39);
             this.cbxCategoria.TabIndex = 92;
             // 
             // label7

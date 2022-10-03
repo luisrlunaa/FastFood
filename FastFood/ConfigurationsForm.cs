@@ -36,12 +36,25 @@ namespace FastFoodDemo
         private void ConfigurationsForm_Load(object sender, System.EventArgs e)
         {
             mainSubpanel.Visible = true;
-            SideSubPanel.Height = button1.Height;
-            SideSubPanel.Top = button1.Top;
-            button1.BackColor = Color.Lavender;
-            button2.BackColor = Color.White;
+            if (!Program.IsAdmin)
+            {
+                SideSubPanel.Height = button2.Height;
+                SideSubPanel.Top = button2.Top;
+                button2.BackColor = Color.Lavender;
+                button1.BackColor = Color.White;
+                button1.Enabled = false;
 
-            loadform(new NCFForm());
+                loadform(new ManagerEmployeeForm());
+            }
+            else
+            {
+                SideSubPanel.Height = button1.Height;
+                SideSubPanel.Top = button1.Top;
+                button1.BackColor = Color.Lavender;
+                button2.BackColor = Color.White;
+
+                loadform(new NCFForm());
+            }
         }
 
         public void loadform(object Form)

@@ -28,7 +28,7 @@ namespace FastFood.Models.Entities
     {
         [Key]
         public int Id_sequence { get; set; }
-        public int SequenceNCF { get; set; }
+        public string SequenceNCF { get; set; }
         public DateTime Datein { get; set; }
     }
 

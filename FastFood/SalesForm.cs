@@ -128,6 +128,14 @@ namespace FastFoodDemo
             var (add, message) = salesRepository.AddSale(sale);
             if (add)
             {
+                var newncf = new NCFGenerated()
+                { 
+                    Id_sequence = Convert.ToInt32(combo_tipo_NCF.SelectedValue),
+                    SequenceNCF = txtNCF.Text,
+                    Datein = DateTime.Today
+                };
+
+                ncfsRepository.AddNCFGenerated(newncf);
                 var (addDetails, message1) = salesRepository.AddSaleDetails(GenericLists.SelectedItems);
                 if (addDetails)
                 {

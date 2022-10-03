@@ -50,7 +50,33 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             try
             {
                 var classKeys = Data.GetObjectKeys(new Users());
-                var sql = Data.SelectExpression("Employee", classKeys, WhereExpresion: "WHERE IdUser = " + id);
+                var sql = Data.SelectExpression("Employee", classKeys, WhereExpresion: " WHERE IdUser = " + id);
+                var (dr, message1) = Data.GetOne(sql, "EmployeesRepository.GetUserByUserId");
+                if (dr is null)
+                    return (s, message1);
+
+                s.IdEmp = dr.GetInt32(dr.GetOrdinal("IdEmp"));
+                s.IdUser = dr.GetInt32(dr.GetOrdinal("IdUser"));
+                s.UserName = dr.GetString(dr.GetOrdinal("UserName"));
+                s.Password = dr.GetString(dr.GetOrdinal("Password"));
+                s.DateIn = dr.GetDateTime(dr.GetOrdinal("DateIn"));
+                s.LastUpdate = dr.GetDateTime(dr.GetOrdinal("LastUpdate"));
+
+                return (s, "Proceso Completado");
+            }
+            catch (Exception ex)
+            {
+                return (s, "Error al Cargar Data, Metodo EmployeesRepository.GetUserByUserId \n" + ex.Message.ToString());
+            }
+        }
+
+        public (Users, string) GetUserByEmployeeId(int id)
+        {
+            var s = new Users();
+            try
+            {
+                var classKeys = Data.GetObjectKeys(new Users());
+                var sql = Data.SelectExpression("Employee", classKeys, WhereExpresion: " WHERE IdEmp = " + id);
                 var (dr, message1) = Data.GetOne(sql, "EmployeesRepository.GetUserByUserId");
                 if (dr is null)
                     return (s, message1);
@@ -76,7 +102,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             try
             {
                 var classKeys = Data.GetObjectKeys(new Employee());
-                var sql = Data.SelectExpression("Employee", classKeys, WhereExpresion: "WHERE IdEmp = " + id);
+                var sql = Data.SelectExpression("Employee", classKeys, WhereExpresion: " WHERE IdEmp = " + id);
                 var (dr, message1) = Data.GetOne(sql, "EmployeesRepository.GetEmployeeById");
                 if (dr is null)
                     return (s, message1);
@@ -105,7 +131,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             try
             {
                 var classKeys = Data.GetObjectKeys(new Users());
-                var sql = Data.SelectExpression("Employee", classKeys, WhereExpresion: "WHERE UserName = " + userName);
+                var sql = Data.SelectExpression("Employee", classKeys, WhereExpresion: " WHERE UserName = " + userName);
                 var (dr, message1) = Data.GetOne(sql, "EmployeesRepository.GetUserByUserName");
                 if (dr is null)
                     return (s, message1);
@@ -131,7 +157,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             try
             {
                 var classKeys = Data.GetObjectKeys(new Employee());
-                var sql = Data.SelectExpression("Employee", classKeys, WhereExpresion: "WHERE IdUser = " + id);
+                var sql = Data.SelectExpression("Employee", classKeys, WhereExpresion: " WHERE IdUser = " + id);
                 var (dr, message1) = Data.GetOne(sql, "EmployeesRepository.GetEmployeeByUserid");
                 if (dr is null)
                     return (s, message1);
@@ -234,18 +260,32 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             }
         }
 
-        public (bool, string) UpdateEmployee(Employee input)
+        public (bool, string) UpdateEmployee(Employee input, bool isAdmin)
         {
             try
             {
                 if (input == null)
                     return (false, "Input Invalido, Metodo EmployeesRepository.UpdateEmployee");
 
-                var parameters = new List<string> { input.IdUser.ToString(), "'" + input.FirstName + "'", "'" + input.LastName + "'", "'" + input.DocumentNo + "'", "'" + input.DocumentType + "'",
+                var parameters = new List<string>();
+                var classKeys = new List<string>();
+
+                if (isAdmin)
+                {
+                    parameters = new List<string> { input.IdUser.ToString(), "'" + input.FirstName + "'", "'" + input.LastName + "'", "'" + input.DocumentNo + "'", "'" + input.DocumentType + "'", "'" + input.EmployeeType + "'",
                     "'"+input.LastUpdate.Value.ToShortDateString()+"'"};
 
-                var classKeys = Data.GetObjectKeys(new Employee()).Where(x => x != "IdEmp" && x != "DateIn").ToList();
-                var sql = Data.UpdateExpression("Employee", classKeys, parameters, "WHERE IdEmp = " + input.IdEmp);
+                    classKeys = Data.GetObjectKeys(new Employee()).Where(x => x != "IdEmp" && x != "DateIn").ToList();
+                }
+                else
+                {
+                    parameters = new List<string> { "'" + input.FirstName + "'", "'" + input.LastName + "'", "'"+input.LastUpdate.Value.ToShortDateString()+"'"};
+
+                    classKeys = Data.GetObjectKeys(new Employee()).Where(x => x != "IdEmp" && x != "DateIn" && x != "DocumentNo" && x != "DocumentType" && x != "EmployeeType").ToList();
+                }
+
+
+                var sql = Data.UpdateExpression("Employee", classKeys, parameters, " WHERE IdEmp = " + input.IdEmp);
                 var (response, message) = Data.CrudAction(sql, "EmployeesRepository.UpdateEmployee");
                 if (!response)
                     return (response, message);
@@ -267,7 +307,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
 
                 var parameters = new List<string> { input.IdEmp.ToString(), "'" + input.UserName + "'", "'" + input.Password + "'", "'" + input.LastUpdate.Value.ToShortDateString() + "'" };
                 var classKeys = Data.GetObjectKeys(new Users()).Where(x => x != "IdUser" && x != "DateIn").ToList();
-                var sql = Data.UpdateExpression("Users", classKeys, parameters, "WHERE IdUser = " + input.IdUser);
+                var sql = Data.UpdateExpression("Users", classKeys, parameters, " WHERE IdUser = " + input.IdUser);
                 var (response, message) = Data.CrudAction(sql, "EmployeesRepository.UpdateUser");
                 if (!response)
                     return (response, message);
@@ -277,6 +317,46 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             catch (Exception ex)
             {
                 return (false, "Error al Cargar Data, Metodo EmployeesRepository.UpdateUser \n" + ex.Message.ToString());
+            }
+        }
+
+        public (bool, string) DeleteEmployee(int id)
+        {
+            try
+            {
+                if (id == 0)
+                    return (false, "Input Invalido, Metodo EmployeesRepository.DeleteEmployee");
+
+                var sql = Data.DeleteExpression("Employee", " WHERE IdEmp = " + id);
+                var (response, message) = Data.CrudAction(sql, "EmployeesRepository.DeleteEmployee");
+                if (!response)
+                    return (response, message);
+
+                return (true, "Proceso Completado");
+            }
+            catch (Exception ex)
+            {
+                return (false, "Error al Cargar Data, Metodo EmployeesRepository.DeleteEmployee \n" + ex.Message.ToString());
+            }
+        }
+
+        public (bool, string) DeleteUser(int id)
+        {
+            try
+            {
+                if (id == 0)
+                    return (false, "Input Invalido, Metodo EmployeesRepository.DeleteUser");
+
+                var sql = Data.DeleteExpression("Users", " WHERE IdEmp = " + id);
+                var (response, message) = Data.CrudAction(sql, "EmployeesRepository.DeleteUser");
+                if (!response)
+                    return (response, message);
+
+                return (true, "Proceso Completado");
+            }
+            catch (Exception ex)
+            {
+                return (false, "Error al Cargar Data, Metodo EmployeesRepository.DeleteUser \n" + ex.Message.ToString());
             }
         }
     }

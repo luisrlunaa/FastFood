@@ -464,7 +464,7 @@
             this.lblDireccion.BackColor = System.Drawing.Color.Transparent;
             this.lblDireccion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDireccion.ForeColor = System.Drawing.Color.Black;
-            this.lblDireccion.Location = new System.Drawing.Point(13, 243);
+            this.lblDireccion.Location = new System.Drawing.Point(11, 243);
             this.lblDireccion.Name = "lblDireccion";
             this.lblDireccion.Size = new System.Drawing.Size(84, 20);
             this.lblDireccion.TabIndex = 127;
@@ -508,7 +508,7 @@
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(11, 282);
+            this.label4.Location = new System.Drawing.Point(9, 282);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(65, 20);
             this.label4.TabIndex = 130;
@@ -560,9 +560,9 @@
             this.txtDelivery.BackColor = System.Drawing.Color.White;
             this.txtDelivery.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDelivery.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.txtDelivery.Location = new System.Drawing.Point(110, 593);
+            this.txtDelivery.Location = new System.Drawing.Point(126, 370);
             this.txtDelivery.Name = "txtDelivery";
-            this.txtDelivery.Size = new System.Drawing.Size(247, 26);
+            this.txtDelivery.Size = new System.Drawing.Size(232, 26);
             this.txtDelivery.TabIndex = 136;
             this.txtDelivery.Visible = false;
             // 
@@ -572,7 +572,7 @@
             this.lblDelivery.BackColor = System.Drawing.Color.Transparent;
             this.lblDelivery.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDelivery.ForeColor = System.Drawing.Color.Black;
-            this.lblDelivery.Location = new System.Drawing.Point(14, 595);
+            this.lblDelivery.Location = new System.Drawing.Point(11, 373);
             this.lblDelivery.Name = "lblDelivery";
             this.lblDelivery.Size = new System.Drawing.Size(72, 20);
             this.lblDelivery.TabIndex = 135;
@@ -584,7 +584,7 @@
             this.txtDAmount.BackColor = System.Drawing.Color.White;
             this.txtDAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDAmount.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.txtDAmount.Location = new System.Drawing.Point(110, 634);
+            this.txtDAmount.Location = new System.Drawing.Point(126, 414);
             this.txtDAmount.Name = "txtDAmount";
             this.txtDAmount.Size = new System.Drawing.Size(158, 26);
             this.txtDAmount.TabIndex = 138;
@@ -597,7 +597,7 @@
             this.lblDAmount.BackColor = System.Drawing.Color.Transparent;
             this.lblDAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDAmount.ForeColor = System.Drawing.Color.Black;
-            this.lblDAmount.Location = new System.Drawing.Point(12, 637);
+            this.lblDAmount.Location = new System.Drawing.Point(11, 417);
             this.lblDAmount.Name = "lblDAmount";
             this.lblDAmount.Size = new System.Drawing.Size(82, 20);
             this.lblDAmount.TabIndex = 137;
@@ -644,7 +644,7 @@
             this.lblRncCli.BackColor = System.Drawing.Color.Transparent;
             this.lblRncCli.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRncCli.ForeColor = System.Drawing.Color.Black;
-            this.lblRncCli.Location = new System.Drawing.Point(13, 327);
+            this.lblRncCli.Location = new System.Drawing.Point(9, 327);
             this.lblRncCli.Name = "lblRncCli";
             this.lblRncCli.Size = new System.Drawing.Size(107, 20);
             this.lblRncCli.TabIndex = 141;

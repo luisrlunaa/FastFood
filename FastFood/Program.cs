@@ -13,6 +13,9 @@ namespace FastFoodDemo
             Application.Run(new Form1());
         }
 
+        public static bool IsAdmin;
+        public static int IdEmployee;
+
         //Business Information
         public static string BusinessName;
         public static string BusinessAddress;
