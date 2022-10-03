@@ -53,6 +53,9 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             var product = new Product();
             try
             {
+                if (id == 0)
+                    return (product, "Error Input Invalido, Metodo ProductsRepository.GetProductById");
+
                 var classKeys = Data.GetObjectKeys(new Product());
                 var sql = Data.SelectExpression("Product", classKeys, WhereExpresion: "WHERE ProductId = " + id);
                 var (dr, message1) = Data.GetOne(sql, "ProductsRepository.GetProductById");
@@ -85,6 +88,9 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             var Products = new List<Product>();
             try
             {
+                if (string.IsNullOrWhiteSpace(category))
+                    return (Products, "Error Input Invalido, Metodo ProductsRepository.GetProductByCategory");
+
                 var classKeys = Data.GetObjectKeys(new Product());
                 var sql = Data.SelectExpression("Product", classKeys, WhereExpresion: " WHERE Category = '" + category + "'");
                 var (dtPC, message) = Data.GetList(sql, "ProductsRepository.GetProductByCategory");
@@ -123,7 +129,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             try
             {
                 if (input == null)
-                    return (false, "Input Invalido, Metodo ProductsRepository.AddProduct");
+                    return (false, "Error Input Invalido, Metodo ProductsRepository.AddProduct");
 
                 var parameters = new List<string> { "'" +input.Name+"'", "'"+input.Description+"'", "'"+input.Category+"'", "'"+input.Type+"'",
                     input.Stock.ToString(), input.Itbis.ToString(), input.SalesPrice.ToString(), input.BayPrice.ToString(),
@@ -148,7 +154,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             try
             {
                 if (input == null)
-                    return (false, "Input Invalido, Metodo ProductsRepository.UpdateProduct");
+                    return (false, "Error Input Invalido, Metodo ProductsRepository.UpdateProduct");
 
                 var parameters = new List<string> { "'" +input.Name+"'", "'"+input.Description+"'", "'"+input.Category+"'", "'"+input.Type+"'",
                     input.Stock.ToString(), input.Itbis.ToString(), input.SalesPrice.ToString(), input.BayPrice.ToString(),
@@ -174,7 +180,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             try
             {
                 if (id == 0 || string.IsNullOrWhiteSpace(category))
-                    return (false, "Input Invalido, Metodo ProductsRepository.DeleteProductById");
+                    return (false, "Error Input Invalido, Metodo ProductsRepository.DeleteProductById");
 
                 var sql = Data.DeleteExpression("Product", WhereExpresion: "WHERE ProductId = " + id + " AND Category = " + category);
                 var (response, message) = Data.CrudAction(sql, "ProductsRepository.DeleteProductById");

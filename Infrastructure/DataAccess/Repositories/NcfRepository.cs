@@ -135,7 +135,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             {
                 var join = Data.JoinExpression("INNER", new List<string>() { "Receipts" }, new List<string>() { "NCF" }, new List<string>() { "Id_ncf" });
                 var classKeys = Data.GetObjectKeys(new NCF(), "NCF");
-                var sql = Data.SelectExpression("NCF", classKeys, JoinExp: join ,WhereExpresion: " WHERE Receipts.Active = 1");
+                var sql = Data.SelectExpression("NCF", classKeys, JoinExp: join, WhereExpresion: " WHERE Receipts.Active = 1");
                 var (dtPC, message) = Data.GetList(sql, "NcfRepository.GetNCFsActives");
                 if (dtPC is null || dtPC.Rows is null || dtPC.Rows.Count == 0)
                     return (Receipts, message);
@@ -165,6 +165,9 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             var s = new NCF();
             try
             {
+                if (id == 0)
+                    return (s, "Error Input Invalido, Metodo NcfRepository.GetNCFbyId");
+
                 var classKeys = Data.GetObjectKeys(new NCF());
                 var sql = Data.SelectExpression("NCF", classKeys, WhereExpresion: "WHERE Id_ncf = " + id);
                 var (dr, message1) = Data.GetOne(sql, "NcfRepository.GetNCFbyId");
@@ -190,7 +193,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             try
             {
                 if (input == null || input.Datein == DateTime.MinValue)
-                    return (false, "Input Invalido, Metodo NcfRepository.AddNCFGenerated");
+                    return (false, "Error  Input Invalido, Metodo NcfRepository.AddNCFGenerated");
 
                 var parameters = new List<string> { input.Id_sequence.ToString(), "'" + input.SequenceNCF + "'", "'" + input.Datein.ToShortDateString() + "'" };
                 var classKeys = Data.GetObjectKeys(new NCFGenerated()).ToList();
@@ -221,10 +224,10 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
         {
             try
             {
-                var active = input.Active ? 1 : 0;
                 if (input == null)
-                    return (false, "Input Invalido, Metodo NcfRepository.UpdateReceipts");
+                    return (false, "Error Input Invalido, Metodo NcfRepository.UpdateReceipts");
 
+                var active = input.Active ? 1 : 0;
                 var parameters = new List<string> { input.Initialsequence.ToString(), "'" + input.Finalsequence + "'", "'" + input.DateFrom.ToShortDateString() + "'", "'" + input.DateTo.ToShortDateString() + "'", active.ToString() };
                 var classKeys = Data.GetObjectKeys(new Receipts()).Where(x => x != "Id_ncf").ToList();
                 var sql = Data.UpdateExpression("Receipts", classKeys, parameters, "WHERE Id_ncf = " + input.Id_ncf);
@@ -245,7 +248,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             try
             {
                 if (input == null)
-                    return (false, "Input Invalido, Metodo NcfRepository.UpdateNCF");
+                    return (false, "Error Input Invalido, Metodo NcfRepository.UpdateNCF");
 
                 var parameters = new List<string> { input.Initialsequence.ToString(), "'" + input.Finalsequence + "'" };
                 var classKeys = Data.GetObjectKeys(new NCF()).Where(x => x != "Id_ncf" && x != "Description_ncf" && x != "Prefix").ToList();
@@ -305,6 +308,9 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             var nextNcf = string.Empty;
             try
             {
+                if (id_ncf == 0)
+                    return (nextNcf, "Error Input Invalido, Metodo NcfRepository.UpdateReceipts");
+
                 var (ncf, message) = GetNCFbyId(id_ncf);
                 if (ncf == null)
                     return (nextNcf, message);

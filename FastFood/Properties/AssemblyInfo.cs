@@ -7,9 +7,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("FastFood")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("FastFood")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2017")]
+[assembly: AssemblyCompany("LunasSystem")]
+[assembly: AssemblyProduct("System to Sale FastFood")]
+[assembly: AssemblyCopyright("Copyright © Microsoft 2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

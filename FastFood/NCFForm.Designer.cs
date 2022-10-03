@@ -32,9 +32,13 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label7 = new System.Windows.Forms.Label();
             this.data_comprobante = new System.Windows.Forms.DataGridView();
+            this.Ncf_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Initialsequence = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Finalsequence = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DateFrom = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DateTo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnAplicar = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.lblcomp = new System.Windows.Forms.Label();
             this.txtid = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.dtpfinal = new System.Windows.Forms.DateTimePicker();
@@ -45,16 +49,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.lblcomp = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.data_ncf = new System.Windows.Forms.DataGridView();
             this.id_ncf = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Description_ncf = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Active = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ncf_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Initialsequence = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Finalsequence = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DateFrom = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DateTo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.data_comprobante)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -75,6 +75,7 @@
             // data_comprobante
             // 
             this.data_comprobante.AllowUserToAddRows = false;
+            this.data_comprobante.AllowUserToDeleteRows = false;
             this.data_comprobante.BackgroundColor = System.Drawing.Color.White;
             this.data_comprobante.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -97,10 +98,52 @@
             this.data_comprobante.Location = new System.Drawing.Point(19, 384);
             this.data_comprobante.Margin = new System.Windows.Forms.Padding(2);
             this.data_comprobante.Name = "data_comprobante";
+            this.data_comprobante.ReadOnly = true;
             this.data_comprobante.RowHeadersWidth = 51;
             this.data_comprobante.RowTemplate.Height = 24;
             this.data_comprobante.Size = new System.Drawing.Size(853, 266);
             this.data_comprobante.TabIndex = 131;
+            // 
+            // Ncf_id
+            // 
+            this.Ncf_id.HeaderText = "ID";
+            this.Ncf_id.MinimumWidth = 6;
+            this.Ncf_id.Name = "Ncf_id";
+            this.Ncf_id.ReadOnly = true;
+            this.Ncf_id.Visible = false;
+            this.Ncf_id.Width = 125;
+            // 
+            // Initialsequence
+            // 
+            this.Initialsequence.HeaderText = "Secuencia Inicial";
+            this.Initialsequence.MinimumWidth = 6;
+            this.Initialsequence.Name = "Initialsequence";
+            this.Initialsequence.ReadOnly = true;
+            this.Initialsequence.Width = 200;
+            // 
+            // Finalsequence
+            // 
+            this.Finalsequence.HeaderText = "Secuancia Final";
+            this.Finalsequence.MinimumWidth = 6;
+            this.Finalsequence.Name = "Finalsequence";
+            this.Finalsequence.ReadOnly = true;
+            this.Finalsequence.Width = 200;
+            // 
+            // DateFrom
+            // 
+            this.DateFrom.HeaderText = "Fecha Inicial";
+            this.DateFrom.MinimumWidth = 6;
+            this.DateFrom.Name = "DateFrom";
+            this.DateFrom.ReadOnly = true;
+            this.DateFrom.Width = 200;
+            // 
+            // DateTo
+            // 
+            this.DateTo.HeaderText = "Fecha Final";
+            this.DateTo.MinimumWidth = 6;
+            this.DateTo.Name = "DateTo";
+            this.DateTo.ReadOnly = true;
+            this.DateTo.Width = 200;
             // 
             // btnAplicar
             // 
@@ -142,23 +185,6 @@
             this.groupBox2.TabIndex = 129;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Limitantes";
-            // 
-            // lblcomp
-            // 
-            this.lblcomp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblcomp.AutoEllipsis = true;
-            this.lblcomp.AutoSize = true;
-            this.lblcomp.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.lblcomp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblcomp.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.lblcomp.Location = new System.Drawing.Point(521, 100);
-            this.lblcomp.Margin = new System.Windows.Forms.Padding(0);
-            this.lblcomp.Name = "lblcomp";
-            this.lblcomp.Size = new System.Drawing.Size(181, 20);
-            this.lblcomp.TabIndex = 76;
-            this.lblcomp.Text = "Tipo de Comprobante";
-            this.lblcomp.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // txtid
             // 
@@ -274,6 +300,23 @@
             this.label1.TabIndex = 65;
             this.label1.Text = "Fecha Inicial:";
             // 
+            // lblcomp
+            // 
+            this.lblcomp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblcomp.AutoEllipsis = true;
+            this.lblcomp.AutoSize = true;
+            this.lblcomp.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.lblcomp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblcomp.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblcomp.Location = new System.Drawing.Point(521, 100);
+            this.lblcomp.Margin = new System.Windows.Forms.Padding(0);
+            this.lblcomp.Name = "lblcomp";
+            this.lblcomp.Size = new System.Drawing.Size(181, 20);
+            this.lblcomp.TabIndex = 76;
+            this.lblcomp.Text = "Tipo de Comprobante";
+            this.lblcomp.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.data_ncf);
@@ -290,6 +333,7 @@
             // data_ncf
             // 
             this.data_ncf.AllowUserToAddRows = false;
+            this.data_ncf.AllowUserToDeleteRows = false;
             this.data_ncf.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.data_ncf.BackgroundColor = System.Drawing.Color.White;
             this.data_ncf.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -311,6 +355,7 @@
             this.data_ncf.Location = new System.Drawing.Point(8, 37);
             this.data_ncf.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.data_ncf.Name = "data_ncf";
+            this.data_ncf.ReadOnly = true;
             this.data_ncf.RowHeadersVisible = false;
             this.data_ncf.RowHeadersWidth = 51;
             this.data_ncf.RowTemplate.Height = 24;
@@ -325,6 +370,7 @@
             this.id_ncf.HeaderText = "ID NCF";
             this.id_ncf.MinimumWidth = 45;
             this.id_ncf.Name = "id_ncf";
+            this.id_ncf.ReadOnly = true;
             this.id_ncf.Visible = false;
             // 
             // Description_ncf
@@ -333,6 +379,7 @@
             this.Description_ncf.HeaderText = "Tipo De NCF";
             this.Description_ncf.MinimumWidth = 6;
             this.Description_ncf.Name = "Description_ncf";
+            this.Description_ncf.ReadOnly = true;
             // 
             // Active
             // 
@@ -340,42 +387,7 @@
             this.Active.HeaderText = "Activo";
             this.Active.MinimumWidth = 45;
             this.Active.Name = "Active";
-            // 
-            // Ncf_id
-            // 
-            this.Ncf_id.HeaderText = "ID";
-            this.Ncf_id.MinimumWidth = 6;
-            this.Ncf_id.Name = "Ncf_id";
-            this.Ncf_id.Visible = false;
-            this.Ncf_id.Width = 125;
-            // 
-            // Initialsequence
-            // 
-            this.Initialsequence.HeaderText = "Secuencia Inicial";
-            this.Initialsequence.MinimumWidth = 6;
-            this.Initialsequence.Name = "Initialsequence";
-            this.Initialsequence.Width = 200;
-            // 
-            // Finalsequence
-            // 
-            this.Finalsequence.HeaderText = "Secuancia Final";
-            this.Finalsequence.MinimumWidth = 6;
-            this.Finalsequence.Name = "Finalsequence";
-            this.Finalsequence.Width = 200;
-            // 
-            // DateFrom
-            // 
-            this.DateFrom.HeaderText = "Fecha Inicial";
-            this.DateFrom.MinimumWidth = 6;
-            this.DateFrom.Name = "DateFrom";
-            this.DateFrom.Width = 200;
-            // 
-            // DateTo
-            // 
-            this.DateTo.HeaderText = "Fecha Final";
-            this.DateTo.MinimumWidth = 6;
-            this.DateTo.Name = "DateTo";
-            this.DateTo.Width = 200;
+            this.Active.ReadOnly = true;
             // 
             // NCFForm
             // 

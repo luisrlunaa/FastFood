@@ -54,6 +54,9 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             var s = new Sales();
             try
             {
+                if (id == 0)
+                    return (s, "Error Input Invalido, Metodo SalesRepository.GetSaleById");
+
                 var classKeys = Data.GetObjectKeys(new Sales());
                 var sql = Data.SelectExpression("Sales", classKeys, WhereExpresion: "WHERE IdSale = " + id);
                 var (dr, message1) = Data.GetOne(sql, "SalesRepository.GetSaleById");
@@ -82,11 +85,14 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             }
         }
 
-        public (List<Sales>, string) GetSalesBySalesCheckType(string type, DateTime dateFrom, DateTime dateTo)
+        public (List<Sales>, string) GetSalesBySalesCheckType(string type)
         {
             var SalesList = new List<Sales>();
             try
             {
+                if (string.IsNullOrWhiteSpace(type))
+                    return (SalesList, "Error Input Invalido, Metodo SalesRepository.GetSalesBySalesCheckType");
+
                 var classKeys = Data.GetObjectKeys(new Sales());
                 var sql = Data.SelectExpression("Sales", classKeys, WhereExpresion: " WHERE SalesCheckType = '" + type + "'");
                 var (dtPC, message) = Data.GetList(sql, "SalesRepository.GetSalesBySalesCheckType");
@@ -126,8 +132,8 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             var SalesList = new List<Sales>();
             try
             {
-                if (dateFrom == DateTime.MinValue || dateTo == DateTime.MinValue)
-                    return (SalesList, "Input Invalido debe seleccionar la fecha en la que desea buscar, Metodo SalesRepository.GetSaleDetailsByDate");
+                if (dateFrom == DateTime.MinValue || dateTo == DateTime.MinValue || string.IsNullOrWhiteSpace(delivery))
+                    return (SalesList, "Error Input Invalido debe seleccionar la fecha en la que desea buscar, Metodo SalesRepository.GetSaleDetailsByDate");
 
                 var isSameDate = false;
                 if (dateTo == dateFrom)
@@ -176,8 +182,8 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             decimal amount = 0;
             try
             {
-                if (dateFrom == DateTime.MinValue || dateTo == DateTime.MinValue)
-                    return (0, "Input Invalido debe seleccionar la fecha en la que desea buscar, Metodo SalesRepository.GetSaleDetailsByDate");
+                if (dateFrom == DateTime.MinValue || dateTo == DateTime.MinValue || string.IsNullOrWhiteSpace(delivery))
+                    return (0, "Error Input Invalido debe seleccionar la fecha en la que desea buscar, Metodo SalesRepository.GetSaleDetailsByDate");
 
                 var isSameDate = false;
                 if (dateTo == dateFrom)
@@ -245,7 +251,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             try
             {
                 if (dateFrom == DateTime.MinValue || dateTo == DateTime.MinValue)
-                    return (salesDetailbyDates, "Input Invalido, Metodo SalesRepository.GetSaleDetailsByDate");
+                    return (salesDetailbyDates, "Error Input Invalido, Metodo SalesRepository.GetSaleDetailsByDate");
 
                 var isSameDate = false;
                 if (dateTo == dateFrom)
@@ -294,7 +300,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             try
             {
                 if (string.IsNullOrWhiteSpace(description))
-                    return (salesDetailbyDates, "Input Invalido, Metodo SalesRepository.GetSaleDetailsByDescription");
+                    return (salesDetailbyDates, "Error Input Invalido, Metodo SalesRepository.GetSaleDetailsByDescription");
 
                 var join = Data.JoinExpression("INNER", new List<string>() { "Sales" }, new List<string>() { "SalesDetails" }, new List<string>() { "IdSale" });
                 var classKeys = Data.GetObjectKeys(new SalesDetails(), "SalesDetails").Where(x => x != "Id").ToList();
@@ -336,8 +342,8 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             var SalesList = new List<SalesDetails>();
             try
             {
-                if (dateFrom == DateTime.MinValue || dateTo == DateTime.MinValue)
-                    return (SalesList, "Input Invalido debe seleccionar la fecha en la que desea buscar, Metodo SalesRepository.GetSaleDetailsByDate");
+                if (dateFrom == DateTime.MinValue || dateTo == DateTime.MinValue || string.IsNullOrWhiteSpace(delivery))
+                    return (SalesList, "Error Input Invalido debe seleccionar la fecha en la que desea buscar, Metodo SalesRepository.GetSaleDetailsByDate");
 
                 var isSameDate = false;
                 if (dateTo == dateFrom)
@@ -385,7 +391,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             try
             {
                 if (dateFrom == DateTime.MinValue || dateTo == DateTime.MinValue)
-                    return (0, "Input Invalido, Metodo SalesRepository.GetEarningsToSaleByDate");
+                    return (0, "Error Input Invalido, Metodo SalesRepository.GetEarningsToSaleByDate");
 
                 var isSameDate = false;
                 if (dateTo == dateFrom)
@@ -415,7 +421,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             try
             {
                 if (sales == null || sales.DateIn == DateTime.MinValue)
-                    return (false, "Input Invalido, Metodo SalesRepository.AddSale");
+                    return (false, "Error Input Invalido, Metodo SalesRepository.AddSale");
 
                 var parameters = new List<string> { sales.IdEmployee.ToString(), "'"+sales.ClientName+"'", "'"+sales.ClientRnc+"'", "'"+sales.Address+"'", "'"+sales.SalesCheckType+"'", "'"+sales.DocumentType+"'",
                 "'"+sales.NroComprobante+"'", string.IsNullOrWhiteSpace(sales.DeliveryName) ? "'"+ string.Empty +"'" : "'" +sales.DeliveryName+"'", sales.DeliveryAmount.ToString(),
@@ -440,7 +446,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             try
             {
                 if (sales == null || !sales.Any())
-                    return (false, "Input Invalido, Metodo SalesRepository.AddSaleDetails");
+                    return (false, "Error Input Invalido, Metodo SalesRepository.AddSaleDetails");
 
                 foreach (var item in sales)
                 {
@@ -468,7 +474,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             try
             {
                 if (sales == null)
-                    return (false, "Input Invalido, Metodo SalesRepository.UpdateSales");
+                    return (false, "Error Input Invalido, Metodo SalesRepository.UpdateSales");
 
                 var parameters = new List<string> { sales.IdEmployee.ToString(), "'"+sales.ClientName+"'", "'"+sales.Address+"'", "'"+sales.SalesCheckType+"'", "'"+sales.DocumentType+"'",
                 "'"+sales.NroComprobante+"'", string.IsNullOrWhiteSpace(sales.DeliveryName) ? "'"+ string.Empty +"'" : "'" + sales.DeliveryName+"'", sales.DeliveryAmount.ToString(),
@@ -493,7 +499,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             try
             {
                 if (sales == null)
-                    return (false, "Input Invalido, Metodo SalesRepository.DeleteSales");
+                    return (false, "Error Input Invalido, Metodo SalesRepository.DeleteSales");
 
                 var sql = Data.DeleteExpression("Sales", "WHERE IdSale = " + sales.IdSale);
                 var (response, message) = Data.CrudAction(sql, "SalesRepository.DeleteSales");

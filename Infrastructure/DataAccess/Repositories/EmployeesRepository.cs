@@ -30,6 +30,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                     s.LastName = reader["LastName"] == DBNull.Value ? string.Empty : Convert.ToString(reader["LastName"]);
                     s.DocumentNo = reader["DocumentNo"] == DBNull.Value ? string.Empty : Convert.ToString(reader["DocumentNo"]);
                     s.DocumentType = reader["DocumentType"] == DBNull.Value ? string.Empty : Convert.ToString(reader["DocumentType"]);
+                    s.EmployeeType = reader["EmployeeType"] == DBNull.Value ? string.Empty : Convert.ToString(reader["EmployeeType"]);
                     s.DateIn = reader["DateIn"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["DateIn"]);
                     s.LastUpdate = reader["LastUpdate"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["LastUpdate"]);
 
@@ -49,8 +50,11 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             var s = new Users();
             try
             {
+                if (id == 0)
+                    return (s, "Error Input Invalido, Metodo EmployeesRepository.GetUserByUserId");
+
                 var classKeys = Data.GetObjectKeys(new Users());
-                var sql = Data.SelectExpression("Employee", classKeys, WhereExpresion: " WHERE IdUser = " + id);
+                var sql = Data.SelectExpression("Users", classKeys, WhereExpresion: " WHERE IdUser = " + id);
                 var (dr, message1) = Data.GetOne(sql, "EmployeesRepository.GetUserByUserId");
                 if (dr is null)
                     return (s, message1);
@@ -60,7 +64,6 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                 s.UserName = dr.GetString(dr.GetOrdinal("UserName"));
                 s.Password = dr.GetString(dr.GetOrdinal("Password"));
                 s.DateIn = dr.GetDateTime(dr.GetOrdinal("DateIn"));
-                s.LastUpdate = dr.GetDateTime(dr.GetOrdinal("LastUpdate"));
 
                 return (s, "Proceso Completado");
             }
@@ -75,8 +78,11 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             var s = new Users();
             try
             {
+                if (id == 0)
+                    return (s, "Error Input Invalido, Metodo EmployeesRepository.GetUserByEmployeeId");
+
                 var classKeys = Data.GetObjectKeys(new Users());
-                var sql = Data.SelectExpression("Employee", classKeys, WhereExpresion: " WHERE IdEmp = " + id);
+                var sql = Data.SelectExpression("Users", classKeys, WhereExpresion: " WHERE IdEmp = " + id);
                 var (dr, message1) = Data.GetOne(sql, "EmployeesRepository.GetUserByUserId");
                 if (dr is null)
                     return (s, message1);
@@ -86,7 +92,6 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                 s.UserName = dr.GetString(dr.GetOrdinal("UserName"));
                 s.Password = dr.GetString(dr.GetOrdinal("Password"));
                 s.DateIn = dr.GetDateTime(dr.GetOrdinal("DateIn"));
-                s.LastUpdate = dr.GetDateTime(dr.GetOrdinal("LastUpdate"));
 
                 return (s, "Proceso Completado");
             }
@@ -101,6 +106,9 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             var s = new Employee();
             try
             {
+                if (id == 0)
+                    return (s, "Error Input Invalido, Metodo EmployeesRepository.GetEmployeeById");
+
                 var classKeys = Data.GetObjectKeys(new Employee());
                 var sql = Data.SelectExpression("Employee", classKeys, WhereExpresion: " WHERE IdEmp = " + id);
                 var (dr, message1) = Data.GetOne(sql, "EmployeesRepository.GetEmployeeById");
@@ -113,9 +121,8 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                 s.LastName = dr.GetString(dr.GetOrdinal("LastName"));
                 s.DocumentNo = dr.GetString(dr.GetOrdinal("DocumentNo"));
                 s.DocumentType = dr.GetString(dr.GetOrdinal("DocumentType"));
-                s.DocumentType = dr.GetString(dr.GetOrdinal("DocumentType"));
+                s.EmployeeType = dr.GetString(dr.GetOrdinal("EmployeeType"));
                 s.DateIn = dr.GetDateTime(dr.GetOrdinal("DateIn"));
-                s.LastUpdate = dr.GetDateTime(dr.GetOrdinal("LastUpdate"));
 
                 return (s, "Proceso Completado");
             }
@@ -125,13 +132,16 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             }
         }
 
-        public (Users, string) GetUserByUserName(int userName)
+        public (Users, string) GetUserByUserName(string userName)
         {
             var s = new Users();
             try
             {
+                if (string.IsNullOrWhiteSpace(userName))
+                    return (s, "Error Input Invalido, Metodo EmployeesRepository.GetUserByUserName");
+
                 var classKeys = Data.GetObjectKeys(new Users());
-                var sql = Data.SelectExpression("Employee", classKeys, WhereExpresion: " WHERE UserName = " + userName);
+                var sql = Data.SelectExpression("Users", classKeys, WhereExpresion: " WHERE UserName = '" + userName+"'");
                 var (dr, message1) = Data.GetOne(sql, "EmployeesRepository.GetUserByUserName");
                 if (dr is null)
                     return (s, message1);
@@ -141,7 +151,34 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                 s.UserName = dr.GetString(dr.GetOrdinal("UserName"));
                 s.Password = dr.GetString(dr.GetOrdinal("Password"));
                 s.DateIn = dr.GetDateTime(dr.GetOrdinal("DateIn"));
-                s.LastUpdate = dr.GetDateTime(dr.GetOrdinal("LastUpdate"));
+
+                return (s, "Proceso Completado");
+            }
+            catch (Exception ex)
+            {
+                return (s, "Error al Cargar Data, Metodo EmployeesRepository.GetUserByUserName \n" + ex.Message.ToString());
+            }
+        }
+
+        public (Users, string) GetUserByUserNameAndPassword(string userName, string pass)
+        {
+            var s = new Users();
+            try
+            {
+                if (string.IsNullOrWhiteSpace(userName) || string.IsNullOrWhiteSpace(pass))
+                    return (s, "Error Input Invalido, Metodo EmployeesRepository.GetUserByUserNameAndPassword");
+
+                var classKeys = Data.GetObjectKeys(new Users());
+                var sql = Data.SelectExpression("Users", classKeys, WhereExpresion: " WHERE UserName = '" + userName + "' AND Password = '" + pass + "'");
+                var (dr, message1) = Data.GetOne(sql, "EmployeesRepository.GetUserByUserName");
+                if (dr is null)
+                    return (s, message1);
+
+                s.IdEmp = dr.GetInt32(dr.GetOrdinal("IdEmp"));
+                s.IdUser = dr.GetInt32(dr.GetOrdinal("IdUser"));
+                s.UserName = dr.GetString(dr.GetOrdinal("UserName"));
+                s.Password = dr.GetString(dr.GetOrdinal("Password"));
+                s.DateIn = dr.GetDateTime(dr.GetOrdinal("DateIn"));
 
                 return (s, "Proceso Completado");
             }
@@ -156,6 +193,9 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             var s = new Employee();
             try
             {
+                if (id == 0)
+                    return (s, "Error Input Invalido, Metodo EmployeesRepository.GetEmployeeByUserid");
+
                 var classKeys = Data.GetObjectKeys(new Employee());
                 var sql = Data.SelectExpression("Employee", classKeys, WhereExpresion: " WHERE IdUser = " + id);
                 var (dr, message1) = Data.GetOne(sql, "EmployeesRepository.GetEmployeeByUserid");
@@ -168,9 +208,8 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                 s.LastName = dr.GetString(dr.GetOrdinal("LastName"));
                 s.DocumentNo = dr.GetString(dr.GetOrdinal("DocumentNo"));
                 s.DocumentType = dr.GetString(dr.GetOrdinal("DocumentType"));
-                s.DocumentType = dr.GetString(dr.GetOrdinal("DocumentType"));
+                s.EmployeeType = dr.GetString(dr.GetOrdinal("EmployeeType"));
                 s.DateIn = dr.GetDateTime(dr.GetOrdinal("DateIn"));
-                s.LastUpdate = dr.GetDateTime(dr.GetOrdinal("LastUpdate"));
 
                 return (s, "Proceso Completado");
             }
@@ -180,37 +219,34 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             }
         }
 
-        public (List<Employee>, string) GetEmployeeByDocumentNo(string documentNo)
+        public (Employee, string) GetEmployeeByDocumentNo(string documentNo)
         {
-            var Employees = new List<Employee>();
+            var s = new Employee();
             try
             {
+                if (string.IsNullOrWhiteSpace(documentNo))
+                    return (s, "Error Input Invalido, Metodo EmployeesRepository.GetEmployeesByDocumentNo");
+
                 var classKeys = Data.GetObjectKeys(new Employee());
                 var sql = Data.SelectExpression("Employee", classKeys, WhereExpresion: " WHERE DocumentNo = '" + documentNo + "'");
-                var (dtPC, message) = Data.GetList(sql, "EmployeesRepository.GetEmployeeByDocumentNo");
-                if (dtPC is null || dtPC.Rows is null || dtPC.Rows.Count == 0)
-                    return (Employees, message);
+                var (dr, message1) = Data.GetOne(sql, "EmployeesRepository.GetEmployeeByUserid");
+                if (dr is null)
+                    return (s, message1);
 
-                foreach (DataRow reader in dtPC.Rows)
-                {
-                    var s = new Employee();
-                    s.IdEmp = reader["IdEmp"] == DBNull.Value ? 0 : Convert.ToInt32(reader["IdEmp"]);
-                    s.IdUser = reader["IdUser"] == DBNull.Value ? 0 : Convert.ToInt32(reader["IdUser"]);
-                    s.FirstName = reader["FirstName"] == DBNull.Value ? string.Empty : Convert.ToString(reader["FirstName"]);
-                    s.LastName = reader["LastName"] == DBNull.Value ? string.Empty : Convert.ToString(reader["LastName"]);
-                    s.DocumentNo = reader["DocumentNo"] == DBNull.Value ? string.Empty : Convert.ToString(reader["DocumentNo"]);
-                    s.DocumentType = reader["DocumentType"] == DBNull.Value ? string.Empty : Convert.ToString(reader["DocumentType"]);
-                    s.DateIn = reader["DateIn"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["DateIn"]);
-                    s.LastUpdate = reader["LastUpdate"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["LastUpdate"]);
+                s.IdEmp = dr.GetInt32(dr.GetOrdinal("IdEmp"));
+                s.IdUser = dr.GetInt32(dr.GetOrdinal("IdUser"));
+                s.FirstName = dr.GetString(dr.GetOrdinal("FirstName"));
+                s.LastName = dr.GetString(dr.GetOrdinal("LastName"));
+                s.DocumentNo = dr.GetString(dr.GetOrdinal("DocumentNo"));
+                s.DocumentType = dr.GetString(dr.GetOrdinal("DocumentType"));
+                s.EmployeeType = dr.GetString(dr.GetOrdinal("EmployeeType"));
+                s.DateIn = dr.GetDateTime(dr.GetOrdinal("DateIn"));
 
-                    Employees.Add(s);
-                }
-
-                return (Employees, "Proceso Completado");
+                return (s, "Proceso Completado");
             }
             catch (Exception ex)
             {
-                return (Employees, "Error al Cargar Data, Metodo EmployeesRepository.GetEmployeeByDocumentNo \n" + ex.Message.ToString());
+                return (s, "Error al Cargar Data, Metodo EmployeesRepository.GetEmployeeByDocumentNo \n" + ex.Message.ToString());
             }
         }
 
@@ -219,9 +255,9 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             try
             {
                 if (input == null || input.DateIn == DateTime.MinValue)
-                    return (false, "Input Invalido, Metodo EmployeesRepository.AddEmployee");
+                    return (false, "Error Input Invalido, Metodo EmployeesRepository.AddEmployee");
 
-                var parameters = new List<string> { input.IdUser.ToString(), "'"+input.FirstName+"'", "'"+input.LastName+"'", "'"+input.DocumentNo+"'", "'"+input.DocumentType+"'",
+                var parameters = new List<string> { input.IdUser.ToString(), "'"+input.FirstName+"'", "'"+input.LastName+"'", "'"+input.DocumentNo+"'", "'"+input.DocumentType+"'", "'"+input.EmployeeType+"'",
                     "'"+input.DateIn.Value.ToShortDateString()+"'"};
 
                 var classKeys = Data.GetObjectKeys(new Employee()).Where(x => x != "IdEmp" && x != "LastUpdate").ToList();
@@ -243,7 +279,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             try
             {
                 if (input == null || input.DateIn == DateTime.MinValue)
-                    return (false, "Input Invalido, Metodo EmployeesRepository.AddSale");
+                    return (false, "Error Input Invalido, Metodo EmployeesRepository.AddSale");
 
                 var parameters = new List<string> { input.IdEmp.ToString(), "'" + input.UserName + "'", "'" + input.Password + "'", "'" + input.DateIn.Value.ToShortDateString() + "'" };
                 var classKeys = Data.GetObjectKeys(new Users()).Where(x => x != "IdUser" && x != "LastUpdate").ToList();
@@ -265,7 +301,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             try
             {
                 if (input == null)
-                    return (false, "Input Invalido, Metodo EmployeesRepository.UpdateEmployee");
+                    return (false, "Error Input Invalido, Metodo EmployeesRepository.UpdateEmployee");
 
                 var parameters = new List<string>();
                 var classKeys = new List<string>();
@@ -279,7 +315,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                 }
                 else
                 {
-                    parameters = new List<string> { "'" + input.FirstName + "'", "'" + input.LastName + "'", "'"+input.LastUpdate.Value.ToShortDateString()+"'"};
+                    parameters = new List<string> { "'" + input.FirstName + "'", "'" + input.LastName + "'", "'" + input.LastUpdate.Value.ToShortDateString() + "'" };
 
                     classKeys = Data.GetObjectKeys(new Employee()).Where(x => x != "IdEmp" && x != "DateIn" && x != "DocumentNo" && x != "DocumentType" && x != "EmployeeType").ToList();
                 }
@@ -303,7 +339,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             try
             {
                 if (input == null)
-                    return (false, "Input Invalido, Metodo EmployeesRepository.UpdateUser");
+                    return (false, "Error Input Invalido, Metodo EmployeesRepository.UpdateUser");
 
                 var parameters = new List<string> { input.IdEmp.ToString(), "'" + input.UserName + "'", "'" + input.Password + "'", "'" + input.LastUpdate.Value.ToShortDateString() + "'" };
                 var classKeys = Data.GetObjectKeys(new Users()).Where(x => x != "IdUser" && x != "DateIn").ToList();
@@ -325,7 +361,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             try
             {
                 if (id == 0)
-                    return (false, "Input Invalido, Metodo EmployeesRepository.DeleteEmployee");
+                    return (false, "Error Input Invalido, Metodo EmployeesRepository.DeleteEmployee");
 
                 var sql = Data.DeleteExpression("Employee", " WHERE IdEmp = " + id);
                 var (response, message) = Data.CrudAction(sql, "EmployeesRepository.DeleteEmployee");
@@ -345,7 +381,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             try
             {
                 if (id == 0)
-                    return (false, "Input Invalido, Metodo EmployeesRepository.DeleteUser");
+                    return (false, "Error Input Invalido, Metodo EmployeesRepository.DeleteUser");
 
                 var sql = Data.DeleteExpression("Users", " WHERE IdEmp = " + id);
                 var (response, message) = Data.CrudAction(sql, "EmployeesRepository.DeleteUser");

@@ -31,7 +31,7 @@ namespace FastFoodDemo
             combo_tipo_NCF.Items.Clear();
             combo_tipo_NCF.DisplayMember = "Description_ncf";
             combo_tipo_NCF.ValueMember = "Id_ncf";
-            combo_tipo_NCF.DataSource= ncfs;
+            combo_tipo_NCF.DataSource = ncfs;
 
             txtNCF.Text = "Sin NCF";
             if (lblSales.Text == "Ventas")
@@ -129,7 +129,7 @@ namespace FastFoodDemo
             if (add)
             {
                 var newncf = new NCFGenerated()
-                { 
+                {
                     Id_sequence = Convert.ToInt32(combo_tipo_NCF.SelectedValue),
                     SequenceNCF = txtNCF.Text,
                     Datein = DateTime.Today

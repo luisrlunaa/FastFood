@@ -29,30 +29,34 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label7 = new System.Windows.Forms.Label();
             this.data_employee = new System.Windows.Forms.DataGridView();
             this.id_employee = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.employeeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelEmployee = new System.Windows.Forms.Panel();
+            this.cbxEmpType = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtIdE = new System.Windows.Forms.TextBox();
+            this.txtLastNameE = new System.Windows.Forms.TextBox();
+            this.txtNameE = new System.Windows.Forms.TextBox();
+            this.cbxIDType = new System.Windows.Forms.ComboBox();
+            this.lblIdType = new System.Windows.Forms.Label();
+            this.lblIDNo = new System.Windows.Forms.Label();
+            this.lblLastName = new System.Windows.Forms.Label();
+            this.lblName = new System.Windows.Forms.Label();
             this.btnEditEmployee = new System.Windows.Forms.Button();
             this.btnEditUser = new System.Windows.Forms.Button();
             this.lblIdEmployee = new System.Windows.Forms.Label();
-            this.lblName = new System.Windows.Forms.Label();
-            this.lblLastName = new System.Windows.Forms.Label();
-            this.lblIDNo = new System.Windows.Forms.Label();
-            this.lblIdType = new System.Windows.Forms.Label();
-            this.cbxIDType = new System.Windows.Forms.ComboBox();
-            this.txtNameE = new System.Windows.Forms.TextBox();
-            this.txtLastNameE = new System.Windows.Forms.TextBox();
-            this.txtIdE = new System.Windows.Forms.TextBox();
             this.panelUser = new System.Windows.Forms.Panel();
+            this.lblUserName = new System.Windows.Forms.Label();
             this.txtPass2 = new System.Windows.Forms.TextBox();
             this.txtPass = new System.Windows.Forms.TextBox();
             this.txtActualPass = new System.Windows.Forms.TextBox();
             this.lblClave2 = new System.Windows.Forms.Label();
             this.lblClave = new System.Windows.Forms.Label();
             this.lblActualPass = new System.Windows.Forms.Label();
-            this.lblUserName = new System.Windows.Forms.Label();
             this.btnAllowedEdituser = new System.Windows.Forms.Button();
             this.lblPass = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
@@ -60,8 +64,6 @@
             this.btnNewEmployee = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.cbxEmpType = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.lblUserId = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.data_employee)).BeginInit();
             this.panelEmployee.SuspendLayout();
@@ -82,6 +84,7 @@
             // data_employee
             // 
             this.data_employee.AllowUserToAddRows = false;
+            this.data_employee.AllowUserToDeleteRows = false;
             this.data_employee.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.data_employee.BackgroundColor = System.Drawing.Color.White;
             this.data_employee.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -97,11 +100,28 @@
             this.data_employee.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id_employee,
             this.employeeName});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.data_employee.DefaultCellStyle = dataGridViewCellStyle2;
             this.data_employee.EnableHeadersVisualStyles = false;
             this.data_employee.GridColor = System.Drawing.Color.Black;
             this.data_employee.Location = new System.Drawing.Point(13, 70);
             this.data_employee.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.data_employee.Name = "data_employee";
+            this.data_employee.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.data_employee.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.data_employee.RowHeadersVisible = false;
             this.data_employee.RowHeadersWidth = 51;
             this.data_employee.RowTemplate.Height = 24;
@@ -116,6 +136,7 @@
             this.id_employee.HeaderText = "ID Employee";
             this.id_employee.MinimumWidth = 45;
             this.id_employee.Name = "id_employee";
+            this.id_employee.ReadOnly = true;
             this.id_employee.Visible = false;
             // 
             // employeeName
@@ -124,6 +145,7 @@
             this.employeeName.HeaderText = "Nombres";
             this.employeeName.MinimumWidth = 6;
             this.employeeName.Name = "employeeName";
+            this.employeeName.ReadOnly = true;
             // 
             // panelEmployee
             // 
@@ -143,6 +165,98 @@
             this.panelEmployee.Size = new System.Drawing.Size(473, 314);
             this.panelEmployee.TabIndex = 134;
             this.panelEmployee.Visible = false;
+            // 
+            // cbxEmpType
+            // 
+            this.cbxEmpType.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxEmpType.FormattingEnabled = true;
+            this.cbxEmpType.Location = new System.Drawing.Point(216, 256);
+            this.cbxEmpType.Name = "cbxEmpType";
+            this.cbxEmpType.Size = new System.Drawing.Size(244, 39);
+            this.cbxEmpType.TabIndex = 91;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(14, 266);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(167, 24);
+            this.label1.TabIndex = 90;
+            this.label1.Text = "Tipo de Empleado";
+            // 
+            // txtIdE
+            // 
+            this.txtIdE.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtIdE.Location = new System.Drawing.Point(216, 141);
+            this.txtIdE.Name = "txtIdE";
+            this.txtIdE.Size = new System.Drawing.Size(244, 35);
+            this.txtIdE.TabIndex = 89;
+            // 
+            // txtLastNameE
+            // 
+            this.txtLastNameE.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtLastNameE.Location = new System.Drawing.Point(216, 80);
+            this.txtLastNameE.Name = "txtLastNameE";
+            this.txtLastNameE.Size = new System.Drawing.Size(244, 35);
+            this.txtLastNameE.TabIndex = 88;
+            // 
+            // txtNameE
+            // 
+            this.txtNameE.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNameE.Location = new System.Drawing.Point(216, 25);
+            this.txtNameE.Name = "txtNameE";
+            this.txtNameE.Size = new System.Drawing.Size(244, 35);
+            this.txtNameE.TabIndex = 87;
+            // 
+            // cbxIDType
+            // 
+            this.cbxIDType.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxIDType.FormattingEnabled = true;
+            this.cbxIDType.Location = new System.Drawing.Point(216, 198);
+            this.cbxIDType.Name = "cbxIDType";
+            this.cbxIDType.Size = new System.Drawing.Size(244, 39);
+            this.cbxIDType.TabIndex = 86;
+            // 
+            // lblIdType
+            // 
+            this.lblIdType.AutoSize = true;
+            this.lblIdType.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIdType.Location = new System.Drawing.Point(14, 208);
+            this.lblIdType.Name = "lblIdType";
+            this.lblIdType.Size = new System.Drawing.Size(162, 24);
+            this.lblIdType.TabIndex = 85;
+            this.lblIdType.Text = "Tipo Identificacion";
+            // 
+            // lblIDNo
+            // 
+            this.lblIDNo.AutoSize = true;
+            this.lblIDNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIDNo.Location = new System.Drawing.Point(14, 148);
+            this.lblIDNo.Name = "lblIDNo";
+            this.lblIDNo.Size = new System.Drawing.Size(119, 24);
+            this.lblIDNo.TabIndex = 84;
+            this.lblIDNo.Text = "Identificacion";
+            // 
+            // lblLastName
+            // 
+            this.lblLastName.AutoSize = true;
+            this.lblLastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLastName.Location = new System.Drawing.Point(14, 87);
+            this.lblLastName.Name = "lblLastName";
+            this.lblLastName.Size = new System.Drawing.Size(88, 24);
+            this.lblLastName.TabIndex = 83;
+            this.lblLastName.Text = "Apellidos";
+            // 
+            // lblName
+            // 
+            this.lblName.AutoSize = true;
+            this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblName.Location = new System.Drawing.Point(14, 32);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(88, 24);
+            this.lblName.TabIndex = 82;
+            this.lblName.Text = "Nombres";
             // 
             // btnEditEmployee
             // 
@@ -192,79 +306,7 @@
             this.lblIdEmployee.Size = new System.Drawing.Size(13, 13);
             this.lblIdEmployee.TabIndex = 137;
             this.lblIdEmployee.Text = "0";
-            // 
-            // lblName
-            // 
-            this.lblName.AutoSize = true;
-            this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblName.Location = new System.Drawing.Point(14, 32);
-            this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(88, 24);
-            this.lblName.TabIndex = 82;
-            this.lblName.Text = "Nombres";
-            // 
-            // lblLastName
-            // 
-            this.lblLastName.AutoSize = true;
-            this.lblLastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLastName.Location = new System.Drawing.Point(14, 87);
-            this.lblLastName.Name = "lblLastName";
-            this.lblLastName.Size = new System.Drawing.Size(88, 24);
-            this.lblLastName.TabIndex = 83;
-            this.lblLastName.Text = "Apellidos";
-            // 
-            // lblIDNo
-            // 
-            this.lblIDNo.AutoSize = true;
-            this.lblIDNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIDNo.Location = new System.Drawing.Point(14, 148);
-            this.lblIDNo.Name = "lblIDNo";
-            this.lblIDNo.Size = new System.Drawing.Size(119, 24);
-            this.lblIDNo.TabIndex = 84;
-            this.lblIDNo.Text = "Identificacion";
-            // 
-            // lblIdType
-            // 
-            this.lblIdType.AutoSize = true;
-            this.lblIdType.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIdType.Location = new System.Drawing.Point(14, 208);
-            this.lblIdType.Name = "lblIdType";
-            this.lblIdType.Size = new System.Drawing.Size(162, 24);
-            this.lblIdType.TabIndex = 85;
-            this.lblIdType.Text = "Tipo Identificacion";
-            // 
-            // cbxIDType
-            // 
-            this.cbxIDType.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbxIDType.FormattingEnabled = true;
-            this.cbxIDType.Location = new System.Drawing.Point(216, 198);
-            this.cbxIDType.Name = "cbxIDType";
-            this.cbxIDType.Size = new System.Drawing.Size(244, 39);
-            this.cbxIDType.TabIndex = 86;
-            // 
-            // txtNameE
-            // 
-            this.txtNameE.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNameE.Location = new System.Drawing.Point(216, 25);
-            this.txtNameE.Name = "txtNameE";
-            this.txtNameE.Size = new System.Drawing.Size(244, 35);
-            this.txtNameE.TabIndex = 87;
-            // 
-            // txtLastNameE
-            // 
-            this.txtLastNameE.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLastNameE.Location = new System.Drawing.Point(216, 80);
-            this.txtLastNameE.Name = "txtLastNameE";
-            this.txtLastNameE.Size = new System.Drawing.Size(244, 35);
-            this.txtLastNameE.TabIndex = 88;
-            // 
-            // txtIdE
-            // 
-            this.txtIdE.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtIdE.Location = new System.Drawing.Point(216, 141);
-            this.txtIdE.Name = "txtIdE";
-            this.txtIdE.Size = new System.Drawing.Size(244, 35);
-            this.txtIdE.TabIndex = 89;
+            this.lblIdEmployee.Visible = false;
             // 
             // panelUser
             // 
@@ -282,11 +324,22 @@
             this.panelUser.TabIndex = 135;
             this.panelUser.Visible = false;
             // 
+            // lblUserName
+            // 
+            this.lblUserName.AutoSize = true;
+            this.lblUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUserName.Location = new System.Drawing.Point(144, 25);
+            this.lblUserName.Name = "lblUserName";
+            this.lblUserName.Size = new System.Drawing.Size(66, 24);
+            this.lblUserName.TabIndex = 90;
+            this.lblUserName.Text = "@user";
+            // 
             // txtPass2
             // 
             this.txtPass2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPass2.Location = new System.Drawing.Point(148, 196);
             this.txtPass2.Name = "txtPass2";
+            this.txtPass2.PasswordChar = '*';
             this.txtPass2.Size = new System.Drawing.Size(218, 35);
             this.txtPass2.TabIndex = 89;
             this.txtPass2.Visible = false;
@@ -296,6 +349,7 @@
             this.txtPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPass.Location = new System.Drawing.Point(148, 135);
             this.txtPass.Name = "txtPass";
+            this.txtPass.PasswordChar = '*';
             this.txtPass.Size = new System.Drawing.Size(218, 35);
             this.txtPass.TabIndex = 88;
             this.txtPass.Visible = false;
@@ -305,6 +359,7 @@
             this.txtActualPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtActualPass.Location = new System.Drawing.Point(148, 80);
             this.txtActualPass.Name = "txtActualPass";
+            this.txtActualPass.PasswordChar = '*';
             this.txtActualPass.Size = new System.Drawing.Size(218, 35);
             this.txtActualPass.TabIndex = 87;
             // 
@@ -340,16 +395,6 @@
             this.lblActualPass.TabIndex = 82;
             this.lblActualPass.Text = "Clave Actual";
             // 
-            // lblUserName
-            // 
-            this.lblUserName.AutoSize = true;
-            this.lblUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUserName.Location = new System.Drawing.Point(144, 25);
-            this.lblUserName.Name = "lblUserName";
-            this.lblUserName.Size = new System.Drawing.Size(66, 24);
-            this.lblUserName.TabIndex = 90;
-            this.lblUserName.Text = "@user";
-            // 
             // btnAllowedEdituser
             // 
             this.btnAllowedEdituser.BackColor = System.Drawing.Color.RoyalBlue;
@@ -378,6 +423,7 @@
             this.lblPass.Size = new System.Drawing.Size(27, 13);
             this.lblPass.TabIndex = 138;
             this.lblPass.Text = "xxxx";
+            this.lblPass.Visible = false;
             // 
             // btnSave
             // 
@@ -476,25 +522,6 @@
             this.button2.Visible = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // cbxEmpType
-            // 
-            this.cbxEmpType.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbxEmpType.FormattingEnabled = true;
-            this.cbxEmpType.Location = new System.Drawing.Point(216, 256);
-            this.cbxEmpType.Name = "cbxEmpType";
-            this.cbxEmpType.Size = new System.Drawing.Size(244, 39);
-            this.cbxEmpType.TabIndex = 91;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(14, 266);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(167, 24);
-            this.label1.TabIndex = 90;
-            this.label1.Text = "Tipo de Empleado";
-            // 
             // lblUserId
             // 
             this.lblUserId.AutoSize = true;
@@ -503,6 +530,7 @@
             this.lblUserId.Size = new System.Drawing.Size(24, 13);
             this.lblUserId.TabIndex = 145;
             this.lblUserId.Text = "@1";
+            this.lblUserId.Visible = false;
             // 
             // ManagerEmployeeForm
             // 

@@ -209,6 +209,18 @@
     <Compile Include="ConfigurationsForm.Designer.cs">
       <DependentUpon>ConfigurationsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="RecoveryPassForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecoveryPassForm.Designer.cs">
+      <DependentUpon>RecoveryPassForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ManagerEmployeeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -255,6 +267,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\CreateTicket.cs" />
     <Compile Include="Utils\Extentions.cs" />
+    <Compile Include="Utils\PasswordEncrypter.cs" />
     <Compile Include="Utils\validar.cs" />
     <EmbeddedResource Include="DrinkListForm.resx">
       <DependentUpon>DrinkListForm.cs</DependentUpon>
@@ -264,6 +277,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ConfigurationsForm.resx">
       <DependentUpon>ConfigurationsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecoveryPassForm.resx">
+      <DependentUpon>RecoveryPassForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ManagerEmployeeForm.resx">
       <DependentUpon>ManagerEmployeeForm.cs</DependentUpon>

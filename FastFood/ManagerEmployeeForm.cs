@@ -1,6 +1,7 @@
 ﻿using FastFood.FastFood.Infrastructure.Constants;
 using FastFood.Infrastructure.DataAccess.Repositories;
 using FastFood.Models.Entities;
+using FastFoodDemo.Utils;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -19,7 +20,7 @@ namespace FastFoodDemo
         private void data_employee_Click(object sender, System.EventArgs e)
         {
             lblIdEmployee.Text = data_employee.CurrentRow.Cells[0].Value.ToString();
-            if(string.IsNullOrWhiteSpace(lblIdEmployee.Text) && Convert.ToInt32(lblIdEmployee.Text) > 0)
+            if (!string.IsNullOrWhiteSpace(lblIdEmployee.Text) && Convert.ToInt32(lblIdEmployee.Text) > 0)
             {
                 btnNewEmployee.Visible = false;
                 btnNewUser.Visible = false;
@@ -71,11 +72,27 @@ namespace FastFoodDemo
             var (user, message) = employeesRepository.GetUserByEmployeeId(Convert.ToInt32(lblIdEmployee.Text));
             lblPass.Text = user.Password;
             lblUserName.Text = user.UserName;
+
+            if (!Program.IsAdmin)
+            {
+                btnAllowedEdituser.Visible = true;
+                lblClave.Visible = false;
+                lblClave2.Visible = false;
+                txtPass.Visible = false;
+                txtPass2.Visible = false;
+            }
+            else
+            {
+                lblClave.Visible = true;
+                lblClave2.Visible = true;
+                txtPass.Visible = true;
+                txtPass2.Visible = true;
+            }
         }
 
         private void btnAllowedEdituser_Click(object sender, EventArgs e)
         {
-            if(lblPass.Text == txtActualPass.Text)
+            if (lblPass.Text == txtActualPass.Text.Encrypt())
             {
                 lblClave.Visible = true;
                 lblClave2.Visible = true;
@@ -90,7 +107,7 @@ namespace FastFoodDemo
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if(isEdit)
+            if (isEdit)
             {
                 if (!string.IsNullOrWhiteSpace(lblPass.Text))
                 {
@@ -104,12 +121,16 @@ namespace FastFoodDemo
                     {
                         UserName = lblUserName.Text,
                         IdEmp = Convert.ToInt32(lblIdEmployee.Text),
-                        Password = txtPass2.Text,
+                        Password = txtPass2.Text.Encrypt(),
                         LastUpdate = DateTime.Today
                     };
 
                     var (result, message) = employeesRepository.UpdateUser(user);
                     MessageBox.Show(message);
+
+                    txtActualPass.Text = string.Empty;
+                    txtPass.Text = string.Empty;
+                    txtPass2.Text = string.Empty;
                 }
                 else
                 {
@@ -142,7 +163,7 @@ namespace FastFoodDemo
                     {
                         UserName = txtActualPass.Text,
                         IdEmp = Convert.ToInt32(lblIdEmployee.Text),
-                        Password = txtPass2.Text,
+                        Password = txtPass2.Text.Encrypt(),
                         DateIn = DateTime.Today
                     };
 
@@ -175,6 +196,20 @@ namespace FastFoodDemo
             btnEditUser.Visible = false;
             panelUser.Visible = false;
             panelEmployee.Visible = true;
+
+            cbxIDType.Items.Clear();
+            cbxIDType.Items.Add(IDTypeConstants.ID);
+            cbxIDType.Items.Add(IDTypeConstants.PassPort);
+
+            cbxEmpType.Items.Clear();
+            cbxEmpType.Items.Add(EmployeeTypeConstants.Admin);
+            cbxEmpType.Items.Add(EmployeeTypeConstants.Employee);
+
+            txtNameE.Text = string.Empty;
+            txtLastNameE.Text = string.Empty;
+            txtIdE.Text = string.Empty;
+            lblUserId.Text = string.Empty;
+            lblPass.Text = string.Empty;
         }
 
         private void btnNewUser_Click(object sender, EventArgs e)
@@ -231,7 +266,6 @@ namespace FastFoodDemo
                 btnEditUser.Visible = false;
                 btnNewEmployee.Visible = false;
                 btnNewUser.Visible = false;
-
             }
         }
 
@@ -255,7 +289,7 @@ namespace FastFoodDemo
 
         private void ManagerEmployeeForm_Load(object sender, EventArgs e)
         {
-            if(!Program.IsAdmin)
+            if (!Program.IsAdmin)
             {
                 button1.Visible = false;
                 button2.Visible = false;
