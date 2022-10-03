@@ -112,6 +112,9 @@ namespace FastFoodDemo
 
         private void button13_Click(object sender, EventArgs e)
         {
+            Program.IdEmployee = 0;
+            var login = new LoginForm();
+            login.Show();
             Close();
         }
 
