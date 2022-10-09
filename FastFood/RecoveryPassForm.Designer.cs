@@ -28,15 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RecoveryPassForm));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnIngresar = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.txtpass2 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.txtdocNo = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtpass2 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btnIngresar = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -59,6 +60,51 @@
             this.groupBox1.Size = new System.Drawing.Size(371, 400);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
+            // 
+            // btnIngresar
+            // 
+            this.btnIngresar.BackColor = System.Drawing.Color.SpringGreen;
+            this.btnIngresar.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnIngresar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.btnIngresar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
+            this.btnIngresar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnIngresar.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnIngresar.ForeColor = System.Drawing.Color.Black;
+            this.btnIngresar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnIngresar.Location = new System.Drawing.Point(91, 130);
+            this.btnIngresar.Name = "btnIngresar";
+            this.btnIngresar.Size = new System.Drawing.Size(168, 78);
+            this.btnIngresar.TabIndex = 8;
+            this.btnIngresar.Text = "Verificar";
+            this.btnIngresar.UseVisualStyleBackColor = false;
+            this.btnIngresar.Click += new System.EventHandler(this.btnIngresar_Click_1);
+            // 
+            // panel1
+            // 
+            this.panel1.Location = new System.Drawing.Point(22, 190);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(327, 204);
+            this.panel1.TabIndex = 7;
+            // 
+            // txtpass2
+            // 
+            this.txtpass2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtpass2.Location = new System.Drawing.Point(22, 342);
+            this.txtpass2.Name = "txtpass2";
+            this.txtpass2.PasswordChar = '*';
+            this.txtpass2.Size = new System.Drawing.Size(327, 38);
+            this.txtpass2.TabIndex = 6;
+            this.txtpass2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(115, 310);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(130, 29);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Confirmar :";
             // 
             // txtPassword
             // 
@@ -99,51 +145,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Documento de identificacion :";
             // 
-            // txtpass2
-            // 
-            this.txtpass2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtpass2.Location = new System.Drawing.Point(22, 342);
-            this.txtpass2.Name = "txtpass2";
-            this.txtpass2.PasswordChar = '*';
-            this.txtpass2.Size = new System.Drawing.Size(327, 38);
-            this.txtpass2.TabIndex = 6;
-            this.txtpass2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(115, 310);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(130, 29);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Confirmar :";
-            // 
-            // panel1
-            // 
-            this.panel1.Location = new System.Drawing.Point(22, 190);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(327, 204);
-            this.panel1.TabIndex = 7;
-            // 
-            // btnIngresar
-            // 
-            this.btnIngresar.BackColor = System.Drawing.Color.SpringGreen;
-            this.btnIngresar.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.btnIngresar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.btnIngresar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
-            this.btnIngresar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnIngresar.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnIngresar.ForeColor = System.Drawing.Color.Black;
-            this.btnIngresar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnIngresar.Location = new System.Drawing.Point(91, 130);
-            this.btnIngresar.Name = "btnIngresar";
-            this.btnIngresar.Size = new System.Drawing.Size(168, 78);
-            this.btnIngresar.TabIndex = 8;
-            this.btnIngresar.Text = "Verificar";
-            this.btnIngresar.UseVisualStyleBackColor = false;
-            this.btnIngresar.Click += new System.EventHandler(this.btnIngresar_Click_1);
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -166,6 +167,7 @@
             this.Controls.Add(this.label8);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "RecoveryPassForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LoginForm";
