@@ -59,5 +59,13 @@ namespace FastFoodDemo
         {
             Application.Exit();
         }
+
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+            if (!System.IO.Directory.Exists(@"C:\\Img\\"))
+            {
+                System.IO.Directory.CreateDirectory(@"C:\\Img\\");
+            }
+        }
     }
 }

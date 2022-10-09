@@ -16,8 +16,8 @@ namespace FastFoodDemo
     {
         SalesRepository salesRepository = new SalesRepository();
         ProductsRepository productsRepository = new ProductsRepository();
-        public List<Product> ProductsList { get; set; }
-        public int ProductId { get; set; }
+        private static List<Product> ProductsList { get; set; }
+        private int ProductId { get; set; }
 
         public FoodListForm()
         {
@@ -31,6 +31,11 @@ namespace FastFoodDemo
             if (GenericLists.SelectedItems is null)
                 GenericLists.SelectedItems = new List<SalesDetails>();
 
+            GetListItems(0);
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
             if (ProductsList is null || !ProductsList.Any())
             {
                 var (product, message) = productsRepository.GetProductByCategory(CategoryConstants.Foods);
@@ -40,11 +45,6 @@ namespace FastFoodDemo
                 ProductsList = product;
             }
 
-            GetListItems(0);
-        }
-
-        private void btnSearch_Click(object sender, EventArgs e)
-        {
             var listItems = new List<ItemsDTO>();
             if (!string.IsNullOrWhiteSpace(txtSearch.Text) && ProductsList != null)
                 ProductsList.Where(x => x.Name.ToLower().Contains(txtSearch.Text.ToLower())).Take(6).ToList();
@@ -61,7 +61,7 @@ namespace FastFoodDemo
                         Price = x.SalesPrice.ToString(),
                         ProductId = x.ProductId,
                         Tittle = x.Name,
-                        ImageName = string.IsNullOrWhiteSpace(x.ImageName) ? x.ImageName : string.Empty
+                        ImageName = !string.IsNullOrWhiteSpace(x.ImageName) ? x.ImageName : string.Empty
                     };
 
                     listItems.Add(item);
@@ -116,8 +116,10 @@ namespace FastFoodDemo
                 form.txtStock.Text = product?.Stock.ToString();
                 form.txtType.Text = product?.Type;
                 form.lblcategory.Text = product.Category;
+                form.txtImgName.Text = string.IsNullOrWhiteSpace(product.ImageName) ? string.Empty : product.ImageName;
                 form.Show();
                 panelManager.Visible = false;
+                GetListItems(0);
             }
         }
 
@@ -245,8 +247,17 @@ namespace FastFoodDemo
 
         private void GetListItems(int skip)
         {
+            if (ProductsList is null || !ProductsList.Any())
+            {
+                var (product, message) = productsRepository.GetProductByCategory(CategoryConstants.Foods);
+                if (product is null && message.Contains("Error"))
+                    MessageBox.Show(message);
+
+                ProductsList = product;
+            }
+
             var listItems = new List<ItemsDTO>();
-            var newSearch = ProductsList.Skip(skip).Take(6).ToList();
+            var newSearch = ProductsList?.Skip(skip)?.Take(6)?.ToList();
             var Products = newSearch != null && newSearch.Count > 2 ? newSearch.ToList() : ProductsList.ToList();
             if (Products != null || Products.Count > 0)
             {
@@ -258,7 +269,7 @@ namespace FastFoodDemo
                         Price = x.SalesPrice.ToString(),
                         ProductId = x.ProductId,
                         Tittle = x.Name,
-                        ImageName = string.IsNullOrWhiteSpace(x.ImageName) ? x.ImageName : string.Empty
+                        ImageName = !string.IsNullOrWhiteSpace(x.ImageName) ? x.ImageName : string.Empty
                     };
 
                     listItems.Add(item);
@@ -298,8 +309,8 @@ namespace FastFoodDemo
                 //Panel1
                 if (items.FindIndex(a => a.ProductId == item.ProductId) == 0)
                 {
-                    string[] dirs = Directory.GetFiles(@"C:\\Img\\");
-                    string ImagePath = dirs.FirstOrDefault(x => x.Contains(item.ImageName));
+                    var dirs = new DirectoryInfo(@"C:\\Img\\").GetFiles("*.*");
+                    string ImagePath = dirs.OrderByDescending(f => f.LastWriteTime).FirstOrDefault(x => x.Name.Split('.')[0] == item.ImageName).FullName;
                     if (File.Exists(ImagePath))
                     {
                         picProductImg1.Image = Image.FromFile(ImagePath);
@@ -315,8 +326,8 @@ namespace FastFoodDemo
                 //Panel2
                 if (items.FindIndex(a => a.ProductId == item.ProductId) == 1)
                 {
-                    string[] dirs = Directory.GetFiles(@"C:\\Img\\");
-                    string ImagePath = dirs.FirstOrDefault(x => x.Contains(item.ImageName));
+                    var dirs = new DirectoryInfo(@"C:\\Img\\").GetFiles("*.*");
+                    string ImagePath = dirs.OrderByDescending(f => f.LastWriteTime).FirstOrDefault(x => x.Name.Split('.')[0] == item.ImageName).FullName;
                     if (File.Exists(ImagePath))
                     {
                         picProductImg2.Image = Image.FromFile(ImagePath);
@@ -332,8 +343,8 @@ namespace FastFoodDemo
                 //Panel3
                 if (items.FindIndex(a => a.ProductId == item.ProductId) == 2)
                 {
-                    string[] dirs = Directory.GetFiles(@"C:\\Img\\");
-                    string ImagePath = dirs.FirstOrDefault(x => x.Contains(item.ImageName));
+                    var dirs = new DirectoryInfo(@"C:\\Img\\").GetFiles("*.*");
+                    string ImagePath = dirs.OrderByDescending(f => f.LastWriteTime).FirstOrDefault(x => x.Name.Split('.')[0] == item.ImageName).FullName;
                     if (File.Exists(ImagePath))
                     {
                         picProductImg3.Image = Image.FromFile(ImagePath);
@@ -349,8 +360,8 @@ namespace FastFoodDemo
                 //Panel4
                 if (items.FindIndex(a => a.ProductId == item.ProductId) == 3)
                 {
-                    string[] dirs = Directory.GetFiles(@"C:\\Img\\");
-                    string ImagePath = dirs.FirstOrDefault(x => x.Contains(item.ImageName));
+                    var dirs = new DirectoryInfo(@"C:\\Img\\").GetFiles("*.*");
+                    string ImagePath = dirs.OrderByDescending(f => f.LastWriteTime).FirstOrDefault(x => x.Name.Split('.')[0] == item.ImageName).FullName;
                     if (File.Exists(ImagePath))
                     {
                         picProductImg4.Image = Image.FromFile(ImagePath);
@@ -366,8 +377,8 @@ namespace FastFoodDemo
                 //Panel5
                 if (items.FindIndex(a => a.ProductId == item.ProductId) == 4)
                 {
-                    string[] dirs = Directory.GetFiles(@"C:\\Img\\");
-                    string ImagePath = dirs.FirstOrDefault(x => x.Contains(item.ImageName));
+                    var dirs = new DirectoryInfo(@"C:\\Img\\").GetFiles("*.*");
+                    string ImagePath = dirs.OrderByDescending(f => f.LastWriteTime).FirstOrDefault(x => x.Name.Split('.')[0] == item.ImageName).FullName;
                     if (File.Exists(ImagePath))
                     {
                         picProductImg5.Image = Image.FromFile(ImagePath);
@@ -383,8 +394,8 @@ namespace FastFoodDemo
                 //Panel6
                 if (items.FindIndex(a => a.ProductId == item.ProductId) == 5)
                 {
-                    string[] dirs = Directory.GetFiles(@"C:\\Img\\");
-                    string ImagePath = dirs.FirstOrDefault(x => x.Contains(item.ImageName));
+                    var dirs = new DirectoryInfo(@"C:\\Img\\").GetFiles("*.*");
+                    string ImagePath = dirs.OrderByDescending(f => f.LastWriteTime).FirstOrDefault(x => x.Name.Split('.')[0] == item.ImageName).FullName;
                     if (File.Exists(ImagePath))
                     {
                         picProductImg6.Image = Image.FromFile(ImagePath);
@@ -413,7 +424,9 @@ namespace FastFoodDemo
 
         public void RefreshList()
         {
+            ProductsList = new List<Product>();
             GetListItems(0);
+            new FoodListForm().Show();
         }
         #endregion
 
