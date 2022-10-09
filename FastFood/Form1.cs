@@ -112,10 +112,12 @@ namespace FastFoodDemo
 
         private void button13_Click(object sender, EventArgs e)
         {
+            mainpanel.Visible = true;
+            SidePanel.Height = button6.Height;
+            SidePanel.Top = button6.Top;
+
+            loadform(new BoxSquareForm());
             Program.IdEmployee = 0;
-            var login = new LoginForm();
-            login.Show();
-            Close();
         }
 
         private void btnListSales_Click(object sender, EventArgs e)

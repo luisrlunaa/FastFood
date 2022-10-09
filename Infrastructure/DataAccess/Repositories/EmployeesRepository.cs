@@ -141,7 +141,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                     return (s, "Error Input Invalido, Metodo EmployeesRepository.GetUserByUserName");
 
                 var classKeys = Data.GetObjectKeys(new Users());
-                var sql = Data.SelectExpression("Users", classKeys, WhereExpresion: " WHERE UserName = '" + userName+"'");
+                var sql = Data.SelectExpression("Users", classKeys, WhereExpresion: " WHERE UserName = '" + userName + "'");
                 var (dr, message1) = Data.GetOne(sql, "EmployeesRepository.GetUserByUserName");
                 if (dr is null)
                     return (s, message1);

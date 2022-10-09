@@ -208,6 +208,33 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             }
         }
 
+        public (decimal, string) GetAmountByDate(DateTime dateIn)
+        {
+            decimal amount = 0;
+            try
+            {
+                if (dateIn == DateTime.MinValue)
+                    return (0, "Error Input Invalido debe seleccionar la fecha en la que desea buscar, Metodo SalesRepository.GetAmountByDate");
+
+                var sql = Data.SelectExpression("Sales", new List<string>() { "SUM(Total) as Total" }, WhereExpresion: " WHERE DateIn = '" + dateIn.ToString("MM/dd/yyyy")+"'");
+                var (dr, message) = Data.GetOne(sql, "SalesRepository.GetAmountByDate");
+                if (dr is null)
+                    return (0, message);
+
+                if (dr["Total"].GetType() == typeof(DBNull))
+                {
+                    return (0, message);
+                }
+
+                amount = dr.GetDecimal(dr.GetOrdinal("Total"));
+                return (amount, "Proceso Completado");
+            }
+            catch (Exception ex)
+            {
+                return (amount, "Error al Cargar Data, Metodo SalesRepository.GetAmountByDate \n" + ex.Message.ToString());
+            }
+        }
+
         public (List<SalesDetails>, string) GetSaleDetails()
         {
             var Sales = new List<SalesDetails>();

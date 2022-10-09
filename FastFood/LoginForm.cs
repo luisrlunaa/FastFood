@@ -21,7 +21,7 @@ namespace FastFoodDemo
             if (message.Contains("Error"))
                 MessageBox.Show(message);
 
-            if(users is null || users.IdEmp == 0)
+            if (users is null || users.IdEmp == 0)
             {
                 MessageBox.Show("Las Credenciales no Concuerdan, verifique su nombre de usuario y contraseña e intente nuevamente.");
                 return;

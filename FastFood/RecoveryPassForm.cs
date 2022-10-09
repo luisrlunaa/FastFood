@@ -1,6 +1,4 @@
-﻿using FastFood.FastFood.Infrastructure.Constants;
-using FastFood.Infrastructure.DataAccess.Repositories;
-using FastFood.Models.Entities;
+﻿using FastFood.Infrastructure.DataAccess.Repositories;
 using FastFoodDemo.Utils;
 using System;
 using System.Windows.Forms;
@@ -17,7 +15,7 @@ namespace FastFoodDemo
 
         private void btnIngresar_Click_1(object sender, EventArgs e)
         {
-            if(btnIngresar.Text == "Verificar")
+            if (btnIngresar.Text == "Verificar")
             {
                 var (employee, message1) = employeesRepository.GetEmployeeByDocumentNo(txtdocNo.Text);
                 if (message1.Contains("Error"))
@@ -45,7 +43,7 @@ namespace FastFoodDemo
                 user.Password = txtpass2.Text.Encrypt();
                 user.LastUpdate = DateTime.Today;
                 var (saved, message) = employeesRepository.UpdateUser(user);
-                if(saved)
+                if (saved)
                 {
                     panel1.Visible = true;
                     btnIngresar.Text = "Verificar";
