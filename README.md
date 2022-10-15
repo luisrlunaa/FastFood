@@ -4,7 +4,7 @@ ENG :
 It is a simple system to sell food and drinks, which has different modules and a nice interface to make your stay in it more pleasant and easy.
 
 SPA:
-Es un sistema simple para realizar ventas de comidas y bebidas, el cual cuenta con diferentes modulos y una bonita interface para hacer mas agradable y facil tu estadia en el mismo.
+Es un sistema simple para realizar ventas de comidas y bebidas, el cual cuenta con diferentes modulos y una bonita interfas para hacer mas agradable y facil tu estadia en el mismo.
 
 ### Pre-requirements  / Pre-requisitos 📋
 ENG:
