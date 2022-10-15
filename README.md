@@ -11,8 +11,8 @@ ENG:
  - A computer  
 	 - Minimum 4Gb of ram  
 	 - Minimum 100Mb on disk  
-	 - Minimum screen
- - resolution 1080p Sql Server Management 14
+	 - Minimum screen resolution 1080p 
+ - Sql Server Management 14
 
 SPA:
 
@@ -51,7 +51,7 @@ As main attraction we have the sales area, which is divided into two parts:
 1- The sales area in the premises which will allow you to make sales to the people you have in the premises to provide them with a more efficient and transparent service.
 2- The sales delivery area which gives you the option to choose which of your deliveries will have the task of delivering that order which you can put your address on the invoice, name of the delivery and the amount to pay the delivery for your service to avoid customer confusion.
 
-It is worth adding that through the system you can manage sales with tax receipts, add the RNC of your customers, among other things. In addition, this same module has an area of ​​sales listings in which you can obtain the results of the sales made in detail, either filtered by Date, by Delivery, Customer Name or Product Name in which you can obtain:
+It is worth adding that through the system you can manage sales with tax receipts, add the RNC of your customers, among other things. In addition, this same module has an area of sales listings in which you can obtain the results of the sales made in detail, either filtered by Date, by Delivery, Customer Name or Product Name in which you can obtain:
  - Profits from sales 
  - Total sold 
  - Amount to pay at delivery 
