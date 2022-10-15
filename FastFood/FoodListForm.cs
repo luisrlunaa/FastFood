@@ -309,13 +309,16 @@ namespace FastFoodDemo
                 //Panel1
                 if (items.FindIndex(a => a.ProductId == item.ProductId) == 0)
                 {
-                    var dirs = new DirectoryInfo(@"C:\\Img\\").GetFiles("*.*");
-                    string ImagePath = dirs.OrderByDescending(f => f.LastWriteTime).FirstOrDefault(x => x.Name.Split('.')[0] == item.ImageName).FullName;
-                    if (File.Exists(ImagePath))
+                    if(!string.IsNullOrWhiteSpace(item.ImageName))
                     {
-                        picProductImg1.Image = Image.FromFile(ImagePath);
-                        picProductImg1.SizeMode = PictureBoxSizeMode.StretchImage;
-                        picProductImg1.Refresh();
+                        var dirs = new DirectoryInfo(@"C:\\Img\\").GetFiles("*.*");
+                        string ImagePath = dirs.OrderByDescending(f => f.LastWriteTime).FirstOrDefault(x => x.Name.Split('.')[0] == item.ImageName).FullName;
+                        if (File.Exists(ImagePath))
+                        {
+                            picProductImg1.Image = Image.FromFile(ImagePath);
+                            picProductImg1.SizeMode = PictureBoxSizeMode.StretchImage;
+                            picProductImg1.Refresh();
+                        }
                     }
 
                     lblProductId1.Text = item.ProductId.ToString();
@@ -326,13 +329,16 @@ namespace FastFoodDemo
                 //Panel2
                 if (items.FindIndex(a => a.ProductId == item.ProductId) == 1)
                 {
-                    var dirs = new DirectoryInfo(@"C:\\Img\\").GetFiles("*.*");
-                    string ImagePath = dirs.OrderByDescending(f => f.LastWriteTime).FirstOrDefault(x => x.Name.Split('.')[0] == item.ImageName).FullName;
-                    if (File.Exists(ImagePath))
+                    if (!string.IsNullOrWhiteSpace(item.ImageName))
                     {
-                        picProductImg2.Image = Image.FromFile(ImagePath);
-                        picProductImg2.SizeMode = PictureBoxSizeMode.StretchImage;
-                        picProductImg2.Refresh();
+                        var dirs = new DirectoryInfo(@"C:\\Img\\").GetFiles("*.*");
+                        string ImagePath = dirs.OrderByDescending(f => f.LastWriteTime).FirstOrDefault(x => x.Name.Split('.')[0] == item.ImageName).FullName;
+                        if (File.Exists(ImagePath))
+                        {
+                            picProductImg2.Image = Image.FromFile(ImagePath);
+                            picProductImg2.SizeMode = PictureBoxSizeMode.StretchImage;
+                            picProductImg2.Refresh();
+                        }
                     }
 
                     lblProductId2.Text = item.ProductId.ToString();
@@ -343,13 +349,16 @@ namespace FastFoodDemo
                 //Panel3
                 if (items.FindIndex(a => a.ProductId == item.ProductId) == 2)
                 {
-                    var dirs = new DirectoryInfo(@"C:\\Img\\").GetFiles("*.*");
-                    string ImagePath = dirs.OrderByDescending(f => f.LastWriteTime).FirstOrDefault(x => x.Name.Split('.')[0] == item.ImageName).FullName;
-                    if (File.Exists(ImagePath))
+                    if (!string.IsNullOrWhiteSpace(item.ImageName))
                     {
-                        picProductImg3.Image = Image.FromFile(ImagePath);
-                        picProductImg3.SizeMode = PictureBoxSizeMode.StretchImage;
-                        picProductImg3.Refresh();
+                        var dirs = new DirectoryInfo(@"C:\\Img\\").GetFiles("*.*");
+                        string ImagePath = dirs.OrderByDescending(f => f.LastWriteTime).FirstOrDefault(x => x.Name.Split('.')[0] == item.ImageName).FullName;
+                        if (File.Exists(ImagePath))
+                        {
+                            picProductImg3.Image = Image.FromFile(ImagePath);
+                            picProductImg3.SizeMode = PictureBoxSizeMode.StretchImage;
+                            picProductImg3.Refresh();
+                        }
                     }
 
                     lblProductId3.Text = item.ProductId.ToString();
@@ -360,13 +369,16 @@ namespace FastFoodDemo
                 //Panel4
                 if (items.FindIndex(a => a.ProductId == item.ProductId) == 3)
                 {
-                    var dirs = new DirectoryInfo(@"C:\\Img\\").GetFiles("*.*");
-                    string ImagePath = dirs.OrderByDescending(f => f.LastWriteTime).FirstOrDefault(x => x.Name.Split('.')[0] == item.ImageName).FullName;
-                    if (File.Exists(ImagePath))
+                    if (!string.IsNullOrWhiteSpace(item.ImageName))
                     {
-                        picProductImg4.Image = Image.FromFile(ImagePath);
-                        picProductImg4.SizeMode = PictureBoxSizeMode.StretchImage;
-                        picProductImg4.Refresh();
+                        var dirs = new DirectoryInfo(@"C:\\Img\\").GetFiles("*.*");
+                        string ImagePath = dirs.OrderByDescending(f => f.LastWriteTime).FirstOrDefault(x => x.Name.Split('.')[0] == item.ImageName).FullName;
+                        if (File.Exists(ImagePath))
+                        {
+                            picProductImg4.Image = Image.FromFile(ImagePath);
+                            picProductImg4.SizeMode = PictureBoxSizeMode.StretchImage;
+                            picProductImg4.Refresh();
+                        }
                     }
 
                     lblProductId4.Text = item.ProductId.ToString();
@@ -377,13 +389,16 @@ namespace FastFoodDemo
                 //Panel5
                 if (items.FindIndex(a => a.ProductId == item.ProductId) == 4)
                 {
-                    var dirs = new DirectoryInfo(@"C:\\Img\\").GetFiles("*.*");
-                    string ImagePath = dirs.OrderByDescending(f => f.LastWriteTime).FirstOrDefault(x => x.Name.Split('.')[0] == item.ImageName).FullName;
-                    if (File.Exists(ImagePath))
+                    if (!string.IsNullOrWhiteSpace(item.ImageName))
                     {
-                        picProductImg5.Image = Image.FromFile(ImagePath);
-                        picProductImg5.SizeMode = PictureBoxSizeMode.StretchImage;
-                        picProductImg5.Refresh();
+                        var dirs = new DirectoryInfo(@"C:\\Img\\").GetFiles("*.*");
+                        string ImagePath = dirs.OrderByDescending(f => f.LastWriteTime).FirstOrDefault(x => x.Name.Split('.')[0] == item.ImageName).FullName;
+                        if (File.Exists(ImagePath))
+                        {
+                            picProductImg5.Image = Image.FromFile(ImagePath);
+                            picProductImg5.SizeMode = PictureBoxSizeMode.StretchImage;
+                            picProductImg5.Refresh();
+                        }
                     }
 
                     lblProductId5.Text = item.ProductId.ToString();
@@ -394,13 +409,16 @@ namespace FastFoodDemo
                 //Panel6
                 if (items.FindIndex(a => a.ProductId == item.ProductId) == 5)
                 {
-                    var dirs = new DirectoryInfo(@"C:\\Img\\").GetFiles("*.*");
-                    string ImagePath = dirs.OrderByDescending(f => f.LastWriteTime).FirstOrDefault(x => x.Name.Split('.')[0] == item.ImageName).FullName;
-                    if (File.Exists(ImagePath))
+                    if (!string.IsNullOrWhiteSpace(item.ImageName))
                     {
-                        picProductImg6.Image = Image.FromFile(ImagePath);
-                        picProductImg6.SizeMode = PictureBoxSizeMode.StretchImage;
-                        picProductImg6.Refresh();
+                        var dirs = new DirectoryInfo(@"C:\\Img\\").GetFiles("*.*");
+                        string ImagePath = dirs.OrderByDescending(f => f.LastWriteTime).FirstOrDefault(x => x.Name.Split('.')[0] == item.ImageName).FullName;
+                        if (File.Exists(ImagePath))
+                        {
+                            picProductImg6.Image = Image.FromFile(ImagePath);
+                            picProductImg6.SizeMode = PictureBoxSizeMode.StretchImage;
+                            picProductImg6.Refresh();
+                        }
                     }
 
                     lblProductId6.Text = item.ProductId.ToString();
@@ -426,7 +444,6 @@ namespace FastFoodDemo
         {
             ProductsList = new List<Product>();
             GetListItems(0);
-            new FoodListForm().Show();
         }
         #endregion
 

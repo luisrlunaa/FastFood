@@ -216,7 +216,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                 if (dateIn == DateTime.MinValue)
                     return (0, "Error Input Invalido debe seleccionar la fecha en la que desea buscar, Metodo SalesRepository.GetAmountByDate");
 
-                var sql = Data.SelectExpression("Sales", new List<string>() { "SUM(Total) as Total" }, WhereExpresion: " WHERE DateIn = '" + dateIn.ToString("MM/dd/yyyy")+"'");
+                var sql = Data.SelectExpression("Sales", new List<string>() { "SUM(Total) as Total" }, WhereExpresion: " WHERE DateIn = '" + dateIn.ToString("MM/dd/yyyy") + "'");
                 var (dr, message) = Data.GetOne(sql, "SalesRepository.GetAmountByDate");
                 if (dr is null)
                     return (0, message);

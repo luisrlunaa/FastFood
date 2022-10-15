@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace FoodModels.Constants
+﻿namespace FoodModels.Constants
 {
     public struct CategoryConstants
     {

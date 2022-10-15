@@ -29,6 +29,7 @@ namespace FastFoodDemo
             lblTel2.Text = business.Phone2;
             lblRNC.Text = business.RNC;
 
+            button7.Visible = false;
             mainpanel.Visible = false;
         }
 

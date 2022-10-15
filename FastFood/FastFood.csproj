@@ -347,17 +347,17 @@
     <None Include="Resources\food.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Infrastructure\FastFood.Infrastructure.csproj">
-      <Project>{5b609ebd-feca-4080-9614-2f454ab05e4e}</Project>
-      <Name>FastFood.Infrastructure</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Models\FastFood.Models.csproj">
-      <Project>{de468c57-f59c-45e2-a429-ef5aa25c87b3}</Project>
-      <Name>FastFood.Models</Name>
-    </ProjectReference>
+    <Content Include="Resources\food.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\food.ico" />
+    <ProjectReference Include="..\FoodInfrastructure\FastFood.Infrastructure.csproj">
+      <Project>{f400e7f6-bb65-4ef3-965c-84e7e7715567}</Project>
+      <Name>FastFood.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FoodModels\FastFood.Models.csproj">
+      <Project>{88595af2-06b4-4520-b22d-e344d238f543}</Project>
+      <Name>FastFood.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Data.SqlClient.SNI.5.0.0\build\net46\Microsoft.Data.SqlClient.SNI.targets" Condition="Exists('..\packages\Microsoft.Data.SqlClient.SNI.5.0.0\build\net46\Microsoft.Data.SqlClient.SNI.targets')" />

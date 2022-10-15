@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace FoodModels.ViewModels
+﻿namespace Models.ViewModels
 {
     public class ItemsDTO
     {

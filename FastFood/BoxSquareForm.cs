@@ -1,6 +1,5 @@
 ﻿using FastFood.Infrastructure.DataAccess.Repositories;
 using FastFood.Models.Entities;
-using FastFoodDemo.Utils;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System;
@@ -124,10 +123,10 @@ namespace FastFoodDemo
 
         private void btnsuma_Click(object sender, EventArgs e)
         {
-            if(lblmontocaja.Text == "...")
+            if (lblmontocaja.Text == "...")
                 GetAmountInBox(dpkfechacuadre.Value);
 
-            if(lblmontocaja.Text == 0.ToString())
+            if (lblmontocaja.Text == 0.ToString())
             {
                 MessageBox.Show("El monto en caja debe ser mayor a cero para registrar un nuevo Cuadre");
                 return;
@@ -152,7 +151,7 @@ namespace FastFoodDemo
             //    inicial = Math.Round(Convert.ToDecimal(lblmontoinicial.Text));
             //}
 
-            decimal cuadre = /*(ingresos + inicial) - gastos*/ Math.Round(Convert.ToDecimal(lblmontocaja.Text),2);
+            decimal cuadre = /*(ingresos + inicial) - gastos*/ Math.Round(Convert.ToDecimal(lblmontocaja.Text), 2);
 
             if (string.IsNullOrWhiteSpace(lbldeudas.Text))
             {
