@@ -197,6 +197,12 @@
     <Compile Include="BoxSquareForm.Designer.cs">
       <DependentUpon>BoxSquareForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ClientsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClientsForm.Designer.cs">
+      <DependentUpon>ClientsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DrinkListForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -276,6 +282,9 @@
     <Compile Include="Utils\validar.cs" />
     <EmbeddedResource Include="BoxSquareForm.resx">
       <DependentUpon>BoxSquareForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClientsForm.resx">
+      <DependentUpon>ClientsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DrinkListForm.resx">
       <DependentUpon>DrinkListForm.cs</DependentUpon>

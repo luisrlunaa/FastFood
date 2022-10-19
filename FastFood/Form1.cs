@@ -29,7 +29,6 @@ namespace FastFoodDemo
             lblTel2.Text = business.Phone2;
             lblRNC.Text = business.RNC;
 
-            button7.Visible = false;
             mainpanel.Visible = false;
         }
 
@@ -118,7 +117,6 @@ namespace FastFoodDemo
             SidePanel.Top = button6.Top;
 
             loadform(new BoxSquareForm());
-            Program.IdEmployee = 0;
         }
 
         private void btnListSales_Click(object sender, EventArgs e)
@@ -134,6 +132,14 @@ namespace FastFoodDemo
         {
             mainpanel.Visible = true;
             loadform(new ConfigurationsForm());
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            mainpanel.Visible = true;
+            SidePanel.Height = button7.Height;
+            SidePanel.Top = button7.Top;
+            loadform(new ClientsForm());
         }
 
         public void loadform(object Form)

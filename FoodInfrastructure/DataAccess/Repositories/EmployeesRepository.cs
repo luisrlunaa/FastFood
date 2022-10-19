@@ -10,6 +10,8 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
     public class EmployeesRepository
     {
         DataManager Data = new DataManager();
+
+        #region Employees
         public (List<Employee>, string) GetEmployees()
         {
             var Employees = new List<Employee>();
@@ -45,6 +47,183 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             }
         }
 
+        public (Employee, string) GetEmployeeById(int id)
+        {
+            var s = new Employee();
+            try
+            {
+                if (id == 0)
+                    return (s, "Error Input Invalido, Metodo EmployeesRepository.GetEmployeeById");
+
+                var classKeys = Data.GetObjectKeys(new Employee());
+                var sql = Data.SelectExpression("Employee", classKeys, WhereExpresion: " WHERE IdEmp = " + id);
+                var (dr, message1) = Data.GetOne(sql, "EmployeesRepository.GetEmployeeById");
+                if (dr is null)
+                    return (s, message1);
+
+                s.IdEmp = dr.GetInt32(dr.GetOrdinal("IdEmp"));
+                s.IdUser = dr.GetInt32(dr.GetOrdinal("IdUser"));
+                s.FirstName = dr.GetString(dr.GetOrdinal("FirstName"));
+                s.LastName = dr.GetString(dr.GetOrdinal("LastName"));
+                s.DocumentNo = dr.GetString(dr.GetOrdinal("DocumentNo"));
+                s.DocumentType = dr.GetString(dr.GetOrdinal("DocumentType"));
+                s.EmployeeType = dr.GetString(dr.GetOrdinal("EmployeeType"));
+                s.DateIn = dr.GetDateTime(dr.GetOrdinal("DateIn"));
+
+                return (s, "Proceso Completado");
+            }
+            catch (Exception ex)
+            {
+                return (s, "Error al Cargar Data, Metodo EmployeesRepository.GetEmployeeById \n" + ex.Message.ToString());
+            }
+        }
+
+        public (Employee, string) GetEmployeeByUserid(int id)
+        {
+            var s = new Employee();
+            try
+            {
+                if (id == 0)
+                    return (s, "Error Input Invalido, Metodo EmployeesRepository.GetEmployeeByUserid");
+
+                var classKeys = Data.GetObjectKeys(new Employee());
+                var sql = Data.SelectExpression("Employee", classKeys, WhereExpresion: " WHERE IdUser = " + id);
+                var (dr, message1) = Data.GetOne(sql, "EmployeesRepository.GetEmployeeByUserid");
+                if (dr is null)
+                    return (s, message1);
+
+                s.IdEmp = dr.GetInt32(dr.GetOrdinal("IdEmp"));
+                s.IdUser = dr.GetInt32(dr.GetOrdinal("IdUser"));
+                s.FirstName = dr.GetString(dr.GetOrdinal("FirstName"));
+                s.LastName = dr.GetString(dr.GetOrdinal("LastName"));
+                s.DocumentNo = dr.GetString(dr.GetOrdinal("DocumentNo"));
+                s.DocumentType = dr.GetString(dr.GetOrdinal("DocumentType"));
+                s.EmployeeType = dr.GetString(dr.GetOrdinal("EmployeeType"));
+                s.DateIn = dr.GetDateTime(dr.GetOrdinal("DateIn"));
+
+                return (s, "Proceso Completado");
+            }
+            catch (Exception ex)
+            {
+                return (s, "Error al Cargar Data, Metodo EmployeesRepository.GetEmployeeByUserid \n" + ex.Message.ToString());
+            }
+        }
+
+        public (Employee, string) GetEmployeeByDocumentNo(string documentNo)
+        {
+            var s = new Employee();
+            try
+            {
+                if (string.IsNullOrWhiteSpace(documentNo))
+                    return (s, "Error Input Invalido, Metodo EmployeesRepository.GetEmployeesByDocumentNo");
+
+                var classKeys = Data.GetObjectKeys(new Employee());
+                var sql = Data.SelectExpression("Employee", classKeys, WhereExpresion: " WHERE DocumentNo = '" + documentNo + "'");
+                var (dr, message1) = Data.GetOne(sql, "EmployeesRepository.GetEmployeeByDocumentNo");
+                if (dr is null)
+                    return (s, message1);
+
+                s.IdEmp = dr.GetInt32(dr.GetOrdinal("IdEmp"));
+                s.IdUser = dr.GetInt32(dr.GetOrdinal("IdUser"));
+                s.FirstName = dr.GetString(dr.GetOrdinal("FirstName"));
+                s.LastName = dr.GetString(dr.GetOrdinal("LastName"));
+                s.DocumentNo = dr.GetString(dr.GetOrdinal("DocumentNo"));
+                s.DocumentType = dr.GetString(dr.GetOrdinal("DocumentType"));
+                s.EmployeeType = dr.GetString(dr.GetOrdinal("EmployeeType"));
+                s.DateIn = dr.GetDateTime(dr.GetOrdinal("DateIn"));
+
+                return (s, "Proceso Completado");
+            }
+            catch (Exception ex)
+            {
+                return (s, "Error al Cargar Data, Metodo EmployeesRepository.GetEmployeeByDocumentNo \n" + ex.Message.ToString());
+            }
+        }
+
+        public (bool, string) AddEmployee(Employee input)
+        {
+            try
+            {
+                if (input == null || input.DateIn == DateTime.MinValue)
+                    return (false, "Error Input Invalido, Metodo EmployeesRepository.AddEmployee");
+
+                var parameters = new List<string> { input.IdUser.ToString(), "'"+input.FirstName+"'", "'"+input.LastName+"'", "'"+input.DocumentNo+"'", "'"+input.DocumentType+"'", "'"+input.EmployeeType+"'",
+                    "'"+input.DateIn.Value.ToShortDateString()+"'"};
+
+                var classKeys = Data.GetObjectKeys(new Employee()).Where(x => x != "IdEmp" && x != "LastUpdate").ToList();
+                var sql = Data.InsertExpression("Employee", classKeys, parameters);
+                var (response, message) = Data.CrudAction(sql, "EmployeesRepository.AddEmployee");
+                if (!response)
+                    return (response, message);
+
+                return (response, "Proceso Completado");
+            }
+            catch (Exception ex)
+            {
+                return (false, "Error al Cargar Data, Metodo EmployeesRepository.AddEmployee \n" + ex.Message.ToString());
+            }
+        }
+
+        public (bool, string) UpdateEmployee(Employee input, bool isAdmin)
+        {
+            try
+            {
+                if (input == null)
+                    return (false, "Error Input Invalido, Metodo EmployeesRepository.UpdateEmployee");
+
+                var parameters = new List<string>();
+                var classKeys = new List<string>();
+
+                if (isAdmin)
+                {
+                    parameters = new List<string> { input.IdUser.ToString(), "'" + input.FirstName + "'", "'" + input.LastName + "'", "'" + input.DocumentNo + "'", "'" + input.DocumentType + "'", "'" + input.EmployeeType + "'",
+                    "'"+input.LastUpdate.Value.ToShortDateString()+"'"};
+
+                    classKeys = Data.GetObjectKeys(new Employee()).Where(x => x != "IdEmp" && x != "DateIn").ToList();
+                }
+                else
+                {
+                    parameters = new List<string> { "'" + input.FirstName + "'", "'" + input.LastName + "'", "'" + input.LastUpdate.Value.ToShortDateString() + "'" };
+
+                    classKeys = Data.GetObjectKeys(new Employee()).Where(x => x != "IdEmp" && x != "DateIn" && x != "DocumentNo" && x != "DocumentType" && x != "EmployeeType").ToList();
+                }
+
+
+                var sql = Data.UpdateExpression("Employee", classKeys, parameters, " WHERE IdEmp = " + input.IdEmp);
+                var (response, message) = Data.CrudAction(sql, "EmployeesRepository.UpdateEmployee");
+                if (!response)
+                    return (response, message);
+
+                return (true, "Proceso Completado");
+            }
+            catch (Exception ex)
+            {
+                return (false, "Error al Cargar Data, Metodo EmployeesRepository.UpdateEmployee \n" + ex.Message.ToString());
+            }
+        }
+
+        public (bool, string) DeleteEmployee(int id)
+        {
+            try
+            {
+                if (id == 0)
+                    return (false, "Error Input Invalido, Metodo EmployeesRepository.DeleteEmployee");
+
+                var sql = Data.DeleteExpression("Employee", " WHERE IdEmp = " + id);
+                var (response, message) = Data.CrudAction(sql, "EmployeesRepository.DeleteEmployee");
+                if (!response)
+                    return (response, message);
+
+                return (true, "Proceso Completado");
+            }
+            catch (Exception ex)
+            {
+                return (false, "Error al Cargar Data, Metodo EmployeesRepository.DeleteEmployee \n" + ex.Message.ToString());
+            }
+        }
+        #endregion
+
+        #region Users
         public (Users, string) GetUserByUserId(int id)
         {
             var s = new Users();
@@ -98,37 +277,6 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             catch (Exception ex)
             {
                 return (s, "Error al Cargar Data, Metodo EmployeesRepository.GetUserByUserId \n" + ex.Message.ToString());
-            }
-        }
-
-        public (Employee, string) GetEmployeeById(int id)
-        {
-            var s = new Employee();
-            try
-            {
-                if (id == 0)
-                    return (s, "Error Input Invalido, Metodo EmployeesRepository.GetEmployeeById");
-
-                var classKeys = Data.GetObjectKeys(new Employee());
-                var sql = Data.SelectExpression("Employee", classKeys, WhereExpresion: " WHERE IdEmp = " + id);
-                var (dr, message1) = Data.GetOne(sql, "EmployeesRepository.GetEmployeeById");
-                if (dr is null)
-                    return (s, message1);
-
-                s.IdEmp = dr.GetInt32(dr.GetOrdinal("IdEmp"));
-                s.IdUser = dr.GetInt32(dr.GetOrdinal("IdUser"));
-                s.FirstName = dr.GetString(dr.GetOrdinal("FirstName"));
-                s.LastName = dr.GetString(dr.GetOrdinal("LastName"));
-                s.DocumentNo = dr.GetString(dr.GetOrdinal("DocumentNo"));
-                s.DocumentType = dr.GetString(dr.GetOrdinal("DocumentType"));
-                s.EmployeeType = dr.GetString(dr.GetOrdinal("EmployeeType"));
-                s.DateIn = dr.GetDateTime(dr.GetOrdinal("DateIn"));
-
-                return (s, "Proceso Completado");
-            }
-            catch (Exception ex)
-            {
-                return (s, "Error al Cargar Data, Metodo EmployeesRepository.GetEmployeeById \n" + ex.Message.ToString());
             }
         }
 
@@ -188,92 +336,6 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             }
         }
 
-        public (Employee, string) GetEmployeeByUserid(int id)
-        {
-            var s = new Employee();
-            try
-            {
-                if (id == 0)
-                    return (s, "Error Input Invalido, Metodo EmployeesRepository.GetEmployeeByUserid");
-
-                var classKeys = Data.GetObjectKeys(new Employee());
-                var sql = Data.SelectExpression("Employee", classKeys, WhereExpresion: " WHERE IdUser = " + id);
-                var (dr, message1) = Data.GetOne(sql, "EmployeesRepository.GetEmployeeByUserid");
-                if (dr is null)
-                    return (s, message1);
-
-                s.IdEmp = dr.GetInt32(dr.GetOrdinal("IdEmp"));
-                s.IdUser = dr.GetInt32(dr.GetOrdinal("IdUser"));
-                s.FirstName = dr.GetString(dr.GetOrdinal("FirstName"));
-                s.LastName = dr.GetString(dr.GetOrdinal("LastName"));
-                s.DocumentNo = dr.GetString(dr.GetOrdinal("DocumentNo"));
-                s.DocumentType = dr.GetString(dr.GetOrdinal("DocumentType"));
-                s.EmployeeType = dr.GetString(dr.GetOrdinal("EmployeeType"));
-                s.DateIn = dr.GetDateTime(dr.GetOrdinal("DateIn"));
-
-                return (s, "Proceso Completado");
-            }
-            catch (Exception ex)
-            {
-                return (s, "Error al Cargar Data, Metodo EmployeesRepository.GetEmployeeByUserid \n" + ex.Message.ToString());
-            }
-        }
-
-        public (Employee, string) GetEmployeeByDocumentNo(string documentNo)
-        {
-            var s = new Employee();
-            try
-            {
-                if (string.IsNullOrWhiteSpace(documentNo))
-                    return (s, "Error Input Invalido, Metodo EmployeesRepository.GetEmployeesByDocumentNo");
-
-                var classKeys = Data.GetObjectKeys(new Employee());
-                var sql = Data.SelectExpression("Employee", classKeys, WhereExpresion: " WHERE DocumentNo = '" + documentNo + "'");
-                var (dr, message1) = Data.GetOne(sql, "EmployeesRepository.GetEmployeeByUserid");
-                if (dr is null)
-                    return (s, message1);
-
-                s.IdEmp = dr.GetInt32(dr.GetOrdinal("IdEmp"));
-                s.IdUser = dr.GetInt32(dr.GetOrdinal("IdUser"));
-                s.FirstName = dr.GetString(dr.GetOrdinal("FirstName"));
-                s.LastName = dr.GetString(dr.GetOrdinal("LastName"));
-                s.DocumentNo = dr.GetString(dr.GetOrdinal("DocumentNo"));
-                s.DocumentType = dr.GetString(dr.GetOrdinal("DocumentType"));
-                s.EmployeeType = dr.GetString(dr.GetOrdinal("EmployeeType"));
-                s.DateIn = dr.GetDateTime(dr.GetOrdinal("DateIn"));
-
-                return (s, "Proceso Completado");
-            }
-            catch (Exception ex)
-            {
-                return (s, "Error al Cargar Data, Metodo EmployeesRepository.GetEmployeeByDocumentNo \n" + ex.Message.ToString());
-            }
-        }
-
-        public (bool, string) AddEmployee(Employee input)
-        {
-            try
-            {
-                if (input == null || input.DateIn == DateTime.MinValue)
-                    return (false, "Error Input Invalido, Metodo EmployeesRepository.AddEmployee");
-
-                var parameters = new List<string> { input.IdUser.ToString(), "'"+input.FirstName+"'", "'"+input.LastName+"'", "'"+input.DocumentNo+"'", "'"+input.DocumentType+"'", "'"+input.EmployeeType+"'",
-                    "'"+input.DateIn.Value.ToShortDateString()+"'"};
-
-                var classKeys = Data.GetObjectKeys(new Employee()).Where(x => x != "IdEmp" && x != "LastUpdate").ToList();
-                var sql = Data.InsertExpression("Employee", classKeys, parameters);
-                var (response, message) = Data.CrudAction(sql, "EmployeesRepository.AddEmployee");
-                if (!response)
-                    return (response, message);
-
-                return (response, "Proceso Completado");
-            }
-            catch (Exception ex)
-            {
-                return (false, "Error al Cargar Data, Metodo EmployeesRepository.AddEmployee \n" + ex.Message.ToString());
-            }
-        }
-
         public (bool, string) AddUser(Users input)
         {
             try
@@ -293,44 +355,6 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             catch (Exception ex)
             {
                 return (false, "Error al Cargar Data, Metodo EmployeesRepository.AddUser \n" + ex.Message.ToString());
-            }
-        }
-
-        public (bool, string) UpdateEmployee(Employee input, bool isAdmin)
-        {
-            try
-            {
-                if (input == null)
-                    return (false, "Error Input Invalido, Metodo EmployeesRepository.UpdateEmployee");
-
-                var parameters = new List<string>();
-                var classKeys = new List<string>();
-
-                if (isAdmin)
-                {
-                    parameters = new List<string> { input.IdUser.ToString(), "'" + input.FirstName + "'", "'" + input.LastName + "'", "'" + input.DocumentNo + "'", "'" + input.DocumentType + "'", "'" + input.EmployeeType + "'",
-                    "'"+input.LastUpdate.Value.ToShortDateString()+"'"};
-
-                    classKeys = Data.GetObjectKeys(new Employee()).Where(x => x != "IdEmp" && x != "DateIn").ToList();
-                }
-                else
-                {
-                    parameters = new List<string> { "'" + input.FirstName + "'", "'" + input.LastName + "'", "'" + input.LastUpdate.Value.ToShortDateString() + "'" };
-
-                    classKeys = Data.GetObjectKeys(new Employee()).Where(x => x != "IdEmp" && x != "DateIn" && x != "DocumentNo" && x != "DocumentType" && x != "EmployeeType").ToList();
-                }
-
-
-                var sql = Data.UpdateExpression("Employee", classKeys, parameters, " WHERE IdEmp = " + input.IdEmp);
-                var (response, message) = Data.CrudAction(sql, "EmployeesRepository.UpdateEmployee");
-                if (!response)
-                    return (response, message);
-
-                return (true, "Proceso Completado");
-            }
-            catch (Exception ex)
-            {
-                return (false, "Error al Cargar Data, Metodo EmployeesRepository.UpdateEmployee \n" + ex.Message.ToString());
             }
         }
 
@@ -356,26 +380,6 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             }
         }
 
-        public (bool, string) DeleteEmployee(int id)
-        {
-            try
-            {
-                if (id == 0)
-                    return (false, "Error Input Invalido, Metodo EmployeesRepository.DeleteEmployee");
-
-                var sql = Data.DeleteExpression("Employee", " WHERE IdEmp = " + id);
-                var (response, message) = Data.CrudAction(sql, "EmployeesRepository.DeleteEmployee");
-                if (!response)
-                    return (response, message);
-
-                return (true, "Proceso Completado");
-            }
-            catch (Exception ex)
-            {
-                return (false, "Error al Cargar Data, Metodo EmployeesRepository.DeleteEmployee \n" + ex.Message.ToString());
-            }
-        }
-
         public (bool, string) DeleteUser(int id)
         {
             try
@@ -395,5 +399,6 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                 return (false, "Error al Cargar Data, Metodo EmployeesRepository.DeleteUser \n" + ex.Message.ToString());
             }
         }
+        #endregion
     }
 }
