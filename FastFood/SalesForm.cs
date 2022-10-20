@@ -15,11 +15,12 @@ namespace FastFoodDemo
         ProductsRepository productsRepository = new ProductsRepository();
         SalesRepository salesRepository = new SalesRepository();
         NcfRepository ncfsRepository = new NcfRepository();
-
+        public static SalesForm Instance;
         public static List<IdsDTO> Lisids { get; set; }
         public SalesForm()
         {
             InitializeComponent();
+            Instance = this;
         }
 
         private void SalesForm_Load(object sender, EventArgs e)
@@ -161,7 +162,7 @@ namespace FastFoodDemo
                 else
                     MessageBox.Show(message1);
 
-                GetInfo("Debito");
+                Print(false);
             }
             else
                 MessageBox.Show(message);
@@ -242,7 +243,7 @@ namespace FastFoodDemo
                 else
                     MessageBox.Show(message1);
 
-                GetInfo("Credito");
+                Print(false);
             }
             else
                 MessageBox.Show(message);
@@ -322,33 +323,6 @@ namespace FastFoodDemo
             }
         }
 
-        private void GetInfo(string type)
-        {
-            //Business Info
-            Program.BusinessAddress = lblDir.Text;
-            Program.BusinessName = lblLogo.Text;
-            Program.BusinessPhone1 = lblTel1.Text;
-            Program.BusinessPhone2 = lblTel2.Text;
-            Program.BusinessRnc = lblRNC.Text;
-
-            //Sales Info
-            Program.SaleId = GenericLists.SelectedItems != null && GenericLists.SelectedItems.Any()
-                           ? GenericLists.SelectedItems.FirstOrDefault().IdSale.ToString() : 0.ToString();
-            Program.ClientName = txtClientName.Text;
-            Program.SaleAddress = txtDireccion.Text;
-            Program.DateIn = dateTimePicker1.Text;
-            Program.TypeNCF = combo_tipo_NCF.Text;
-            Program.NCF = txtNCF.Text;
-            Program.SalesCheckType = type;
-            Program.Delivery = txtDelivery.Text;
-            Program.DeliveryAmount = txtDAmount.Text;
-            Program.HasNCF = chkComprobante.Checked;
-            Program.SubTotal = lblSubTotalAmount.Text;
-            Program.IgvTotal = lblIgvAmount.Text;
-            Program.Total = lblTotalAmount.Text;
-            Print(false);
-        }
-
         public void Print(bool isCopie)
         {
             if (MessageBox.Show("¿Desea Imprimir factura? \n \n", "FoodShop", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
@@ -361,6 +335,9 @@ namespace FastFoodDemo
 
         private void tickStyle(bool isCopie)
         {
+            var id = GenericLists.SelectedItems != null && GenericLists.SelectedItems.Any()
+                           ? GenericLists.SelectedItems.FirstOrDefault().IdSale.ToString() : 0.ToString();
+
             CreateTicket ticket = new CreateTicket();
             //cabecera del ticket.
             if (isCopie)
@@ -370,30 +347,31 @@ namespace FastFoodDemo
 
             //System.Drawing.Image img = System.Drawing.Image.FromFile("LogoCepeda.png");
             //ticket.HeaderImage = img;
-            ticket.TextoCentro(Program.BusinessName);//Nombre Empresa
+            ticket.TextoCentro(lblLogo.Text);//Nombre Empresa
             ticket.TextoIzquierda("");
-            ticket.TextoIzquierda(Program.BusinessAddress);//Direccion Empresa
-            ticket.TextoIzquierda("Tel: " + Program.BusinessPhone1 + "/" + Program.BusinessPhone2);//Telefonos Empresa
-            ticket.TextoIzquierda("RNC: " + Program.BusinessRnc);
-            if (Program.HasNCF)
+            ticket.TextoIzquierda(lblDir.Text);//Direccion Empresa
+            ticket.TextoIzquierda("Tel: " + lblTel1.Text + (!string.IsNullOrWhiteSpace(lblTel2.Text) ?  "/" + lblTel2.Text : string.Empty));//Telefonos Empresa
+            ticket.TextoIzquierda("RNC: " + lblRNC.Text);
+            if (chkComprobante.Checked)
             {
-                ticket.TextoIzquierda("Tipo de Comprobante: " + Program.TypeNCF);
-                ticket.TextoIzquierda("Numero de Comprobante: " + Program.NCF);
+                ticket.TextoIzquierda("Tipo de Comprobante: " + combo_tipo_NCF.Text);
+                ticket.TextoIzquierda("Numero de Comprobante: " + txtNCF.Text);
             }
 
-            if (!string.IsNullOrWhiteSpace(Program.Delivery))
+            if (!string.IsNullOrWhiteSpace(txtDelivery.Text))
             {
-                ticket.TextoIzquierda("Direccion: " + Program.SaleAddress);
-                ticket.TextoIzquierda("Delivery: " + Program.Delivery);
-                ticket.TextoIzquierda("Monto por Delivery: " + Program.DeliveryAmount);
+                ticket.TextoIzquierda("Direccion: " + txtDireccion.Text);
+                ticket.TextoIzquierda("Delivery: " + txtDelivery.Text);
+                ticket.TextoIzquierda("Monto por Delivery: " + txtDAmount.Text);
             }
 
-            ticket.TextoExtremos("CAJA #1", "ID VENTA: " + Program.SaleId);
+            ticket.TextoExtremos("CAJA #1", "ID VENTA: " + id);
             ticket.lineasGuio();
             //SUB CABECERA.
             //ticket.TextoIzquierda("Atendido Por: " + txtUsu.Text);
-            ticket.TextoIzquierda("Cliente: " + Program.ClientName);
-            ticket.TextoIzquierda("Fecha: " + Program.DateIn);
+            ticket.TextoIzquierda("Cliente: " + txtClientName.Text);
+            ticket.TextoIzquierda("RNC / Cedula Cliente: " + txtRncCli.Text);
+            ticket.TextoIzquierda("Fecha: " + dateTimePicker1.Value.ToShortDateString().Replace("/", "-"));
 
             //ARTICULOS A VENDER.
             ticket.EncabezadoVenta();// NOMBRE DEL ARTICULO, CANT, PRECIO, IMPORTE
@@ -408,9 +386,9 @@ namespace FastFoodDemo
             ticket.TextoIzquierda(" ");
 
             //resumen de la venta
-            ticket.AgregarTotales("SUB-TOTAL    : ", decimal.Parse(Program.SubTotal));
-            ticket.AgregarTotales("ITBIS     : ", decimal.Parse(Program.IgvTotal));
-            ticket.AgregarTotales("TOTAL A PAGAR    : ", decimal.Parse(Program.Total));
+            ticket.AgregarTotales("SUB-TOTAL    : ", decimal.Parse(lblSubTotalAmount.Text));
+            ticket.AgregarTotales("ITBIS     : ", decimal.Parse(lblIgvAmount.Text));
+            ticket.AgregarTotales("TOTAL A PAGAR    : ", decimal.Parse(lblTotalAmount.Text));
 
             ticket.TextoIzquierda(" ");
             ticket.TextoCentro("__________________________________");
@@ -440,6 +418,21 @@ namespace FastFoodDemo
                 MessageBox.Show(message);
 
             txtNCF.Text = next;
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if(!checkBox1.Checked)
+            {
+                txtClientName.Text = string.Empty;
+                txtRncCli.Text = string.Empty;
+            }
+            else
+            {
+                Program.CallTo = nameof(SalesForm);
+                var clientlist = new ClientsForm();
+                clientlist.Show();
+            }
         }
     }
 }

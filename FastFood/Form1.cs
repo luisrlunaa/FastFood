@@ -37,6 +37,7 @@ namespace FastFoodDemo
             mainpanel.Visible = false;
             SidePanel.Height = button1.Height;
             SidePanel.Top = button1.Top;
+
             loadform(new Form1());
         }
 
@@ -47,6 +48,7 @@ namespace FastFoodDemo
             SidePanel.Top = button2.Top;
             GenericLists.startIndexProduct = 0;
             GenericLists.endIndexProduct = 0;
+
             loadform(new FoodListForm());
         }
 
@@ -57,31 +59,33 @@ namespace FastFoodDemo
             SidePanel.Top = button3.Top;
             GenericLists.startIndexProduct = 0;
             GenericLists.endIndexProduct = 0;
+
             loadform(new DrinkListForm());
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            SalesForm sales = new SalesForm();
-            sales.lblSales.Text = "Delivery";
-            sales.lblDir.Text = lblDir.Text;
-            sales.lblLogo.Text = lblLogo.Text;
-            sales.lblTel1.Text = lblTel1.Text;
-            sales.lblTel2.Text = lblTel2.Text;
-            sales.lblRNC.Text = lblRNC.Text;
-            sales.lblSales.ForeColor = Color.Black;
-            sales.panelIdentify.BackColor = Color.CornflowerBlue;
-            sales.lblDireccion.Visible = true;
-            sales.txtDireccion.Visible = true;
-            sales.lblDelivery.Visible = true;
-            sales.txtDelivery.Visible = true;
-            sales.lblDAmount.Visible = true;
-            sales.txtDAmount.Visible = true;
+            SalesForm.Instance = new SalesForm();
+            SalesForm.Instance.lblSales.Text = "Delivery";
+            SalesForm.Instance.lblDir.Text = lblDir.Text;
+            SalesForm.Instance.lblLogo.Text = lblLogo.Text;
+            SalesForm.Instance.lblTel1.Text = lblTel1.Text;
+            SalesForm.Instance.lblTel2.Text = lblTel2.Text;
+            SalesForm.Instance.lblRNC.Text = lblRNC.Text;
+            SalesForm.Instance.lblSales.ForeColor = Color.Black;
+            SalesForm.Instance.panelIdentify.BackColor = Color.CornflowerBlue;
+            SalesForm.Instance.lblDireccion.Visible = true;
+            SalesForm.Instance.txtDireccion.Visible = true;
+            SalesForm.Instance.lblDelivery.Visible = true;
+            SalesForm.Instance.txtDelivery.Visible = true;
+            SalesForm.Instance.lblDAmount.Visible = true;
+            SalesForm.Instance.txtDAmount.Visible = true;
+
             mainpanel.Visible = true;
             SidePanel.Height = button4.Height;
             SidePanel.Top = button4.Top;
 
-            loadform(sales);
+            loadform(SalesForm.Instance);
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -89,43 +93,53 @@ namespace FastFoodDemo
             ManagerProductForm form = new ManagerProductForm();
             SidePanel.Height = button5.Height;
             SidePanel.Top = button5.Top;
+
             form.Show();
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-            SalesForm sales = new SalesForm();
-            sales.lblSales.Text = "Ventas";
-            sales.lblDir.Text = lblDir.Text;
-            sales.lblLogo.Text = lblLogo.Text;
-            sales.lblTel1.Text = lblTel1.Text;
-            sales.lblTel2.Text = lblTel2.Text;
-            sales.lblRNC.Text = lblRNC.Text;
-            sales.lblSales.ForeColor = Color.Black;
-            sales.panelIdentify.BackColor = Color.ForestGreen;
+            SalesForm.Instance = new SalesForm();
+            SalesForm.Instance.lblSales.Text = "Ventas";
+            SalesForm.Instance.lblDir.Text = lblDir.Text;
+            SalesForm.Instance.lblLogo.Text = lblLogo.Text;
+            SalesForm.Instance.lblTel1.Text = lblTel1.Text;
+            SalesForm.Instance.lblTel2.Text = lblTel2.Text;
+            SalesForm.Instance.lblRNC.Text = lblRNC.Text;
+            SalesForm.Instance.lblSales.ForeColor = Color.Black;
+            SalesForm.Instance.panelIdentify.BackColor = Color.ForestGreen;
+
             mainpanel.Visible = true;
             SidePanel.Height = button6.Height;
             SidePanel.Top = button6.Top;
 
-            loadform(sales);
+            loadform(SalesForm.Instance);
         }
 
         private void button13_Click(object sender, EventArgs e)
         {
+            BoxSquareForm.Instance = new BoxSquareForm();
+            BoxSquareForm.Instance.lblDir.Text = lblDir.Text;
+            BoxSquareForm.Instance.lblLogo.Text = lblLogo.Text;
+
             mainpanel.Visible = true;
             SidePanel.Height = button6.Height;
             SidePanel.Top = button6.Top;
 
-            loadform(new BoxSquareForm());
+            loadform(BoxSquareForm.Instance);
         }
 
         private void btnListSales_Click(object sender, EventArgs e)
         {
+            SalesListForm.Instance = new SalesListForm();
+            SalesListForm.Instance.lblDir.Text = lblDir.Text;
+            SalesListForm.Instance.lblLogo.Text = lblLogo.Text;
+
             mainpanel.Visible = true;
             SidePanel.Height = btnListSales.Height;
             SidePanel.Top = btnListSales.Top;
 
-            loadform(new SalesListForm());
+            loadform(SalesListForm.Instance);
         }
 
         private void button12_Click(object sender, EventArgs e)
@@ -139,6 +153,7 @@ namespace FastFoodDemo
             mainpanel.Visible = true;
             SidePanel.Height = button7.Height;
             SidePanel.Top = button7.Top;
+
             loadform(new ClientsForm());
         }
 

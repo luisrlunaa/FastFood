@@ -111,6 +111,17 @@ namespace FastFoodDemo
 
         private void dgClients_DoubleClick(object sender, EventArgs e)
         {
+            if (!string.IsNullOrWhiteSpace(Program.CallTo) && Program.CallTo == nameof(SalesForm))
+            {
+                SalesForm.Instance.txtClientName.Text = dgClients.CurrentRow.Cells[0].Value.ToString(); ;
+                SalesForm.Instance.txtRncCli.Text = dgClients.CurrentRow.Cells[1].Value.ToString() + " " + dgClients.CurrentRow.Cells[2].Value.ToString(); ;
+
+                Program.CallTo = string.Empty;
+
+                Close();
+                return;
+            }
+
             lblNoDoc.Text = dgClients.CurrentRow.Cells[0].Value.ToString();
             if(!string.IsNullOrWhiteSpace(lblNoDoc.Text))
             {
@@ -160,6 +171,14 @@ namespace FastFoodDemo
         private void label8_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            lblNoDoc.Text = string.Empty;
+            txtFirtName.Text = string.Empty;
+            txtLastName.Text = string.Empty;
+            txtDoc.Text = string.Empty;
         }
     }
 }

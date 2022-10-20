@@ -13,9 +13,11 @@ namespace FastFoodDemo
     {
         BoxSquareRepository boxSquareRepository = new BoxSquareRepository();
         SalesRepository salesRepository = new SalesRepository();
+        public static BoxSquareForm Instance;
         public BoxSquareForm()
         {
             InitializeComponent();
+            Instance = this;
         }
 
         private void agregargasto_Click(object sender, EventArgs e)
@@ -282,8 +284,8 @@ namespace FastFoodDemo
                     FileShare.ReadWrite);
                     PdfWriter.GetInstance(doc, file);
                     doc.Open();
-                    string remito = "";
-                    string ubicado = "";
+                    string remito = lblLogo.Text;
+                    string ubicado = lblDir.Text;
                     string envio = "Fecha : " + +DateTime.Today.Day + "/" + DateTime.Today.Month + "/" + DateTime.Today.Year;
 
                     Chunk chunk = new Chunk(remito, FontFactory.GetFont("ARIAL", 16, iTextSharp.text.Font.BOLD, color: BaseColor.BLUE));

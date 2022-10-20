@@ -15,9 +15,11 @@ namespace FastFoodDemo
     {
         SalesRepository salesRepository = new SalesRepository();
         public static List<IdsDTO> Lisids { get; set; }
+        public static SalesListForm Instance;
         public SalesListForm()
         {
             InitializeComponent();
+            Instance = this; 
         }
 
         private void SalesForm_Load(object sender, EventArgs e)
@@ -148,8 +150,8 @@ namespace FastFoodDemo
                     FileShare.ReadWrite);
                     PdfWriter.GetInstance(doc, file);
                     doc.Open();
-                    string remito = Program.BusinessName;
-                    string ubicado = Program.BusinessAddress;
+                    string remito = lblLogo.Text;
+                    string ubicado = lblDir.Text;
                     string envio = "Fecha : " + DateTime.Today.Day + "/" + DateTime.Today.Month + "/" + DateTime.Today.Year;
 
                     Chunk chunk = new Chunk(remito, FontFactory.GetFont("ARIAL", 16, iTextSharp.text.Font.BOLD, color: BaseColor.BLUE));

@@ -57,6 +57,8 @@
             this.lblSMDelibery = new System.Windows.Forms.Label();
             this.lblNMDelibery = new System.Windows.Forms.Label();
             this.btnPrint = new System.Windows.Forms.Button();
+            this.lblDir = new System.Windows.Forms.Label();
+            this.lblLogo = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgSalesSelected)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -361,12 +363,41 @@
             this.btnPrint.UseVisualStyleBackColor = false;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
+            // lblDir
+            // 
+            this.lblDir.AutoSize = true;
+            this.lblDir.BackColor = System.Drawing.Color.Transparent;
+            this.lblDir.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDir.Location = new System.Drawing.Point(706, 19);
+            this.lblDir.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblDir.Name = "lblDir";
+            this.lblDir.Size = new System.Drawing.Size(29, 20);
+            this.lblDir.TabIndex = 150;
+            this.lblDir.Text = "dir";
+            this.lblDir.Visible = false;
+            // 
+            // lblLogo
+            // 
+            this.lblLogo.AutoSize = true;
+            this.lblLogo.BackColor = System.Drawing.Color.Transparent;
+            this.lblLogo.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLogo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(8)))), ((int)(((byte)(55)))));
+            this.lblLogo.Location = new System.Drawing.Point(705, 39);
+            this.lblLogo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblLogo.Name = "lblLogo";
+            this.lblLogo.Size = new System.Drawing.Size(65, 29);
+            this.lblLogo.TabIndex = 149;
+            this.lblLogo.Text = "logo";
+            this.lblLogo.Visible = false;
+            // 
             // SalesListForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1052, 691);
+            this.Controls.Add(this.lblDir);
+            this.Controls.Add(this.lblLogo);
             this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.lblMDelibery);
             this.Controls.Add(this.lblSMDelibery);
@@ -427,5 +458,7 @@
         private System.Windows.Forms.Label lblSMDelibery;
         private System.Windows.Forms.Label lblNMDelibery;
         public System.Windows.Forms.Button btnPrint;
+        public System.Windows.Forms.Label lblDir;
+        public System.Windows.Forms.Label lblLogo;
     }
 }

@@ -68,6 +68,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.agregargasto = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
+            this.lblDir = new System.Windows.Forms.Label();
+            this.lblLogo = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblmontoinicial
@@ -524,12 +526,41 @@
             this.label8.Text = "X";
             this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
+            // lblDir
+            // 
+            this.lblDir.AutoSize = true;
+            this.lblDir.BackColor = System.Drawing.Color.Transparent;
+            this.lblDir.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDir.Location = new System.Drawing.Point(11, 9);
+            this.lblDir.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblDir.Name = "lblDir";
+            this.lblDir.Size = new System.Drawing.Size(29, 20);
+            this.lblDir.TabIndex = 209;
+            this.lblDir.Text = "dir";
+            this.lblDir.Visible = false;
+            // 
+            // lblLogo
+            // 
+            this.lblLogo.AutoSize = true;
+            this.lblLogo.BackColor = System.Drawing.Color.Transparent;
+            this.lblLogo.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLogo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(8)))), ((int)(((byte)(55)))));
+            this.lblLogo.Location = new System.Drawing.Point(10, 29);
+            this.lblLogo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblLogo.Name = "lblLogo";
+            this.lblLogo.Size = new System.Drawing.Size(65, 29);
+            this.lblLogo.TabIndex = 208;
+            this.lblLogo.Text = "logo";
+            this.lblLogo.Visible = false;
+            // 
             // BoxSquareForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1052, 691);
+            this.Controls.Add(this.lblDir);
+            this.Controls.Add(this.lblLogo);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.agregargasto);
             this.Controls.Add(this.lblmontoinicial);
@@ -622,5 +653,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button agregargasto;
         private System.Windows.Forms.Label label8;
+        public System.Windows.Forms.Label lblDir;
+        public System.Windows.Forms.Label lblLogo;
     }
 }

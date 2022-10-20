@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblSales = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -80,6 +80,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.txtRncCli = new System.Windows.Forms.TextBox();
             this.lblRncCli = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.panelIdentify.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgProductSelected)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -139,14 +140,14 @@
             // dgProductSelected
             // 
             this.dgProductSelected.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.DeepSkyBlue;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgProductSelected.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.DeepSkyBlue;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgProductSelected.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dgProductSelected.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgProductSelected.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IdVenta,
@@ -158,22 +159,22 @@
             this.SubTotal});
             this.dgProductSelected.Location = new System.Drawing.Point(371, 282);
             this.dgProductSelected.Name = "dgProductSelected";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.DeepSkyBlue;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgProductSelected.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.DeepSkyBlue;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgProductSelected.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dgProductSelected.Size = new System.Drawing.Size(659, 303);
             this.dgProductSelected.TabIndex = 106;
             this.dgProductSelected.Click += new System.EventHandler(this.dgProductSelected_Click);
             // 
             // IdVenta
             // 
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.IdVenta.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.IdVenta.DefaultCellStyle = dataGridViewCellStyle8;
             this.IdVenta.HeaderText = "ID";
             this.IdVenta.Name = "IdVenta";
             this.IdVenta.ReadOnly = true;
@@ -560,7 +561,7 @@
             this.txtDelivery.BackColor = System.Drawing.Color.White;
             this.txtDelivery.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDelivery.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.txtDelivery.Location = new System.Drawing.Point(126, 370);
+            this.txtDelivery.Location = new System.Drawing.Point(127, 425);
             this.txtDelivery.Name = "txtDelivery";
             this.txtDelivery.Size = new System.Drawing.Size(232, 26);
             this.txtDelivery.TabIndex = 136;
@@ -572,7 +573,7 @@
             this.lblDelivery.BackColor = System.Drawing.Color.Transparent;
             this.lblDelivery.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDelivery.ForeColor = System.Drawing.Color.Black;
-            this.lblDelivery.Location = new System.Drawing.Point(11, 373);
+            this.lblDelivery.Location = new System.Drawing.Point(12, 428);
             this.lblDelivery.Name = "lblDelivery";
             this.lblDelivery.Size = new System.Drawing.Size(72, 20);
             this.lblDelivery.TabIndex = 135;
@@ -584,7 +585,7 @@
             this.txtDAmount.BackColor = System.Drawing.Color.White;
             this.txtDAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDAmount.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.txtDAmount.Location = new System.Drawing.Point(126, 414);
+            this.txtDAmount.Location = new System.Drawing.Point(127, 469);
             this.txtDAmount.Name = "txtDAmount";
             this.txtDAmount.Size = new System.Drawing.Size(158, 26);
             this.txtDAmount.TabIndex = 138;
@@ -597,7 +598,7 @@
             this.lblDAmount.BackColor = System.Drawing.Color.Transparent;
             this.lblDAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDAmount.ForeColor = System.Drawing.Color.Black;
-            this.lblDAmount.Location = new System.Drawing.Point(11, 417);
+            this.lblDAmount.Location = new System.Drawing.Point(12, 472);
             this.lblDAmount.Name = "lblDAmount";
             this.lblDAmount.Size = new System.Drawing.Size(82, 20);
             this.lblDAmount.TabIndex = 137;
@@ -650,12 +651,25 @@
             this.lblRncCli.TabIndex = 141;
             this.lblRncCli.Text = "RNC Cliente";
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox1.Location = new System.Drawing.Point(12, 374);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(145, 24);
+            this.checkBox1.TabIndex = 143;
+            this.checkBox1.Text = "Buscar Cliente";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // SalesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1052, 691);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.txtRncCli);
             this.Controls.Add(this.lblRncCli);
             this.Controls.Add(this.label6);
@@ -759,5 +773,6 @@
         private System.Windows.Forms.Label label6;
         public System.Windows.Forms.TextBox txtRncCli;
         public System.Windows.Forms.Label lblRncCli;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
