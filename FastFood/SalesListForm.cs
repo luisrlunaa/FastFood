@@ -19,12 +19,11 @@ namespace FastFoodDemo
         public SalesListForm()
         {
             InitializeComponent();
-            Instance = this; 
+            Instance = this;
         }
 
         private void SalesForm_Load(object sender, EventArgs e)
         {
-
             Lisids = new List<IdsDTO>();
             var (lst, message) = salesRepository.GetSaleDetailsByDate(dtpFromDate.Value, dtpToDate.Value);
             LlenarGri(lst);
@@ -110,7 +109,6 @@ namespace FastFoodDemo
             }
             else
             {
-
                 var (lst, message) = salesRepository.GetSaleDetailsByDate(dtpFromDate.Value, dtpToDate.Value);
                 lblNMDelibery.Visible = false;
                 lblSMDelibery.Visible = false;

@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblSales = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -140,14 +140,14 @@
             // dgProductSelected
             // 
             this.dgProductSelected.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.DeepSkyBlue;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgProductSelected.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.DeepSkyBlue;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgProductSelected.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgProductSelected.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgProductSelected.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IdVenta,
@@ -159,22 +159,22 @@
             this.SubTotal});
             this.dgProductSelected.Location = new System.Drawing.Point(371, 282);
             this.dgProductSelected.Name = "dgProductSelected";
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.DeepSkyBlue;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgProductSelected.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.DeepSkyBlue;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgProductSelected.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgProductSelected.Size = new System.Drawing.Size(659, 303);
             this.dgProductSelected.TabIndex = 106;
             this.dgProductSelected.Click += new System.EventHandler(this.dgProductSelected_Click);
             // 
             // IdVenta
             // 
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.IdVenta.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.IdVenta.DefaultCellStyle = dataGridViewCellStyle2;
             this.IdVenta.HeaderText = "ID";
             this.IdVenta.Name = "IdVenta";
             this.IdVenta.ReadOnly = true;
@@ -224,7 +224,7 @@
             this.btnVender.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVender.ForeColor = System.Drawing.Color.Black;
             this.btnVender.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnVender.Location = new System.Drawing.Point(871, 593);
+            this.btnVender.Location = new System.Drawing.Point(872, 592);
             this.btnVender.Name = "btnVender";
             this.btnVender.Size = new System.Drawing.Size(159, 72);
             this.btnVender.TabIndex = 108;
@@ -723,32 +723,18 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panel1;
         public System.Windows.Forms.Label lblSales;
-        private System.Windows.Forms.Panel panel2;
         public System.Windows.Forms.Panel panelIdentify;
         private System.Windows.Forms.DataGridView dgProductSelected;
         public System.Windows.Forms.Button btnVender;
         public System.Windows.Forms.Button btnEnviar;
-        private System.Windows.Forms.Label lblsubt;
-        private System.Windows.Forms.Label txttotal;
-        private System.Windows.Forms.Label lblSubTotalAmount;
-        private System.Windows.Forms.Label lblTotalAmount;
         public System.Windows.Forms.Label lblTel2;
         public System.Windows.Forms.Label lblTel1;
-        private System.Windows.Forms.Label label14;
         public System.Windows.Forms.Label lblDir;
         public System.Windows.Forms.Label lblLogo;
-        private System.Windows.Forms.CheckBox chkComprobante;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label13;
         public System.Windows.Forms.TextBox txtNCF;
         private System.Windows.Forms.ComboBox combo_tipo_NCF;
-        private System.Windows.Forms.GroupBox groupBox2;
         public System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label8;
         public System.Windows.Forms.TextBox txtDireccion;
         public System.Windows.Forms.Label lblDireccion;
@@ -760,19 +746,32 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn PriceProd;
         private System.Windows.Forms.DataGridViewTextBoxColumn IGV;
         private System.Windows.Forms.DataGridViewTextBoxColumn SubTotal;
-        private System.Windows.Forms.Label label4;
         public System.Windows.Forms.TextBox txtClientName;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label lblIgvAmount;
-        private System.Windows.Forms.Label label7;
         public System.Windows.Forms.TextBox txtDelivery;
         public System.Windows.Forms.Label lblDelivery;
         public System.Windows.Forms.TextBox txtDAmount;
         public System.Windows.Forms.Label lblDAmount;
         public System.Windows.Forms.Label lblRNC;
-        private System.Windows.Forms.Label label6;
         public System.Windows.Forms.TextBox txtRncCli;
         public System.Windows.Forms.Label lblRncCli;
-        private System.Windows.Forms.CheckBox checkBox1;
+        public System.Windows.Forms.Panel panel1;
+        public System.Windows.Forms.Panel panel2;
+        public System.Windows.Forms.Label lblsubt;
+        public System.Windows.Forms.Label txttotal;
+        public System.Windows.Forms.Label lblSubTotalAmount;
+        public System.Windows.Forms.Label lblTotalAmount;
+        public System.Windows.Forms.Label label14;
+        public System.Windows.Forms.CheckBox chkComprobante;
+        public System.Windows.Forms.Label label2;
+        public System.Windows.Forms.Label label13;
+        public System.Windows.Forms.GroupBox groupBox2;
+        public System.Windows.Forms.Label label1;
+        public System.Windows.Forms.Label label3;
+        public System.Windows.Forms.Label label4;
+        public System.Windows.Forms.Label label5;
+        public System.Windows.Forms.Label lblIgvAmount;
+        public System.Windows.Forms.Label label7;
+        public System.Windows.Forms.Label label6;
+        public System.Windows.Forms.CheckBox checkBox1;
     }
 }

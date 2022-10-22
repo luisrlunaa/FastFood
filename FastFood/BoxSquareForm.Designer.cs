@@ -66,7 +66,7 @@
             this.label11 = new System.Windows.Forms.Label();
             this.btnimprimir = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.agregargasto = new System.Windows.Forms.Button();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.lblDir = new System.Windows.Forms.Label();
             this.lblLogo = new System.Windows.Forms.Label();
@@ -492,25 +492,25 @@
             this.label1.TabIndex = 166;
             this.label1.Text = "Fecha del Cuadre :";
             // 
-            // agregargasto
+            // btnSearch
             // 
-            this.agregargasto.BackColor = System.Drawing.Color.DarkGray;
-            this.agregargasto.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.agregargasto.FlatAppearance.BorderSize = 0;
-            this.agregargasto.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.agregargasto.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
-            this.agregargasto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.agregargasto.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.agregargasto.ForeColor = System.Drawing.Color.Black;
-            this.agregargasto.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.agregargasto.Location = new System.Drawing.Point(718, 36);
-            this.agregargasto.Name = "agregargasto";
-            this.agregargasto.Size = new System.Drawing.Size(120, 60);
-            this.agregargasto.TabIndex = 206;
-            this.agregargasto.Text = "Buscar";
-            this.agregargasto.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.agregargasto.UseVisualStyleBackColor = false;
-            this.agregargasto.Click += new System.EventHandler(this.agregargasto_Click);
+            this.btnSearch.BackColor = System.Drawing.Color.DarkGray;
+            this.btnSearch.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnSearch.FlatAppearance.BorderSize = 0;
+            this.btnSearch.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.btnSearch.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
+            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearch.ForeColor = System.Drawing.Color.Black;
+            this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSearch.Location = new System.Drawing.Point(718, 36);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(120, 60);
+            this.btnSearch.TabIndex = 206;
+            this.btnSearch.Text = "Buscar";
+            this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSearch.UseVisualStyleBackColor = false;
+            this.btnSearch.Click += new System.EventHandler(this.agregargasto_Click);
             // 
             // label8
             // 
@@ -562,7 +562,7 @@
             this.Controls.Add(this.lblDir);
             this.Controls.Add(this.lblLogo);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.agregargasto);
+            this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.lblmontoinicial);
             this.Controls.Add(this.label21);
             this.Controls.Add(this.lblmensaje);
@@ -619,9 +619,7 @@
         private System.Windows.Forms.Label lbldeudas;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label lblmontocuadre;
-        private System.Windows.Forms.Button btnsuma;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Button btnregistrar;
         private System.Windows.Forms.Label lblmontoingreso;
         private System.Windows.Forms.Label label19;
         public System.Windows.Forms.DateTimePicker dpkfechacuadre;
@@ -649,11 +647,13 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         public System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Button btnimprimir;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button agregargasto;
         private System.Windows.Forms.Label label8;
         public System.Windows.Forms.Label lblDir;
         public System.Windows.Forms.Label lblLogo;
+        public System.Windows.Forms.Button btnsuma;
+        public System.Windows.Forms.Button btnregistrar;
+        public System.Windows.Forms.Button btnSearch;
+        public System.Windows.Forms.Button btnimprimir;
     }
 }

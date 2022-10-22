@@ -31,6 +31,7 @@
             this.SideSubPanel = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.mainSubpanel = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
@@ -50,7 +51,7 @@
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.Black;
             this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(11, 56);
+            this.button2.Location = new System.Drawing.Point(10, 56);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(149, 54);
             this.button2.TabIndex = 128;
@@ -78,13 +79,31 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.Lavender;
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.ForeColor = System.Drawing.Color.Black;
+            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button3.Location = new System.Drawing.Point(10, 113);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(149, 54);
+            this.button3.TabIndex = 131;
+            this.button3.Text = "Estilos";
+            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // mainSubpanel
             // 
             this.mainSubpanel.BackColor = System.Drawing.Color.White;
-            this.mainSubpanel.Location = new System.Drawing.Point(158, 0);
+            this.mainSubpanel.Location = new System.Drawing.Point(156, 0);
             this.mainSubpanel.Name = "mainSubpanel";
             this.mainSubpanel.Size = new System.Drawing.Size(896, 690);
-            this.mainSubpanel.TabIndex = 130;
+            this.mainSubpanel.TabIndex = 132;
             this.mainSubpanel.Visible = false;
             // 
             // ConfigurationsForm
@@ -94,6 +113,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1052, 691);
             this.Controls.Add(this.mainSubpanel);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.SideSubPanel);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -110,6 +130,7 @@
         private System.Windows.Forms.Panel SideSubPanel;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button3;
         public System.Windows.Forms.Panel mainSubpanel;
     }
 }

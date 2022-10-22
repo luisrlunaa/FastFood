@@ -10,6 +10,8 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
     public class SalesRepository
     {
         DataManager Data = new DataManager();
+
+        #region Sales
         public (List<Sales>, string) GetSales()
         {
             var SalesList = new List<Sales>();
@@ -235,6 +237,97 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             }
         }
 
+        public (bool, string) AddSale(Sales sales)
+        {
+            try
+            {
+                if (sales == null || sales.DateIn == DateTime.MinValue)
+                    return (false, "Error Input Invalido, Metodo SalesRepository.AddSale");
+
+                var parameters = new List<string> { sales.IdEmployee.ToString(), "'"+sales.ClientName+"'", "'"+sales.ClientRnc+"'", "'"+sales.Address+"'", "'"+sales.SalesCheckType+"'", "'"+sales.DocumentType+"'",
+                "'"+sales.NroComprobante+"'", string.IsNullOrWhiteSpace(sales.DeliveryName) ? "'"+ string.Empty +"'" : "'" +sales.DeliveryName+"'", sales.DeliveryAmount.ToString(),
+                sales.Total.ToString(), sales.Remaining.ToString(), "'"+sales.DateIn.Value.ToShortDateString()+"'"};
+
+                var classKeys = Data.GetObjectKeys(new Sales()).Where(x => x != "IdSale").ToList();
+                var sql = Data.InsertExpression("Sales", classKeys, parameters);
+                var (response, message) = Data.CrudAction(sql, "SalesRepository.AddSale");
+                if (!response)
+                    return (response, message);
+
+                return (response, "Proceso Completado");
+            }
+            catch (Exception ex)
+            {
+                return (false, "Error al Cargar Data, Metodo SalesRepository.AddSale \n" + ex.Message.ToString());
+            }
+        }
+
+        public (bool, string) UpdateSales(Sales sales)
+        {
+            try
+            {
+                if (sales == null)
+                    return (false, "Error Input Invalido, Metodo SalesRepository.UpdateSales");
+
+                var parameters = new List<string> { sales.IdEmployee.ToString(), "'"+sales.ClientName+"'", "'"+sales.Address+"'", "'"+sales.SalesCheckType+"'", "'"+sales.DocumentType+"'",
+                "'"+sales.NroComprobante+"'", string.IsNullOrWhiteSpace(sales.DeliveryName) ? "'"+ string.Empty +"'" : "'" + sales.DeliveryName+"'", sales.DeliveryAmount.ToString(),
+                sales.Total.ToString(), sales.Remaining.ToString(), "'"+sales.DateIn.Value.ToShortDateString()+"'"};
+
+                var classKeys = Data.GetObjectKeys(new Sales()).Where(x => x != "IdSale").ToList();
+                var sql = Data.UpdateExpression("Sales", classKeys, parameters, "WHERE IdSale = " + sales.IdSale);
+                var (response, message) = Data.CrudAction(sql, "SalesRepository.UpdateSales");
+                if (!response)
+                    return (response, message);
+
+                return (true, "Proceso Completado");
+            }
+            catch (Exception ex)
+            {
+                return (false, "Error al Cargar Data, Metodo SalesRepository.UpdateSales \n" + ex.Message.ToString());
+            }
+        }
+
+        public (bool, string) DeleteSales(Sales sales)
+        {
+            try
+            {
+                if (sales == null)
+                    return (false, "Error Input Invalido, Metodo SalesRepository.DeleteSales");
+
+                var sql = Data.DeleteExpression("Sales", "WHERE IdSale = " + sales.IdSale);
+                var (response, message) = Data.CrudAction(sql, "SalesRepository.DeleteSales");
+                if (!response)
+                    return (response, message);
+
+                return (response, "Proceso Completado");
+            }
+            catch (Exception ex)
+            {
+                return (false, "Error al Cargar Data, Metodo SalesRepository.DeleteSales \n" + ex.Message.ToString());
+            }
+        }
+
+        public (int, string) GetNextSalesId()
+        {
+            try
+            {
+                var classKeys = Data.GetObjectKeys(new Sales());
+                var sql = Data.SelectExpression("Sales", new List<string>() { "IdSale" }, Top: 1.ToString(), OrderBy: "IdSale DESC");
+                var (dr, message) = Data.GetOne(sql, "SalesRepository.GetNextSalesId");
+                if (dr is null)
+                    return (0, message);
+
+                int id = dr.GetInt32(dr.GetOrdinal("IdSale")) + 1;
+                return (id > 0 ? id : 1, "Proceso Completado");
+            }
+            catch (Exception ex)
+            {
+                return (0, "Error al Cargar Data, Metodo SalesRepository.GetNextSalesId \n" + ex.Message.ToString());
+            }
+        }
+        #endregion
+
+        #region SalesDetails
         public (List<SalesDetails>, string) GetSaleDetails()
         {
             var Sales = new List<SalesDetails>();
@@ -443,31 +536,6 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             }
         }
 
-        public (bool, string) AddSale(Sales sales)
-        {
-            try
-            {
-                if (sales == null || sales.DateIn == DateTime.MinValue)
-                    return (false, "Error Input Invalido, Metodo SalesRepository.AddSale");
-
-                var parameters = new List<string> { sales.IdEmployee.ToString(), "'"+sales.ClientName+"'", "'"+sales.ClientRnc+"'", "'"+sales.Address+"'", "'"+sales.SalesCheckType+"'", "'"+sales.DocumentType+"'",
-                "'"+sales.NroComprobante+"'", string.IsNullOrWhiteSpace(sales.DeliveryName) ? "'"+ string.Empty +"'" : "'" +sales.DeliveryName+"'", sales.DeliveryAmount.ToString(),
-                sales.Total.ToString(), sales.Remaining.ToString(), "'"+sales.DateIn.Value.ToShortDateString()+"'"};
-
-                var classKeys = Data.GetObjectKeys(new Sales()).Where(x => x != "IdSale").ToList();
-                var sql = Data.InsertExpression("Sales", classKeys, parameters);
-                var (response, message) = Data.CrudAction(sql, "SalesRepository.AddSale");
-                if (!response)
-                    return (response, message);
-
-                return (response, "Proceso Completado");
-            }
-            catch (Exception ex)
-            {
-                return (false, "Error al Cargar Data, Metodo SalesRepository.AddSale \n" + ex.Message.ToString());
-            }
-        }
-
         public (bool, string) AddSaleDetails(List<SalesDetails> sales)
         {
             try
@@ -495,69 +563,6 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                 return (false, "Error al Cargar Data, Metodo SalesRepository.AddSaleDetails \n" + ex.Message.ToString());
             }
         }
-
-        public (bool, string) UpdateSales(Sales sales)
-        {
-            try
-            {
-                if (sales == null)
-                    return (false, "Error Input Invalido, Metodo SalesRepository.UpdateSales");
-
-                var parameters = new List<string> { sales.IdEmployee.ToString(), "'"+sales.ClientName+"'", "'"+sales.Address+"'", "'"+sales.SalesCheckType+"'", "'"+sales.DocumentType+"'",
-                "'"+sales.NroComprobante+"'", string.IsNullOrWhiteSpace(sales.DeliveryName) ? "'"+ string.Empty +"'" : "'" + sales.DeliveryName+"'", sales.DeliveryAmount.ToString(),
-                sales.Total.ToString(), sales.Remaining.ToString(), "'"+sales.DateIn.Value.ToShortDateString()+"'"};
-
-                var classKeys = Data.GetObjectKeys(new Sales()).Where(x => x != "IdSale").ToList();
-                var sql = Data.UpdateExpression("Sales", classKeys, parameters, "WHERE IdSale = " + sales.IdSale);
-                var (response, message) = Data.CrudAction(sql, "SalesRepository.UpdateSales");
-                if (!response)
-                    return (response, message);
-
-                return (true, "Proceso Completado");
-            }
-            catch (Exception ex)
-            {
-                return (false, "Error al Cargar Data, Metodo SalesRepository.UpdateSales \n" + ex.Message.ToString());
-            }
-        }
-
-        public (bool, string) DeleteSales(Sales sales)
-        {
-            try
-            {
-                if (sales == null)
-                    return (false, "Error Input Invalido, Metodo SalesRepository.DeleteSales");
-
-                var sql = Data.DeleteExpression("Sales", "WHERE IdSale = " + sales.IdSale);
-                var (response, message) = Data.CrudAction(sql, "SalesRepository.DeleteSales");
-                if (!response)
-                    return (response, message);
-
-                return (response, "Proceso Completado");
-            }
-            catch (Exception ex)
-            {
-                return (false, "Error al Cargar Data, Metodo SalesRepository.DeleteSales \n" + ex.Message.ToString());
-            }
-        }
-
-        public (int, string) GetNextSalesId()
-        {
-            try
-            {
-                var classKeys = Data.GetObjectKeys(new Sales());
-                var sql = Data.SelectExpression("Sales", new List<string>() { "IdSale" }, Top: 1.ToString(), OrderBy: "IdSale DESC");
-                var (dr, message) = Data.GetOne(sql, "SalesRepository.GetNextSalesId");
-                if (dr is null)
-                    return (0, message);
-
-                int id = dr.GetInt32(dr.GetOrdinal("IdSale")) + 1;
-                return (id > 0 ? id : 1, "Proceso Completado");
-            }
-            catch (Exception ex)
-            {
-                return (0, "Error al Cargar Data, Metodo SalesRepository.GetNextSalesId \n" + ex.Message.ToString());
-            }
-        }
+        #endregion
     }
 }

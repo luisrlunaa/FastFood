@@ -17,12 +17,14 @@ namespace FastFoodDemo
     {
         SalesRepository salesRepository = new SalesRepository();
         ProductsRepository productsRepository = new ProductsRepository();
+        public static DrinkListForm Instance;
         private static List<Product> ProductsList { get; set; }
         private int ProductId { get; set; }
 
         public DrinkListForm()
         {
             InitializeComponent();
+            Instance = this;
         }
 
         private void DrinkListForm_Load(object sender, EventArgs e)
@@ -447,7 +449,7 @@ namespace FastFoodDemo
 
         public void RefreshList()
         {
-            ProductsList = new List<Product>(); 
+            ProductsList = new List<Product>();
             this.Controls.Clear();
             this.InitializeComponent();
             GetListItems(0);

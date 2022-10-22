@@ -221,6 +221,12 @@
     <Compile Include="ConfigurationsForm.Designer.cs">
       <DependentUpon>ConfigurationsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="StyleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StyleForm.Designer.cs">
+      <DependentUpon>StyleForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="RecoveryPassForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -244,6 +250,12 @@
     </Compile>
     <Compile Include="NCFForm.Designer.cs">
       <DependentUpon>NCFForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RenewLicense.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RenewLicense.Designer.cs">
+      <DependentUpon>RenewLicense.cs</DependentUpon>
     </Compile>
     <Compile Include="SalesListForm.cs">
       <SubType>Form</SubType>
@@ -295,6 +307,9 @@
     <EmbeddedResource Include="ConfigurationsForm.resx">
       <DependentUpon>ConfigurationsForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="StyleForm.resx">
+      <DependentUpon>StyleForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RecoveryPassForm.resx">
       <DependentUpon>RecoveryPassForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -306,6 +321,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NCFForm.resx">
       <DependentUpon>NCFForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RenewLicense.resx">
+      <DependentUpon>RenewLicense.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SalesListForm.resx">
       <DependentUpon>SalesListForm.cs</DependentUpon>

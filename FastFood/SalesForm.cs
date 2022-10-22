@@ -15,6 +15,7 @@ namespace FastFoodDemo
         ProductsRepository productsRepository = new ProductsRepository();
         SalesRepository salesRepository = new SalesRepository();
         NcfRepository ncfsRepository = new NcfRepository();
+        public string PrintName = string.Empty;
         public static SalesForm Instance;
         public static List<IdsDTO> Lisids { get; set; }
         public SalesForm()
@@ -350,7 +351,7 @@ namespace FastFoodDemo
             ticket.TextoCentro(lblLogo.Text);//Nombre Empresa
             ticket.TextoIzquierda("");
             ticket.TextoIzquierda(lblDir.Text);//Direccion Empresa
-            ticket.TextoIzquierda("Tel: " + lblTel1.Text + (!string.IsNullOrWhiteSpace(lblTel2.Text) ?  "/" + lblTel2.Text : string.Empty));//Telefonos Empresa
+            ticket.TextoIzquierda("Tel: " + lblTel1.Text + (!string.IsNullOrWhiteSpace(lblTel2.Text) ? "/" + lblTel2.Text : string.Empty));//Telefonos Empresa
             ticket.TextoIzquierda("RNC: " + lblRNC.Text);
             if (chkComprobante.Checked)
             {
@@ -408,7 +409,7 @@ namespace FastFoodDemo
             ticket.TextoIzquierda("");
             ticket.TextoIzquierda("");
             ticket.CortaTicket();//CORTAR TICKET
-            ticket.ImprimirTicket("POS-80 (copy 1)");//NOMBRE DE LA IMPRESORA
+            ticket.ImprimirTicket(PrintName);//NOMBRE DE LA IMPRESORA
         }
 
         private void combo_tipo_NCF_SelectedIndexChanged(object sender, EventArgs e)
@@ -422,7 +423,7 @@ namespace FastFoodDemo
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            if(!checkBox1.Checked)
+            if (!checkBox1.Checked)
             {
                 txtClientName.Text = string.Empty;
                 txtRncCli.Text = string.Empty;

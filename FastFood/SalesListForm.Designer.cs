@@ -442,7 +442,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn IGV;
         private System.Windows.Forms.DataGridViewTextBoxColumn SubTotal;
         private System.Windows.Forms.DataGridViewTextBoxColumn DateIn;
-        private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.GroupBox groupBox1;
         public System.Windows.Forms.DateTimePicker dtpToDate;
@@ -460,5 +459,6 @@
         public System.Windows.Forms.Button btnPrint;
         public System.Windows.Forms.Label lblDir;
         public System.Windows.Forms.Label lblLogo;
+        public System.Windows.Forms.Button btnSearch;
     }
 }

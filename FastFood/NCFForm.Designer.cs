@@ -65,7 +65,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(254, 8);
+            this.label7.Location = new System.Drawing.Point(250, 22);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(331, 31);
@@ -95,7 +95,7 @@
             this.DateTo});
             this.data_comprobante.EnableHeadersVisualStyles = false;
             this.data_comprobante.GridColor = System.Drawing.Color.Black;
-            this.data_comprobante.Location = new System.Drawing.Point(19, 384);
+            this.data_comprobante.Location = new System.Drawing.Point(19, 393);
             this.data_comprobante.Margin = new System.Windows.Forms.Padding(2);
             this.data_comprobante.Name = "data_comprobante";
             this.data_comprobante.ReadOnly = true;
@@ -166,6 +166,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.BackColor = System.Drawing.Color.Transparent;
             this.groupBox2.Controls.Add(this.txtid);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.dtpfinal);
@@ -177,7 +178,7 @@
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(525, 130);
+            this.groupBox2.Location = new System.Drawing.Point(525, 139);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
@@ -309,7 +310,7 @@
             this.lblcomp.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.lblcomp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblcomp.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.lblcomp.Location = new System.Drawing.Point(521, 100);
+            this.lblcomp.Location = new System.Drawing.Point(521, 109);
             this.lblcomp.Margin = new System.Windows.Forms.Padding(0);
             this.lblcomp.Name = "lblcomp";
             this.lblcomp.Size = new System.Drawing.Size(181, 20);
@@ -319,9 +320,10 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.BackColor = System.Drawing.Color.Transparent;
             this.groupBox1.Controls.Add(this.data_ncf);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(11, 63);
+            this.groupBox1.Location = new System.Drawing.Point(11, 72);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -419,7 +421,6 @@
         #endregion
         public System.Windows.Forms.Label label7;
         private System.Windows.Forms.DataGridView data_comprobante;
-        private System.Windows.Forms.Button btnAplicar;
         private System.Windows.Forms.GroupBox groupBox2;
         protected System.Windows.Forms.Label lblcomp;
         private System.Windows.Forms.TextBox txtid;
@@ -442,5 +443,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn id_ncf;
         private System.Windows.Forms.DataGridViewTextBoxColumn Description_ncf;
         private System.Windows.Forms.DataGridViewTextBoxColumn Active;
+        public System.Windows.Forms.Button btnAplicar;
     }
 }

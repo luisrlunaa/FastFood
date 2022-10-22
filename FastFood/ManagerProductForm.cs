@@ -10,9 +10,11 @@ namespace FastFoodDemo
     public partial class ManagerProductForm : Form
     {
         ProductsRepository productsRepository = new ProductsRepository();
+        public static ManagerProductForm Instance;
         public ManagerProductForm()
         {
             InitializeComponent();
+            Instance = this;
         }
 
         private void ManagerProductForm_Load(object sender, EventArgs e)

@@ -16,12 +16,14 @@ namespace FastFoodDemo
     {
         SalesRepository salesRepository = new SalesRepository();
         ProductsRepository productsRepository = new ProductsRepository();
+        public static FoodListForm Instance;
         private static List<Product> ProductsList { get; set; }
         private int ProductId { get; set; }
 
         public FoodListForm()
         {
             InitializeComponent();
+            Instance = this;
         }
 
         private void FoodListForm_Load(object sender, EventArgs e)
@@ -309,7 +311,7 @@ namespace FastFoodDemo
                 //Panel1
                 if (items.FindIndex(a => a.ProductId == item.ProductId) == 0)
                 {
-                    if(!string.IsNullOrWhiteSpace(item.ImageName))
+                    if (!string.IsNullOrWhiteSpace(item.ImageName))
                     {
                         var dirs = new DirectoryInfo(@"C:\\Img\\").GetFiles("*.*");
                         string ImagePath = dirs.OrderByDescending(f => f.LastWriteTime).FirstOrDefault(x => x.Name.Split('.')[0] == item.ImageName).FullName;

@@ -32,6 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.dtpDate = new System.Windows.Forms.DateTimePicker();
             this.combo_tipo = new System.Windows.Forms.ComboBox();
@@ -51,7 +52,6 @@
             this.Last_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblNoDoc = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgClients)).BeginInit();
             this.SuspendLayout();
@@ -85,6 +85,20 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(379, 547);
             this.panel3.TabIndex = 52;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.DimGray;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.button1.ForeColor = System.Drawing.Color.Black;
+            this.button1.Location = new System.Drawing.Point(19, 465);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(125, 61);
+            this.button1.TabIndex = 140;
+            this.button1.Text = "Limpiar";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label5
             // 
@@ -308,20 +322,6 @@
             this.label7.TabIndex = 141;
             this.label7.Text = "Manejador de Clientes";
             // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.DimGray;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.button1.ForeColor = System.Drawing.Color.Black;
-            this.button1.Location = new System.Drawing.Point(19, 465);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(125, 61);
-            this.button1.TabIndex = 140;
-            this.button1.Text = "Limpiar";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // ClientsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -349,8 +349,6 @@
 
         #endregion
         private System.Windows.Forms.TextBox txtSearch;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button btnAgregar3;
         private System.Windows.Forms.Label lblProductName3;
         private System.Windows.Forms.TextBox txtLastName;
         private System.Windows.Forms.Label label8;
@@ -369,6 +367,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Last_Name;
         private System.Windows.Forms.Label lblNoDoc;
         public System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button button1;
+        public System.Windows.Forms.Panel panel3;
+        public System.Windows.Forms.Button btnAgregar3;
+        public System.Windows.Forms.Button button1;
     }
 }

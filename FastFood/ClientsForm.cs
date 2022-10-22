@@ -1,7 +1,6 @@
 ﻿using FastFood.FastFood.Infrastructure.Constants;
 using FastFood.Infrastructure.DataAccess.Repositories;
 using FastFood.Models.Entities;
-using iTextSharp.text;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +11,12 @@ namespace FastFoodDemo
     public partial class ClientsForm : Form
     {
         ClientsRepository cliensRepository = new ClientsRepository();
+        public static ClientsForm Instance;
         public List<Client> lstClient;
         public ClientsForm()
         {
             InitializeComponent();
+            Instance = this;
         }
 
         private void DrinkListForm_Load(object sender, EventArgs e)
@@ -36,16 +37,16 @@ namespace FastFoodDemo
         private void btnAgregar3_Click(object sender, EventArgs e)
         {
             var client = new Client();
-            if(string.IsNullOrEmpty(txtDoc.Text))
+            if (string.IsNullOrEmpty(txtDoc.Text))
             {
                 if (MessageBox.Show("¿Desea autogenerar un numero identificacion para este cliente?", "FoodShop", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
                 {
-                    var id = Guid.NewGuid().ToString().Replace("-", "").Substring(0,12);
+                    var id = Guid.NewGuid().ToString().Replace("-", "").Substring(0, 12);
                     txtDoc.Text = id;
                 }
             }
 
-            if (lblNoDoc.Text=="id")
+            if (lblNoDoc.Text == "id")
             {
                 client.FirstName = txtFirtName.Text;
                 client.LastName = txtLastName.Text;
@@ -114,7 +115,7 @@ namespace FastFoodDemo
             if (!string.IsNullOrWhiteSpace(Program.CallTo) && Program.CallTo == nameof(SalesForm))
             {
                 SalesForm.Instance.txtClientName.Text = dgClients.CurrentRow.Cells[0].Value.ToString(); ;
-                SalesForm.Instance.txtRncCli.Text = dgClients.CurrentRow.Cells[1].Value.ToString() + " " + dgClients.CurrentRow.Cells[2].Value.ToString(); ;
+                SalesForm.Instance.txtRncCli.Text = dgClients.CurrentRow.Cells[1].Value.ToString() + " " + dgClients.CurrentRow.Cells[2].Value.ToString();
 
                 Program.CallTo = string.Empty;
 
@@ -123,7 +124,7 @@ namespace FastFoodDemo
             }
 
             lblNoDoc.Text = dgClients.CurrentRow.Cells[0].Value.ToString();
-            if(!string.IsNullOrWhiteSpace(lblNoDoc.Text))
+            if (!string.IsNullOrWhiteSpace(lblNoDoc.Text))
             {
                 var (client, message) = cliensRepository.GetClientByDocumentNoOrName(lblNoDoc.Text);
                 if (message.Contains("Error"))
@@ -142,9 +143,9 @@ namespace FastFoodDemo
 
         private void txtSearch_KeyUp(object sender, KeyEventArgs e)
         {
-            if(txtSearch.TextLength > 3)
+            if (txtSearch.TextLength > 3)
             {
-                var list = lstClient.Where(x=>x.FirstName.Contains(txtSearch.Text) || x.LastName.Contains(txtSearch.Text) || x.DocumentNo.Contains(txtSearch.Text)).ToList();
+                var list = lstClient.Where(x => x.FirstName.Contains(txtSearch.Text) || x.LastName.Contains(txtSearch.Text) || x.DocumentNo.Contains(txtSearch.Text)).ToList();
                 LlenarGri(list);
             }
             else

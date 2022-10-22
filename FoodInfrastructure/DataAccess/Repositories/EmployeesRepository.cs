@@ -224,6 +224,50 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
         #endregion
 
         #region Users
+        public (List<Users>, string) GetUsers()
+        {
+            var Userss = new List<Users>();
+            try
+            {
+                var classKeys = Data.GetObjectKeys(new Users());
+                var sql = Data.SelectExpression("Users", classKeys);
+                var (dtPC, message) = Data.GetList(sql, "EmployeesRepository.GetUsers");
+                if (dtPC is null || dtPC.Rows is null || dtPC.Rows.Count == 0)
+                    return (Userss, message);
+
+                foreach (DataRow reader in dtPC.Rows)
+                {
+                    var s = new Users();
+                    s.IdEmp = reader["IdEmp"] == DBNull.Value ? 0 : Convert.ToInt32(reader["IdEmp"]);
+                    s.IdUser = reader["IdUser"] == DBNull.Value ? 0 : Convert.ToInt32(reader["IdUser"]);
+                    s.UserName = reader["UserName"] == DBNull.Value ? string.Empty : Convert.ToString(reader["UserName"]);
+                    s.Password = reader["Password"] == DBNull.Value ? string.Empty : Convert.ToString(reader["Password"]);
+                    s.DateIn = reader["DateIn"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["DateIn"]);
+                    s.LastUpdate = reader["LastUpdate"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["LastUpdate"]);
+
+                    Userss.Add(s);
+                }
+
+                return (Userss, "Proceso Completado");
+            }
+            catch (Exception ex)
+            {
+                return (Userss, "Error al Cargar Data, Metodo EmployeesRepository.GetUsers \n" + ex.Message.ToString());
+            }
+        }
+
+        public (bool, string) GetExistsUser()
+        {
+            var parameter = new string[] { "count(*) As UserCount"};
+            var sql = Data.SelectExpression("Users", parameter.ToList());
+            var (dr, message1) = Data.GetOne(sql, "EmployeesRepository.GetExitsUser");
+            if (dr is null)
+                return (false, message1);
+
+           var count= dr.GetInt32(dr.GetOrdinal("UserCount"));
+           return (count > 0, "Proceso Completado");
+        }
+
         public (Users, string) GetUserByUserId(int id)
         {
             var s = new Users();

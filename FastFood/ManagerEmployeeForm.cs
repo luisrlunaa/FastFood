@@ -11,10 +11,12 @@ namespace FastFoodDemo
     public partial class ManagerEmployeeForm : Form
     {
         EmployeesRepository employeesRepository = new EmployeesRepository();
-        public bool isEdit = false;
+        public bool isEdit = false; 
+        public static ManagerEmployeeForm Instance;
         public ManagerEmployeeForm()
         {
             InitializeComponent();
+            Instance = this;
         }
 
         private void data_employee_Click(object sender, System.EventArgs e)

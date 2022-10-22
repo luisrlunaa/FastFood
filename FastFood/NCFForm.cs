@@ -9,10 +9,12 @@ namespace FastFoodDemo
 {
     public partial class NCFForm : Form
     {
+        public static NCFForm Instance;
         NcfRepository ncfRepository = new NcfRepository();
         public NCFForm()
         {
             InitializeComponent();
+            Instance = this;
         }
 
         private void data_ncf_DoubleClick(object sender, EventArgs e)

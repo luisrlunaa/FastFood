@@ -987,43 +987,27 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Button btnAgregar6;
         private System.Windows.Forms.PictureBox picProductImg6;
         private System.Windows.Forms.Label lblDescriptionProduct6;
         private System.Windows.Forms.Label lblPrice6;
         private System.Windows.Forms.Label lblProductName6;
-        private System.Windows.Forms.Button btnNext;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Button btnAgregar5;
         private System.Windows.Forms.PictureBox picProductImg5;
         private System.Windows.Forms.Label lblDescriptionProduct5;
         private System.Windows.Forms.Label lblPrice5;
         private System.Windows.Forms.Label lblProductName5;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Button btnAgregar4;
         private System.Windows.Forms.PictureBox picProductImg4;
         private System.Windows.Forms.Label lblDescriptionProduct4;
         private System.Windows.Forms.Label lblPrice4;
         private System.Windows.Forms.Label lblProductName4;
-        private System.Windows.Forms.Button btnBack;
-        private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.TextBox txtSearch;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button btnAgregar3;
         private System.Windows.Forms.PictureBox picProductImg3;
         private System.Windows.Forms.Label lblDescriptionProduct3;
         private System.Windows.Forms.Label lblPrice3;
         private System.Windows.Forms.Label lblProductName3;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button btnAgregar2;
         private System.Windows.Forms.PictureBox picProductImg2;
         private System.Windows.Forms.Label lblDescriptionProduct2;
         private System.Windows.Forms.Label lblPrice2;
         private System.Windows.Forms.Label lblProductName2;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button btnAgregar1;
         private System.Windows.Forms.PictureBox picProductImg1;
         private System.Windows.Forms.Label lblDescriptionProduct1;
         private System.Windows.Forms.Label lblPrice1;
@@ -1058,9 +1042,24 @@
         private System.Windows.Forms.Label lblProductId3;
         private System.Windows.Forms.Label lblProductId2;
         private System.Windows.Forms.Label lblProductId1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
         public System.Windows.Forms.Panel panelManager;
         private System.Windows.Forms.Label label8;
+        public System.Windows.Forms.Button btnAgregar6;
+        public System.Windows.Forms.Button btnAgregar5;
+        public System.Windows.Forms.Button btnAgregar4;
+        public System.Windows.Forms.Button btnAgregar3;
+        public System.Windows.Forms.Button btnAgregar2;
+        public System.Windows.Forms.Button btnAgregar1;
+        public System.Windows.Forms.Button button1;
+        public System.Windows.Forms.Button button2;
+        public System.Windows.Forms.Button btnSearch;
+        public System.Windows.Forms.Button btnNext;
+        public System.Windows.Forms.Button btnBack;
+        public System.Windows.Forms.Panel panel6;
+        public System.Windows.Forms.Panel panel5;
+        public System.Windows.Forms.Panel panel4;
+        public System.Windows.Forms.Panel panel3;
+        public System.Windows.Forms.Panel panel2;
+        public System.Windows.Forms.Panel panel1;
     }
 }
