@@ -34,8 +34,9 @@ namespace FastFoodDemo
 
             businessInf = new BusinessInfo();
             businessInf = business;
-            if (!string.IsNullOrWhiteSpace(business.SystemColor))
-                systemColor = JsonSerializer.Deserialize<SystemColor>(business.SystemColor);
+            systemColor = string.IsNullOrWhiteSpace(business.SystemColor)
+                        ? JsonSerializer.Deserialize<SystemColor>(business.DefaultSystemColor)
+                        : JsonSerializer.Deserialize<SystemColor>(business.SystemColor);
 
             if (colors.Any())
             {
@@ -80,7 +81,7 @@ namespace FastFoodDemo
                 colors.ForEach(x => cbButonBackOthersText.Items.Add(x));
             }
 
-            if (systemColor != null)
+            if (systemColor != null && systemColor.ButtonsColor != null)
             {
                 cbBackHome.SelectedIndex = cbBackHome.Items.IndexOf(systemColor.BackgroundHome);
                 cbBackHomeText.SelectedIndex = cbBackHomeText.Items.IndexOf(systemColor.BackgroundHomeForeColor);
@@ -129,6 +130,11 @@ namespace FastFoodDemo
             systemColor.ButtonsColor.OtherButtonsForeColor = cbButonBackOthersText.Text;
 
             var systemColorJson = JsonSerializer.Serialize(systemColor);
+            if (ckRestoreStyle.Checked)
+            {
+                systemColorJson = businessInf.DefaultSystemColor;
+            }
+
             businessInf.SystemColor = systemColorJson;
             businessInf.ExpirationDate = DateTime.Today.AddYears(1);
             var (update, message) = businessRepository.UpdateBusinessInfo(businessInf);

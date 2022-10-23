@@ -35,6 +35,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                     BusinessInfos.LicenseActual = dr.GetString(dr.GetOrdinal("LicenseActual"));
                 if (dr["ExpirationDate"].GetType() != typeof(DBNull))
                     BusinessInfos.ExpirationDate = dr.GetDateTime(dr.GetOrdinal("ExpirationDate"));
+                BusinessInfos.DefaultSystemColor = dr.GetString(dr.GetOrdinal("DefaultSystemColor"));
 
                 return (BusinessInfos, "Proceso Completado");
             }
@@ -54,7 +55,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                 var parameters = new List<string> {"'"+businessInfo.Name+"'", "'"+businessInfo.Address+"'", "'"+businessInfo.Phone1+"'", "'"+businessInfo.Phone2+"'",
                 "'"+businessInfo.RNC+"'", "'"+businessInfo.PrinterName +"'","'" + businessInfo.SystemColor+"'","'" + businessInfo.LicenseActual+"'", "'"+businessInfo.ExpirationDate.Value.ToShortDateString()+"'"};
 
-                var classKeys = Data.GetObjectKeys(new BusinessInfo()).Where(x => x != "BusinessId").ToList();
+                var classKeys = Data.GetObjectKeys(new BusinessInfo()).Where(x => x != "BusinessId" && x != "DefaultSystemColor").ToList();
                 var sql = Data.UpdateExpression("BusinessInfo", classKeys, parameters, "WHERE BusinessId = " + businessInfo.BusinessId);
                 var (response, message) = Data.CrudAction(sql, "BusinessRepository.UpdateBusinessInfo");
                 if (!response)

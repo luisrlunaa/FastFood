@@ -153,7 +153,7 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.BackColor = System.Drawing.Color.SeaGreen;
+            this.btnGuardar.BackColor = System.Drawing.Color.SpringGreen;
             this.btnGuardar.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.btnGuardar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.btnGuardar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
@@ -320,6 +320,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(595, 608);
             this.Controls.Add(this.txtImgName);
             this.Controls.Add(this.label6);

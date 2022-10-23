@@ -446,7 +446,7 @@
             // 
             // btnNewUser
             // 
-            this.btnNewUser.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnNewUser.BackColor = System.Drawing.Color.CornflowerBlue;
             this.btnNewUser.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.btnNewUser.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.btnNewUser.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
@@ -465,7 +465,7 @@
             // 
             // btnNewEmployee
             // 
-            this.btnNewEmployee.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnNewEmployee.BackColor = System.Drawing.Color.CornflowerBlue;
             this.btnNewEmployee.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.btnNewEmployee.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.btnNewEmployee.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
@@ -484,7 +484,7 @@
             // 
             // button1
             // 
-            this.button1.BackColor = System.Drawing.Color.Crimson;
+            this.button1.BackColor = System.Drawing.Color.Red;
             this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
@@ -504,7 +504,7 @@
             // 
             // button2
             // 
-            this.button2.BackColor = System.Drawing.Color.Crimson;
+            this.button2.BackColor = System.Drawing.Color.Red;
             this.button2.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;

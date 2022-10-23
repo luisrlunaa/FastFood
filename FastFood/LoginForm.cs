@@ -139,10 +139,11 @@ namespace FastFoodDemo
                 businessInfo = new BusinessInfo();
                 businessInfo = business;
                 Form1.Instance.systemColor = new SystemColor();
-                if (!string.IsNullOrWhiteSpace(business.SystemColor))
-                    systemColor = JsonSerializer.Deserialize<SystemColor>(business.SystemColor);
+                systemColor = string.IsNullOrWhiteSpace(business.SystemColor) 
+                            ? JsonSerializer.Deserialize<SystemColor>(business.DefaultSystemColor) 
+                            : JsonSerializer.Deserialize<SystemColor>(business.SystemColor);
 
-                if(systemColor != null)
+                if(systemColor != null && systemColor.ButtonsColor != null)
                 {
                     LoginForm login = new LoginForm();
                     login.groupBox1.BackColor = Color.FromName(systemColor.BackgroundPrimaryWindows);

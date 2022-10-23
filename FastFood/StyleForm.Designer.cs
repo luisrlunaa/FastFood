@@ -62,6 +62,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.btnAplicar = new System.Windows.Forms.Button();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.ckRestoreStyle = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -450,12 +452,35 @@
             this.btnAplicar.UseVisualStyleBackColor = false;
             this.btnAplicar.Click += new System.EventHandler(this.btnAplicar_Click);
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(0, 0);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(80, 17);
+            this.checkBox1.TabIndex = 173;
+            this.checkBox1.Text = "checkBox1";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // ckRestoreStyle
+            // 
+            this.ckRestoreStyle.AutoSize = true;
+            this.ckRestoreStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckRestoreStyle.Location = new System.Drawing.Point(10, 629);
+            this.ckRestoreStyle.Name = "ckRestoreStyle";
+            this.ckRestoreStyle.Size = new System.Drawing.Size(276, 28);
+            this.ckRestoreStyle.TabIndex = 174;
+            this.ckRestoreStyle.Text = "Restaurar al estilo por defecto";
+            this.ckRestoreStyle.UseVisualStyleBackColor = true;
+            // 
             // StyleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Lavender;
             this.ClientSize = new System.Drawing.Size(896, 690);
+            this.Controls.Add(this.ckRestoreStyle);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.btnAplicar);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -512,5 +537,7 @@
         public System.Windows.Forms.Label label5;
         public System.Windows.Forms.Label label6;
         public System.Windows.Forms.Button btnAplicar;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox ckRestoreStyle;
     }
 }

@@ -494,7 +494,7 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.BackColor = System.Drawing.Color.DarkGray;
+            this.btnSearch.BackColor = System.Drawing.Color.Silver;
             this.btnSearch.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.btnSearch.FlatAppearance.BorderSize = 0;
             this.btnSearch.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));

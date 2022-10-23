@@ -253,7 +253,7 @@
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(8)))), ((int)(((byte)(55)))));
+            this.panel2.BackColor = System.Drawing.Color.Crimson;
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(209, 0);
             this.panel2.Name = "panel2";
@@ -262,7 +262,7 @@
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(8)))), ((int)(((byte)(55)))));
+            this.panel3.BackColor = System.Drawing.Color.Crimson;
             this.panel3.Controls.Add(this.label3);
             this.panel3.Controls.Add(this.label2);
             this.panel3.Controls.Add(this.pictureBox1);
@@ -453,8 +453,9 @@
             // lblLogo
             // 
             this.lblLogo.AutoSize = true;
+            this.lblLogo.BackColor = System.Drawing.Color.Transparent;
             this.lblLogo.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLogo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(8)))), ((int)(((byte)(55)))));
+            this.lblLogo.ForeColor = System.Drawing.Color.Crimson;
             this.lblLogo.Location = new System.Drawing.Point(360, 80);
             this.lblLogo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblLogo.Name = "lblLogo";
@@ -487,9 +488,9 @@
             // mainpanel
             // 
             this.mainpanel.BackColor = System.Drawing.Color.White;
-            this.mainpanel.Location = new System.Drawing.Point(209, 36);
+            this.mainpanel.Location = new System.Drawing.Point(209, 37);
             this.mainpanel.Name = "mainpanel";
-            this.mainpanel.Size = new System.Drawing.Size(1052, 691);
+            this.mainpanel.Size = new System.Drawing.Size(1052, 690);
             this.mainpanel.TabIndex = 126;
             this.mainpanel.Visible = false;
             // 
@@ -517,6 +518,7 @@
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.ForeColor = System.Drawing.Color.Black;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";

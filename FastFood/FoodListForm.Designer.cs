@@ -119,7 +119,7 @@
             // 
             // panel6
             // 
-            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel6.BackColor = System.Drawing.Color.Gainsboro;
             this.panel6.Controls.Add(this.label6);
             this.panel6.Controls.Add(this.btnPlus6);
             this.panel6.Controls.Add(this.btnLess6);
@@ -174,7 +174,7 @@
             // 
             // btnAgregar6
             // 
-            this.btnAgregar6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(182)))), ((int)(((byte)(172)))), ((int)(((byte)(0)))));
+            this.btnAgregar6.BackColor = System.Drawing.Color.DarkGoldenrod;
             this.btnAgregar6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregar6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregar6.ForeColor = System.Drawing.Color.White;
@@ -229,18 +229,19 @@
             // 
             // btnNext
             // 
+            this.btnNext.BackColor = System.Drawing.Color.Silver;
             this.btnNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNext.Location = new System.Drawing.Point(976, 346);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(47, 68);
             this.btnNext.TabIndex = 51;
             this.btnNext.Text = ">";
-            this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.UseVisualStyleBackColor = false;
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // panel5
             // 
-            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel5.BackColor = System.Drawing.Color.Gainsboro;
             this.panel5.Controls.Add(this.label5);
             this.panel5.Controls.Add(this.btnPlus5);
             this.panel5.Controls.Add(this.btnLess5);
@@ -295,7 +296,7 @@
             // 
             // btnAgregar5
             // 
-            this.btnAgregar5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(182)))), ((int)(((byte)(172)))), ((int)(((byte)(0)))));
+            this.btnAgregar5.BackColor = System.Drawing.Color.DarkGoldenrod;
             this.btnAgregar5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregar5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregar5.ForeColor = System.Drawing.Color.White;
@@ -350,7 +351,7 @@
             // 
             // panel4
             // 
-            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel4.BackColor = System.Drawing.Color.Gainsboro;
             this.panel4.Controls.Add(this.label4);
             this.panel4.Controls.Add(this.btnPlus4);
             this.panel4.Controls.Add(this.btnLess4);
@@ -405,7 +406,7 @@
             // 
             // btnAgregar4
             // 
-            this.btnAgregar4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(182)))), ((int)(((byte)(172)))), ((int)(((byte)(0)))));
+            this.btnAgregar4.BackColor = System.Drawing.Color.DarkGoldenrod;
             this.btnAgregar4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregar4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregar4.ForeColor = System.Drawing.Color.White;
@@ -460,24 +461,26 @@
             // 
             // btnBack
             // 
+            this.btnBack.BackColor = System.Drawing.Color.Silver;
             this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBack.Location = new System.Drawing.Point(29, 334);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(47, 68);
             this.btnBack.TabIndex = 50;
             this.btnBack.Text = "<";
-            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.UseVisualStyleBackColor = false;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // btnSearch
             // 
+            this.btnSearch.BackColor = System.Drawing.Color.Silver;
             this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.Location = new System.Drawing.Point(48, 14);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(99, 44);
             this.btnSearch.TabIndex = 46;
             this.btnSearch.Text = " Buscar";
-            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.UseVisualStyleBackColor = false;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // txtSearch
@@ -490,7 +493,7 @@
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel3.BackColor = System.Drawing.Color.Gainsboro;
             this.panel3.Controls.Add(this.label3);
             this.panel3.Controls.Add(this.btnPlus3);
             this.panel3.Controls.Add(this.btnLess3);
@@ -545,7 +548,7 @@
             // 
             // btnAgregar3
             // 
-            this.btnAgregar3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(182)))), ((int)(((byte)(172)))), ((int)(((byte)(0)))));
+            this.btnAgregar3.BackColor = System.Drawing.Color.DarkGoldenrod;
             this.btnAgregar3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregar3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregar3.ForeColor = System.Drawing.Color.White;
@@ -600,7 +603,7 @@
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel2.BackColor = System.Drawing.Color.Gainsboro;
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.btnPlus2);
             this.panel2.Controls.Add(this.btnLess2);
@@ -655,7 +658,7 @@
             // 
             // btnAgregar2
             // 
-            this.btnAgregar2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(182)))), ((int)(((byte)(172)))), ((int)(((byte)(0)))));
+            this.btnAgregar2.BackColor = System.Drawing.Color.DarkGoldenrod;
             this.btnAgregar2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregar2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregar2.ForeColor = System.Drawing.Color.White;
@@ -710,7 +713,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel1.BackColor = System.Drawing.Color.Gainsboro;
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.btnPlus1);
             this.panel1.Controls.Add(this.btnLess1);
@@ -765,7 +768,7 @@
             // 
             // btnAgregar1
             // 
-            this.btnAgregar1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(182)))), ((int)(((byte)(172)))), ((int)(((byte)(0)))));
+            this.btnAgregar1.BackColor = System.Drawing.Color.DarkGoldenrod;
             this.btnAgregar1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregar1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregar1.ForeColor = System.Drawing.Color.White;
@@ -903,7 +906,7 @@
             // 
             // button2
             // 
-            this.button2.BackColor = System.Drawing.Color.SeaGreen;
+            this.button2.BackColor = System.Drawing.Color.SpringGreen;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.Location = new System.Drawing.Point(0, 0);
             this.button2.Name = "button2";

@@ -16,6 +16,7 @@ namespace FastFood.Models.Entities
         public string SystemColor { get; set; }
         public string LicenseActual { get; set; }
         public DateTime? ExpirationDate { get; set; }
+        public string DefaultSystemColor { get; set; }
     }
 
     public class SystemColor

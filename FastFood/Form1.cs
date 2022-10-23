@@ -21,7 +21,7 @@ namespace FastFoodDemo
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            if (systemColor != null)
+            if (systemColor != null && systemColor.ButtonsColor != null)
             {
                 Instance.panel1.BackColor = Color.FromArgb(41, 39, 40);
                 Instance.panel2.BackColor = Color.FromName(systemColor.BackgroundHome);
@@ -37,7 +37,7 @@ namespace FastFoodDemo
         private void button1_Click(object sender, EventArgs e)
         {
             Form1.Instance = new Form1();
-            if (systemColor != null)
+            if (systemColor != null && systemColor.ButtonsColor != null)
             {
                 Instance.panel1.BackColor = Color.FromArgb(41, 39, 40);
                 Instance.panel2.BackColor = Color.FromName(systemColor.BackgroundHome);
@@ -57,7 +57,7 @@ namespace FastFoodDemo
         private void button2_Click(object sender, EventArgs e)
         {
             FoodListForm.Instance = new FoodListForm();
-            if (systemColor != null)
+            if (systemColor != null && systemColor.ButtonsColor != null)
             {
                 FoodListForm.Instance.BackColor = Color.FromName(systemColor.BackgroundPrimaryWindows);
                 FoodListForm.Instance.ForeColor = Color.FromName(systemColor.BackgroundPrimaryWindowsForeColor);
@@ -117,7 +117,7 @@ namespace FastFoodDemo
         private void button3_Click(object sender, EventArgs e)
         {
             DrinkListForm.Instance = new DrinkListForm();
-            if (systemColor != null)
+            if (systemColor != null && systemColor.ButtonsColor != null)
             {
                 DrinkListForm.Instance.BackColor = Color.FromName(systemColor.BackgroundPrimaryWindows);
                 DrinkListForm.Instance.ForeColor = Color.FromName(systemColor.BackgroundPrimaryWindowsForeColor);
@@ -192,7 +192,7 @@ namespace FastFoodDemo
             SalesForm.Instance.lblDAmount.Visible = true;
             SalesForm.Instance.txtDAmount.Visible = true;
 
-            if (systemColor != null)
+            if (systemColor != null && systemColor.ButtonsColor != null)
             {
                 SalesForm.Instance.BackColor = Color.FromName(systemColor.BackgroundPrimaryWindows);
                 SalesForm.Instance.ForeColor = Color.FromName(systemColor.BackgroundPrimaryWindowsForeColor);
@@ -223,7 +223,7 @@ namespace FastFoodDemo
             SidePanel.Height = button5.Height;
             SidePanel.Top = button5.Top;
 
-            if (systemColor != null)
+            if (systemColor != null && systemColor.ButtonsColor != null)
             {
                 ManagerProductForm.Instance.BackColor = Color.FromName(systemColor.BackgroundPrimaryWindows);
 
@@ -246,7 +246,7 @@ namespace FastFoodDemo
             SalesForm.Instance.lblSales.ForeColor = Color.Black;
             SalesForm.Instance.panelIdentify.BackColor = Color.ForestGreen;
 
-            if (systemColor != null)
+            if (systemColor != null && systemColor.ButtonsColor != null)
             {
                 SalesForm.Instance.BackColor = Color.FromName(systemColor.BackgroundPrimaryWindows);
 
@@ -281,7 +281,7 @@ namespace FastFoodDemo
             BoxSquareForm.Instance.lblDir.Text = lblDir.Text;
             BoxSquareForm.Instance.lblLogo.Text = lblLogo.Text;
 
-            if (systemColor != null)
+            if (systemColor != null && systemColor.ButtonsColor != null)
             {
                 BoxSquareForm.Instance.BackColor = Color.FromName(systemColor.BackgroundPrimaryWindows);
                 BoxSquareForm.Instance.ForeColor = Color.FromName(systemColor.BackgroundPrimaryWindowsForeColor);
@@ -310,7 +310,7 @@ namespace FastFoodDemo
             SalesListForm.Instance.lblDir.Text = lblDir.Text;
             SalesListForm.Instance.lblLogo.Text = lblLogo.Text;
 
-            if (systemColor != null)
+            if (systemColor != null && systemColor.ButtonsColor != null)
             {
                 SalesListForm.Instance.BackColor = Color.FromName(systemColor.BackgroundPrimaryWindows);
                 SalesListForm.Instance.ForeColor = Color.FromName(systemColor.BackgroundPrimaryWindowsForeColor);
@@ -334,7 +334,7 @@ namespace FastFoodDemo
         private void button12_Click(object sender, EventArgs e)
         {
             ConfigurationsForm.Instance = new ConfigurationsForm();
-            if (systemColor != null)
+            if (systemColor != null && systemColor.ButtonsColor != null)
             {
                 ConfigurationsForm.Instance.systemColor = new SystemColor();
                 ConfigurationsForm.Instance.systemColor = systemColor;
@@ -351,7 +351,7 @@ namespace FastFoodDemo
         private void button7_Click(object sender, EventArgs e)
         {
             ClientsForm.Instance = new ClientsForm();
-            if (systemColor != null)
+            if (systemColor != null && systemColor.ButtonsColor != null)
             {
                 ClientsForm.Instance.BackColor = Color.FromName(systemColor.BackgroundPrimaryWindows);
                 ClientsForm.Instance.ForeColor = Color.FromName(systemColor.BackgroundPrimaryWindowsForeColor);

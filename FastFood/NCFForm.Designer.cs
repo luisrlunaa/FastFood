@@ -147,13 +147,13 @@
             // 
             // btnAplicar
             // 
-            this.btnAplicar.BackColor = System.Drawing.Color.SeaGreen;
+            this.btnAplicar.BackColor = System.Drawing.Color.SpringGreen;
             this.btnAplicar.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.btnAplicar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.btnAplicar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.btnAplicar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAplicar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAplicar.ForeColor = System.Drawing.Color.White;
+            this.btnAplicar.ForeColor = System.Drawing.Color.Black;
             this.btnAplicar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAplicar.Location = new System.Drawing.Point(760, 11);
             this.btnAplicar.Margin = new System.Windows.Forms.Padding(2);

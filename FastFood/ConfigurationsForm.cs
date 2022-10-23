@@ -24,7 +24,7 @@ namespace FastFoodDemo
             button2.BackColor = Color.White;
             button3.BackColor = Color.White;
 
-            if (systemColor != null)
+            if (systemColor != null && systemColor.ButtonsColor != null)
             {
                 button1.BackColor = Color.FromName(systemColor.BackgroundOthersWindows);
                 button2.BackColor = Color.White;
@@ -49,7 +49,7 @@ namespace FastFoodDemo
             button2.BackColor = Color.Lavender;
             button3.BackColor = Color.White;
 
-            if (systemColor != null)
+            if (systemColor != null && systemColor.ButtonsColor != null)
             {
                 button1.BackColor = Color.White; 
                 button2.BackColor = Color.FromName(systemColor.BackgroundOthersWindows);
@@ -89,7 +89,7 @@ namespace FastFoodDemo
                 button1.Enabled = false;
                 button3.Enabled = false;
 
-                if (systemColor != null)
+                if (systemColor != null && systemColor.ButtonsColor != null)
                 {
                     button1.Enabled = false;
                     button2.BackColor = Color.FromName(systemColor.BackgroundOthersWindows);
@@ -97,7 +97,7 @@ namespace FastFoodDemo
                 }
 
                 ManagerEmployeeForm.Instance = new ManagerEmployeeForm();
-                if (systemColor != null)
+                if (systemColor != null && systemColor.ButtonsColor != null)
                 {
                     button1.BackColor = Color.White;
                     button2.BackColor = Color.FromName(systemColor.BackgroundOthersWindows);
@@ -133,7 +133,7 @@ namespace FastFoodDemo
                 button2.BackColor = Color.White;
                 button3.BackColor = Color.White;
 
-                if (systemColor != null)
+                if (systemColor != null && systemColor.ButtonsColor != null)
                 {
                     button1.BackColor = Color.FromName(systemColor.BackgroundOthersWindows);
                     button2.BackColor = Color.White;
@@ -141,7 +141,7 @@ namespace FastFoodDemo
                 }
 
                 NCFForm.Instance = new NCFForm();
-                if (systemColor != null)
+                if (systemColor != null && systemColor.ButtonsColor != null)
                 {
                     button1.BackColor = Color.FromName(systemColor.BackgroundOthersWindows);
                     button2.BackColor = Color.White;
@@ -167,7 +167,7 @@ namespace FastFoodDemo
             button2.BackColor = Color.White;
             button3.BackColor = Color.Lavender;
 
-            if (systemColor != null)
+            if (systemColor != null && systemColor.ButtonsColor != null)
             {
                 button1.BackColor = Color.White;
                 button2.BackColor = Color.White;
