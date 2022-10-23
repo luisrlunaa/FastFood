@@ -94,7 +94,6 @@ Tambien tenemos un area dedicada a la administracion de los productos que vender
 
 En este podras administrar la informacion de tus clientes mas frecuentes, que luego utilizaras para realizar las ventas y de esta manera evitarte digitarlos cada vez que realizen una compra en tu local.
 
-- 
 #### Ventas
 
 Como atractivo principal tenemos el area de ventas, la cual se divide en dos partes:
