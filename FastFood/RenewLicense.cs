@@ -82,20 +82,17 @@ namespace FastFoodDemo
             if (message.Contains("Error"))
                 MessageBox.Show(message);
 
-            newLicence = LicenseGenerator(license.Business, license.Provider, license.Id);
+            newLicence = LicenseGenerator(license.Business, license.Provider, license.Id, license.SecretWord);
         }
 
-        private string LicenseGenerator(string business, string provider, int licenceId)
+        private string LicenseGenerator(string business, string provider, int licenceId, string secretWord)
         {
-            var rnd = new Random();
-            var secretWord = Guid.NewGuid().ToString().Replace("-", "").Substring(0, 11);
-
             license = new License();
             license.Id = licenceId;
             license.Business = business;
-            license.InitialSequence = rnd.Next(1, 1001);
-            license.CentralSequence = rnd.Next(1, 1001);
-            license.FinalSequence = rnd.Next(1, 1001);
+            license.InitialSequence = Convert.ToInt32(license.InitialSequence.ToString().PadLeft(1, '0'));
+            license.CentralSequence = Convert.ToInt32(license.CentralSequence.ToString().PadLeft(5, '0'));
+            license.FinalSequence = Convert.ToInt32(license.FinalSequence.ToString().PadLeft(3, '0'));
             license.Provider = provider;
             license.SecretWord = secretWord;
             license.LastUpdate = DateTime.Today;
