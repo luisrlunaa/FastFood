@@ -221,6 +221,12 @@
     <Compile Include="ConfigurationsForm.Designer.cs">
       <DependentUpon>ConfigurationsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FirtsRegisterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FirtsRegisterForm.Designer.cs">
+      <DependentUpon>FirtsRegisterForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="StyleForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -306,6 +312,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ConfigurationsForm.resx">
       <DependentUpon>ConfigurationsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FirtsRegisterForm.resx">
+      <DependentUpon>FirtsRegisterForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StyleForm.resx">
       <DependentUpon>StyleForm.cs</DependentUpon>

@@ -136,6 +136,15 @@ namespace FastFoodDemo
                 }
                 else
                 {
+                    if (string.IsNullOrEmpty(txtIdE.Text))
+                    {
+                        if (MessageBox.Show("¿Desea autogenerar un numero identificacion para este Empleado?", "FoodShop", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
+                        {
+                            var id = Guid.NewGuid().ToString().Replace("-", "").Substring(0, 12);
+                            txtIdE.Text = id;
+                        }
+                    }
+
                     var employee = new Employee()
                     {
                         FirstName = txtNameE.Text,
@@ -169,11 +178,20 @@ namespace FastFoodDemo
                         DateIn = DateTime.Today
                     };
 
-                    var (result, message) = employeesRepository.UpdateUser(user);
+                    var (result, message) = employeesRepository.AddUser(user);
                     MessageBox.Show(message);
                 }
                 else
                 {
+                    if (string.IsNullOrEmpty(txtIdE.Text))
+                    {
+                        if (MessageBox.Show("¿Desea autogenerar un numero identificacion para este Empleado?", "FoodShop", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
+                        {
+                            var id = Guid.NewGuid().ToString().Replace("-", "").Substring(0, 12);
+                            txtIdE.Text = id;
+                        }
+                    }
+
                     var employee = new Employee()
                     {
                         FirstName = txtNameE.Text,

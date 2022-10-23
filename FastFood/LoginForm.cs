@@ -122,6 +122,7 @@ namespace FastFoodDemo
                     RenewLicense.Instance = new RenewLicense();
                     RenewLicense.Instance.business = business;
                     RenewLicense.Instance.licenceActual = business.LicenseActual;
+                    RenewLicense.Instance.isFromLogin = true;
                     RenewLicense.Instance.Show();
                 }
                 return;
@@ -154,7 +155,8 @@ namespace FastFoodDemo
 
                 if (!existsUser)
                 {
-
+                    var first = new FirtsRegisterForm();
+                    first.Show();
                 }
             }
         }

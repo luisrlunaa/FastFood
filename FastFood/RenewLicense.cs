@@ -12,6 +12,7 @@ namespace FastFoodDemo
         public static RenewLicense Instance;
         public string licenceActual;
         public string newLicence;
+        public bool isFromLogin = false;
         public BusinessInfo business;
         public License license;
         public RenewLicense()
@@ -57,16 +58,22 @@ namespace FastFoodDemo
                 MessageBox.Show(message1);
 
             MessageBox.Show(message);
-            var login = new LoginForm();
-            login.Show();
-            Close();
+            Hide();
+            LoginForm form = new LoginForm();
+            form.Show();
         }
 
         private void label6_Click(object sender, EventArgs e)
         {
-            var login = new LoginForm();
-            login.Show();
-            Close();
+            if(isFromLogin)
+            {
+                var login = new LoginForm();
+                login.Show();
+                Close();
+                return;
+            }
+
+            Application.Exit();
         }
 
         private void RenewLicense_Load(object sender, EventArgs e)
