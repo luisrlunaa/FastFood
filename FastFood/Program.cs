@@ -1,9 +1,8 @@
-﻿using FastFood.Infrastructure.DataAccess.Repositories;
+﻿using FastFood.Infrastructure.DataAccess.Contexts;
 using FastFood.Models.Entities;
 using System;
 using System.Configuration;
-using System.Data.SqlClient;
-using System.Linq;
+using Microsoft.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace FastFoodDemo
@@ -27,6 +26,7 @@ namespace FastFoodDemo
         {
             connectionString = ConfigurationManager.ConnectionStrings["ConString"].ConnectionString;
             SqlConnection connection = new SqlConnection(connectionString);
+            DataManager.connectionStr = connection;
 
             var BusinessInfos = new BusinessInfo();
             SqlCommand cmd1 = new SqlCommand("SELECT LicenseActual, ExpirationDate FROM BusinessInfo WHERE BusinessId ='" + 1 + "'", connection);

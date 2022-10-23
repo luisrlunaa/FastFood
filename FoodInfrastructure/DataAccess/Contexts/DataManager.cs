@@ -8,17 +8,17 @@ namespace FastFood.Infrastructure.DataAccess.Contexts
 {
     public class DataManager
     {
-        public SqlConnection connection = new SqlConnection("Data Source=.;Initial Catalog=FastFoodDB;Integrated Security=True;encrypt=false");
+        public static SqlConnection connectionStr;
         public void Connect()
         {
-            if (connection.State == ConnectionState.Closed)
-                connection.Open();
+            if (connectionStr.State == ConnectionState.Closed)
+                connectionStr.Open();
         }
 
         public void Disconnect()
         {
-            if (connection.State == ConnectionState.Open)
-                connection.Close();
+            if (connectionStr.State == ConnectionState.Open)
+                connectionStr.Close();
         }
 
         #region CRUD EXPRESSIONS
@@ -149,7 +149,7 @@ namespace FastFood.Infrastructure.DataAccess.Contexts
             {
                 Disconnect();
                 Connect();
-                SqlCommand cmd1 = new SqlCommand(Sql, connection);
+                SqlCommand cmd1 = new SqlCommand(Sql, connectionStr);
                 da = new SqlDataAdapter(cmd1);
                 da.Fill(dt);
             }
@@ -169,7 +169,7 @@ namespace FastFood.Infrastructure.DataAccess.Contexts
             {
                 Disconnect();
                 Connect();
-                cmd1 = new SqlCommand(Sql, connection);
+                cmd1 = new SqlCommand(Sql, connectionStr);
                 SqlDataReader dr = cmd1.ExecuteReader();
                 if (dr.Read())
                 {
@@ -190,7 +190,7 @@ namespace FastFood.Infrastructure.DataAccess.Contexts
             Disconnect();
             try
             {
-                using (SqlCommand cmd = new SqlCommand(Sql, connection))
+                using (SqlCommand cmd = new SqlCommand(Sql, connectionStr))
                 {
                     Connect();
                     cmd.ExecuteNonQuery();
