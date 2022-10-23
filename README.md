@@ -82,7 +82,7 @@ Es un sistema simple para realizar ventas de comidas y bebidas, el cual cuenta c
 
 Contamos con un modulo de autenticacion, el cual esta compuesto por un inicion de Sesion y un area de restaurar la contraseña en caso se le haya olvidado.
 
-####Inicio
+#### Inicio
 
 Tenemos un inicio el cual contiene la informacion principal de la empresa y la descripcion del usuario que hizo el inicio de sesion para tener la constancia de las ventas y procesos que el mismo realice durante instancia en el sistema.
 
