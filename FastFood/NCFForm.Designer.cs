@@ -147,7 +147,7 @@
             // 
             // btnAplicar
             // 
-            this.btnAplicar.BackColor = System.Drawing.Color.SpringGreen;
+            this.btnAplicar.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnAplicar.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.btnAplicar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.btnAplicar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
@@ -395,7 +395,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Lavender;
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(896, 690);
             this.Controls.Add(this.lblcomp);
             this.Controls.Add(this.label7);

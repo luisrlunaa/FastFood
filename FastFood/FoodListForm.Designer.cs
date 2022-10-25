@@ -119,7 +119,7 @@
             // 
             // panel6
             // 
-            this.panel6.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel6.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel6.Controls.Add(this.label6);
             this.panel6.Controls.Add(this.btnPlus6);
             this.panel6.Controls.Add(this.btnLess6);
@@ -129,6 +129,7 @@
             this.panel6.Controls.Add(this.lblDescriptionProduct6);
             this.panel6.Controls.Add(this.lblPrice6);
             this.panel6.Controls.Add(this.lblProductName6);
+            this.panel6.ForeColor = System.Drawing.Color.Black;
             this.panel6.Location = new System.Drawing.Point(690, 384);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(197, 289);
@@ -174,10 +175,10 @@
             // 
             // btnAgregar6
             // 
-            this.btnAgregar6.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.btnAgregar6.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnAgregar6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregar6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregar6.ForeColor = System.Drawing.Color.White;
+            this.btnAgregar6.ForeColor = System.Drawing.Color.Black;
             this.btnAgregar6.Location = new System.Drawing.Point(91, 254);
             this.btnAgregar6.Name = "btnAgregar6";
             this.btnAgregar6.Size = new System.Drawing.Size(101, 37);
@@ -229,8 +230,9 @@
             // 
             // btnNext
             // 
-            this.btnNext.BackColor = System.Drawing.Color.Silver;
+            this.btnNext.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNext.ForeColor = System.Drawing.Color.Black;
             this.btnNext.Location = new System.Drawing.Point(976, 346);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(47, 68);
@@ -241,7 +243,7 @@
             // 
             // panel5
             // 
-            this.panel5.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel5.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel5.Controls.Add(this.label5);
             this.panel5.Controls.Add(this.btnPlus5);
             this.panel5.Controls.Add(this.btnLess5);
@@ -251,6 +253,7 @@
             this.panel5.Controls.Add(this.lblDescriptionProduct5);
             this.panel5.Controls.Add(this.lblPrice5);
             this.panel5.Controls.Add(this.lblProductName5);
+            this.panel5.ForeColor = System.Drawing.Color.Black;
             this.panel5.Location = new System.Drawing.Point(421, 384);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(197, 289);
@@ -296,10 +299,10 @@
             // 
             // btnAgregar5
             // 
-            this.btnAgregar5.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.btnAgregar5.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnAgregar5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregar5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregar5.ForeColor = System.Drawing.Color.White;
+            this.btnAgregar5.ForeColor = System.Drawing.Color.Black;
             this.btnAgregar5.Location = new System.Drawing.Point(91, 254);
             this.btnAgregar5.Name = "btnAgregar5";
             this.btnAgregar5.Size = new System.Drawing.Size(101, 37);
@@ -351,7 +354,7 @@
             // 
             // panel4
             // 
-            this.panel4.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel4.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel4.Controls.Add(this.label4);
             this.panel4.Controls.Add(this.btnPlus4);
             this.panel4.Controls.Add(this.btnLess4);
@@ -361,6 +364,7 @@
             this.panel4.Controls.Add(this.lblDescriptionProduct4);
             this.panel4.Controls.Add(this.lblPrice4);
             this.panel4.Controls.Add(this.lblProductName4);
+            this.panel4.ForeColor = System.Drawing.Color.Black;
             this.panel4.Location = new System.Drawing.Point(153, 384);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(197, 289);
@@ -406,10 +410,10 @@
             // 
             // btnAgregar4
             // 
-            this.btnAgregar4.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.btnAgregar4.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnAgregar4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregar4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregar4.ForeColor = System.Drawing.Color.White;
+            this.btnAgregar4.ForeColor = System.Drawing.Color.Black;
             this.btnAgregar4.Location = new System.Drawing.Point(91, 254);
             this.btnAgregar4.Name = "btnAgregar4";
             this.btnAgregar4.Size = new System.Drawing.Size(101, 37);
@@ -461,8 +465,9 @@
             // 
             // btnBack
             // 
-            this.btnBack.BackColor = System.Drawing.Color.Silver;
+            this.btnBack.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBack.ForeColor = System.Drawing.Color.Black;
             this.btnBack.Location = new System.Drawing.Point(29, 334);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(47, 68);
@@ -473,8 +478,9 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.BackColor = System.Drawing.Color.Silver;
+            this.btnSearch.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearch.ForeColor = System.Drawing.Color.Black;
             this.btnSearch.Location = new System.Drawing.Point(48, 14);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(99, 44);
@@ -493,7 +499,7 @@
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel3.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel3.Controls.Add(this.label3);
             this.panel3.Controls.Add(this.btnPlus3);
             this.panel3.Controls.Add(this.btnLess3);
@@ -503,6 +509,7 @@
             this.panel3.Controls.Add(this.lblDescriptionProduct3);
             this.panel3.Controls.Add(this.lblPrice3);
             this.panel3.Controls.Add(this.lblProductName3);
+            this.panel3.ForeColor = System.Drawing.Color.Black;
             this.panel3.Location = new System.Drawing.Point(690, 66);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(197, 289);
@@ -548,10 +555,10 @@
             // 
             // btnAgregar3
             // 
-            this.btnAgregar3.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.btnAgregar3.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnAgregar3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregar3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregar3.ForeColor = System.Drawing.Color.White;
+            this.btnAgregar3.ForeColor = System.Drawing.Color.Black;
             this.btnAgregar3.Location = new System.Drawing.Point(91, 254);
             this.btnAgregar3.Name = "btnAgregar3";
             this.btnAgregar3.Size = new System.Drawing.Size(101, 37);
@@ -603,7 +610,7 @@
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel2.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.btnPlus2);
             this.panel2.Controls.Add(this.btnLess2);
@@ -613,6 +620,7 @@
             this.panel2.Controls.Add(this.lblDescriptionProduct2);
             this.panel2.Controls.Add(this.lblPrice2);
             this.panel2.Controls.Add(this.lblProductName2);
+            this.panel2.ForeColor = System.Drawing.Color.Black;
             this.panel2.Location = new System.Drawing.Point(421, 69);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(197, 289);
@@ -658,10 +666,10 @@
             // 
             // btnAgregar2
             // 
-            this.btnAgregar2.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.btnAgregar2.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnAgregar2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregar2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregar2.ForeColor = System.Drawing.Color.White;
+            this.btnAgregar2.ForeColor = System.Drawing.Color.Black;
             this.btnAgregar2.Location = new System.Drawing.Point(91, 254);
             this.btnAgregar2.Name = "btnAgregar2";
             this.btnAgregar2.Size = new System.Drawing.Size(101, 37);
@@ -713,7 +721,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.btnPlus1);
             this.panel1.Controls.Add(this.btnLess1);
@@ -723,6 +731,7 @@
             this.panel1.Controls.Add(this.lblDescriptionProduct1);
             this.panel1.Controls.Add(this.lblPrice1);
             this.panel1.Controls.Add(this.lblProductName1);
+            this.panel1.ForeColor = System.Drawing.Color.Black;
             this.panel1.Location = new System.Drawing.Point(153, 66);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(197, 289);
@@ -768,10 +777,10 @@
             // 
             // btnAgregar1
             // 
-            this.btnAgregar1.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.btnAgregar1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnAgregar1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregar1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregar1.ForeColor = System.Drawing.Color.White;
+            this.btnAgregar1.ForeColor = System.Drawing.Color.Black;
             this.btnAgregar1.Location = new System.Drawing.Point(91, 252);
             this.btnAgregar1.Name = "btnAgregar1";
             this.btnAgregar1.Size = new System.Drawing.Size(101, 37);
@@ -893,9 +902,9 @@
             // 
             // button1
             // 
-            this.button1.BackColor = System.Drawing.Color.Red;
+            this.button1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.ForeColor = System.Drawing.Color.Black;
             this.button1.Location = new System.Drawing.Point(0, 67);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(125, 61);
@@ -906,8 +915,9 @@
             // 
             // button2
             // 
-            this.button2.BackColor = System.Drawing.Color.SpringGreen;
+            this.button2.BackColor = System.Drawing.Color.WhiteSmoke;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.Color.Black;
             this.button2.Location = new System.Drawing.Point(0, 0);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(125, 61);

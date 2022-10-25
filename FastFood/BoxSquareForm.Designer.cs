@@ -142,9 +142,9 @@
             // 
             // btnsuma
             // 
-            this.btnsuma.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnsuma.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnsuma.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnsuma.Location = new System.Drawing.Point(903, 573);
+            this.btnsuma.Location = new System.Drawing.Point(922, 591);
             this.btnsuma.Margin = new System.Windows.Forms.Padding(2);
             this.btnsuma.Name = "btnsuma";
             this.btnsuma.Size = new System.Drawing.Size(110, 84);
@@ -168,7 +168,7 @@
             // 
             // btnregistrar
             // 
-            this.btnregistrar.BackColor = System.Drawing.Color.SpringGreen;
+            this.btnregistrar.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnregistrar.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.btnregistrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.btnregistrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
@@ -176,7 +176,7 @@
             this.btnregistrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnregistrar.ForeColor = System.Drawing.Color.Black;
             this.btnregistrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnregistrar.Location = new System.Drawing.Point(718, 574);
+            this.btnregistrar.Location = new System.Drawing.Point(731, 592);
             this.btnregistrar.Name = "btnregistrar";
             this.btnregistrar.Size = new System.Drawing.Size(186, 83);
             this.btnregistrar.TabIndex = 196;
@@ -465,7 +465,7 @@
             // 
             // btnimprimir
             // 
-            this.btnimprimir.BackColor = System.Drawing.Color.Khaki;
+            this.btnimprimir.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnimprimir.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.btnimprimir.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.btnimprimir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
@@ -473,7 +473,7 @@
             this.btnimprimir.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnimprimir.ForeColor = System.Drawing.Color.Black;
             this.btnimprimir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnimprimir.Location = new System.Drawing.Point(718, 574);
+            this.btnimprimir.Location = new System.Drawing.Point(731, 592);
             this.btnimprimir.Name = "btnimprimir";
             this.btnimprimir.Size = new System.Drawing.Size(186, 83);
             this.btnimprimir.TabIndex = 167;
@@ -494,7 +494,7 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.BackColor = System.Drawing.Color.Silver;
+            this.btnSearch.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnSearch.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.btnSearch.FlatAppearance.BorderSize = 0;
             this.btnSearch.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
@@ -503,7 +503,7 @@
             this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.ForeColor = System.Drawing.Color.Black;
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSearch.Location = new System.Drawing.Point(718, 36);
+            this.btnSearch.Location = new System.Drawing.Point(731, 36);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(120, 60);
             this.btnSearch.TabIndex = 206;

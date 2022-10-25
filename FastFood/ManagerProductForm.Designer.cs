@@ -112,7 +112,7 @@
             // 
             // button1
             // 
-            this.button1.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.button1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
@@ -153,7 +153,7 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.BackColor = System.Drawing.Color.SpringGreen;
+            this.btnGuardar.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnGuardar.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.btnGuardar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.btnGuardar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;

@@ -104,7 +104,8 @@
             // 
             // SidePanel
             // 
-            this.SidePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(8)))), ((int)(((byte)(55)))));
+            this.SidePanel.AutoSize = true;
+            this.SidePanel.BackColor = System.Drawing.Color.WhiteSmoke;
             this.SidePanel.Location = new System.Drawing.Point(1, 61);
             this.SidePanel.Name = "SidePanel";
             this.SidePanel.Size = new System.Drawing.Size(10, 54);
@@ -253,7 +254,7 @@
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.Crimson;
+            this.panel2.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(209, 0);
             this.panel2.Name = "panel2";
@@ -262,20 +263,22 @@
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.Color.Crimson;
+            this.panel3.AutoSize = true;
+            this.panel3.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel3.Controls.Add(this.label3);
             this.panel3.Controls.Add(this.label2);
             this.panel3.Controls.Add(this.pictureBox1);
             this.panel3.Location = new System.Drawing.Point(243, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(111, 143);
+            this.panel3.Size = new System.Drawing.Size(112, 143);
             this.panel3.TabIndex = 2;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.ForeColor = System.Drawing.Color.Black;
             this.label3.Location = new System.Drawing.Point(4, 107);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(47, 15);
@@ -285,8 +288,9 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(3, 87);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(106, 20);
@@ -526,6 +530,7 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

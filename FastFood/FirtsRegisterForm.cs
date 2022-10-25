@@ -77,9 +77,8 @@ namespace FastFoodDemo
                     var (res, mes) = employeesRepository.UpdateEmployee(employee, true);
                     MessageBox.Show(mes);
 
+                    new LoginForm().Show();
                     Hide();
-                    LoginForm form = new LoginForm();
-                    form.Show();
                 }
             }
         }

@@ -103,7 +103,7 @@
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
@@ -260,7 +260,7 @@
             // 
             // btnEditEmployee
             // 
-            this.btnEditEmployee.BackColor = System.Drawing.Color.SpringGreen;
+            this.btnEditEmployee.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnEditEmployee.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.btnEditEmployee.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.btnEditEmployee.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
@@ -280,7 +280,7 @@
             // 
             // btnEditUser
             // 
-            this.btnEditUser.BackColor = System.Drawing.Color.SpringGreen;
+            this.btnEditUser.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnEditUser.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.btnEditUser.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.btnEditUser.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
@@ -397,7 +397,7 @@
             // 
             // btnAllowedEdituser
             // 
-            this.btnAllowedEdituser.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnAllowedEdituser.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnAllowedEdituser.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.btnAllowedEdituser.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.btnAllowedEdituser.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
@@ -427,7 +427,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.BackColor = System.Drawing.Color.SpringGreen;
+            this.btnSave.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnSave.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.btnSave.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
@@ -446,7 +446,7 @@
             // 
             // btnNewUser
             // 
-            this.btnNewUser.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnNewUser.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnNewUser.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.btnNewUser.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.btnNewUser.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
@@ -465,7 +465,7 @@
             // 
             // btnNewEmployee
             // 
-            this.btnNewEmployee.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnNewEmployee.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnNewEmployee.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.btnNewEmployee.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.btnNewEmployee.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
@@ -484,13 +484,13 @@
             // 
             // button1
             // 
-            this.button1.BackColor = System.Drawing.Color.Red;
+            this.button1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.ForeColor = System.Drawing.Color.Black;
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button1.Location = new System.Drawing.Point(464, 148);
             this.button1.Name = "button1";
@@ -504,13 +504,13 @@
             // 
             // button2
             // 
-            this.button2.BackColor = System.Drawing.Color.Red;
+            this.button2.BackColor = System.Drawing.Color.WhiteSmoke;
             this.button2.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.White;
+            this.button2.ForeColor = System.Drawing.Color.Black;
             this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button2.Location = new System.Drawing.Point(464, 70);
             this.button2.Name = "button2";
@@ -536,7 +536,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Lavender;
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(896, 690);
             this.Controls.Add(this.lblUserId);
             this.Controls.Add(this.button1);
@@ -553,6 +553,7 @@
             this.Controls.Add(this.panelEmployee);
             this.Controls.Add(this.data_employee);
             this.Controls.Add(this.label7);
+            this.ForeColor = System.Drawing.Color.Black;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ManagerEmployeeForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

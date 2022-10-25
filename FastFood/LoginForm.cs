@@ -109,8 +109,11 @@ namespace FastFoodDemo
                     AllowLogin = true;
                     MessageBox.Show("Servicio de Prueba Activado, Podra utilizar el sistema de manera gratuita durante 15 dias apartir del dia de hoy");
                 }
+                else {
+                    AllowLogin = false;
+                }
             }
-            else if (business.ExpirationDate.HasValue && business.ExpirationDate > DateTime.Today && !string.IsNullOrWhiteSpace(business.LicenseActual))
+            else if (business.ExpirationDate.HasValue && business.ExpirationDate > DateTime.Today)
             {
                 AllowLogin = true;
             }

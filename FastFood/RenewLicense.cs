@@ -58,9 +58,8 @@ namespace FastFoodDemo
                 MessageBox.Show(message1);
 
             MessageBox.Show(message);
+            new LoginForm().Show();
             Hide();
-            LoginForm form = new LoginForm();
-            form.Show();
         }
 
         private void label6_Click(object sender, EventArgs e)
