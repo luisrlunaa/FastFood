@@ -7,8 +7,8 @@
     <ProjectGuid>{7C92CCF3-5A1D-4834-AC8D-CE28CA80B5C2}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FastFoodDemo</RootNamespace>
-    <AssemblyName>FastFoodDemo</AssemblyName>
+    <RootNamespace>FastFood</RootNamespace>
+    <AssemblyName>FastFood</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -33,6 +33,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>food.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Azure.Core, Version=1.24.0.0, Culture=neutral, PublicKeyToken=92742159e12e44c8, processorArchitecture=MSIL">
@@ -383,6 +386,7 @@
     <None Include="Resources\food.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="food.ico" />
     <Content Include="Resources\food.ico" />
   </ItemGroup>
   <ItemGroup>
