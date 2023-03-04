@@ -9,6 +9,12 @@ namespace FastFood.Infrastructure.DataAccess.Contexts
     public class DataManager
     {
         public static SqlConnection connectionStr;
+
+        public string GetConnectionString()
+        {
+            return connectionStr.ConnectionString;
+        }
+
         public void Connect()
         {
             if (connectionStr.State == ConnectionState.Closed)

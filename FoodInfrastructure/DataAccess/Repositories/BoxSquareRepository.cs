@@ -1,7 +1,9 @@
 ﻿using FastFood.Infrastructure.DataAccess.Contexts;
+using FastFood.Infrastructure.Utils;
 using FastFood.Models.Entities;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace FastFood.Infrastructure.DataAccess.Repositories
@@ -76,6 +78,13 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             {
                 return (false, "Error al Cargar Data, Metodo BoxSquareRepository.UpdateBoxSquare \n" + ex.Message.ToString());
             }
+        }
+
+        public bool Makebackup(string username)
+        {
+            var dirs = new DirectoryInfo(@"C://Users//" + username + "//OneDrive//Documents//").FullName;
+            var str = Data.GetConnectionString();
+            return Backup.MakeBackup(dirs, str, "FastFoodDB");
         }
     }
 }

@@ -348,6 +348,12 @@ namespace FastFoodDemo
 
         private void label8_Click(object sender, EventArgs e)
         {
+            //var save = boxSquareRepository.Makebackup("luisr");
+            //if (save)
+            //    MessageBox.Show("Backup de base de datos realizado y guardado");
+            //else
+            //    MessageBox.Show("Error al realizar el Backup de base de datos");
+
             Application.Exit();
         }
 
