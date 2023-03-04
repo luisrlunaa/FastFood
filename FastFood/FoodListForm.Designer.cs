@@ -189,7 +189,7 @@
             // 
             // picProductImg6
             // 
-            this.picProductImg6.Image = global::FastFoodDemo.Properties.Resources.genericFood;
+            this.picProductImg6.Image = global::FastFood.Properties.Resources.genericFood;
             this.picProductImg6.Location = new System.Drawing.Point(4, 48);
             this.picProductImg6.Name = "picProductImg6";
             this.picProductImg6.Size = new System.Drawing.Size(188, 125);
@@ -313,7 +313,7 @@
             // 
             // picProductImg5
             // 
-            this.picProductImg5.Image = global::FastFoodDemo.Properties.Resources.genericFood;
+            this.picProductImg5.Image = global::FastFood.Properties.Resources.genericFood;
             this.picProductImg5.Location = new System.Drawing.Point(4, 48);
             this.picProductImg5.Name = "picProductImg5";
             this.picProductImg5.Size = new System.Drawing.Size(188, 125);
@@ -424,7 +424,7 @@
             // 
             // picProductImg4
             // 
-            this.picProductImg4.Image = global::FastFoodDemo.Properties.Resources.genericFood;
+            this.picProductImg4.Image = global::FastFood.Properties.Resources.genericFood;
             this.picProductImg4.Location = new System.Drawing.Point(4, 48);
             this.picProductImg4.Name = "picProductImg4";
             this.picProductImg4.Size = new System.Drawing.Size(188, 125);
@@ -569,7 +569,7 @@
             // 
             // picProductImg3
             // 
-            this.picProductImg3.Image = global::FastFoodDemo.Properties.Resources.genericFood;
+            this.picProductImg3.Image = global::FastFood.Properties.Resources.genericFood;
             this.picProductImg3.Location = new System.Drawing.Point(4, 48);
             this.picProductImg3.Name = "picProductImg3";
             this.picProductImg3.Size = new System.Drawing.Size(188, 125);
@@ -680,7 +680,7 @@
             // 
             // picProductImg2
             // 
-            this.picProductImg2.Image = global::FastFoodDemo.Properties.Resources.genericFood;
+            this.picProductImg2.Image = global::FastFood.Properties.Resources.genericFood;
             this.picProductImg2.Location = new System.Drawing.Point(4, 48);
             this.picProductImg2.Name = "picProductImg2";
             this.picProductImg2.Size = new System.Drawing.Size(188, 125);
@@ -791,7 +791,7 @@
             // 
             // picProductImg1
             // 
-            this.picProductImg1.Image = global::FastFoodDemo.Properties.Resources.genericFood;
+            this.picProductImg1.Image = global::FastFood.Properties.Resources.genericFood;
             this.picProductImg1.Location = new System.Drawing.Point(4, 48);
             this.picProductImg1.Name = "picProductImg1";
             this.picProductImg1.Size = new System.Drawing.Size(188, 125);
