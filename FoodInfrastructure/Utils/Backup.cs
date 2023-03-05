@@ -26,10 +26,10 @@ namespace FastFood.Infrastructure.Utils
             }
         }
 
-        public static bool RestoreBackup(string archivo, string strConnection)
+        public static bool RestoreBackup(string ubicacion, string strConnection, string dbName)
         {
             var con = new SqlConnection(strConnection);
-            var cmd = new SqlCommand("RESTORE DATABASE AppointmentSystemMedical FROM DISK='" + archivo + "'", con);
+            var cmd = new SqlCommand("RESTORE DATABASE "+ dbName + " FROM DISK='" + ubicacion + "'", con);
 
             try
             {
