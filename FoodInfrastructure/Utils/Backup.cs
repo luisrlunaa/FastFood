@@ -5,12 +5,9 @@ namespace FastFood.Infrastructure.Utils
 {
     public class Backup
     {
-        public static bool MakeBackup(string ubicacion, string strConnection, string dbName)
+        public static (bool success, string filename) MakeBackup(string ubicacion, string strConnection, string dbName)
         {
-            string nombre = dbName + "_" + DateTime.Now.Year.ToString() + "_"
-                + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Day.ToString() + "_"
-                + DateTime.Now.Hour.ToString() + "_" + DateTime.Now.Minute.ToString() + "_"
-                + DateTime.Now.Second.ToString() + ".bak";
+            string nombre = "_" + dbName + "_" + DateTime.Now.ToShortDateString().Replace("/","-") + ".bak";
 
             var con = new SqlConnection(strConnection);
             var cmd = new SqlCommand("BACKUP DATABASE "+ dbName + " TO DISK='" + ubicacion +"/"+ nombre + "'", con);
@@ -19,13 +16,13 @@ namespace FastFood.Infrastructure.Utils
             {
                 con.Open();
                 cmd.ExecuteNonQuery();
-                return true;
+                return (true, nombre);
             }
             catch(Exception ex)
             {
                 ex.Message.ToString();
                 con.Close();
-                return false;
+                return (false, string.Empty);
             }
         }
 

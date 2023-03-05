@@ -14,7 +14,10 @@ namespace FastFood.Infrastructure.DataAccess.Contexts
         {
             return connectionStr.ConnectionString;
         }
-
+        public string GetDatabaseName()
+        {
+            return connectionStr.Database;
+        }
         public void Connect()
         {
             if (connectionStr.State == ConnectionState.Closed)

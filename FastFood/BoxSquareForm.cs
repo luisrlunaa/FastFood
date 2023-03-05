@@ -14,6 +14,8 @@ namespace FastFoodDemo
         BoxSquareRepository boxSquareRepository = new BoxSquareRepository();
         SalesRepository salesRepository = new SalesRepository();
         public static BoxSquareForm Instance;
+        public string windowsUserName;
+        public string sqlFolderName;
         public BoxSquareForm()
         {
             InitializeComponent();
@@ -348,11 +350,11 @@ namespace FastFoodDemo
 
         private void label8_Click(object sender, EventArgs e)
         {
-            //var save = boxSquareRepository.Makebackup("luisr");
-            //if (save)
-            //    MessageBox.Show("Backup de base de datos realizado y guardado");
-            //else
-            //    MessageBox.Show("Error al realizar el Backup de base de datos");
+            var save = boxSquareRepository.Makebackup(windowsUserName,sqlFolderName);
+            if (save)
+                MessageBox.Show("Backup de base de datos realizado y guardado");
+            else
+                MessageBox.Show("Error al realizar el Backup de base de datos");
 
             Application.Exit();
         }

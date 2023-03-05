@@ -36,6 +36,8 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                 if (dr["ExpirationDate"].GetType() != typeof(DBNull))
                     BusinessInfos.ExpirationDate = dr.GetDateTime(dr.GetOrdinal("ExpirationDate"));
                 BusinessInfos.DefaultSystemColor = dr.GetString(dr.GetOrdinal("DefaultSystemColor"));
+                BusinessInfos.WindowsUserName = dr.GetString(dr.GetOrdinal("WindowsUserName"));
+                BusinessInfos.SqlFolderName = dr.GetString(dr.GetOrdinal("SqlFolderName"));
 
                 return (BusinessInfos, "Proceso Completado");
             }

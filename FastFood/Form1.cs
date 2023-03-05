@@ -278,6 +278,8 @@ namespace FastFoodDemo
         private void button13_Click(object sender, EventArgs e)
         {
             BoxSquareForm.Instance = new BoxSquareForm();
+            BoxSquareForm.Instance.windowsUserName = business.WindowsUserName;
+            BoxSquareForm.Instance.sqlFolderName = business.SqlFolderName;
             BoxSquareForm.Instance.lblDir.Text = lblDir.Text;
             BoxSquareForm.Instance.lblLogo.Text = lblLogo.Text;
 

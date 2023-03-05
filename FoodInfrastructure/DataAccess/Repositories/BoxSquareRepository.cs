@@ -80,11 +80,20 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
             }
         }
 
-        public bool Makebackup(string username)
+        public bool Makebackup(string windowsUserName, string sqlFolderName)
         {
-            var dirs = new DirectoryInfo(@"C://Users//" + username + "//OneDrive//Documents//").FullName;
+            var dirs = new DirectoryInfo(@"C:\\Program Files\\Microsoft SQL Server\\"+ sqlFolderName +"\\MSSQL\\Backup").FullName;          
             var str = Data.GetConnectionString();
-            return Backup.MakeBackup(dirs, str, "FastFoodDB");
+            var nameDB = Data.GetDatabaseName();
+            var (save, filename)= Backup.MakeBackup(dirs, str, nameDB);
+            var destination = @"C:\\Users\\" + windowsUserName + "\\Desktop\\" + filename;
+            if (File.Exists(destination))
+            {
+                File.Delete(destination);
+            }
+
+            File.Move(dirs + "\\" + filename, destination);
+            return save;
         }
     }
 }

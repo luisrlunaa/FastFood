@@ -146,7 +146,7 @@ namespace FastFoodDemo
                             ? JsonSerializer.Deserialize<SystemColor>(business.DefaultSystemColor) 
                             : JsonSerializer.Deserialize<SystemColor>(business.SystemColor);
 
-                if(systemColor != null && systemColor.ButtonsColor != null)
+                if (systemColor != null && systemColor.ButtonsColor != null)
                 {
                     LoginForm login = new LoginForm();
                     login.groupBox1.BackColor = Color.FromName(systemColor.BackgroundPrimaryWindows);
