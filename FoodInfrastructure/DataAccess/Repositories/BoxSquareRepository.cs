@@ -82,11 +82,11 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
 
         public bool Makebackup(string windowsUserName, string sqlFolderName)
         {
-            var dirs = new DirectoryInfo(@"C:\\Program Files\\Microsoft SQL Server\\"+ sqlFolderName +"\\MSSQL\\Backup").FullName;          
+            var dirs = new DirectoryInfo(@""+ sqlFolderName).FullName;          
             var str = Data.GetConnectionString();
             var nameDB = Data.GetDatabaseName();
             var (save, filename)= Backup.MakeBackup(dirs, str, nameDB);
-            var destination = @"C:\\Users\\" + windowsUserName + "\\Desktop\\" + filename;
+            var destination = @"" + windowsUserName + filename;
             if (File.Exists(destination))
             {
                 File.Delete(destination);
