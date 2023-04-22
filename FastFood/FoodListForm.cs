@@ -20,6 +20,9 @@ namespace FastFoodDemo
         private static List<Product> ProductsList { get; set; }
         private int ProductId { get; set; }
 
+        private int pageSize = 6;  // number of rows to display per page
+        private int currentPage = 0;  // current page index
+
         public FoodListForm()
         {
             InitializeComponent();
@@ -32,6 +35,9 @@ namespace FastFoodDemo
 
             if (GenericLists.SelectedItems is null)
                 GenericLists.SelectedItems = new List<SalesDetails>();
+
+            if (currentPage == 0)
+                btnBack.Enabled = false;
 
             GetListItems(currentPage);
         }
@@ -79,9 +85,6 @@ namespace FastFoodDemo
             loadCounterstxt();
         }
 
-        private int pageSize = 6;  // number of rows to display per page
-        private int currentPage = 0;  // current page index
-
         private void LoadDataGridViewPage(int pageNumber)
         {
             // fetch data for the specified page number from the database
@@ -92,13 +95,19 @@ namespace FastFoodDemo
 
         private void btnNext_Click(object sender, EventArgs e)
         {
+            btnBack.Enabled = true;
             currentPage++;
             LoadDataGridViewPage(currentPage);
         }
 
         private void btnBack_Click(object sender, EventArgs e)
         {
+            btnNext.Enabled = true;
             currentPage--;
+
+            if (currentPage == 0)
+                btnBack.Enabled = false;
+
             LoadDataGridViewPage(currentPage);
         }
 
@@ -275,6 +284,9 @@ namespace FastFoodDemo
                     listItems.Add(item);
                 }
             }
+
+            if (Products.Count < 6)
+                btnNext.Enabled = false;
 
             var panelCount = 0;
             if (listItems != null && listItems.Count() > 0)
