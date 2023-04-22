@@ -130,26 +130,29 @@
             this.panel6.Controls.Add(this.lblPrice6);
             this.panel6.Controls.Add(this.lblProductName6);
             this.panel6.ForeColor = System.Drawing.Color.Black;
-            this.panel6.Location = new System.Drawing.Point(690, 387);
+            this.panel6.Location = new System.Drawing.Point(920, 476);
+            this.panel6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(197, 289);
+            this.panel6.Size = new System.Drawing.Size(263, 356);
             this.panel6.TabIndex = 57;
             this.panel6.DoubleClick += new System.EventHandler(this.panel6_DoubleClick);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(69, 234);
+            this.label6.Location = new System.Drawing.Point(92, 288);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(49, 13);
+            this.label6.Size = new System.Drawing.Size(61, 16);
             this.label6.TabIndex = 9;
             this.label6.Text = "Cantidad";
             // 
             // btnPlus6
             // 
-            this.btnPlus6.Location = new System.Drawing.Point(148, 212);
+            this.btnPlus6.Location = new System.Drawing.Point(197, 261);
+            this.btnPlus6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnPlus6.Name = "btnPlus6";
-            this.btnPlus6.Size = new System.Drawing.Size(46, 35);
+            this.btnPlus6.Size = new System.Drawing.Size(61, 43);
             this.btnPlus6.TabIndex = 8;
             this.btnPlus6.Text = "+";
             this.btnPlus6.UseVisualStyleBackColor = true;
@@ -158,9 +161,10 @@
             // btnLess6
             // 
             this.btnLess6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLess6.Location = new System.Drawing.Point(4, 212);
+            this.btnLess6.Location = new System.Drawing.Point(5, 261);
+            this.btnLess6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnLess6.Name = "btnLess6";
-            this.btnLess6.Size = new System.Drawing.Size(46, 35);
+            this.btnLess6.Size = new System.Drawing.Size(61, 43);
             this.btnLess6.TabIndex = 7;
             this.btnLess6.Text = "-";
             this.btnLess6.UseVisualStyleBackColor = true;
@@ -168,9 +172,10 @@
             // 
             // txtQuantity6
             // 
-            this.txtQuantity6.Location = new System.Drawing.Point(56, 212);
+            this.txtQuantity6.Location = new System.Drawing.Point(75, 261);
+            this.txtQuantity6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtQuantity6.Name = "txtQuantity6";
-            this.txtQuantity6.Size = new System.Drawing.Size(86, 20);
+            this.txtQuantity6.Size = new System.Drawing.Size(113, 22);
             this.txtQuantity6.TabIndex = 6;
             this.txtQuantity6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -180,9 +185,10 @@
             this.btnAgregar6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregar6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregar6.ForeColor = System.Drawing.Color.Black;
-            this.btnAgregar6.Location = new System.Drawing.Point(91, 254);
+            this.btnAgregar6.Location = new System.Drawing.Point(121, 313);
+            this.btnAgregar6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAgregar6.Name = "btnAgregar6";
-            this.btnAgregar6.Size = new System.Drawing.Size(101, 37);
+            this.btnAgregar6.Size = new System.Drawing.Size(135, 46);
             this.btnAgregar6.TabIndex = 3;
             this.btnAgregar6.Text = "Agregar Producto";
             this.btnAgregar6.UseVisualStyleBackColor = false;
@@ -191,9 +197,10 @@
             // picProductImg6
             // 
             this.picProductImg6.Image = global::FastFood.Properties.Resources.genericDrinks;
-            this.picProductImg6.Location = new System.Drawing.Point(4, 48);
+            this.picProductImg6.Location = new System.Drawing.Point(5, 59);
+            this.picProductImg6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.picProductImg6.Name = "picProductImg6";
-            this.picProductImg6.Size = new System.Drawing.Size(188, 125);
+            this.picProductImg6.Size = new System.Drawing.Size(251, 154);
             this.picProductImg6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picProductImg6.TabIndex = 1;
             this.picProductImg6.TabStop = false;
@@ -202,9 +209,10 @@
             // 
             this.lblDescriptionProduct6.AutoSize = true;
             this.lblDescriptionProduct6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescriptionProduct6.Location = new System.Drawing.Point(10, 176);
+            this.lblDescriptionProduct6.Location = new System.Drawing.Point(13, 217);
+            this.lblDescriptionProduct6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDescriptionProduct6.Name = "lblDescriptionProduct6";
-            this.lblDescriptionProduct6.Size = new System.Drawing.Size(168, 15);
+            this.lblDescriptionProduct6.Size = new System.Drawing.Size(202, 18);
             this.lblDescriptionProduct6.TabIndex = 1;
             this.lblDescriptionProduct6.Text = "Lorem ispum is a dummy text";
             // 
@@ -213,9 +221,10 @@
             this.lblPrice6.AutoSize = true;
             this.lblPrice6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPrice6.ForeColor = System.Drawing.Color.Blue;
-            this.lblPrice6.Location = new System.Drawing.Point(7, 252);
+            this.lblPrice6.Location = new System.Drawing.Point(9, 310);
+            this.lblPrice6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPrice6.Name = "lblPrice6";
-            this.lblPrice6.Size = new System.Drawing.Size(39, 20);
+            this.lblPrice6.Size = new System.Drawing.Size(48, 25);
             this.lblPrice6.TabIndex = 1;
             this.lblPrice6.Text = "$00";
             // 
@@ -223,9 +232,10 @@
             // 
             this.lblProductName6.AutoSize = true;
             this.lblProductName6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProductName6.Location = new System.Drawing.Point(8, 15);
+            this.lblProductName6.Location = new System.Drawing.Point(11, 18);
+            this.lblProductName6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblProductName6.Name = "lblProductName6";
-            this.lblProductName6.Size = new System.Drawing.Size(77, 25);
+            this.lblProductName6.Size = new System.Drawing.Size(95, 31);
             this.lblProductName6.TabIndex = 1;
             this.lblProductName6.Text = "Lorem";
             // 
@@ -234,9 +244,10 @@
             this.btnNext.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNext.ForeColor = System.Drawing.Color.Black;
-            this.btnNext.Location = new System.Drawing.Point(976, 346);
+            this.btnNext.Location = new System.Drawing.Point(1297, 411);
+            this.btnNext.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(47, 68);
+            this.btnNext.Size = new System.Drawing.Size(63, 84);
             this.btnNext.TabIndex = 61;
             this.btnNext.Text = ">";
             this.btnNext.UseVisualStyleBackColor = false;
@@ -255,26 +266,29 @@
             this.panel5.Controls.Add(this.lblPrice5);
             this.panel5.Controls.Add(this.lblProductName5);
             this.panel5.ForeColor = System.Drawing.Color.Black;
-            this.panel5.Location = new System.Drawing.Point(421, 387);
+            this.panel5.Location = new System.Drawing.Point(561, 476);
+            this.panel5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(197, 289);
+            this.panel5.Size = new System.Drawing.Size(263, 356);
             this.panel5.TabIndex = 58;
             this.panel5.DoubleClick += new System.EventHandler(this.panel5_DoubleClick);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(69, 235);
+            this.label5.Location = new System.Drawing.Point(92, 289);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(49, 13);
+            this.label5.Size = new System.Drawing.Size(61, 16);
             this.label5.TabIndex = 9;
             this.label5.Text = "Cantidad";
             // 
             // btnPlus5
             // 
-            this.btnPlus5.Location = new System.Drawing.Point(148, 213);
+            this.btnPlus5.Location = new System.Drawing.Point(197, 262);
+            this.btnPlus5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnPlus5.Name = "btnPlus5";
-            this.btnPlus5.Size = new System.Drawing.Size(46, 35);
+            this.btnPlus5.Size = new System.Drawing.Size(61, 43);
             this.btnPlus5.TabIndex = 8;
             this.btnPlus5.Text = "+";
             this.btnPlus5.UseVisualStyleBackColor = true;
@@ -283,9 +297,10 @@
             // btnLess5
             // 
             this.btnLess5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLess5.Location = new System.Drawing.Point(4, 213);
+            this.btnLess5.Location = new System.Drawing.Point(5, 262);
+            this.btnLess5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnLess5.Name = "btnLess5";
-            this.btnLess5.Size = new System.Drawing.Size(46, 35);
+            this.btnLess5.Size = new System.Drawing.Size(61, 43);
             this.btnLess5.TabIndex = 7;
             this.btnLess5.Text = "-";
             this.btnLess5.UseVisualStyleBackColor = true;
@@ -293,9 +308,10 @@
             // 
             // txtQuantity5
             // 
-            this.txtQuantity5.Location = new System.Drawing.Point(56, 213);
+            this.txtQuantity5.Location = new System.Drawing.Point(75, 262);
+            this.txtQuantity5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtQuantity5.Name = "txtQuantity5";
-            this.txtQuantity5.Size = new System.Drawing.Size(86, 20);
+            this.txtQuantity5.Size = new System.Drawing.Size(113, 22);
             this.txtQuantity5.TabIndex = 6;
             this.txtQuantity5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -305,9 +321,10 @@
             this.btnAgregar5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregar5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregar5.ForeColor = System.Drawing.Color.Black;
-            this.btnAgregar5.Location = new System.Drawing.Point(91, 254);
+            this.btnAgregar5.Location = new System.Drawing.Point(121, 313);
+            this.btnAgregar5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAgregar5.Name = "btnAgregar5";
-            this.btnAgregar5.Size = new System.Drawing.Size(101, 37);
+            this.btnAgregar5.Size = new System.Drawing.Size(135, 46);
             this.btnAgregar5.TabIndex = 2;
             this.btnAgregar5.Text = "Agregar Producto";
             this.btnAgregar5.UseVisualStyleBackColor = false;
@@ -316,9 +333,10 @@
             // picProductImg5
             // 
             this.picProductImg5.Image = global::FastFood.Properties.Resources.genericDrinks;
-            this.picProductImg5.Location = new System.Drawing.Point(4, 48);
+            this.picProductImg5.Location = new System.Drawing.Point(5, 59);
+            this.picProductImg5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.picProductImg5.Name = "picProductImg5";
-            this.picProductImg5.Size = new System.Drawing.Size(188, 125);
+            this.picProductImg5.Size = new System.Drawing.Size(251, 154);
             this.picProductImg5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picProductImg5.TabIndex = 1;
             this.picProductImg5.TabStop = false;
@@ -327,9 +345,10 @@
             // 
             this.lblDescriptionProduct5.AutoSize = true;
             this.lblDescriptionProduct5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescriptionProduct5.Location = new System.Drawing.Point(10, 176);
+            this.lblDescriptionProduct5.Location = new System.Drawing.Point(13, 217);
+            this.lblDescriptionProduct5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDescriptionProduct5.Name = "lblDescriptionProduct5";
-            this.lblDescriptionProduct5.Size = new System.Drawing.Size(168, 15);
+            this.lblDescriptionProduct5.Size = new System.Drawing.Size(202, 18);
             this.lblDescriptionProduct5.TabIndex = 1;
             this.lblDescriptionProduct5.Text = "Lorem ispum is a dummy text";
             // 
@@ -338,9 +357,10 @@
             this.lblPrice5.AutoSize = true;
             this.lblPrice5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPrice5.ForeColor = System.Drawing.Color.Blue;
-            this.lblPrice5.Location = new System.Drawing.Point(7, 252);
+            this.lblPrice5.Location = new System.Drawing.Point(9, 310);
+            this.lblPrice5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPrice5.Name = "lblPrice5";
-            this.lblPrice5.Size = new System.Drawing.Size(39, 20);
+            this.lblPrice5.Size = new System.Drawing.Size(48, 25);
             this.lblPrice5.TabIndex = 1;
             this.lblPrice5.Text = "$00";
             // 
@@ -348,9 +368,10 @@
             // 
             this.lblProductName5.AutoSize = true;
             this.lblProductName5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProductName5.Location = new System.Drawing.Point(8, 15);
+            this.lblProductName5.Location = new System.Drawing.Point(11, 18);
+            this.lblProductName5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblProductName5.Name = "lblProductName5";
-            this.lblProductName5.Size = new System.Drawing.Size(77, 25);
+            this.lblProductName5.Size = new System.Drawing.Size(95, 31);
             this.lblProductName5.TabIndex = 1;
             this.lblProductName5.Text = "Lorem";
             // 
@@ -367,26 +388,29 @@
             this.panel4.Controls.Add(this.lblPrice4);
             this.panel4.Controls.Add(this.lblProductName4);
             this.panel4.ForeColor = System.Drawing.Color.Black;
-            this.panel4.Location = new System.Drawing.Point(153, 387);
+            this.panel4.Location = new System.Drawing.Point(204, 476);
+            this.panel4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(197, 289);
+            this.panel4.Size = new System.Drawing.Size(263, 356);
             this.panel4.TabIndex = 59;
             this.panel4.DoubleClick += new System.EventHandler(this.panel4_DoubleClick);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(69, 236);
+            this.label4.Location = new System.Drawing.Point(92, 290);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(49, 13);
+            this.label4.Size = new System.Drawing.Size(61, 16);
             this.label4.TabIndex = 9;
             this.label4.Text = "Cantidad";
             // 
             // btnPlus4
             // 
-            this.btnPlus4.Location = new System.Drawing.Point(148, 214);
+            this.btnPlus4.Location = new System.Drawing.Point(197, 263);
+            this.btnPlus4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnPlus4.Name = "btnPlus4";
-            this.btnPlus4.Size = new System.Drawing.Size(46, 35);
+            this.btnPlus4.Size = new System.Drawing.Size(61, 43);
             this.btnPlus4.TabIndex = 8;
             this.btnPlus4.Text = "+";
             this.btnPlus4.UseVisualStyleBackColor = true;
@@ -395,9 +419,10 @@
             // btnLess4
             // 
             this.btnLess4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLess4.Location = new System.Drawing.Point(4, 214);
+            this.btnLess4.Location = new System.Drawing.Point(5, 263);
+            this.btnLess4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnLess4.Name = "btnLess4";
-            this.btnLess4.Size = new System.Drawing.Size(46, 35);
+            this.btnLess4.Size = new System.Drawing.Size(61, 43);
             this.btnLess4.TabIndex = 7;
             this.btnLess4.Text = "-";
             this.btnLess4.UseVisualStyleBackColor = true;
@@ -405,9 +430,10 @@
             // 
             // txtQuantity4
             // 
-            this.txtQuantity4.Location = new System.Drawing.Point(56, 214);
+            this.txtQuantity4.Location = new System.Drawing.Point(75, 263);
+            this.txtQuantity4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtQuantity4.Name = "txtQuantity4";
-            this.txtQuantity4.Size = new System.Drawing.Size(86, 20);
+            this.txtQuantity4.Size = new System.Drawing.Size(113, 22);
             this.txtQuantity4.TabIndex = 6;
             this.txtQuantity4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -417,9 +443,10 @@
             this.btnAgregar4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregar4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregar4.ForeColor = System.Drawing.Color.Black;
-            this.btnAgregar4.Location = new System.Drawing.Point(91, 254);
+            this.btnAgregar4.Location = new System.Drawing.Point(121, 313);
+            this.btnAgregar4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAgregar4.Name = "btnAgregar4";
-            this.btnAgregar4.Size = new System.Drawing.Size(101, 37);
+            this.btnAgregar4.Size = new System.Drawing.Size(135, 46);
             this.btnAgregar4.TabIndex = 1;
             this.btnAgregar4.Text = "Agregar Producto";
             this.btnAgregar4.UseVisualStyleBackColor = false;
@@ -428,9 +455,10 @@
             // picProductImg4
             // 
             this.picProductImg4.Image = global::FastFood.Properties.Resources.genericDrinks;
-            this.picProductImg4.Location = new System.Drawing.Point(4, 48);
+            this.picProductImg4.Location = new System.Drawing.Point(5, 59);
+            this.picProductImg4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.picProductImg4.Name = "picProductImg4";
-            this.picProductImg4.Size = new System.Drawing.Size(188, 125);
+            this.picProductImg4.Size = new System.Drawing.Size(251, 154);
             this.picProductImg4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picProductImg4.TabIndex = 1;
             this.picProductImg4.TabStop = false;
@@ -439,9 +467,10 @@
             // 
             this.lblDescriptionProduct4.AutoSize = true;
             this.lblDescriptionProduct4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescriptionProduct4.Location = new System.Drawing.Point(10, 176);
+            this.lblDescriptionProduct4.Location = new System.Drawing.Point(13, 217);
+            this.lblDescriptionProduct4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDescriptionProduct4.Name = "lblDescriptionProduct4";
-            this.lblDescriptionProduct4.Size = new System.Drawing.Size(168, 15);
+            this.lblDescriptionProduct4.Size = new System.Drawing.Size(202, 18);
             this.lblDescriptionProduct4.TabIndex = 1;
             this.lblDescriptionProduct4.Text = "Lorem ispum is a dummy text";
             // 
@@ -450,9 +479,10 @@
             this.lblPrice4.AutoSize = true;
             this.lblPrice4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPrice4.ForeColor = System.Drawing.Color.Blue;
-            this.lblPrice4.Location = new System.Drawing.Point(7, 252);
+            this.lblPrice4.Location = new System.Drawing.Point(9, 310);
+            this.lblPrice4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPrice4.Name = "lblPrice4";
-            this.lblPrice4.Size = new System.Drawing.Size(39, 20);
+            this.lblPrice4.Size = new System.Drawing.Size(48, 25);
             this.lblPrice4.TabIndex = 1;
             this.lblPrice4.Text = "$00";
             // 
@@ -460,9 +490,10 @@
             // 
             this.lblProductName4.AutoSize = true;
             this.lblProductName4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProductName4.Location = new System.Drawing.Point(8, 15);
+            this.lblProductName4.Location = new System.Drawing.Point(11, 18);
+            this.lblProductName4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblProductName4.Name = "lblProductName4";
-            this.lblProductName4.Size = new System.Drawing.Size(77, 25);
+            this.lblProductName4.Size = new System.Drawing.Size(95, 31);
             this.lblProductName4.TabIndex = 1;
             this.lblProductName4.Text = "Lorem";
             // 
@@ -471,9 +502,10 @@
             this.btnBack.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBack.ForeColor = System.Drawing.Color.Black;
-            this.btnBack.Location = new System.Drawing.Point(29, 334);
+            this.btnBack.Location = new System.Drawing.Point(39, 411);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(47, 68);
+            this.btnBack.Size = new System.Drawing.Size(63, 84);
             this.btnBack.TabIndex = 60;
             this.btnBack.Text = "<";
             this.btnBack.UseVisualStyleBackColor = false;
@@ -484,9 +516,10 @@
             this.btnSearch.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.ForeColor = System.Drawing.Color.Black;
-            this.btnSearch.Location = new System.Drawing.Point(48, 14);
+            this.btnSearch.Location = new System.Drawing.Point(64, 17);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(99, 44);
+            this.btnSearch.Size = new System.Drawing.Size(132, 54);
             this.btnSearch.TabIndex = 56;
             this.btnSearch.Text = " Buscar";
             this.btnSearch.UseVisualStyleBackColor = false;
@@ -495,9 +528,10 @@
             // txtSearch
             // 
             this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(153, 19);
+            this.txtSearch.Location = new System.Drawing.Point(204, 23);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(734, 29);
+            this.txtSearch.Size = new System.Drawing.Size(977, 34);
             this.txtSearch.TabIndex = 55;
             // 
             // panel3
@@ -513,26 +547,29 @@
             this.panel3.Controls.Add(this.lblPrice3);
             this.panel3.Controls.Add(this.lblProductName3);
             this.panel3.ForeColor = System.Drawing.Color.Black;
-            this.panel3.Location = new System.Drawing.Point(690, 69);
+            this.panel3.Location = new System.Drawing.Point(920, 85);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(197, 289);
+            this.panel3.Size = new System.Drawing.Size(263, 356);
             this.panel3.TabIndex = 52;
             this.panel3.DoubleClick += new System.EventHandler(this.panel3_DoubleClick);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(69, 234);
+            this.label3.Location = new System.Drawing.Point(92, 288);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(49, 13);
+            this.label3.Size = new System.Drawing.Size(61, 16);
             this.label3.TabIndex = 9;
             this.label3.Text = "Cantidad";
             // 
             // btnPlus3
             // 
-            this.btnPlus3.Location = new System.Drawing.Point(148, 212);
+            this.btnPlus3.Location = new System.Drawing.Point(197, 261);
+            this.btnPlus3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnPlus3.Name = "btnPlus3";
-            this.btnPlus3.Size = new System.Drawing.Size(46, 35);
+            this.btnPlus3.Size = new System.Drawing.Size(61, 43);
             this.btnPlus3.TabIndex = 8;
             this.btnPlus3.Text = "+";
             this.btnPlus3.UseVisualStyleBackColor = true;
@@ -541,9 +578,10 @@
             // btnLess3
             // 
             this.btnLess3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLess3.Location = new System.Drawing.Point(4, 212);
+            this.btnLess3.Location = new System.Drawing.Point(5, 261);
+            this.btnLess3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnLess3.Name = "btnLess3";
-            this.btnLess3.Size = new System.Drawing.Size(46, 35);
+            this.btnLess3.Size = new System.Drawing.Size(61, 43);
             this.btnLess3.TabIndex = 7;
             this.btnLess3.Text = "-";
             this.btnLess3.UseVisualStyleBackColor = true;
@@ -551,9 +589,10 @@
             // 
             // txtQuantity3
             // 
-            this.txtQuantity3.Location = new System.Drawing.Point(56, 212);
+            this.txtQuantity3.Location = new System.Drawing.Point(75, 261);
+            this.txtQuantity3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtQuantity3.Name = "txtQuantity3";
-            this.txtQuantity3.Size = new System.Drawing.Size(86, 20);
+            this.txtQuantity3.Size = new System.Drawing.Size(113, 22);
             this.txtQuantity3.TabIndex = 6;
             this.txtQuantity3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -563,9 +602,10 @@
             this.btnAgregar3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregar3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregar3.ForeColor = System.Drawing.Color.Black;
-            this.btnAgregar3.Location = new System.Drawing.Point(91, 254);
+            this.btnAgregar3.Location = new System.Drawing.Point(121, 313);
+            this.btnAgregar3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAgregar3.Name = "btnAgregar3";
-            this.btnAgregar3.Size = new System.Drawing.Size(101, 37);
+            this.btnAgregar3.Size = new System.Drawing.Size(135, 46);
             this.btnAgregar3.TabIndex = 3;
             this.btnAgregar3.Text = "Agregar Producto";
             this.btnAgregar3.UseVisualStyleBackColor = false;
@@ -574,9 +614,10 @@
             // picProductImg3
             // 
             this.picProductImg3.Image = global::FastFood.Properties.Resources.genericDrinks;
-            this.picProductImg3.Location = new System.Drawing.Point(4, 48);
+            this.picProductImg3.Location = new System.Drawing.Point(5, 59);
+            this.picProductImg3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.picProductImg3.Name = "picProductImg3";
-            this.picProductImg3.Size = new System.Drawing.Size(188, 125);
+            this.picProductImg3.Size = new System.Drawing.Size(251, 154);
             this.picProductImg3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picProductImg3.TabIndex = 1;
             this.picProductImg3.TabStop = false;
@@ -585,9 +626,10 @@
             // 
             this.lblDescriptionProduct3.AutoSize = true;
             this.lblDescriptionProduct3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescriptionProduct3.Location = new System.Drawing.Point(10, 176);
+            this.lblDescriptionProduct3.Location = new System.Drawing.Point(13, 217);
+            this.lblDescriptionProduct3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDescriptionProduct3.Name = "lblDescriptionProduct3";
-            this.lblDescriptionProduct3.Size = new System.Drawing.Size(168, 15);
+            this.lblDescriptionProduct3.Size = new System.Drawing.Size(202, 18);
             this.lblDescriptionProduct3.TabIndex = 1;
             this.lblDescriptionProduct3.Text = "Lorem ispum is a dummy text";
             // 
@@ -596,9 +638,10 @@
             this.lblPrice3.AutoSize = true;
             this.lblPrice3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPrice3.ForeColor = System.Drawing.Color.Blue;
-            this.lblPrice3.Location = new System.Drawing.Point(7, 252);
+            this.lblPrice3.Location = new System.Drawing.Point(9, 310);
+            this.lblPrice3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPrice3.Name = "lblPrice3";
-            this.lblPrice3.Size = new System.Drawing.Size(39, 20);
+            this.lblPrice3.Size = new System.Drawing.Size(48, 25);
             this.lblPrice3.TabIndex = 1;
             this.lblPrice3.Text = "$00";
             // 
@@ -606,9 +649,10 @@
             // 
             this.lblProductName3.AutoSize = true;
             this.lblProductName3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProductName3.Location = new System.Drawing.Point(8, 15);
+            this.lblProductName3.Location = new System.Drawing.Point(11, 18);
+            this.lblProductName3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblProductName3.Name = "lblProductName3";
-            this.lblProductName3.Size = new System.Drawing.Size(77, 25);
+            this.lblProductName3.Size = new System.Drawing.Size(95, 31);
             this.lblProductName3.TabIndex = 1;
             this.lblProductName3.Text = "Lorem";
             // 
@@ -624,26 +668,29 @@
             this.panel2.Controls.Add(this.lblDescriptionProduct2);
             this.panel2.Controls.Add(this.lblPrice2);
             this.panel2.Controls.Add(this.lblProductName2);
-            this.panel2.Location = new System.Drawing.Point(421, 69);
+            this.panel2.Location = new System.Drawing.Point(561, 85);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(197, 289);
+            this.panel2.Size = new System.Drawing.Size(263, 356);
             this.panel2.TabIndex = 53;
             this.panel2.DoubleClick += new System.EventHandler(this.panel2_DoubleClick);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(69, 235);
+            this.label2.Location = new System.Drawing.Point(92, 289);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(49, 13);
+            this.label2.Size = new System.Drawing.Size(61, 16);
             this.label2.TabIndex = 9;
             this.label2.Text = "Cantidad";
             // 
             // btnPlus2
             // 
-            this.btnPlus2.Location = new System.Drawing.Point(148, 213);
+            this.btnPlus2.Location = new System.Drawing.Point(197, 262);
+            this.btnPlus2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnPlus2.Name = "btnPlus2";
-            this.btnPlus2.Size = new System.Drawing.Size(46, 35);
+            this.btnPlus2.Size = new System.Drawing.Size(61, 43);
             this.btnPlus2.TabIndex = 8;
             this.btnPlus2.Text = "+";
             this.btnPlus2.UseVisualStyleBackColor = true;
@@ -652,9 +699,10 @@
             // btnLess2
             // 
             this.btnLess2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLess2.Location = new System.Drawing.Point(4, 213);
+            this.btnLess2.Location = new System.Drawing.Point(5, 262);
+            this.btnLess2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnLess2.Name = "btnLess2";
-            this.btnLess2.Size = new System.Drawing.Size(46, 35);
+            this.btnLess2.Size = new System.Drawing.Size(61, 43);
             this.btnLess2.TabIndex = 7;
             this.btnLess2.Text = "-";
             this.btnLess2.UseVisualStyleBackColor = true;
@@ -662,9 +710,10 @@
             // 
             // txtQuantity2
             // 
-            this.txtQuantity2.Location = new System.Drawing.Point(56, 213);
+            this.txtQuantity2.Location = new System.Drawing.Point(75, 262);
+            this.txtQuantity2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtQuantity2.Name = "txtQuantity2";
-            this.txtQuantity2.Size = new System.Drawing.Size(86, 20);
+            this.txtQuantity2.Size = new System.Drawing.Size(113, 22);
             this.txtQuantity2.TabIndex = 6;
             this.txtQuantity2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -674,9 +723,10 @@
             this.btnAgregar2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregar2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregar2.ForeColor = System.Drawing.Color.Black;
-            this.btnAgregar2.Location = new System.Drawing.Point(91, 254);
+            this.btnAgregar2.Location = new System.Drawing.Point(121, 313);
+            this.btnAgregar2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAgregar2.Name = "btnAgregar2";
-            this.btnAgregar2.Size = new System.Drawing.Size(101, 37);
+            this.btnAgregar2.Size = new System.Drawing.Size(135, 46);
             this.btnAgregar2.TabIndex = 2;
             this.btnAgregar2.Text = "Agregar Producto";
             this.btnAgregar2.UseVisualStyleBackColor = false;
@@ -685,9 +735,10 @@
             // picProductImg2
             // 
             this.picProductImg2.Image = global::FastFood.Properties.Resources.genericDrinks;
-            this.picProductImg2.Location = new System.Drawing.Point(4, 48);
+            this.picProductImg2.Location = new System.Drawing.Point(5, 59);
+            this.picProductImg2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.picProductImg2.Name = "picProductImg2";
-            this.picProductImg2.Size = new System.Drawing.Size(188, 125);
+            this.picProductImg2.Size = new System.Drawing.Size(251, 154);
             this.picProductImg2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picProductImg2.TabIndex = 1;
             this.picProductImg2.TabStop = false;
@@ -696,9 +747,10 @@
             // 
             this.lblDescriptionProduct2.AutoSize = true;
             this.lblDescriptionProduct2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescriptionProduct2.Location = new System.Drawing.Point(10, 176);
+            this.lblDescriptionProduct2.Location = new System.Drawing.Point(13, 217);
+            this.lblDescriptionProduct2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDescriptionProduct2.Name = "lblDescriptionProduct2";
-            this.lblDescriptionProduct2.Size = new System.Drawing.Size(168, 15);
+            this.lblDescriptionProduct2.Size = new System.Drawing.Size(202, 18);
             this.lblDescriptionProduct2.TabIndex = 1;
             this.lblDescriptionProduct2.Text = "Lorem ispum is a dummy text";
             // 
@@ -707,9 +759,10 @@
             this.lblPrice2.AutoSize = true;
             this.lblPrice2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPrice2.ForeColor = System.Drawing.Color.Blue;
-            this.lblPrice2.Location = new System.Drawing.Point(7, 252);
+            this.lblPrice2.Location = new System.Drawing.Point(9, 310);
+            this.lblPrice2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPrice2.Name = "lblPrice2";
-            this.lblPrice2.Size = new System.Drawing.Size(39, 20);
+            this.lblPrice2.Size = new System.Drawing.Size(48, 25);
             this.lblPrice2.TabIndex = 1;
             this.lblPrice2.Text = "$00";
             // 
@@ -717,9 +770,10 @@
             // 
             this.lblProductName2.AutoSize = true;
             this.lblProductName2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProductName2.Location = new System.Drawing.Point(8, 15);
+            this.lblProductName2.Location = new System.Drawing.Point(11, 18);
+            this.lblProductName2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblProductName2.Name = "lblProductName2";
-            this.lblProductName2.Size = new System.Drawing.Size(77, 25);
+            this.lblProductName2.Size = new System.Drawing.Size(95, 31);
             this.lblProductName2.TabIndex = 1;
             this.lblProductName2.Text = "Lorem";
             // 
@@ -736,26 +790,29 @@
             this.panel1.Controls.Add(this.lblPrice1);
             this.panel1.Controls.Add(this.lblProductName1);
             this.panel1.ForeColor = System.Drawing.Color.Black;
-            this.panel1.Location = new System.Drawing.Point(153, 69);
+            this.panel1.Location = new System.Drawing.Point(204, 85);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(197, 289);
+            this.panel1.Size = new System.Drawing.Size(263, 356);
             this.panel1.TabIndex = 54;
             this.panel1.DoubleClick += new System.EventHandler(this.panel1_DoubleClick);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(69, 236);
+            this.label1.Location = new System.Drawing.Point(92, 290);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(49, 13);
+            this.label1.Size = new System.Drawing.Size(61, 16);
             this.label1.TabIndex = 9;
             this.label1.Text = "Cantidad";
             // 
             // btnPlus1
             // 
-            this.btnPlus1.Location = new System.Drawing.Point(148, 214);
+            this.btnPlus1.Location = new System.Drawing.Point(197, 263);
+            this.btnPlus1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnPlus1.Name = "btnPlus1";
-            this.btnPlus1.Size = new System.Drawing.Size(46, 35);
+            this.btnPlus1.Size = new System.Drawing.Size(61, 43);
             this.btnPlus1.TabIndex = 8;
             this.btnPlus1.Text = "+";
             this.btnPlus1.UseVisualStyleBackColor = true;
@@ -764,9 +821,10 @@
             // btnLess1
             // 
             this.btnLess1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLess1.Location = new System.Drawing.Point(4, 214);
+            this.btnLess1.Location = new System.Drawing.Point(5, 263);
+            this.btnLess1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnLess1.Name = "btnLess1";
-            this.btnLess1.Size = new System.Drawing.Size(46, 35);
+            this.btnLess1.Size = new System.Drawing.Size(61, 43);
             this.btnLess1.TabIndex = 7;
             this.btnLess1.Text = "-";
             this.btnLess1.UseVisualStyleBackColor = true;
@@ -774,9 +832,10 @@
             // 
             // txtQuantity1
             // 
-            this.txtQuantity1.Location = new System.Drawing.Point(56, 214);
+            this.txtQuantity1.Location = new System.Drawing.Point(75, 263);
+            this.txtQuantity1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtQuantity1.Name = "txtQuantity1";
-            this.txtQuantity1.Size = new System.Drawing.Size(86, 20);
+            this.txtQuantity1.Size = new System.Drawing.Size(113, 22);
             this.txtQuantity1.TabIndex = 6;
             this.txtQuantity1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -786,9 +845,10 @@
             this.btnAgregar1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregar1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregar1.ForeColor = System.Drawing.Color.Black;
-            this.btnAgregar1.Location = new System.Drawing.Point(91, 254);
+            this.btnAgregar1.Location = new System.Drawing.Point(121, 313);
+            this.btnAgregar1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAgregar1.Name = "btnAgregar1";
-            this.btnAgregar1.Size = new System.Drawing.Size(101, 37);
+            this.btnAgregar1.Size = new System.Drawing.Size(135, 46);
             this.btnAgregar1.TabIndex = 1;
             this.btnAgregar1.Text = "Agregar Producto";
             this.btnAgregar1.UseVisualStyleBackColor = false;
@@ -797,9 +857,10 @@
             // picProductImg1
             // 
             this.picProductImg1.Image = global::FastFood.Properties.Resources.genericDrinks;
-            this.picProductImg1.Location = new System.Drawing.Point(4, 48);
+            this.picProductImg1.Location = new System.Drawing.Point(5, 59);
+            this.picProductImg1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.picProductImg1.Name = "picProductImg1";
-            this.picProductImg1.Size = new System.Drawing.Size(188, 125);
+            this.picProductImg1.Size = new System.Drawing.Size(251, 154);
             this.picProductImg1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picProductImg1.TabIndex = 1;
             this.picProductImg1.TabStop = false;
@@ -808,9 +869,10 @@
             // 
             this.lblDescriptionProduct1.AutoSize = true;
             this.lblDescriptionProduct1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescriptionProduct1.Location = new System.Drawing.Point(10, 176);
+            this.lblDescriptionProduct1.Location = new System.Drawing.Point(13, 217);
+            this.lblDescriptionProduct1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDescriptionProduct1.Name = "lblDescriptionProduct1";
-            this.lblDescriptionProduct1.Size = new System.Drawing.Size(168, 15);
+            this.lblDescriptionProduct1.Size = new System.Drawing.Size(202, 18);
             this.lblDescriptionProduct1.TabIndex = 1;
             this.lblDescriptionProduct1.Text = "Lorem ispum is a dummy text";
             // 
@@ -819,9 +881,10 @@
             this.lblPrice1.AutoSize = true;
             this.lblPrice1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPrice1.ForeColor = System.Drawing.Color.Blue;
-            this.lblPrice1.Location = new System.Drawing.Point(7, 252);
+            this.lblPrice1.Location = new System.Drawing.Point(9, 310);
+            this.lblPrice1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPrice1.Name = "lblPrice1";
-            this.lblPrice1.Size = new System.Drawing.Size(39, 20);
+            this.lblPrice1.Size = new System.Drawing.Size(48, 25);
             this.lblPrice1.TabIndex = 1;
             this.lblPrice1.Text = "$00";
             // 
@@ -829,18 +892,20 @@
             // 
             this.lblProductName1.AutoSize = true;
             this.lblProductName1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProductName1.Location = new System.Drawing.Point(8, 15);
+            this.lblProductName1.Location = new System.Drawing.Point(11, 18);
+            this.lblProductName1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblProductName1.Name = "lblProductName1";
-            this.lblProductName1.Size = new System.Drawing.Size(77, 25);
+            this.lblProductName1.Size = new System.Drawing.Size(95, 31);
             this.lblProductName1.TabIndex = 1;
             this.lblProductName1.Text = "Lorem";
             // 
             // lblProductId6
             // 
             this.lblProductId6.AutoSize = true;
-            this.lblProductId6.Location = new System.Drawing.Point(45, 197);
+            this.lblProductId6.Location = new System.Drawing.Point(60, 242);
+            this.lblProductId6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblProductId6.Name = "lblProductId6";
-            this.lblProductId6.Size = new System.Drawing.Size(69, 13);
+            this.lblProductId6.Size = new System.Drawing.Size(85, 16);
             this.lblProductId6.TabIndex = 67;
             this.lblProductId6.Text = "lblProductId6";
             this.lblProductId6.Visible = false;
@@ -848,9 +913,10 @@
             // lblProductId5
             // 
             this.lblProductId5.AutoSize = true;
-            this.lblProductId5.Location = new System.Drawing.Point(45, 184);
+            this.lblProductId5.Location = new System.Drawing.Point(60, 226);
+            this.lblProductId5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblProductId5.Name = "lblProductId5";
-            this.lblProductId5.Size = new System.Drawing.Size(69, 13);
+            this.lblProductId5.Size = new System.Drawing.Size(85, 16);
             this.lblProductId5.TabIndex = 66;
             this.lblProductId5.Text = "lblProductId5";
             this.lblProductId5.Visible = false;
@@ -858,9 +924,10 @@
             // lblProductId4
             // 
             this.lblProductId4.AutoSize = true;
-            this.lblProductId4.Location = new System.Drawing.Point(45, 171);
+            this.lblProductId4.Location = new System.Drawing.Point(60, 210);
+            this.lblProductId4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblProductId4.Name = "lblProductId4";
-            this.lblProductId4.Size = new System.Drawing.Size(69, 13);
+            this.lblProductId4.Size = new System.Drawing.Size(85, 16);
             this.lblProductId4.TabIndex = 65;
             this.lblProductId4.Text = "lblProductId4";
             this.lblProductId4.Visible = false;
@@ -868,9 +935,10 @@
             // lblProductId3
             // 
             this.lblProductId3.AutoSize = true;
-            this.lblProductId3.Location = new System.Drawing.Point(45, 143);
+            this.lblProductId3.Location = new System.Drawing.Point(60, 176);
+            this.lblProductId3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblProductId3.Name = "lblProductId3";
-            this.lblProductId3.Size = new System.Drawing.Size(69, 13);
+            this.lblProductId3.Size = new System.Drawing.Size(85, 16);
             this.lblProductId3.TabIndex = 64;
             this.lblProductId3.Text = "lblProductId3";
             this.lblProductId3.Visible = false;
@@ -878,9 +946,10 @@
             // lblProductId2
             // 
             this.lblProductId2.AutoSize = true;
-            this.lblProductId2.Location = new System.Drawing.Point(45, 130);
+            this.lblProductId2.Location = new System.Drawing.Point(60, 160);
+            this.lblProductId2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblProductId2.Name = "lblProductId2";
-            this.lblProductId2.Size = new System.Drawing.Size(69, 13);
+            this.lblProductId2.Size = new System.Drawing.Size(85, 16);
             this.lblProductId2.TabIndex = 63;
             this.lblProductId2.Text = "lblProductId2";
             this.lblProductId2.Visible = false;
@@ -888,9 +957,10 @@
             // lblProductId1
             // 
             this.lblProductId1.AutoSize = true;
-            this.lblProductId1.Location = new System.Drawing.Point(45, 117);
+            this.lblProductId1.Location = new System.Drawing.Point(60, 144);
+            this.lblProductId1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblProductId1.Name = "lblProductId1";
-            this.lblProductId1.Size = new System.Drawing.Size(69, 13);
+            this.lblProductId1.Size = new System.Drawing.Size(85, 16);
             this.lblProductId1.TabIndex = 62;
             this.lblProductId1.Text = "lblProductId1";
             this.lblProductId1.Visible = false;
@@ -900,9 +970,10 @@
             this.panelManager.BackColor = System.Drawing.Color.Transparent;
             this.panelManager.Controls.Add(this.button1);
             this.panelManager.Controls.Add(this.button2);
-            this.panelManager.Location = new System.Drawing.Point(895, 69);
+            this.panelManager.Location = new System.Drawing.Point(1193, 85);
+            this.panelManager.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelManager.Name = "panelManager";
-            this.panelManager.Size = new System.Drawing.Size(128, 128);
+            this.panelManager.Size = new System.Drawing.Size(171, 158);
             this.panelManager.TabIndex = 69;
             // 
             // button1
@@ -910,9 +981,10 @@
             this.button1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.Black;
-            this.button1.Location = new System.Drawing.Point(0, 67);
+            this.button1.Location = new System.Drawing.Point(0, 82);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(125, 61);
+            this.button1.Size = new System.Drawing.Size(167, 75);
             this.button1.TabIndex = 68;
             this.button1.Text = "Eliminar";
             this.button1.UseVisualStyleBackColor = false;
@@ -924,8 +996,9 @@
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.Black;
             this.button2.Location = new System.Drawing.Point(0, 0);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(125, 61);
+            this.button2.Size = new System.Drawing.Size(167, 75);
             this.button2.TabIndex = 69;
             this.button2.Text = " Editar";
             this.button2.UseVisualStyleBackColor = false;
@@ -938,19 +1011,20 @@
             this.label8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.Red;
-            this.label8.Location = new System.Drawing.Point(1016, 2);
+            this.label8.Location = new System.Drawing.Point(1355, 2);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(34, 33);
+            this.label8.Size = new System.Drawing.Size(42, 41);
             this.label8.TabIndex = 127;
             this.label8.Text = "X";
             this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // DrinkListForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1052, 691);
+            this.ClientSize = new System.Drawing.Size(1403, 850);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.panelManager);
             this.Controls.Add(this.lblProductId6);
@@ -970,6 +1044,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "DrinkListForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DrinkListForm";

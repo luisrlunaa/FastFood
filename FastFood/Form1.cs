@@ -108,9 +108,6 @@ namespace FastFoodDemo
             mainpanel.Visible = true;
             SidePanel.Height = button2.Height;
             SidePanel.Top = button2.Top;
-            GenericLists.startIndexProduct = 0;
-            GenericLists.endIndexProduct = 0;
-
             loadform(FoodListForm.Instance);
         }
 
@@ -168,9 +165,6 @@ namespace FastFoodDemo
             mainpanel.Visible = true;
             SidePanel.Height = button3.Height;
             SidePanel.Top = button3.Top;
-            GenericLists.startIndexProduct = 0;
-            GenericLists.endIndexProduct = 0;
-
             loadform(DrinkListForm.Instance);
         }
 
