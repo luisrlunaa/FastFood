@@ -20,7 +20,8 @@ namespace FastFoodDemo
         public static DrinkListForm Instance;
         private static List<Product> ProductsList { get; set; }
         private int ProductId { get; set; }
-
+        private int pageSize = 6;  // number of rows to display per page
+        private int currentPage = 0;  // current page index
         public DrinkListForm()
         {
             InitializeComponent();
@@ -34,7 +35,10 @@ namespace FastFoodDemo
             if (GenericLists.SelectedItems is null)
                 GenericLists.SelectedItems = new List<SalesDetails>();
 
-            GetListItems(0);
+            if(currentPage == 0)
+                btnBack.Enabled = false;
+
+            GetListItems(currentPage);
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -69,12 +73,6 @@ namespace FastFoodDemo
 
                     listItems.Add(item);
                 }
-
-                if (listItems != null && listItems.Any())
-                {
-                    GenericLists.startIndexProduct = listItems.FirstOrDefault().ProductId;
-                    GenericLists.endIndexProduct = listItems.LastOrDefault().ProductId;
-                }
             }
 
             var panelCount = 0;
@@ -86,26 +84,30 @@ namespace FastFoodDemo
             loadCounterstxt();
         }
 
+        private void LoadDataGridViewPage(int pageNumber)
+        {
+            // fetch data for the specified page number from the database
+            int startIndex = pageNumber * pageSize;
+            int endIndex = startIndex + pageSize - 1;
+            GetListItems(startIndex);
+        }
+
         private void btnNext_Click(object sender, EventArgs e)
         {
-            int lastProduct = 5;
-            if (GenericLists.endIndexProduct != 0)
-            {
-                lastProduct = ProductsList.FindIndex(a => a.ProductId == GenericLists.endIndexProduct);
-            }
-
-            GetListItems(lastProduct);
+            btnBack.Enabled = true;
+            currentPage++;
+            LoadDataGridViewPage(currentPage);
         }
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            int firtProduct = 0;
-            if (GenericLists.startIndexProduct != 0 && GenericLists.endIndexProduct != 0)
-            {
-                firtProduct = ProductsList.FindIndex(a => a.ProductId == GenericLists.startIndexProduct);
-            }
+            btnNext.Enabled = true;
+            currentPage--;
 
-            GetListItems(firtProduct);
+            if (currentPage == 0)
+                btnBack.Enabled = false;
+
+            LoadDataGridViewPage(currentPage);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -126,7 +128,7 @@ namespace FastFoodDemo
                 form.txtImgName.Text = string.IsNullOrWhiteSpace(product.ImageName) ? string.Empty : product.ImageName;
                 form.Show();
                 panelManager.Visible = false;
-                GetListItems(0);
+                GetListItems(currentPage);
             }
         }
 
@@ -143,7 +145,7 @@ namespace FastFoodDemo
                         if (deleted)
                             ProductsList.Remove(product);
 
-                        GetListItems(0);
+                        GetListItems(currentPage);
                     }
                 }
 
@@ -252,7 +254,7 @@ namespace FastFoodDemo
             return (idVenta > 0 ? idVenta : 1);
         }
 
-        private void GetListItems(int skip)
+        private void GetListItems(int startIndex)
         {
             if (ProductsList is null || !ProductsList.Any())
             {
@@ -264,8 +266,8 @@ namespace FastFoodDemo
             }
 
             var listItems = new List<ItemsDTO>();
-            var newSearch = ProductsList?.Skip(skip)?.Take(6)?.ToList();
-            var Products = newSearch != null && newSearch.Count > 2 ? newSearch.ToList() : ProductsList.ToList();
+            var newSearch = ProductsList?.Skip(startIndex)?.Take(pageSize)?.ToList();
+            var Products = newSearch != null && newSearch.Any() ? newSearch.ToList() : ProductsList.ToList();
             if (Products != null || Products.Count > 0)
             {
                 foreach (var x in Products)
@@ -281,13 +283,10 @@ namespace FastFoodDemo
 
                     listItems.Add(item);
                 }
-
-                if (listItems != null && listItems.Any())
-                {
-                    GenericLists.startIndexProduct = listItems.FirstOrDefault().ProductId;
-                    GenericLists.endIndexProduct = listItems.LastOrDefault().ProductId;
-                }
             }
+
+            if(Products.Count < 6)
+                btnNext.Enabled = false;
 
             var panelCount = 0;
             if (listItems != null && listItems.Count() > 0)
@@ -333,6 +332,7 @@ namespace FastFoodDemo
                     lblDescriptionProduct1.Text = item.Description;
                     lblPrice1.Text = item.Price;
                 }
+
                 //Panel2
                 if (items.FindIndex(a => a.ProductId == item.ProductId) == 1)
                 {
@@ -353,6 +353,7 @@ namespace FastFoodDemo
                     lblDescriptionProduct2.Text = item.Description;
                     lblPrice2.Text = item.Price;
                 }
+
                 //Panel3
                 if (items.FindIndex(a => a.ProductId == item.ProductId) == 2)
                 {
@@ -373,6 +374,7 @@ namespace FastFoodDemo
                     lblDescriptionProduct3.Text = item.Description;
                     lblPrice3.Text = item.Price;
                 }
+
                 //Panel4
                 if (items.FindIndex(a => a.ProductId == item.ProductId) == 3)
                 {
@@ -393,6 +395,7 @@ namespace FastFoodDemo
                     lblDescriptionProduct4.Text = item.Description;
                     lblPrice4.Text = item.Price;
                 }
+
                 //Panel5
                 if (items.FindIndex(a => a.ProductId == item.ProductId) == 4)
                 {
@@ -413,6 +416,7 @@ namespace FastFoodDemo
                     lblDescriptionProduct5.Text = item.Description;
                     lblPrice5.Text = item.Price;
                 }
+
                 //Panel6
                 if (items.FindIndex(a => a.ProductId == item.ProductId) == 5)
                 {
@@ -452,7 +456,7 @@ namespace FastFoodDemo
             ProductsList = new List<Product>();
             this.Controls.Clear();
             this.InitializeComponent();
-            GetListItems(0);
+            GetListItems(currentPage);
         }
         #endregion
 
