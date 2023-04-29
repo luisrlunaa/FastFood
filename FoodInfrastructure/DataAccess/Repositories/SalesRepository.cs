@@ -1,4 +1,5 @@
 ﻿using FastFood.Infrastructure.DataAccess.Contexts;
+using FastFood.Infrastructure.Utils;
 using FastFood.Models.Entities;
 using System;
 using System.Collections.Generic;
@@ -40,6 +41,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                     s.Remaining = reader["Remaining"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["Remaining"]);
                     s.DateIn = reader["DateIn"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["DateIn"]);
 
+                    s = AnyNullValueHelper.AnyNullValue<Sales>(s);
                     SalesList.Add(s);
                 }
 
@@ -79,6 +81,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                 s.Remaining = dr.GetDecimal(dr.GetOrdinal("Remaining"));
                 s.DateIn = dr.GetDateTime(dr.GetOrdinal("DateIn"));
 
+                s = AnyNullValueHelper.AnyNullValue<Sales>(s);
                 return (s, "Proceso Completado");
             }
             catch (Exception ex)
@@ -118,6 +121,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                     s.Remaining = reader["Remaining"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["Remaining"]);
                     s.DateIn = reader["DateIn"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["DateIn"]);
 
+                    s = AnyNullValueHelper.AnyNullValue<Sales>(s);
                     SalesList.Add(s);
                 }
 
@@ -168,6 +172,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                     s.Remaining = reader["Remaining"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["Remaining"]);
                     s.DateIn = reader["DateIn"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["DateIn"]);
 
+                    s = AnyNullValueHelper.AnyNullValue<Sales>(s);
                     SalesList.Add(s);
                 }
 
@@ -244,6 +249,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                 if (sales == null || sales.DateIn == DateTime.MinValue)
                     return (false, "Error Input Invalido, Metodo SalesRepository.AddSale");
 
+                sales = AnyNullValueHelper.AnyNullValue<Sales>(sales);
                 var parameters = new List<string> { sales.IdEmployee.ToString(), "'"+sales.ClientName+"'", "'"+sales.ClientRnc+"'", "'"+sales.Address+"'", "'"+sales.SalesCheckType+"'", "'"+sales.DocumentType+"'",
                 "'"+sales.NroComprobante+"'", string.IsNullOrWhiteSpace(sales.DeliveryName) ? "'"+ string.Empty +"'" : "'" +sales.DeliveryName+"'", sales.DeliveryAmount.ToString(),
                 sales.Total.ToString(), sales.Remaining.ToString(), "'"+sales.DateIn.Value.ToShortDateString()+"'"};
@@ -269,6 +275,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                 if (sales == null)
                     return (false, "Error Input Invalido, Metodo SalesRepository.UpdateSales");
 
+                sales = AnyNullValueHelper.AnyNullValue<Sales>(sales);
                 var parameters = new List<string> { sales.IdEmployee.ToString(), "'"+sales.ClientName+"'", "'"+sales.Address+"'", "'"+sales.SalesCheckType+"'", "'"+sales.DocumentType+"'",
                 "'"+sales.NroComprobante+"'", string.IsNullOrWhiteSpace(sales.DeliveryName) ? "'"+ string.Empty +"'" : "'" + sales.DeliveryName+"'", sales.DeliveryAmount.ToString(),
                 sales.Total.ToString(), sales.Remaining.ToString(), "'"+sales.DateIn.Value.ToShortDateString()+"'"};
@@ -354,6 +361,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                     s.Earnings = reader["Earnings"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["Earnings"]);
                     s.DateIn = reader["DateIn"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["DateIn"]);
 
+                    s = AnyNullValueHelper.AnyNullValue<SalesDetails>(s);
                     Sales.Add(s);
                 }
 
@@ -403,6 +411,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                     s.Earnings = reader["Earnings"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["Earnings"]);
                     s.DateIn = reader["DateIn"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["DateIn"]);
 
+                    s = AnyNullValueHelper.AnyNullValue<SalesDetails>(s);
                     salesDetailbyDates.Add(s);
                 }
 
@@ -446,6 +455,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                     s.Earnings = reader["Earnings"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["Earnings"]);
                     s.DateIn = reader["DateIn"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["DateIn"]);
 
+                    s = AnyNullValueHelper.AnyNullValue<SalesDetails>(s);
                     salesDetailbyDates.Add(s);
                 }
 
@@ -495,6 +505,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                     s.Earnings = reader["Earnings"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["Earnings"]);
                     s.DateIn = reader["DateIn"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["DateIn"]);
 
+                    s = AnyNullValueHelper.AnyNullValue<SalesDetails>(s);
                     SalesList.Add(s);
                 }
 

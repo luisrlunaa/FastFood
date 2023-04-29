@@ -1,4 +1,5 @@
 ﻿using FastFood.Infrastructure.DataAccess.Contexts;
+using FastFood.Infrastructure.Utils;
 using FastFood.Models.Entities;
 using System;
 using System.Collections.Generic;
@@ -39,6 +40,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                 BusinessInfos.WindowsUserName = dr.GetString(dr.GetOrdinal("WindowsUserName"));
                 BusinessInfos.SqlFolderName = dr.GetString(dr.GetOrdinal("SqlFolderName"));
 
+                BusinessInfos = AnyNullValueHelper.AnyNullValue<BusinessInfo>(BusinessInfos);
                 return (BusinessInfos, "Proceso Completado");
             }
             catch (Exception ex)
@@ -54,6 +56,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                 if (businessInfo == null)
                     return (false, "Error Input Invalido, Metodo BusinessRepository.UpdateBusinessInfo");
 
+                businessInfo = AnyNullValueHelper.AnyNullValue<BusinessInfo>(businessInfo);
                 var parameters = new List<string> {"'"+businessInfo.Name+"'", "'"+businessInfo.Address+"'", "'"+businessInfo.Phone1+"'", "'"+businessInfo.Phone2+"'",
                 "'"+businessInfo.RNC+"'", "'"+businessInfo.PrinterName +"'","'" + businessInfo.SystemColor+"'","'" + businessInfo.LicenseActual+"'", "'"+businessInfo.ExpirationDate.Value.ToShortDateString()+"'"};
 

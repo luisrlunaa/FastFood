@@ -27,6 +27,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                 boxSquare.Amount = dr.GetDecimal(dr.GetOrdinal("Amount"));
                 boxSquare.DateIn = dr.GetDateTime(dr.GetOrdinal("DateIn"));
 
+                boxSquare = AnyNullValueHelper.AnyNullValue<BoxSquare>(boxSquare);
                 return (boxSquare, "Proceso Completado");
             }
             catch (Exception ex)
@@ -42,6 +43,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                 if (input == null || input.DateIn == DateTime.MinValue)
                     return (false, "Error Input Invalido, Metodo BoxSquareRepository.AddBoxSquare");
 
+                input = AnyNullValueHelper.AnyNullValue<BoxSquare>(input);
                 var parameters = new List<string> { "'" + input.Description + "'", "'" + input.Amount + "'", "'" + input.DateIn.ToShortDateString() + "'" };
                 var classKeys = Data.GetObjectKeys(new BoxSquare()).Where(x => x != "Id").ToList();
                 var sql = Data.InsertExpression("BoxSquare", classKeys, parameters);
@@ -64,6 +66,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                 if (input == null)
                     return (false, "Error Input Invalido, Metodo BoxSquareRepository.UpdateBoxSquare");
 
+                input = AnyNullValueHelper.AnyNullValue<BoxSquare>(input);
                 var parameters = new List<string> { "'" + input.Description + "'", "'" + input.Amount + "'" };
                 var classKeys = Data.GetObjectKeys(new BoxSquare()).Where(x => x != "Id" && x != "DateIn").ToList();
 
