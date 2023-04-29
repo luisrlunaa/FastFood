@@ -1,4 +1,5 @@
 ﻿using FastFood.Infrastructure.DataAccess.Contexts;
+using FastFood.Infrastructure.Utils;
 using FastFood.Models.Entities;
 using System;
 using System.Collections.Generic;
@@ -36,6 +37,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                     s.DateIn = reader["DateIn"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["DateIn"]);
                     s.LastUpdate = reader["LastUpdate"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["LastUpdate"]);
 
+                    s = AnyNullValueHelper.AnyNullValue<Employee>(s);
                     Employees.Add(s);
                 }
 
@@ -70,6 +72,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                 s.EmployeeType = dr.GetString(dr.GetOrdinal("EmployeeType"));
                 s.DateIn = dr.GetDateTime(dr.GetOrdinal("DateIn"));
 
+                s = AnyNullValueHelper.AnyNullValue<Employee>(s);
                 return (s, "Proceso Completado");
             }
             catch (Exception ex)
@@ -101,6 +104,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                 s.EmployeeType = dr.GetString(dr.GetOrdinal("EmployeeType"));
                 s.DateIn = dr.GetDateTime(dr.GetOrdinal("DateIn"));
 
+                s = AnyNullValueHelper.AnyNullValue<Employee>(s);
                 return (s, "Proceso Completado");
             }
             catch (Exception ex)
@@ -132,6 +136,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                 s.EmployeeType = dr.GetString(dr.GetOrdinal("EmployeeType"));
                 s.DateIn = dr.GetDateTime(dr.GetOrdinal("DateIn"));
 
+                s = AnyNullValueHelper.AnyNullValue<Employee>(s);
                 return (s, "Proceso Completado");
             }
             catch (Exception ex)
@@ -162,6 +167,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                 s.EmployeeType = dr.GetString(dr.GetOrdinal("EmployeeType"));
                 s.DateIn = dr.GetDateTime(dr.GetOrdinal("DateIn"));
 
+                s = AnyNullValueHelper.AnyNullValue<Employee>(s);
                 return (s, "Proceso Completado");
             }
             catch (Exception ex)
@@ -177,6 +183,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                 if (input == null || input.DateIn == DateTime.MinValue)
                     return (false, "Error Input Invalido, Metodo EmployeesRepository.AddEmployee");
 
+                input = AnyNullValueHelper.AnyNullValue<Employee>(input);
                 var parameters = new List<string> {input.IdUser > 0 ? input.IdUser.ToString() : "NULL", "'"+input.FirstName+"'", "'"+input.LastName+"'", "'"+input.DocumentNo+"'", "'"+input.DocumentType+"'", "'"+input.EmployeeType+"'",
                     "'"+input.DateIn.Value.ToShortDateString()+"'"};
 
@@ -201,6 +208,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                 if (input == null)
                     return (false, "Error Input Invalido, Metodo EmployeesRepository.UpdateEmployee");
 
+                input = AnyNullValueHelper.AnyNullValue<Employee>(input);
                 var parameters = new List<string>();
                 var classKeys = new List<string>();
 
@@ -275,6 +283,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                     s.DateIn = reader["DateIn"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["DateIn"]);
                     s.LastUpdate = reader["LastUpdate"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["LastUpdate"]);
 
+                    s = AnyNullValueHelper.AnyNullValue<Users>(s);
                     Userss.Add(s);
                 }
 
@@ -318,6 +327,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                 s.Password = dr.GetString(dr.GetOrdinal("Password"));
                 s.DateIn = dr.GetDateTime(dr.GetOrdinal("DateIn"));
 
+                s = AnyNullValueHelper.AnyNullValue<Users>(s);
                 return (s, "Proceso Completado");
             }
             catch (Exception ex)
@@ -346,6 +356,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                 s.Password = dr.GetString(dr.GetOrdinal("Password"));
                 s.DateIn = dr.GetDateTime(dr.GetOrdinal("DateIn"));
 
+                s = AnyNullValueHelper.AnyNullValue<Users>(s);
                 return (s, "Proceso Completado");
             }
             catch (Exception ex)
@@ -374,6 +385,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                 s.Password = dr.GetString(dr.GetOrdinal("Password"));
                 s.DateIn = dr.GetDateTime(dr.GetOrdinal("DateIn"));
 
+                s = AnyNullValueHelper.AnyNullValue<Users>(s);
                 return (s, "Proceso Completado");
             }
             catch (Exception ex)
@@ -399,6 +411,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                 s.Password = dr.GetString(dr.GetOrdinal("Password"));
                 s.DateIn = dr.GetDateTime(dr.GetOrdinal("DateIn"));
 
+                s = AnyNullValueHelper.AnyNullValue<Users>(s);
                 return (s, "Proceso Completado");
             }
             catch (Exception ex)
@@ -427,6 +440,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                 s.Password = dr.GetString(dr.GetOrdinal("Password"));
                 s.DateIn = dr.GetDateTime(dr.GetOrdinal("DateIn"));
 
+                s = AnyNullValueHelper.AnyNullValue<Users>(s);
                 return (s, "Proceso Completado");
             }
             catch (Exception ex)
@@ -442,6 +456,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                 if (input == null || input.DateIn == DateTime.MinValue)
                     return (false, "Error Input Invalido, Metodo EmployeesRepository.AddSale");
 
+                input = AnyNullValueHelper.AnyNullValue<Users>(input);
                 var parameters = new List<string> { input.IdEmp.ToString(), "'" + input.UserName + "'", "'" + input.Password + "'", "'" + input.DateIn.Value.ToShortDateString() + "'" };
                 var classKeys = Data.GetObjectKeys(new Users()).Where(x => x != "IdUser" && x != "LastUpdate").ToList();
                 var sql = Data.InsertExpression("Users", classKeys, parameters);
@@ -464,6 +479,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                 if (input == null)
                     return (false, "Error Input Invalido, Metodo EmployeesRepository.UpdateUser");
 
+                input = AnyNullValueHelper.AnyNullValue<Users>(input);
                 var parameters = new List<string> { input.IdEmp.ToString(), "'" + input.UserName + "'", "'" + input.Password + "'", "'" + input.LastUpdate.Value.ToShortDateString() + "'" };
                 var classKeys = Data.GetObjectKeys(new Users()).Where(x => x != "IdUser" && x != "DateIn").ToList();
                 var sql = Data.UpdateExpression("Users", classKeys, parameters, " WHERE IdUser = " + input.IdUser);

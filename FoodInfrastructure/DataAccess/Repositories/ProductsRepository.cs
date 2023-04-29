@@ -1,4 +1,5 @@
 ﻿using FastFood.Infrastructure.DataAccess.Contexts;
+using FastFood.Infrastructure.Utils;
 using FastFood.Models.Entities;
 using System;
 using System.Collections.Generic;
@@ -37,6 +38,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                     s.Updated = reader["Updated"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["Updated"]);
                     s.ImageName = reader["ImageName"] == DBNull.Value ? string.Empty : Convert.ToString(reader["ImageName"]);
 
+                    s = AnyNullValueHelper.AnyNullValue<Product>(s);
                     Products.Add(s);
                 }
 
@@ -75,6 +77,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                 product.Updated = dr.GetDateTime(dr.GetOrdinal("Updated"));
                 product.ImageName = dr.GetString(dr.GetOrdinal("ImageName"));
 
+                product = AnyNullValueHelper.AnyNullValue<Product>(product);
                 return (product, "Proceso Completado");
             }
             catch (Exception ex)
@@ -113,6 +116,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                     s.Updated = reader["Updated"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["Updated"]);
                     s.ImageName = reader["ImageName"] == DBNull.Value ? string.Empty : Convert.ToString(reader["ImageName"]);
 
+                    s = AnyNullValueHelper.AnyNullValue<Product>(s);
                     Products.Add(s);
                 }
 
@@ -131,6 +135,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                 if (input == null)
                     return (false, "Error Input Invalido, Metodo ProductsRepository.AddProduct");
 
+                input = AnyNullValueHelper.AnyNullValue<Product>(input);
                 var parameters = new List<string> { "'" +input.Name+"'", "'"+input.Description+"'", "'"+input.Category+"'", "'"+input.Type+"'",
                     input.Stock.ToString(), input.Itbis.ToString(), input.SalesPrice.ToString(), input.BayPrice.ToString(),
                     "'"+input.Created.ToShortDateString()+"'", "'"+input.ImageName+"'"};
@@ -156,10 +161,10 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                 if (input == null)
                     return (false, "Error Input Invalido, Metodo ProductsRepository.UpdateProduct");
 
+                input = AnyNullValueHelper.AnyNullValue<Product>(input);
                 var parameters = new List<string> { "'" +input.Name+"'", "'"+input.Description+"'", "'"+input.Category+"'", "'"+input.Type+"'",
                     input.Stock.ToString(), input.Itbis.ToString(), input.SalesPrice.ToString(), input.BayPrice.ToString(),
                     "'"+input.Updated.ToShortDateString()+"'", "'"+input.ImageName+"'"};
-
 
                 var classKeys = Data.GetObjectKeys(new Product()).Where(x => x != "ProductId" && x != "Created").ToList();
                 var sql = Data.UpdateExpression("Product", classKeys, parameters, WhereExpresion: "WHERE ProductId = " + input.ProductId);

@@ -1,4 +1,5 @@
 ﻿using FastFood.Infrastructure.DataAccess.Contexts;
+using FastFood.Infrastructure.Utils;
 using FastFood.Models.Entities;
 using System;
 using System.Collections.Generic;
@@ -29,6 +30,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                     s.LastName = reader["LastName"] == DBNull.Value ? string.Empty : Convert.ToString(reader["LastName"]);
                     s.DocumentNo = reader["DocumentNo"] == DBNull.Value ? string.Empty : Convert.ToString(reader["DocumentNo"]);
 
+                    s = AnyNullValueHelper.AnyNullValue<Client>(s);
                     Clients.Add(s);
                 }
 
@@ -60,6 +62,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                 s.DocumentType = dr.GetString(dr.GetOrdinal("DocumentType"));
                 s.Birthday = dr.GetDateTime(dr.GetOrdinal("Birthday"));
 
+                s = AnyNullValueHelper.AnyNullValue<Client>(s);
                 return (s, "Proceso Completado");
             }
             catch (Exception ex)
@@ -75,6 +78,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                 if (input == null || input.DateIn == DateTime.MinValue)
                     return (false, "Error Input Invalido, Metodo ClientsRepository.AddClient");
 
+                input = AnyNullValueHelper.AnyNullValue<Client>(input);
                 var parameters = new List<string> { "'" + input.DocumentNo + "'", "'" + input.FirstName + "'", "'" + input.LastName + "'", "'" + input.DocumentType + "'", "'" + input.Birthday.ToShortDateString() + "'", "'" + input.DateIn.Value.ToShortDateString() + "'" };
                 var classKeys = Data.GetObjectKeys(new Client()).Where(x => x != "LastUpdate").ToList();
                 var sql = Data.InsertExpression("Client", classKeys, parameters);
@@ -97,6 +101,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                 if (input == null)
                     return (false, "Error Input Invalido, Metodo ClientsRepository.UpdateClient");
 
+                input = AnyNullValueHelper.AnyNullValue<Client>(input);
                 var id = string.IsNullOrWhiteSpace(lastID) ? input.DocumentNo : lastID;
                 var parameters = new List<string> { "'" + input.DocumentNo + "'", "'" + input.FirstName + "'", "'" + input.LastName + "'", "'" + input.DocumentType + "'", "'" + input.Birthday.ToShortDateString() + "'", "'" + input.LastUpdate.Value.ToShortDateString() + "'" };
                 var classKeys = Data.GetObjectKeys(new Client()).Where(x => x != "DateIn").ToList();

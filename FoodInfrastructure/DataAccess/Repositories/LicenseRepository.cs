@@ -1,4 +1,5 @@
 ﻿using FastFood.Infrastructure.DataAccess.Contexts;
+using FastFood.Infrastructure.Utils;
 using FastFood.Models.Entities;
 using System;
 using System.Collections.Generic;
@@ -31,6 +32,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                 if (dr["LastUpdate"].GetType() != typeof(DBNull))
                     Licenses.LastUpdate = dr.GetDateTime(dr.GetOrdinal("LastUpdate"));
 
+                Licenses = AnyNullValueHelper.AnyNullValue<License>(Licenses);
                 return (Licenses, "Proceso Completado");
             }
             catch (Exception ex)
@@ -46,6 +48,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                 if (License == null)
                     return (false, "Error Input Invalido, Metodo LicenseRepository.UpdateLicense");
 
+                License = AnyNullValueHelper.AnyNullValue<License>(License);
                 var parameters = new List<string> {"'"+License.Business+"'", "'"+License.InitialSequence+"'", "'"+License.CentralSequence+"'", "'"+License.FinalSequence+"'",
                 "'"+License.Provider+"'", "'"+License.SecretWord +"'", "'"+License.LastUpdate.Value.ToShortDateString()+"'"};
 

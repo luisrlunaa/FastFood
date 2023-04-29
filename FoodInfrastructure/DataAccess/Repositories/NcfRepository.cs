@@ -1,7 +1,9 @@
 ﻿using FastFood.Infrastructure.DataAccess.Contexts;
+using FastFood.Infrastructure.Utils;
 using FastFood.Models.Entities;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Linq;
 
@@ -31,6 +33,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                     s.DateFrom = reader["DateFrom"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["DateFrom"]);
                     s.DateTo = reader["DateTo"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["DateTo"]);
 
+                    s = AnyNullValueHelper.AnyNullValue<Receipts>(s);
                     Receipts.Add(s);
                 }
 
@@ -61,6 +64,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                     s.Description_ncf = reader["Description_ncf"] == DBNull.Value ? string.Empty : Convert.ToString(reader["Description_ncf"]);
                     s.Active = reader["Active"] == DBNull.Value ? false : Convert.ToBoolean(reader["Active"]);
 
+                    s = AnyNullValueHelper.AnyNullValue<NCFDto>(s);
                     Receipts.Add(s);
                 }
 
@@ -89,6 +93,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                 s.DateFrom = dr.GetDateTime(dr.GetOrdinal("DateFrom"));
                 s.DateTo = dr.GetDateTime(dr.GetOrdinal("DateTo"));
 
+                s = AnyNullValueHelper.AnyNullValue<Receipts>(s);
                 return (s, "Proceso Completado");
             }
             catch (Exception ex)
@@ -117,6 +122,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                     s.Initialsequence = reader["Initialsequence"] == DBNull.Value ? 0 : Convert.ToInt32(reader["Initialsequence"]);
                     s.Finalsequence = reader["Finalsequence"] == DBNull.Value ? 0 : Convert.ToInt32(reader["Finalsequence"]);
 
+                    s = AnyNullValueHelper.AnyNullValue<NCF>(s);
                     Receipts.Add(s);
                 }
 
@@ -149,6 +155,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                     s.Initialsequence = reader["Initialsequence"] == DBNull.Value ? 0 : Convert.ToInt32(reader["Initialsequence"]);
                     s.Finalsequence = reader["Finalsequence"] == DBNull.Value ? 0 : Convert.ToInt32(reader["Finalsequence"]);
 
+                    s = AnyNullValueHelper.AnyNullValue<NCF>(s);
                     Receipts.Add(s);
                 }
 
@@ -180,6 +187,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                 s.Prefix = dr.GetString(dr.GetOrdinal("Prefix"));
                 s.Description_ncf = dr.GetString(dr.GetOrdinal("Description_ncf"));
 
+                s = AnyNullValueHelper.AnyNullValue<NCF>(s);
                 return (s, "Proceso Completado");
             }
             catch (Exception ex)
@@ -195,6 +203,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                 if (input == null || input.Datein == DateTime.MinValue)
                     return (false, "Error  Input Invalido, Metodo NcfRepository.AddNCFGenerated");
 
+                input = AnyNullValueHelper.AnyNullValue<NCFGenerated>(input);
                 var parameters = new List<string> { input.Id_sequence.ToString(), "'" + input.SequenceNCF + "'", "'" + input.Datein.ToShortDateString() + "'" };
                 var classKeys = Data.GetObjectKeys(new NCFGenerated()).ToList();
                 var sql = Data.InsertExpression("NCFGenerated", classKeys, parameters);
@@ -227,6 +236,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                 if (input == null)
                     return (false, "Error Input Invalido, Metodo NcfRepository.UpdateReceipts");
 
+                input = AnyNullValueHelper.AnyNullValue<Receipts>(input);
                 var active = input.Active ? 1 : 0;
                 var parameters = new List<string> { input.Initialsequence.ToString(), "'" + input.Finalsequence + "'", "'" + input.DateFrom.ToShortDateString() + "'", "'" + input.DateTo.ToShortDateString() + "'", active.ToString() };
                 var classKeys = Data.GetObjectKeys(new Receipts()).Where(x => x != "Id_ncf").ToList();
@@ -250,6 +260,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                 if (input == null)
                     return (false, "Error Input Invalido, Metodo NcfRepository.UpdateNCF");
 
+                input = AnyNullValueHelper.AnyNullValue<NCF>(input);
                 var parameters = new List<string> { input.Initialsequence.ToString(), "'" + input.Finalsequence + "'" };
                 var classKeys = Data.GetObjectKeys(new NCF()).Where(x => x != "Id_ncf" && x != "Description_ncf" && x != "Prefix").ToList();
                 var sql = Data.UpdateExpression("NCF", classKeys, parameters, "WHERE Id_ncf = " + input.Id_ncf);
