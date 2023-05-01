@@ -1,15 +1,20 @@
-﻿using FastFood.Infrastructure.DataAccess.Repositories;
+﻿using FastFood.Infrastructure.Constants;
+using FastFood.Infrastructure.DataAccess.Repositories;
 using FastFood.Models.Entities;
 using FastFoodDemo.Utils;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
+using FastFood.Infrastructure.Utils;
 
 namespace FastFoodDemo
 {
     public partial class NCFForm : Form
     {
         public static NCFForm Instance;
+        public string BusinessAccess;
         NcfRepository ncfRepository = new NcfRepository();
         public NCFForm()
         {
@@ -134,11 +139,22 @@ namespace FastFoodDemo
 
         private void NCFForm_Load(object sender, EventArgs e)
         {
-            ncfRepository.CheckInActiveReceipts();
-            ncfRepository.CheckActiveReceipts();
+            var hasNCFAccess = Access(BusinessPermissName.NCF);
+            if (hasNCFAccess)
+            {
+                ncfRepository.CheckInActiveReceipts();
+                ncfRepository.CheckActiveReceipts();
 
-            llenar_data_ncf();
-            llenar_data_comprobante();
+                llenar_data_ncf();
+                llenar_data_comprobante();
+            }
+
+            data_comprobante.Visible = hasNCFAccess;
+            groupBox2.Visible = hasNCFAccess;
+            groupBox1.Visible = hasNCFAccess;
+            lblcomp.Visible = hasNCFAccess;
+            btnAplicar.Visible = hasNCFAccess;
+            label7.Visible = hasNCFAccess;
         }
 
         private void btnAplicar_Click(object sender, EventArgs e)
@@ -177,6 +193,18 @@ namespace FastFoodDemo
 
             llenar_data_ncf();
             llenar_data_comprobante();
+        }
+
+        public bool Access(string accessName)
+        {
+            var businessAccess = string.IsNullOrWhiteSpace(BusinessAccess)
+                               ? new List<string>()
+                               : BusinessAccess.Split(',').ToList().CleanSpaceList();
+
+            if (businessAccess != null && businessAccess.Any())
+                return businessAccess.Contains(accessName);
+
+            return false;
         }
     }
 }

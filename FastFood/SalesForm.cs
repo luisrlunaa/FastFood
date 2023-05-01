@@ -1,4 +1,5 @@
-﻿using FastFood.Infrastructure.DataAccess.Repositories;
+﻿using FastFood.Infrastructure.Constants;
+using FastFood.Infrastructure.DataAccess.Repositories;
 using FastFood.Models.Entities;
 using FastFoodDemo.Utils;
 using Models.ViewModels;
@@ -7,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using FastFood.Infrastructure.Utils;
 
 namespace FastFoodDemo
 {
@@ -16,6 +18,8 @@ namespace FastFoodDemo
         SalesRepository salesRepository = new SalesRepository();
         NcfRepository ncfsRepository = new NcfRepository();
         public string PrintName = string.Empty;
+        public string BusinessAccess;
+        public bool hasNCFAccess = false;
         public static SalesForm Instance;
         public static List<IdsDTO> Lisids { get; set; }
         public SalesForm()
@@ -26,16 +30,28 @@ namespace FastFoodDemo
 
         private void SalesForm_Load(object sender, EventArgs e)
         {
-            var (ncfs, message) = ncfsRepository.GetActivesNCFs();
-            if (message.Contains("Error"))
-                MessageBox.Show(message);
+            hasNCFAccess = Access(BusinessPermissName.NCF);
+            chkComprobante.Visible = hasNCFAccess;
+            label13.Visible = hasNCFAccess;
+            combo_tipo_NCF.Visible = hasNCFAccess;
+            label2.Visible = hasNCFAccess;
+            txtNCF.Visible = hasNCFAccess;
+            checkBox1.Visible = Access(BusinessPermissName.Client);
 
-            combo_tipo_NCF.Items.Clear();
-            combo_tipo_NCF.DisplayMember = "Description_ncf";
-            combo_tipo_NCF.ValueMember = "Id_ncf";
-            combo_tipo_NCF.DataSource = ncfs;
+            if (hasNCFAccess)
+            {
+                var (ncfs, message) = ncfsRepository.GetActivesNCFs();
+                if (message.Contains("Error"))
+                    MessageBox.Show(message);
 
-            txtNCF.Text = "Sin NCF";
+                combo_tipo_NCF.Items.Clear();
+                combo_tipo_NCF.DisplayMember = "Description_ncf";
+                combo_tipo_NCF.ValueMember = "Id_ncf";
+                combo_tipo_NCF.DataSource = ncfs;
+
+                txtNCF.Text = "Sin NCF";
+            }
+
             if (lblSales.Text == "Ventas")
             {
                 btnVender.Enabled = true;
@@ -118,10 +134,11 @@ namespace FastFoodDemo
             sale.IdEmployee = 0;
             sale.ClientName = txtClientName.Text;
             sale.ClientRnc = txtRncCli.Text;
+            sale.ClientPhone = txtPhone.Text;
             sale.Address = txtDireccion.Text;
             sale.SalesCheckType = "Debito";
-            sale.DocumentType = chkComprobante.Checked ? combo_tipo_NCF.Text : string.Empty;
-            sale.NroComprobante = chkComprobante.Checked ? txtNCF.Text : "Sin NCF";
+            sale.DocumentType = hasNCFAccess && chkComprobante.Checked ? combo_tipo_NCF.Text : string.Empty;
+            sale.NroComprobante = hasNCFAccess && chkComprobante.Checked ? txtNCF.Text : "Sin NCF";
             sale.DeliveryName = txtDelivery.Text;
             sale.DeliveryAmount = string.IsNullOrWhiteSpace(txtDAmount.Text) ? 0 : Convert.ToDecimal(txtDAmount.Text);
             sale.Total = Convert.ToDecimal(lblTotalAmount.Text);
@@ -130,14 +147,18 @@ namespace FastFoodDemo
             var (add, message) = salesRepository.AddSale(sale);
             if (add)
             {
-                var newncf = new NCFGenerated()
+                if (hasNCFAccess)
                 {
-                    Id_sequence = Convert.ToInt32(combo_tipo_NCF.SelectedValue),
-                    SequenceNCF = txtNCF.Text,
-                    Datein = DateTime.Today
-                };
+                    var newncf = new NCFGenerated()
+                    {
+                        Id_sequence = Convert.ToInt32(combo_tipo_NCF.SelectedValue),
+                        SequenceNCF = txtNCF.Text,
+                        Datein = DateTime.Today
+                    };
 
-                ncfsRepository.AddNCFGenerated(newncf);
+                    ncfsRepository.AddNCFGenerated(newncf);
+                }
+
                 var (addDetails, message1) = salesRepository.AddSaleDetails(GenericLists.SelectedItems);
                 if (addDetails)
                 {
@@ -310,7 +331,7 @@ namespace FastFoodDemo
 
         private void chkComprobante_CheckedChanged(object sender, EventArgs e)
         {
-            if (chkComprobante.Checked)
+            if (hasNCFAccess && chkComprobante.Checked)
             {
                 lblRncCli.Visible = true;
                 txtRncCli.Visible = true;
@@ -353,7 +374,7 @@ namespace FastFoodDemo
             ticket.TextoIzquierda(lblDir.Text);//Direccion Empresa
             ticket.TextoIzquierda("Tel: " + lblTel1.Text + (!string.IsNullOrWhiteSpace(lblTel2.Text) ? "/" + lblTel2.Text : string.Empty));//Telefonos Empresa
             ticket.TextoIzquierda("RNC: " + lblRNC.Text);
-            if (chkComprobante.Checked)
+            if (hasNCFAccess && chkComprobante.Checked)
             {
                 ticket.TextoIzquierda("Tipo de Comprobante: " + combo_tipo_NCF.Text);
                 ticket.TextoIzquierda("Numero de Comprobante: " + txtNCF.Text);
@@ -434,6 +455,18 @@ namespace FastFoodDemo
                 var clientlist = new ClientsForm();
                 clientlist.Show();
             }
+        }
+
+        public bool Access(string accessName)
+        {
+            var businessAccess = string.IsNullOrWhiteSpace(BusinessAccess)
+                                              ? new List<string>()
+                                              : BusinessAccess.Split(',').ToList().CleanSpaceList();
+
+            if (businessAccess != null && businessAccess.Any())
+                return businessAccess.Contains(accessName);
+
+            return false;
         }
     }
 }

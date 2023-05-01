@@ -50,6 +50,7 @@ namespace FastFoodDemo
             {
                 client.FirstName = txtFirtName.Text;
                 client.LastName = txtLastName.Text;
+                client.Telephone = txtPhone.Text;
                 client.DocumentType = combo_tipo.Text;
                 client.DocumentNo = txtDoc.Text;
                 client.Birthday = dtpDate.Value;
@@ -64,6 +65,7 @@ namespace FastFoodDemo
                 {
                     client.FirstName = txtFirtName.Text;
                     client.LastName = txtLastName.Text;
+                    client.Telephone = txtPhone.Text;
                     client.DocumentType = combo_tipo.Text;
                     client.DocumentNo = lblNoDoc.Text;
                     client.Birthday = dtpDate.Value;
@@ -78,6 +80,7 @@ namespace FastFoodDemo
                     {
                         client.FirstName = txtFirtName.Text;
                         client.LastName = txtLastName.Text;
+                        client.Telephone = txtPhone.Text;
                         client.DocumentType = combo_tipo.Text;
                         client.DocumentNo = txtDoc.Text;
                         client.Birthday = dtpDate.Value;
@@ -90,6 +93,7 @@ namespace FastFoodDemo
                     {
                         client.FirstName = txtFirtName.Text;
                         client.LastName = txtLastName.Text;
+                        client.Telephone = txtPhone.Text;
                         client.DocumentType = combo_tipo.Text;
                         client.DocumentNo = lblNoDoc.Text;
                         client.Birthday = dtpDate.Value;
@@ -116,7 +120,7 @@ namespace FastFoodDemo
             {
                 SalesForm.Instance.txtClientName.Text = dgClients.CurrentRow.Cells[0].Value.ToString(); ;
                 SalesForm.Instance.txtRncCli.Text = dgClients.CurrentRow.Cells[1].Value.ToString() + " " + dgClients.CurrentRow.Cells[2].Value.ToString();
-
+                SalesForm.Instance.txtPhone.Text = dgClients.CurrentRow.Cells[3].Value.ToString();
                 Program.CallTo = string.Empty;
 
                 Close();
@@ -134,6 +138,7 @@ namespace FastFoodDemo
                 {
                     txtFirtName.Text = client.FirstName;
                     txtLastName.Text = client.LastName;
+                    txtPhone.Text = client.Telephone;
                     dtpDate.Value = client.Birthday;
                     txtDoc.Text = client.DocumentNo;
                     combo_tipo.SelectedIndex = combo_tipo.Items.IndexOf(client.DocumentType);
@@ -165,6 +170,7 @@ namespace FastFoodDemo
                     dgClients.Rows[i].Cells["DocumentNo"].Value = lst[i].DocumentNo;
                     dgClients.Rows[i].Cells["Firts_Name"].Value = lst[i].FirstName;
                     dgClients.Rows[i].Cells["Last_Name"].Value = lst[i].LastName;
+                    dgClients.Rows[i].Cells["Telephone"].Value = lst[i].Telephone;
                 }
             }
         }

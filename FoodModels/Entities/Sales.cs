@@ -10,6 +10,7 @@ namespace FastFood.Models.Entities
         public int IdEmployee { get; set; }
         public string ClientName { get; set; }
         public string ClientRnc { get; set; }
+        public string ClientPhone { get; set; }
         public string Address { get; set; }
         public string SalesCheckType { get; set; }
         public string DocumentType { get; set; }

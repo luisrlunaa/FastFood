@@ -19,6 +19,7 @@ namespace FastFood.Models.Entities
         public string DefaultSystemColor { get; set; }
         public string WindowsUserName { get; set; }
         public string SqlFolderName { get; set; }
+        public string BusinessPermiss { get; set; }
     }
 
     public class SystemColor

@@ -31,6 +31,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                     s.IdEmployee = reader["IdEmployee"] == DBNull.Value ? 0 : Convert.ToInt32(reader["IdEmployee"]);
                     s.ClientName = reader["ClientName"] == DBNull.Value ? string.Empty : Convert.ToString(reader["ClientName"]);
                     s.ClientRnc = reader["ClientRnc"] == DBNull.Value ? string.Empty : Convert.ToString(reader["ClientRnc"]);
+                    s.ClientPhone = reader["ClientPhone"] == DBNull.Value ? string.Empty : Convert.ToString(reader["ClientPhone"]);
                     s.Address = reader["Address"] == DBNull.Value ? string.Empty : Convert.ToString(reader["Address"]);
                     s.SalesCheckType = reader["SalesCheckType"] == DBNull.Value ? string.Empty : Convert.ToString(reader["SalesCheckType"]);
                     s.DocumentType = reader["DocumentType"] == DBNull.Value ? string.Empty : Convert.ToString(reader["DocumentType"]);
@@ -71,6 +72,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                 s.IdEmployee = dr.GetInt32(dr.GetOrdinal("IdEmployee"));
                 s.ClientName = dr.GetString(dr.GetOrdinal("ClientName"));
                 s.ClientRnc = dr.GetString(dr.GetOrdinal("ClientRnc"));
+                s.ClientPhone = dr.GetString(dr.GetOrdinal("ClientPhone"));
                 s.Address = dr.GetString(dr.GetOrdinal("Address"));
                 s.SalesCheckType = dr.GetString(dr.GetOrdinal("SalesCheckType"));
                 s.DocumentType = dr.GetString(dr.GetOrdinal("DocumentType"));
@@ -111,6 +113,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                     s.IdEmployee = reader["IdEmployee"] == DBNull.Value ? 0 : Convert.ToInt32(reader["IdEmployee"]);
                     s.ClientName = reader["ClientName"] == DBNull.Value ? string.Empty : Convert.ToString(reader["ClientName"]);
                     s.ClientRnc = reader["ClientRnc"] == DBNull.Value ? string.Empty : Convert.ToString(reader["ClientRnc"]);
+                    s.ClientPhone = reader["ClientPhone"] == DBNull.Value ? string.Empty : Convert.ToString(reader["ClientPhone"]);
                     s.Address = reader["Address"] == DBNull.Value ? string.Empty : Convert.ToString(reader["Address"]);
                     s.SalesCheckType = reader["SalesCheckType"] == DBNull.Value ? string.Empty : Convert.ToString(reader["SalesCheckType"]);
                     s.DocumentType = reader["DocumentType"] == DBNull.Value ? string.Empty : Convert.ToString(reader["DocumentType"]);
@@ -162,6 +165,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                     s.IdEmployee = reader["IdEmployee"] == DBNull.Value ? 0 : Convert.ToInt32(reader["IdEmployee"]);
                     s.ClientName = reader["ClientName"] == DBNull.Value ? string.Empty : Convert.ToString(reader["ClientName"]);
                     s.ClientRnc = reader["ClientRnc"] == DBNull.Value ? string.Empty : Convert.ToString(reader["ClientRnc"]);
+                    s.ClientPhone = reader["ClientPhone"] == DBNull.Value ? string.Empty : Convert.ToString(reader["ClientPhone"]);
                     s.Address = reader["Address"] == DBNull.Value ? string.Empty : Convert.ToString(reader["Address"]);
                     s.SalesCheckType = reader["SalesCheckType"] == DBNull.Value ? string.Empty : Convert.ToString(reader["SalesCheckType"]);
                     s.DocumentType = reader["DocumentType"] == DBNull.Value ? string.Empty : Convert.ToString(reader["DocumentType"]);
@@ -250,7 +254,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                     return (false, "Error Input Invalido, Metodo SalesRepository.AddSale");
 
                 sales = AnyNullValueHelper.AnyNullValue<Sales>(sales);
-                var parameters = new List<string> { sales.IdEmployee.ToString(), "'"+sales.ClientName+"'", "'"+sales.ClientRnc+"'", "'"+sales.Address+"'", "'"+sales.SalesCheckType+"'", "'"+sales.DocumentType+"'",
+                var parameters = new List<string> { sales.IdEmployee.ToString(), "'"+sales.ClientName+"'", "'"+sales.ClientRnc+"'", "'"+sales.ClientPhone+"'", "'"+sales.Address+"'", "'"+sales.SalesCheckType+"'", "'"+sales.DocumentType+"'",
                 "'"+sales.NroComprobante+"'", string.IsNullOrWhiteSpace(sales.DeliveryName) ? "'"+ string.Empty +"'" : "'" +sales.DeliveryName+"'", sales.DeliveryAmount.ToString(),
                 sales.Total.ToString(), sales.Remaining.ToString(), "'"+sales.DateIn.Value.ToShortDateString()+"'"};
 
@@ -276,7 +280,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                     return (false, "Error Input Invalido, Metodo SalesRepository.UpdateSales");
 
                 sales = AnyNullValueHelper.AnyNullValue<Sales>(sales);
-                var parameters = new List<string> { sales.IdEmployee.ToString(), "'"+sales.ClientName+"'", "'"+sales.Address+"'", "'"+sales.SalesCheckType+"'", "'"+sales.DocumentType+"'",
+                var parameters = new List<string> { sales.IdEmployee.ToString(), "'"+sales.ClientName+"'", "'"+sales.ClientRnc+"'", "'"+sales.ClientPhone+"'", "'"+sales.Address+"'", "'"+sales.SalesCheckType+"'", "'"+sales.DocumentType+"'",
                 "'"+sales.NroComprobante+"'", string.IsNullOrWhiteSpace(sales.DeliveryName) ? "'"+ string.Empty +"'" : "'" + sales.DeliveryName+"'", sales.DeliveryAmount.ToString(),
                 sales.Total.ToString(), sales.Remaining.ToString(), "'"+sales.DateIn.Value.ToShortDateString()+"'"};
 

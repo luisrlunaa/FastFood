@@ -1,8 +1,11 @@
-﻿using FastFood.Models.Entities;
-using Models.ViewModels.GenericLists;
+﻿using FastFood.Infrastructure.Constants;
+using FastFood.Models.Entities;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
+using FastFood.Infrastructure.Utils;
 
 namespace FastFoodDemo
 {
@@ -10,6 +13,8 @@ namespace FastFoodDemo
     {
         public SystemColor systemColor;
         public BusinessInfo business;
+        public bool hasBoxSquareAccess = false;
+        public string BusinessAccess;
         public static Form1 Instance;
         public Form1()
         {
@@ -31,12 +36,23 @@ namespace FastFoodDemo
                 Instance.ForeColor = Color.FromName(systemColor.BackgroundHomeForeColor);
             }
 
+            button1.Enabled = Access(BusinessPermissName.Home); //Home
+            button2.Enabled = Access(BusinessPermissName.Product); //Comida
+            button3.Enabled = Access(BusinessPermissName.Product); //Bebida
+            button5.Enabled = Access(BusinessPermissName.Product); //Nuevo Producto
+            button4.Enabled = Access(BusinessPermissName.Delivery); //Delivery
+            button6.Enabled = Access(BusinessPermissName.Pay); //Pagar
+            btnListSales.Enabled = Access(BusinessPermissName.Sales); //Ventas
+            button7.Enabled = Access(BusinessPermissName.Client); //Cliente
+            button12.Enabled = Access(BusinessPermissName.Configuration); //Configuracion
+            hasBoxSquareAccess = Access(BusinessPermissName.BoxSquare); //Salir
+
             mainpanel.Visible = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form1.Instance = new Form1();
+            Instance = new Form1();
             if (systemColor != null && systemColor.ButtonsColor != null)
             {
                 Instance.panel1.BackColor = Color.FromArgb(41, 39, 40);
@@ -51,7 +67,7 @@ namespace FastFoodDemo
             SidePanel.Height = button1.Height;
             SidePanel.Top = button1.Top;
 
-            loadform(Form1.Instance);
+            loadform(Instance);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -171,6 +187,7 @@ namespace FastFoodDemo
         private void button4_Click(object sender, EventArgs e)
         {
             SalesForm.Instance = new SalesForm();
+            SalesForm.Instance.BusinessAccess = BusinessAccess;
             SalesForm.Instance.lblSales.Text = "Delivery";
             SalesForm.Instance.lblDir.Text = lblDir.Text;
             SalesForm.Instance.lblLogo.Text = lblLogo.Text;
@@ -231,6 +248,7 @@ namespace FastFoodDemo
         private void button6_Click(object sender, EventArgs e)
         {
             SalesForm.Instance = new SalesForm();
+            SalesForm.Instance.BusinessAccess = BusinessAccess;
             SalesForm.Instance.lblSales.Text = "Ventas";
             SalesForm.Instance.lblDir.Text = lblDir.Text;
             SalesForm.Instance.lblLogo.Text = lblLogo.Text;
@@ -271,6 +289,9 @@ namespace FastFoodDemo
 
         private void button13_Click(object sender, EventArgs e)
         {
+            if(!hasBoxSquareAccess)
+                Application.Exit();
+
             BoxSquareForm.Instance = new BoxSquareForm();
             BoxSquareForm.Instance.windowsUserName = business.WindowsUserName;
             BoxSquareForm.Instance.sqlFolderName = business.SqlFolderName;
@@ -305,6 +326,7 @@ namespace FastFoodDemo
             SalesListForm.Instance = new SalesListForm();
             SalesListForm.Instance.lblDir.Text = lblDir.Text;
             SalesListForm.Instance.lblLogo.Text = lblLogo.Text;
+            SalesListForm.Instance.BusinessAccess = BusinessAccess;
 
             if (systemColor != null && systemColor.ButtonsColor != null)
             {
@@ -330,6 +352,7 @@ namespace FastFoodDemo
         private void button12_Click(object sender, EventArgs e)
         {
             ConfigurationsForm.Instance = new ConfigurationsForm();
+            ConfigurationsForm.Instance.BusinessAccess = BusinessAccess;
             if (systemColor != null && systemColor.ButtonsColor != null)
             {
                 ConfigurationsForm.Instance.systemColor = new SystemColor();
@@ -379,6 +402,18 @@ namespace FastFoodDemo
             this.mainpanel.Controls.Add(f);
             this.mainpanel.Tag = f;
             f.Show();
+        }
+
+        public bool Access(string accessName)
+        {
+            var businessAccess = string.IsNullOrWhiteSpace(BusinessAccess)
+                                              ? new List<string>()
+                                              : BusinessAccess.Split(',').ToList().CleanSpaceList();
+
+            if (businessAccess != null && businessAccess.Any())
+                return businessAccess.Contains(accessName);
+
+            return false;
         }
     }
 }

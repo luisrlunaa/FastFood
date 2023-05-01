@@ -39,8 +39,8 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                 BusinessInfos.DefaultSystemColor = dr.GetString(dr.GetOrdinal("DefaultSystemColor"));
                 BusinessInfos.WindowsUserName = dr.GetString(dr.GetOrdinal("WindowsUserName"));
                 BusinessInfos.SqlFolderName = dr.GetString(dr.GetOrdinal("SqlFolderName"));
+                BusinessInfos.BusinessPermiss = dr.GetString(dr.GetOrdinal("BusinessPermiss"));
 
-                BusinessInfos = AnyNullValueHelper.AnyNullValue<BusinessInfo>(BusinessInfos);
                 return (BusinessInfos, "Proceso Completado");
             }
             catch (Exception ex)

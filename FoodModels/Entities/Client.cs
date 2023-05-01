@@ -8,6 +8,7 @@ namespace FastFood.Models.Entities
         [Key]
         public string DocumentNo { get; set; }
         public string FirstName { get; set; }
+        public string Telephone { get; set; }
         public string LastName { get; set; }
         public string DocumentType { get; set; }
         public DateTime Birthday { get; set; }

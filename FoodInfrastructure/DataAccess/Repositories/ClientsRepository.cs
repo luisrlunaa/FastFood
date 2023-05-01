@@ -28,6 +28,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                     var s = new Client();
                     s.FirstName = reader["FirstName"] == DBNull.Value ? string.Empty : Convert.ToString(reader["FirstName"]);
                     s.LastName = reader["LastName"] == DBNull.Value ? string.Empty : Convert.ToString(reader["LastName"]);
+                    s.Telephone = reader["Telephone"] == DBNull.Value ? string.Empty : Convert.ToString(reader["Telephone"]);
                     s.DocumentNo = reader["DocumentNo"] == DBNull.Value ? string.Empty : Convert.ToString(reader["DocumentNo"]);
 
                     s = AnyNullValueHelper.AnyNullValue<Client>(s);
@@ -58,6 +59,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
 
                 s.FirstName = dr.GetString(dr.GetOrdinal("FirstName"));
                 s.LastName = dr.GetString(dr.GetOrdinal("LastName"));
+                s.Telephone = dr.GetString(dr.GetOrdinal("Telephone"));
                 s.DocumentNo = dr.GetString(dr.GetOrdinal("DocumentNo"));
                 s.DocumentType = dr.GetString(dr.GetOrdinal("DocumentType"));
                 s.Birthday = dr.GetDateTime(dr.GetOrdinal("Birthday"));
@@ -79,7 +81,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
                     return (false, "Error Input Invalido, Metodo ClientsRepository.AddClient");
 
                 input = AnyNullValueHelper.AnyNullValue<Client>(input);
-                var parameters = new List<string> { "'" + input.DocumentNo + "'", "'" + input.FirstName + "'", "'" + input.LastName + "'", "'" + input.DocumentType + "'", "'" + input.Birthday.ToShortDateString() + "'", "'" + input.DateIn.Value.ToShortDateString() + "'" };
+                var parameters = new List<string> { "'" + input.DocumentNo + "'", "'" + input.FirstName + "'", "'" + input.Telephone + "'", "'" + input.LastName + "'", "'" + input.DocumentType + "'", "'" + input.Birthday.ToShortDateString() + "'", "'" + input.DateIn.Value.ToShortDateString() + "'" };
                 var classKeys = Data.GetObjectKeys(new Client()).Where(x => x != "LastUpdate").ToList();
                 var sql = Data.InsertExpression("Client", classKeys, parameters);
                 var (response, message) = Data.CrudAction(sql, "ClientsRepository.AddClient");
@@ -103,7 +105,7 @@ namespace FastFood.Infrastructure.DataAccess.Repositories
 
                 input = AnyNullValueHelper.AnyNullValue<Client>(input);
                 var id = string.IsNullOrWhiteSpace(lastID) ? input.DocumentNo : lastID;
-                var parameters = new List<string> { "'" + input.DocumentNo + "'", "'" + input.FirstName + "'", "'" + input.LastName + "'", "'" + input.DocumentType + "'", "'" + input.Birthday.ToShortDateString() + "'", "'" + input.LastUpdate.Value.ToShortDateString() + "'" };
+                var parameters = new List<string> { "'" + input.DocumentNo + "'", "'" + input.FirstName + "'", "'" + input.Telephone + "'", "'" + input.LastName + "'", "'" + input.DocumentType + "'", "'" + input.Birthday.ToShortDateString() + "'", "'" + input.LastUpdate.Value.ToShortDateString() + "'" };
                 var classKeys = Data.GetObjectKeys(new Client()).Where(x => x != "DateIn").ToList();
                 var sql = Data.UpdateExpression("Client", classKeys, parameters, " WHERE DocumentNo = '" + id + "'");
                 var (response, message) = Data.CrudAction(sql, "ClientsRepository.UpdateClient");

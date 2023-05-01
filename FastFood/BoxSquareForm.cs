@@ -30,6 +30,11 @@ namespace FastFoodDemo
             if (message.Contains("Error"))
                 MessageBox.Show(message);
 
+            LoadInfo(box);
+        }
+
+        private void LoadInfo(BoxSquare box)
+        {
             txtde5.Text = "0";
             txtde10.Text = "0";
             txtde25.Text = "0";
@@ -335,8 +340,21 @@ namespace FastFoodDemo
 
         private void BoxSquareForm_Load(object sender, EventArgs e)
         {
-            GetAmountInBox(dpkfechacuadre.Value);
-            label8.Enabled = lblmontocaja.Text == 0.ToString();
+            var (box, message1) = boxSquareRepository.GetBoxSquareByDate(DateTime.Today);
+            if (message1.Contains("Error"))
+                MessageBox.Show(message1);
+
+            if(box != null && box.Amount > 0)
+            {
+                btnregistrar.Visible = false;
+                label8.Enabled = true;
+                LoadInfo(box);
+            }
+            else
+            {
+                GetAmountInBox(dpkfechacuadre.Value);
+                label8.Enabled = lblmontocaja.Text == 0.ToString();
+            }
         }
 
         private void GetAmountInBox(DateTime datein)

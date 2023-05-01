@@ -1,4 +1,5 @@
-﻿using FastFood.Infrastructure.DataAccess.Repositories;
+﻿using FastFood.Infrastructure.Constants;
+using FastFood.Infrastructure.DataAccess.Repositories;
 using FastFood.Models.Entities;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
@@ -7,7 +8,9 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
+using FastFood.Infrastructure.Utils;
 
 namespace FastFoodDemo
 {
@@ -16,6 +19,7 @@ namespace FastFoodDemo
         SalesRepository salesRepository = new SalesRepository();
         public static List<IdsDTO> Lisids { get; set; }
         public static SalesListForm Instance;
+        public string BusinessAccess;
         public SalesListForm()
         {
             InitializeComponent();
@@ -24,6 +28,13 @@ namespace FastFoodDemo
 
         private void SalesForm_Load(object sender, EventArgs e)
         {
+            var hasDeliveryAccess = Access(BusinessPermissName.Delivery);
+            chkDAmount.Visible = hasDeliveryAccess;
+            chkDSales.Visible = hasDeliveryAccess;
+            lblNMDelibery.Visible = hasDeliveryAccess;
+            lblSMDelibery.Visible = hasDeliveryAccess;
+            lblMDelibery.Visible = hasDeliveryAccess;
+
             Lisids = new List<IdsDTO>();
             var (lst, message) = salesRepository.GetSaleDetailsByDate(dtpFromDate.Value, dtpToDate.Value);
             LlenarGri(lst);
@@ -105,7 +116,6 @@ namespace FastFoodDemo
                 }
                 else
                     MessageBox.Show("Debe introducir el nombre del delivery para realizar la busqueda");
-
             }
             else
             {
@@ -229,5 +239,17 @@ namespace FastFoodDemo
             return values;
         }
         #endregion
+
+        public bool Access(string accessName)
+        {
+            var businessAccess = string.IsNullOrWhiteSpace(BusinessAccess)
+                                              ? new List<string>()
+                                              : BusinessAccess.Split(',').ToList().CleanSpaceList();
+
+            if (businessAccess != null && businessAccess.Any())
+                return businessAccess.Contains(accessName);
+
+            return false;
+        }
     }
 }

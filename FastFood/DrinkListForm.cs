@@ -318,7 +318,7 @@ namespace FastFoodDemo
                     if (!string.IsNullOrWhiteSpace(item.ImageName))
                     {
                         var dirs = new DirectoryInfo(@"C:\\Img\\").GetFiles("*.*");
-                        string ImagePath = dirs.OrderByDescending(f => f.LastWriteTime).FirstOrDefault(x => x.Name.Split('.')[0] == item.ImageName).FullName;
+                        string ImagePath = dirs?.OrderByDescending(f => f.LastWriteTime)?.FirstOrDefault(x => x.Name.Split('.')[0] == item.ImageName)?.FullName;
                         if (File.Exists(ImagePath))
                         {
                             picProductImg1.Image = Image.FromFile(ImagePath);
@@ -339,7 +339,7 @@ namespace FastFoodDemo
                     if (!string.IsNullOrWhiteSpace(item.ImageName))
                     {
                         var dirs = new DirectoryInfo(@"C:\\Img\\").GetFiles("*.*");
-                        string ImagePath = dirs.OrderByDescending(f => f.LastWriteTime).FirstOrDefault(x => x.Name.Split('.')[0] == item.ImageName).FullName;
+                        string ImagePath = dirs?.OrderByDescending(f => f.LastWriteTime)?.FirstOrDefault(x => x.Name.Split('.')[0] == item.ImageName)?.FullName;
                         if (File.Exists(ImagePath))
                         {
                             picProductImg2.Image = Image.FromFile(ImagePath);
@@ -360,7 +360,7 @@ namespace FastFoodDemo
                     if (!string.IsNullOrWhiteSpace(item.ImageName))
                     {
                         var dirs = new DirectoryInfo(@"C:\\Img\\").GetFiles("*.*");
-                        string ImagePath = dirs.OrderByDescending(f => f.LastWriteTime).FirstOrDefault(x => x.Name.Split('.')[0] == item.ImageName).FullName;
+                        string ImagePath = dirs?.OrderByDescending(f => f.LastWriteTime)?.FirstOrDefault(x => x.Name.Split('.')[0] == item.ImageName)?.FullName;
                         if (File.Exists(ImagePath))
                         {
                             picProductImg3.Image = Image.FromFile(ImagePath);
@@ -381,7 +381,7 @@ namespace FastFoodDemo
                     if (!string.IsNullOrWhiteSpace(item.ImageName))
                     {
                         var dirs = new DirectoryInfo(@"C:\\Img\\").GetFiles("*.*");
-                        string ImagePath = dirs.OrderByDescending(f => f.LastWriteTime).FirstOrDefault(x => x.Name.Split('.')[0] == item.ImageName).FullName;
+                        string ImagePath = dirs?.OrderByDescending(f => f.LastWriteTime)?.FirstOrDefault(x => x.Name.Split('.')[0] == item.ImageName)?.FullName;
                         if (File.Exists(ImagePath))
                         {
                             picProductImg4.Image = Image.FromFile(ImagePath);
@@ -402,7 +402,7 @@ namespace FastFoodDemo
                     if (!string.IsNullOrWhiteSpace(item.ImageName))
                     {
                         var dirs = new DirectoryInfo(@"C:\\Img\\").GetFiles("*.*");
-                        string ImagePath = dirs.OrderByDescending(f => f.LastWriteTime).FirstOrDefault(x => x.Name.Split('.')[0] == item.ImageName).FullName;
+                        string ImagePath = dirs?.OrderByDescending(f => f.LastWriteTime)?.FirstOrDefault(x => x.Name.Split('.')[0] == item.ImageName)?.FullName;
                         if (File.Exists(ImagePath))
                         {
                             picProductImg5.Image = Image.FromFile(ImagePath);
@@ -423,7 +423,7 @@ namespace FastFoodDemo
                     if (!string.IsNullOrWhiteSpace(item.ImageName))
                     {
                         var dirs = new DirectoryInfo(@"C:\\Img\\").GetFiles("*.*");
-                        string ImagePath = dirs.OrderByDescending(f => f.LastWriteTime).FirstOrDefault(x => x.Name.Split('.')[0] == item.ImageName).FullName;
+                        string ImagePath = dirs?.OrderByDescending(f => f.LastWriteTime)?.FirstOrDefault(x => x.Name.Split('.')[0] == item.ImageName)?.FullName;
                         if (File.Exists(ImagePath))
                         {
                             picProductImg6.Image = Image.FromFile(ImagePath);

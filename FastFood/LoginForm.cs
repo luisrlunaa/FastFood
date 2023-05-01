@@ -3,7 +3,9 @@ using FastFood.Infrastructure.DataAccess.Repositories;
 using FastFood.Models.Entities;
 using FastFoodDemo.Utils;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Text.Json;
 using System.Windows.Forms;
 
@@ -64,6 +66,7 @@ namespace FastFoodDemo
                 Form1.Instance.lblTel1.Text = businessInfo.Phone1;
                 Form1.Instance.lblTel2.Text = businessInfo.Phone2;
                 Form1.Instance.lblRNC.Text = businessInfo.RNC;
+                Form1.Instance.BusinessAccess = businessInfo.BusinessPermiss;
 
                 SalesForm.Instance = new SalesForm();
                 SalesForm.Instance.PrintName = businessInfo.PrinterName;

@@ -1,12 +1,17 @@
-﻿using FastFood.Models.Entities;
+﻿using FastFood.Infrastructure.Constants;
+using FastFood.Models.Entities;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
+using FastFood.Infrastructure.Utils;
 
 namespace FastFoodDemo
 {
     public partial class ConfigurationsForm : Form
     {
         public SystemColor systemColor;
+        public string BusinessAccess;
         public static ConfigurationsForm Instance;
         public ConfigurationsForm()
         {
@@ -80,7 +85,18 @@ namespace FastFoodDemo
 
         private void ConfigurationsForm_Load(object sender, System.EventArgs e)
         {
+            var hasNCFAccess = Access(BusinessPermissName.NCF);
+            var hasUsersAccess = Access(BusinessPermissName.Users);
+            var hasStyleAccess = Access(BusinessPermissName.Style);
+
             mainSubpanel.Visible = true;
+            button1.Enabled = hasNCFAccess; //Manejador de comprobantes
+            button2.Enabled = hasUsersAccess; //Manejador de usuarios
+            button3.Enabled = hasStyleAccess; //Estilos y colores
+
+            NCFForm.Instance = new NCFForm();
+            NCFForm.Instance.BusinessAccess = BusinessAccess;
+
             if (!Program.IsAdmin)
             {
                 SideSubPanel.Height = button2.Height;
@@ -140,7 +156,6 @@ namespace FastFoodDemo
                     button3.BackColor = Color.White;
                 }
 
-                NCFForm.Instance = new NCFForm();
                 if (systemColor != null && systemColor.ButtonsColor != null)
                 {
                     button1.BackColor = Color.FromName(systemColor.BackgroundOthersWindows);
@@ -192,6 +207,18 @@ namespace FastFoodDemo
             this.mainSubpanel.Controls.Add(f);
             this.mainSubpanel.Tag = f;
             f.Show();
+        }
+
+        public bool Access(string accessName)
+        {
+            var businessAccess = string.IsNullOrWhiteSpace(BusinessAccess)
+                               ? new List<string>()
+                               : BusinessAccess.Split(',').ToList().CleanSpaceList();
+
+            if (businessAccess != null && businessAccess.Any())
+                return businessAccess.Contains(accessName);
+
+            return false;
         }
     }
 }
